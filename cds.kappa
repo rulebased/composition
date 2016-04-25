@@ -1,0 +1,38 @@
+#^ @prefix : <https://github.com/rulebased/composition/tree/master/templates/cds.kappa#>.
+#^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+#^ @prefix rbmo: <http://purl.org/rbm/rbmo#>.
+#^ @prefix sbol: <http://sbols.org/v2#>.
+#^ @prefix so: <http://identifiers.org/so/>.
+#^ @prefix go: <http://identifiers.org/go/>.
+#^ @prefix pr: <http://identifiers.org/pr/>.
+#^ @prefix sbo: <http://identifiers.org/biomodels.sbo/>.
+#^ @prefix dct: <http://purl.org/dc/terms/>.
+#^ @prefix owl: <http://www.w3.org/2002/07/owl#>.
+#^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/>.
+#^ @prefix biopax: <http://www.biopax.org/release/biopax-level3.owl#>.
+#^ @prefix prov: <http://www.w3.org/ns/prov#> .
+
+#^ :model a rbmo:Kappa  ;
+#^   dct:title "RBS" ;
+#^   dct:description "Ribosome Binding Site" ;
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ; 
+#^   prov:derivesFrom <https://github.com/rulebased/composition/tree/master/templates/host.kappa> ;
+#^   prov:derivesFrom <https://github.com/rulebased/composition/tree/master/templates/transcription_elongation.kappa> ;
+#^   prov:derivesFrom <https://github.com/rulebased/composition/tree/master/templates/transcription_termination.kappa> ;
+#^   prov:derivesFrom <https://github.com/rulebased/composition/tree/master/templates/translation_termination.kappa> ;
+#^   prov:derivesFrom <https://github.com/rulebased/composition/tree/master/templates/translation_chain.kappa> .
+
+#RULE 9: Translation
+#Overrides the generic translaton sliding
+%var: 'translation sliding rate' 1
+
+#^ :transcription-elongation a rbmo:Rule ;
+#^   bqbiol:isVersionOf go:GO:0006414 ;
+#^   dct:title "Translational elongation" ;
+#^   dct:description "Translational elongation to translate the downstream RNA component" .
+'transcription-elongation' RNA(binding!1, ds!2), Ribosome(rna!1, protein), RNA (binding,us!2, type~IDENTIFIER) ->RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~IDENTIFIER), P(binding!3, type~IDENTIFIER) @'translation sliding rate'
+
+
+#RULE 11: Ribosome rna fell off
+#Override the translation termination with a higher rate depending on the stop codon's availability
+%var: 'ribosome rna fell off rate' 10

@@ -1,0 +1,72 @@
+#^ @prefix : <https://github.com/rulebased/composition/tree/master/templates/promoter.kappa#>.
+#^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+#^ @prefix rbmo: <http://purl.org/rbm/rbmo#>.
+#^ @prefix sbol: <http://sbols.org/v2#>.
+#^ @prefix so: <http://identifiers.org/so/>.
+#^ @prefix go: <http://identifiers.org/go/>.
+#^ @prefix pr: <http://identifiers.org/pr/>.
+#^ @prefix sbo: <http://identifiers.org/biomodels.sbo/>.
+#^ @prefix dct: <http://purl.org/dc/terms/>.
+#^ @prefix owl: <http://www.w3.org/2002/07/owl#>.
+#^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/>.
+#^ @prefix biopax: <http://www.biopax.org/release/biopax-level3.owl#>.
+#^ @prefix prov: <http://www.w3.org/ns/prov#> .
+
+#^ :model a rbmo:Kappa  ;
+#^   dct:title "Constituve promoter" ;
+#^   dct:description "A rule-based modelling template that can be instantiated to create models of constitutive promoters" ;
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" . 
+
+#^ :DNA a rbmo:Agent ; 
+#^   rbmo:hasSite :DNA:part .
+#^ :DNA:part a rbmo:Site ;
+#^   rbmo:hasState :DNA:part:IDENTIFIER ;
+#^   rbmo:hasState :DNA:part:IDENTIFIERtss .
+#^ :DNA:part:IDENTIFIER a rbmo:State ;
+#^   dct:title "Promoter" ;
+#^   sbol:role so:SO:0000167 ;
+#^   sbol:type biopax:DnaRegion ;
+#^   sbol:annotation :DNA:part:IDENTIFIERtss ;
+#^   sbol:model <https://github.com/rulebased/composition/tree/master/templates/generic_part.kappa> .
+#^ :DNA:part:IDENTIFIERtss a rbmo:State ;
+#^   dct:title "TSS" ;
+#^   dct:description "Transcription Start Site" ;
+#^   sbol:role so:SO:0000315 ;
+#^   sbol:model <https://github.com/rulebased/composition/tree/master/templates/generic_part.kappa> .
+%agent: DNA(binding,us,ds,part~IDENTIFIER~IDENTIFIERtss)
+
+
+#^ :RNA a rbmo:Agent ; 
+#^   rbmo:hasSite :RNA:part .
+#^ :RNA:part a rbmo:Site ;
+#^   rbmo:hasState :RNA:part:IDENTIFIER ;
+#^   rbmo:hasState :RNA:part:IDENTIFIERtss .
+#^ :RNA:part:IDENTIFIER a rbmo:State ;
+#^   sbol:role so:SO:0000167 ;
+#^   sbol:annotation :RNA:part:IDENTIFIERtss .
+#^ :RNA:part:IDENTIFIERtss a rbmo:State ;
+#^   sbol:role so:SO:0000315 .
+%agent: RNA(ds,us,binding,deg,part~IDENTIFIER~IDENTIFIERtss)
+
+
+# RULE 1: RNAP binding to promoter region
+%var: 'RNAP binding rate' 0.0001
+
+#^ :RNAP-to-promoter a rbmo:Rule ;
+#^   bqbiol:isVersionOf go:GO:0070063 ;
+#^   dct:title "RNAP-promoter" ;
+#^   dct:description "RNAP binding to a promoter region" .
+'RNAP-to-promoter' DNA(binding, part~IDENTIFIER), RNAP(dna, rna) -> DNA(binding!1,part~IDENTIFIER), RNAP(dna!1,rna) @'RNAP binding rate'
+
+
+
+#RULE 2: transcription initiation
+%var: 'transcription initiation rate' 1
+
+#^ :transcription-initiation a rbmo:Rule ;
+#^   bqbiol:isVersionOf go:GO:0070063 ;
+#^   dct:title "Transcription initiation" ;
+#^   dct:description "RNAP binds to a promoter and initiates transcription" .
+'transcription-initiation' DNA(binding!1,ds!2,part~IDENTIFIER), RNAP(dna!1,rna),DNA(us!2, binding, part~IDENTIFIERtss) -> DNA(binding,ds!2,part~IDENTIFIER), RNAP(dna!1,rna!3),DNA(us!2, binding!1, part~IDENTIFIERtss), RNA(binding, us, ds!3, part~IDENTIFIERtss)@'transcription initiation rate'
+
+

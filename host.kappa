@@ -1,0 +1,239 @@
+#^ @prefix : <https://github.com/rulebased/composition/tree/master/templates/host.kappa#>.
+#^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+#^ @prefix rbmo: <http://purl.org/rbm/rbmo#>.
+#^ @prefix sbol: <http://sbols.org/v2#>.
+#^ @prefix so: <http://identifiers.org/so/>.
+#^ @prefix go: <http://identifiers.org/go/>.
+#^ @prefix pr: <http://identifiers.org/pr/>.
+#^ @prefix sbo: <http://identifiers.org/biomodels.sbo/>.
+#^ @prefix dct: <http://purl.org/dc/terms/>.
+#^ @prefix owl: <http://www.w3.org/2002/07/owl#>.
+#^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/>.
+#^ @prefix biopax: <http://www.biopax.org/release/biopax-level3.owl#>.
+#^ @prefix prov: <http://www.w3.org/ns/prov#> .
+#^ @prefix ro: <http://www.obofoundry.org/ro/ro.owl#>.
+#^ @prefix obo: <http://purl.obolibrary.org/obo/>.
+
+
+#^ :model a rbmo:Kappa  ;
+#^   dct:title "Agent definitions" ;
+#^   dct:description "Definitions of agents in a generic host" ;
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" .
+
+#^ :DNA a rbmo:Agent ; 
+#^   dct:isPartOf :model ;
+#^   dct:title "DNA" ;
+#^   rbmo:hasSite :DNA:binding ;
+#^   rbmo:hasSite :DNA:us ;
+#^   rbmo:hasSite :DNA:ds ;
+#^   rbmo:hasSite :DNA:part ;
+#^   sbol:type biopax:DnaRegion .
+#^ :DNA:binding a rbmo:Site ;
+#^   sbol:type biopax:DnaRegion ;
+#^   dct:title "binding" .
+#^ :DNA:us a rbmo:Site ;
+#^   so:starts :DNA .
+#^ :DNA:ds a rbmo:Site ;
+#^   so:finishes :DNA .
+#^ :DNA:part a rbmo:Site ;
+#^   rbmo:hasState :DNA:part:IDENTIFIER .
+#^ :DNA:part:IDENTIFIER a rbmo:State ;
+#^   sbol:type biopax:DnaRegion .
+%agent: DNA(binding,us,ds,part~IDENTIFIER)
+
+
+#^ :RNA a rbmo:Agent ; 
+#^   dct:isPartOf :model ;
+#^   dct:title "RNA" ;
+#^   rbmo:hasSite :RNA:binding ;
+#^   rbmo:hasSite :RNA:us ;
+#^   rbmo:hasSite :RNA:ds ;
+#^   rbmo:hasSite :RNA:deg ;
+#^   rbmo:hasSite :RNA:part ;
+#^   sbol:type biopax:RnaRegion .
+#^ :RNA:binding a rbmo:Site ;
+#^   sbol:role so:SO:0000057 ;
+#^   sbol:type biopax:RnaRegion ;
+#^   dct:title "binding" .
+#^ :RNA:us a rbmo:Site ;
+#^   so:starts :RNA .
+#^ :RNA:ds a rbmo:Site ;
+#^   so:finishes :RNA .
+#^ :RNA:deg a rbmo:Site ;
+#^   so:finishes :RNA .
+#^ :RNA:part a rbmo:Site ;
+#^   rbmo:hasState :RNA:part:IDENTIFIER .
+#^ :RNA:part:IDENTIFIER a rbmo:State ;
+#^   sbol:type biopax:RnaRegion .
+%agent: RNA(ds,us,binding,deg,part~IDENTIFIER)
+
+#^ :P a rbmo:Agent ; 
+#^   dct:isPartOf :model ;
+#^   dct:title "P" ;
+#^   rbmo:hasSite :DNA:binding ;
+#^   rbmo:hasSite :DNA:us ;
+#^   rbmo:hasSite :DNA:ds ;
+#^   rbmo:hasSite :DNA:part ;
+#^   rbmo:hasSite :DNA:deg ;
+#^   rbmo:hasSite :DNA:dna ;
+#^   sbol:type biopax:Protein .
+#^ :P:binding a rbmo:Site ;
+#^   sbol:type biopax:Protein ;
+#^   dct:title "binding" .
+#^ :P:us a rbmo:Site ;
+#^   so:starts :P .
+#^ :P:ds a rbmo:Site ;
+#^   so:finishes :P .
+#^ :P:part a rbmo:Site ;
+#^   rbmo:hasState :P:part:IDENTIFIER .
+#^ :P:part:IDENTIFIER a rbmo:State ;
+#^   sbol:type biopax:Protein .
+P(ds,us, binding, deg, dna, protein,part~IDENTIFIER)
+
+
+#^ :RNAP a rbmo:Agent ; 
+#^   dct:isPartOf :model ;
+#^   bqbiol:isVersionOf go:GO:0030880 ;
+#^   dct:title "RNAP" ;
+#^   rbmo:hasSite :Ribosome:rna ;
+#^   rbmo:hasSite :Ribosome:dna .
+#^ :RNAP:dna a rbmo:Site ;
+#^   sbol:type biopax:Protein ;
+#^   dct:title "dna" ;
+#^   ro:has_function go:GO:0003677 .
+#^ :RNAP:rna a rbmo:Site ;
+#^   sbol:type biopax:Protein ;
+#^   dct:title "rna" ;
+#^   ro:has_function go:GO:0003723 .
+%agent: RNAP(rna,dna)
+
+#^ :Ribosome a rbmo:Agent ; 
+#^   dct:isPartOf :model ;
+#^   bqbiol:isVersionOf go:GO:0005840 ;
+#^   dct:title "Ribosome" ;
+#^   rbmo:hasSite :Ribosome:rna ;
+#^   rbmo:hasSite :Ribosome:dna .
+#^ :Ribosome:protein a rbmo:Site ;
+#^   sbol:type biopax:Protein ;
+#^   dct:title "protein" ;
+#^   ro:has_function go:GO:0005515 .
+#^ :Ribosome:rna a rbmo:Site ;
+#^   sbol:type biopax:Protein ;
+#^   dct:title "rna" ;
+#^   ro:has_function go:GO:0003723 .
+%agent: Ribosome(rna, protein)
+
+#^ :Protease a rbmo:Agent ; 
+#^   dct:isPartOf :model ;
+#^   bqbiol:isVersionOf go:GO:0000502 ;
+#^   dct:title "Ribosome" ;
+#^   rbmo:hasSite :Protease:binding .
+#^ :Protease:binding a rbmo:Site ;
+#^   sbol:type biopax:Protein ;
+#^   ro:has_function go:GO:0005515 ;
+#^   dct:title "protein" ;
+#^   ro:has_function go:GO:0005515 .
+%agent: Protease(binding)
+
+
+#^ :RNADeg a rbmo:Agent ; 
+#^   dct:isPartOf :model ;
+#^   ro:has_function go:GO:0006401 ;
+#^   dct:title "Ribosome" ;
+#^   rbmo:hasSite :RNADeg:binding .
+#^ :RNADeg:binding a rbmo:Site ;
+#^   dct:title "binding" ;
+#^   ro:has_function go:GO:0003723 .
+%agent: RNADeg(binding)
+
+%init: 1000 RNAP(dna,rna)
+
+%init: 10000 Ribosome(rna)
+
+%init: 1000 Protease(binding)
+%init: 100 RNADeg(binding)
+
+
+#RULE 12: Ribosome protein fall off
+#Incorporated without instantiating
+%var: 'ribosome protein fell off rate' 0.1
+#^ :ribosome-protein-off a rbmo:Rule ;
+#^   obo:part_of go:GO:0006415 ;
+#^   dct:title "Ribosome protein fall off" ;
+#^   dct:description "A ribosome fall off from a protein." .
+'ribosome-protein-off'Ribosome(protein!3), P(binding!3) -> Ribosome(protein), P(binding)@'ribosome protein fell off rate'
+
+
+#RULE 13: Binding of protease to a protein, which can be in a chain
+#Incorporated without instantiated
+%var: 'protease binding rate' 0.00005
+#^ :protease-protein-binding a rbmo:Rule ;
+#^   bqbiol:isVersionOf go:GO:0002020 ;
+#^   dct:title "Protease-protein binding" ;
+#^   dct:description "Binding of a protease or a peptidase to a protein." .
+'protease-protein-binding'P(deg),Protease(binding) -> P(deg!1), Protease(binding!1) @'protease binding rate'
+
+
+#RULE 14:
+#Incorporated without instantiated
+%var: 'degradation rate' 0.01
+%var: 'slide and degradation rate' 0.01
+%var: 'deg sliding rate' 0.01
+
+#Degrade a single domain protein
+#^ :protein-degradation a rbmo:Rule ;
+#^   bqbiol:isVersionOf go:GO:0009056 ;
+#^   dct:title "Protein degradation" ;
+#^   dct:description "Degradation of a single protein." .
+'protein-degradation' P(us,ds,deg!1), Protease(binding!1) -> Protease(binding) @'degradation rate'
+
+#Degrade a multiple domain protein, slide and degrade
+#^ :proteinchain-degradation-sliding-right a rbmo:Rule ;
+#^   bqbiol:isVersionOf go:GO:0009056 ;
+#^   dct:title "Protein degradation in a chain" ;
+#^   dct:description "Degradation of a protein in a chain and sliding to the right protein in the chain." .
+'proteinchain-degradation-sliding-right' P(us!2,ds,deg!1), Protease(binding!1), P(ds!2, deg)-> Protease(binding!1), P(ds,deg!1), SlideDegRule()  @'slide and degradation rate'
+
+#^ :proteinchain-degradation-sliding-left a rbmo:Rule ;
+#^   bqbiol:isVersionOf go:GO:0009056 ;
+#^   dct:title "Protein degradation in a chain" ;
+#^   dct:description "Degradation of a protein in a chain and sliding to the left protein in the chain." .
+'proteinchain-degradation-sliding-left'P(ds!2,deg!1), Protease(binding!1), P(us!2, deg)-> P(ds!2,deg), Protease(binding!1), P(us!2, deg!1) @'deg sliding rate'
+
+
+
+#RULE 15: RNADeg-RNA binding-unbinding
+%var: 'mrna deg binding rate' 0.000005
+#^ :enzyme-RNA-binding a rbmo:Rule ;
+#^   bqbiol:isVersionOf go:GO:0019899 ;
+#^   dct:title "enzyme-RNA binding" ;
+#^   dct:description "Binding of an enzyme to an mRNA for its degradation." .
+'enzyme-RNA-binding' RNA(deg),RNADeg(binding) -> RNA(deg!1), RNADeg(binding!1) @'mrna deg binding rate'
+
+#RULE 16: Sliding and degradation
+%var: 'mrna degratation rate' 0.01
+%var: 'mrna slide and degratation rate' 0.02
+%var: 'mrna deg sliding rate' 0.02
+
+#Degrade a single domain protein
+#^ :rna-degradation a rbmo:Rule ;
+#^   bqbiol:isVersionOf go:GO:0006401 ;
+#^   dct:title "RNA degradation" ;
+#^   dct:description "Degradation of a RNA component." .
+'rna-degradation' RNA(us,ds,deg!1), RNADeg(binding!1) -> RNADeg(binding), RNADegRule() @'mrna degratation rate'
+
+#Degrade a multiple domain rna, slide and degrade
+#^ :rna-degradation-sliding-right a rbmo:Rule ;
+#^   bqbiol:isVersionOf go:GO:0006401 ;
+#^   dct:title "RNA degradation" ;
+#^   dct:description "Degradation of a component in a RNA chain and sliding to the right component in the chain." .
+'rna-degradation-sliding right' RNA(us!2,ds,deg!1), RNADeg(binding!1), RNA(ds!2, deg)-> RNADeg(binding!1), RNA(ds,deg!1)  @'mrna slide and degratation rate'
+
+#^ :rna-degradation-sliding-left a rbmo:Rule ;
+#^   bqbiol:isVersionOf go:GO:0006401 ;
+#^   dct:title "RNA degradation" ;
+#^   dct:description "Degradation of a component in a RNA chain and sliding to the left component in the chain." .
+'rna-degradation-sliding-left'RNA(ds!2,deg!1), RNADeg(binding!1), RNA(us!2, deg)-> RNA(ds!2,deg), RNADeg(binding!1), RNA(us!2, deg!1) @'mrna deg sliding rate'
+
+
+
