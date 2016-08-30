@@ -1,3 +1,4 @@
+#^ @prefix : <https://example.org/>.
 #TWO COMPONENT SYSTEM PHOSPHORYLATION
 %var: 'kk_p' 0.000001
 %var: 'kb_rr_kp' 0.05 
@@ -11,17 +12,17 @@
 'KP'            P(type~KINASE) -> P(type~KINASEP) @ 'kk_p' 
 
 #RR binds to K~P
-'RR-KP'	  P(protein, dna, type~REGULATOR), P(protein, type~KINASEP) ->   P(protein!1, dna, type~REGULATOR), P(protein!1, type~KINASEP) @ 'kb_rr_kp' ('kb_rr_kp_sc') 
+'RR-KP-bind' P(protein, dna, type~REGULATOR), P(protein, type~KINASEP) ->   P(protein!1, dna, type~REGULATOR), P(protein!1, type~KINASEP) @ 'kb_rr_kp' ('kb_rr_kp_sc') 
 
 #RR unbinds from KK~P
-'RR KP'    P(protein!1, dna, type~REGULATOR), P(protein!1, type~KINASEP) -> P(protein, dna, type~REGULATOR), P(protein, type~KINASEP) @ 'ku_rr_kp'
+'RR-KP-unbind' P(protein!1, dna, type~REGULATOR), P(protein!1, type~KINASEP) -> P(protein, dna, type~REGULATOR), P(protein, type~KINASEP) @ 'ku_rr_kp'
 
 #K phosphrylates RR
-'RR-KP RRP K'	P(protein!1, dna, type~REGULATOR), P(protein!1, type~KINASEP) -> P(protein!1, dna, type~REGULATORP), P(protein!1, type~KINASE) @ 'kp_kp_rr'
+'RR-KP_RRP_K'	P(protein!1, dna, type~REGULATOR), P(protein!1, type~KINASEP) -> P(protein!1, dna, type~REGULATORP), P(protein!1, type~KINASE) @ 'kp_kp_rr'
 
 #Unbinding of RR~P from K
-P(protein!1, dna, type~REGULATORP), P(protein!1, type~KINASE) ->  P(protein, dna, type~REGULATORP), P(protein, type~KINASE) @'ku_rrp_k'
+'RR-P-unbind' P(protein!1, dna, type~REGULATORP), P(protein!1, type~KINASE) ->  P(protein, dna, type~REGULATORP), P(protein, type~KINASE) @'ku_rrp_k'
 
 #Auto dephosphorylation
-P(protein, dna, type~REGULATORP) -> P(protein, dna, type~REGULATOR) @'kdp'
-P(protein, dna, type~KINASEP) -> P(protein, dna, type~KINASE) @'kdp'
+'RR-depph' P(protein, dna, type~REGULATORP) -> P(protein, dna, type~REGULATOR) @'kdp'
+'RRK-dephh' P(protein, dna, type~KINASEP) -> P(protein, dna, type~KINASE) @'kdp'

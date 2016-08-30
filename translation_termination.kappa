@@ -18,11 +18,11 @@
 #^   prov:derivesFrom <https://github.com/rulebased/composition/tree/master/templates/host.kappa> .
 
 #RULE 11: Ribosome rna fell off
-%var: 'ribosome rna fell off rate' 0.0001
+%var: 'ribosome_rna_fell_off_rate' 0.0001
 #^ :ribosome-rna-off a rbmo:Rule ;
 #^   obo:part_of go:GO:0006415 ;
 #^   dct:title "Ribosome RNA fall off" ;
 #^   dct:description "A ribosome fall off from an RNA.".
-'ribosome-rna-off' Ribosome(rna!1), RNA (binding!1, part~IDENTIFIER) -> Ribosome(rna), RNA (binding, part~IDENTIFIER) @'ribosome rna fell off rate'
+'ribosome-rna-off' Ribosome(rna!1), RNA (binding!1, part~IDENTIFIER) -> Ribosome(rna), RNA (binding, part~IDENTIFIER) @'ribosome_rna_fell_off_rate'
 
 

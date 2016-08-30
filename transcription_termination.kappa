@@ -18,18 +18,18 @@
 #^   prov:derivesFrom <https://github.com/rulebased/composition/tree/master/templates/host.kappa> .
 
 #RULE 5: RNAP fall off from DNA
-%var: 'rnap dna falloff rate' 0.00001
+%var: 'rnap_dna_fall_off_rate' 0.00001
 #^ :transcription-termination a rbmo:Rule ;
 #^   obo:part_of go:GO:0006353 ;
 #^   dct:title "Transcription termination" ;
 #^   dct:description "DNA templated transcription termination. RNAP fall off from DNA." .
-'transcription-termination' RNAP(dna!1), DNA(binding!1, part~IDENTIFIER) -> RNAP(dna), DNA(binding, part~RBS1)@'rnap dna falloff rate'
+'transcription-termination' RNAP(dna!1), DNA(binding!1, part~IDENTIFIER) -> RNAP(dna), DNA(binding, part~RBS1)@'rnap_dna_fall_off_rate'
 
 #RULE 6: RNAP fall off from RNA
-%var: 'rnap rna falloff rate' 0.00001
+%var: 'rnap_rna_fall_off_rate' 0.00001
 #^ :translation-termination a rbmo:Rule ;
 #^   obo:part_of go:GO:0006415 ;
 #^   dct:title "Translational termination" ;
 #^   dct:description "RNAP fall off from RNA." .
-'translation-termination'RNAP(rna!1), RNA(ds!1,part~IDENTIFIER) -> RNAP(rna), RNA(ds,part~IDENTIFIER)@'rnap rna falloff rate'
+'translation-termination' RNAP(rna!1), RNA(ds!1,part~IDENTIFIER) -> RNAP(rna), RNA(ds,part~IDENTIFIER)@'rnap_rna_falloff_rate'
 

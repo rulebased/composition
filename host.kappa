@@ -88,7 +88,7 @@
 #^   rbmo:hasState :P:part:IDENTIFIER .
 #^ :P:part:IDENTIFIER a rbmo:State ;
 #^   sbol:type biopax:Protein .
-P(ds,us, binding, deg, dna, protein,part~IDENTIFIER)
+%agent: P(ds,us, binding, deg, dna, protein,part~IDENTIFIER)
 
 
 #^ :RNAP a rbmo:Agent ; 
@@ -156,84 +156,84 @@ P(ds,us, binding, deg, dna, protein,part~IDENTIFIER)
 
 #RULE 12: Ribosome protein fall off
 #Incorporated without instantiating
-%var: 'ribosome protein fell off rate' 0.1
+%var: 'ribosome_protein_fall_off_rate' 0.1
 #^ :ribosome-protein-off a rbmo:Rule ;
 #^   obo:part_of go:GO:0006415 ;
 #^   dct:title "Ribosome protein fall off" ;
 #^   dct:description "A ribosome fall off from a protein." .
-'ribosome-protein-off'Ribosome(protein!3), P(binding!3) -> Ribosome(protein), P(binding)@'ribosome protein fell off rate'
+'ribosome-protein-off' Ribosome(protein!3), P(binding!3) -> Ribosome(protein), P(binding)@'ribosome_protein_fall_off_rate'
 
 
 #RULE 13: Binding of protease to a protein, which can be in a chain
 #Incorporated without instantiated
-%var: 'protease binding rate' 0.00005
+%var: 'protease_binding_rate' 0.00005
 #^ :protease-protein-binding a rbmo:Rule ;
 #^   bqbiol:isVersionOf go:GO:0002020 ;
 #^   dct:title "Protease-protein binding" ;
 #^   dct:description "Binding of a protease or a peptidase to a protein." .
-'protease-protein-binding'P(deg),Protease(binding) -> P(deg!1), Protease(binding!1) @'protease binding rate'
+'protease-protein-binding' P(deg),Protease(binding) -> P(deg!1), Protease(binding!1) @'protease_binding_rate'
 
 
 #RULE 14:
 #Incorporated without instantiated
-%var: 'degradation rate' 0.01
-%var: 'slide and degradation rate' 0.01
-%var: 'deg sliding rate' 0.01
+%var: 'degradation_rate' 0.01
+%var: 'slide_and_degradation_rate' 0.01
+%var: 'deg_sliding_rate' 0.01
 
 #Degrade a single domain protein
 #^ :protein-degradation a rbmo:Rule ;
 #^   bqbiol:isVersionOf go:GO:0009056 ;
 #^   dct:title "Protein degradation" ;
 #^   dct:description "Degradation of a single protein." .
-'protein-degradation' P(us,ds,deg!1), Protease(binding!1) -> Protease(binding) @'degradation rate'
+'protein-degradation' P(us,ds,deg!1), Protease(binding!1) -> Protease(binding) @'degradation_rate'
 
 #Degrade a multiple domain protein, slide and degrade
 #^ :proteinchain-degradation-sliding-right a rbmo:Rule ;
 #^   bqbiol:isVersionOf go:GO:0009056 ;
 #^   dct:title "Protein degradation in a chain" ;
 #^   dct:description "Degradation of a protein in a chain and sliding to the right protein in the chain." .
-'proteinchain-degradation-sliding-right' P(us!2,ds,deg!1), Protease(binding!1), P(ds!2, deg)-> Protease(binding!1), P(ds,deg!1), SlideDegRule()  @'slide and degradation rate'
+'proteinchain-degradation-sliding-right' P(us!2,ds,deg!1), Protease(binding!1), P(ds!2, deg)-> Protease(binding!1), P(ds,deg!1), SlideDegRule()  @'slide_and_degradation_rate'
 
 #^ :proteinchain-degradation-sliding-left a rbmo:Rule ;
 #^   bqbiol:isVersionOf go:GO:0009056 ;
 #^   dct:title "Protein degradation in a chain" ;
 #^   dct:description "Degradation of a protein in a chain and sliding to the left protein in the chain." .
-'proteinchain-degradation-sliding-left'P(ds!2,deg!1), Protease(binding!1), P(us!2, deg)-> P(ds!2,deg), Protease(binding!1), P(us!2, deg!1) @'deg sliding rate'
+'proteinchain-degradation-sliding-left' P(ds!2,deg!1), Protease(binding!1), P(us!2, deg)-> P(ds!2,deg), Protease(binding!1), P(us!2, deg!1) @'deg_sliding_rate'
 
 
 
 #RULE 15: RNADeg-RNA binding-unbinding
-%var: 'mrna deg binding rate' 0.000005
+%var: 'mrna_deg_binding_rate' 0.000005
 #^ :enzyme-RNA-binding a rbmo:Rule ;
 #^   bqbiol:isVersionOf go:GO:0019899 ;
 #^   dct:title "enzyme-RNA binding" ;
 #^   dct:description "Binding of an enzyme to an mRNA for its degradation." .
-'enzyme-RNA-binding' RNA(deg),RNADeg(binding) -> RNA(deg!1), RNADeg(binding!1) @'mrna deg binding rate'
+'enzyme-RNA-binding' RNA(deg),RNADeg(binding) -> RNA(deg!1), RNADeg(binding!1) @'mrna_deg_binding_rate'
 
 #RULE 16: Sliding and degradation
-%var: 'mrna degratation rate' 0.01
-%var: 'mrna slide and degratation rate' 0.02
-%var: 'mrna deg sliding rate' 0.02
+%var: 'mrna_degratation_rate' 0.01
+%var: 'mrna_slide_and_degratation_rate' 0.02
+%var: 'mrna_deg_sliding_rate' 0.02
 
 #Degrade a single domain protein
 #^ :rna-degradation a rbmo:Rule ;
 #^   bqbiol:isVersionOf go:GO:0006401 ;
 #^   dct:title "RNA degradation" ;
 #^   dct:description "Degradation of a RNA component." .
-'rna-degradation' RNA(us,ds,deg!1), RNADeg(binding!1) -> RNADeg(binding), RNADegRule() @'mrna degratation rate'
+'rna-degradation' RNA(us,ds,deg!1), RNADeg(binding!1) -> RNADeg(binding), RNADegRule() @'mrna_degratation_rate'
 
 #Degrade a multiple domain rna, slide and degrade
 #^ :rna-degradation-sliding-right a rbmo:Rule ;
 #^   bqbiol:isVersionOf go:GO:0006401 ;
 #^   dct:title "RNA degradation" ;
 #^   dct:description "Degradation of a component in a RNA chain and sliding to the right component in the chain." .
-'rna-degradation-sliding right' RNA(us!2,ds,deg!1), RNADeg(binding!1), RNA(ds!2, deg)-> RNADeg(binding!1), RNA(ds,deg!1)  @'mrna slide and degratation rate'
+'rna-degradation-sliding-right' RNA(us!2,ds,deg!1), RNADeg(binding!1), RNA(ds!2, deg)-> RNADeg(binding!1), RNA(ds,deg!1)  @'mrna_slide_and_degratation_rate'
 
 #^ :rna-degradation-sliding-left a rbmo:Rule ;
 #^   bqbiol:isVersionOf go:GO:0006401 ;
 #^   dct:title "RNA degradation" ;
 #^   dct:description "Degradation of a component in a RNA chain and sliding to the left component in the chain." .
-'rna-degradation-sliding-left'RNA(ds!2,deg!1), RNADeg(binding!1), RNA(us!2, deg)-> RNA(ds!2,deg), RNADeg(binding!1), RNA(us!2, deg!1) @'mrna deg sliding rate'
+'rna-degradation-sliding-left' RNA(ds!2,deg!1), RNADeg(binding!1), RNA(us!2, deg)-> RNA(ds!2,deg), RNADeg(binding!1), RNA(us!2, deg!1) @'mrna_deg_sliding_rate'
 
 
 

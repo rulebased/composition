@@ -15,6 +15,6 @@
 #^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ; 
 #^   prov:derivesFrom <https://github.com/rulebased/composition/tree/master/templates/genericpart.kappa> .
 
-#RULE 5: RNAP fell off from DNA
-#Higher fell off rate
-%var: 'rnap dna felloff rate' 1
+#RULE 5: RNAP fall off from DNA
+#Higher fall off rate
+%var: 'rnap_dna_fall_off_rate' 1

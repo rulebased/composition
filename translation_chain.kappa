@@ -22,5 +22,5 @@
 #^   bqbiol:isVersionOf go:GO:0006415 ;
 #^   dct:title "Formation of translational chains, due to gene fusion or leakiness of stop codons" ;
 #^   dct:description "RNAP fall off from RNA ." .
-'translation-chain' RNA(binding!1, ds!2), Ribosome(rna!1, protein!3), RNA (binding,us!2, part~IDENTIFIER), P(binding!3,ds) -> RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, part~IDENTIFIER), P(ds!4, binding), P(part~IDENTIFIER, us!4, binding!3) @'translation sliding rate'
+'translation-chain' RNA(binding!1, ds!2), Ribosome(rna!1, protein!3), RNA (binding,us!2, part~IDENTIFIER), P(binding!3,ds) -> RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, part~IDENTIFIER), P(ds!4, binding), P(part~IDENTIFIER, us!4, binding!3) @'translation_sliding_rate'
 

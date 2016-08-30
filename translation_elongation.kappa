@@ -18,10 +18,10 @@
 
 
 #RULE 8: Translation sliding
-%var: 'translation sliding rate' 1
+%var: 'translation_sliding_rate' 1
 #^ :transcription-elongation a rbmo:Rule ;
 #^   bqbiol:isVersionOf go:GO:0006414 ;
 #^   dct:title "Translational elongation" ;
 #^   dct:description "Translational elongation to translate the downstream RNA component." .
-'translation-elongation' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, part~IDENTIFIER) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, part~IDENTIFIER) @'translation sliding rate'
+'translation-elongation' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, part~IDENTIFIER) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, part~IDENTIFIER) @'translation_sliding_rate'
 

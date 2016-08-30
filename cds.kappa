@@ -24,15 +24,15 @@
 
 #RULE 9: Translation
 #Overrides the generic translaton sliding
-%var: 'translation sliding rate' 1
+%var: 'translation_sliding_rate' 1
 
 #^ :transcription-elongation a rbmo:Rule ;
 #^   bqbiol:isVersionOf go:GO:0006414 ;
 #^   dct:title "Translational elongation" ;
 #^   dct:description "Translational elongation to translate the downstream RNA component" .
-'transcription-elongation' RNA(binding!1, ds!2), Ribosome(rna!1, protein), RNA (binding,us!2, type~IDENTIFIER) ->RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~IDENTIFIER), P(binding!3, type~IDENTIFIER) @'translation sliding rate'
+'transcription-elongation' RNA(binding!1, ds!2), Ribosome(rna!1, protein), RNA (binding,us!2, type~IDENTIFIER) ->RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~IDENTIFIER), P(binding!3, type~IDENTIFIER) @'translation_sliding_rate'
 
 
 #RULE 11: Ribosome rna fell off
 #Override the translation termination with a higher rate depending on the stop codon's availability
-%var: 'ribosome rna fell off rate' 10
+%var: 'ribosome_rna_fall_off_rate' 10

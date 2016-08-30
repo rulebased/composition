@@ -37,8 +37,8 @@
 %agent: RNA(ds,us,binding,deg,part~IDENTIFIER)
 
 #RULE 7: Translation initiation
-%var: 'ribosome binding rate' 0.00001
+%var: 'ribosome_binding_rate' 0.00001
 #^ :translation-initiation a rbmo:Rule ;
 #^   obo:part_of go:GO:0006413 ;
 #^   dct:title "Translational initiation" .
-'translation-initiation' RNA(binding,type~IDENTIFIER), Ribosome(rna) -> RNA(binding!1, type~IDENTIFIER), Ribosome(rna!1) @ 'ribosome binding rate'
+'translation_initiation' RNA(binding,type~IDENTIFIER), Ribosome(rna) -> RNA(binding!1, type~IDENTIFIER), Ribosome(rna!1) @ 'ribosome_binding_rate'
