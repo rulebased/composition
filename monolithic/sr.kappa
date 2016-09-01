@@ -20,6 +20,11 @@
 
 
 #circuit
+# pSpaRK promoter
+# pSpaRKtss tss part of pSpaRK
+# RBS1 ribosome binding site
+# spaK coding sequence (CD)
+# gpf CS for gfp
 
 %init: 1 DNA(binding,us,ds!1, type~pSpaRK), DNA(binding,us!1,ds!100, type~pSpaRKtss), DNA(binding, us!100, ds!2, type~RBS1), DNA(binding, us!2, ds!3, type~spaK), DNA(binding, us!3, ds!4, type~RBS2), DNA(binding, us!4, ds!5, type~spaR), DNA(binding, us!5, ds!6, type~Ter1), DNA(binding, us!6, ds!61, type~SpaRBS), DNA(binding, us!61, ds!7, type~pSpaS), DNA(binding, us!7, ds!99, type~pSpaStss), DNA(binding, us!99, ds!8, type~RBS3), DNA(binding, us!8, ds!9, type~gfp), DNA(binding, us!9, ds, type~Ter2)
 
