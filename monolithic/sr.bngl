@@ -1,0 +1,199 @@
+begin model
+
+begin parameters
+	RNAP_binding_rate 0.0001
+	transcription_initiation_rate 1
+	sliding_rate 1
+	rnap_dna_felloff_rate 0.0001
+	rnap_dna_high_felloff_rate 10
+	rnap_rna_felloff_rate 0.0001
+	rnap_rna_high_felloff_rate 10
+	ribosome_binding_rate 0.00001
+	translation_sliding_rate 1
+	ribosome_rna_fell_off_low_rate 0.001
+	ribosome_rna_fell_off_high_rate 10
+	ribosome_protein_fell_off_rate 0.1
+	protease_binding_rate 0.0005
+	protease_unbinding_rate 0.0005
+#GMGM: No space in names, no quotes surrounding the names
+	degratation_rate 0.01
+	slide_and_degratation_rate 0.01
+
+	mrna_deg_binding_rate 0.0005
+	mrna_deg_unbinding_rate 0
+
+	mrna_degratation_rate 0.01
+	mrna_slide_and_degratation_rate 0.0002
+
+end parameters
+
+begin molecule types
+	DNA(binding,us,ds,type~pSpaRK~pSpaRKtss~RBS1~spaK~RBS2~spaR~Ter1~pSpaS~pSpaStss~RBS3~gfp~Ter2)
+	RNA(ds,us,binding,deg,type~pSpaRKtss~RBS1~spaK~RBS2~spaR~Ter1~pSpaStss~RBS3~gfp~Ter2)
+	P(ds,us,binding,deg,type~pSpaRKtss~RBS1~spaK~RBS2~spaR~Ter1~pSpaStss~RBS3~gfp~Ter2)
+	RNAP(rna,dna)
+	Ribosome(rna,protein)
+	Protease(binding)
+	RNADeg(binding)
+end molecule types
+
+begin seed species
+	RNAP(dna,rna) 1000
+	#GMGM Had to protein site here 
+	Ribosome(rna,protein) 10000
+	Protease(binding) 1000
+	RNADeg(binding) 100	
+#GMGM: Dot instead of comma between agents
+	DNA(binding,us,ds!1,type~pSpaRK).DNA(binding,us!1,ds!100,type~pSpaRKtss).DNA(binding,us!100,ds!2,type~RBS1).DNA(binding,us!2,ds!3,type~spaK).DNA(binding,us!3,ds!4,type~RBS2).DNA(binding,us!4,ds!5,type~spaR).DNA(binding,us!5,ds!6,type~Ter1).DNA(binding,us!6,ds!7,type~pSpaS).DNA(binding,us!7,ds!99,type~pSpaStss).DNA(binding,us!99,ds!8,type~RBS3).DNA(binding,us!8,ds!9,type~gfp).DNA(binding,us!9,ds,type~Ter2) 1
+	#DNA(binding,us!1,type~pSpaRKtss) 1
+	#DNA(binding,us!100,ds!2,type~RBS1).DNA(binding,us!2,ds!3,type~spaK).DNA(binding,us!3,ds!4,type~RBS2).DNA(binding,us!4,ds!5,type~spaR).DNA(binding,us!5,ds!6,type~Ter1).DNA(binding,us!6,ds!7,type~pSpaS).DNA(binding,us!7,ds!99,type~pSpaStss).DNA(binding,us!99,ds!8,type~RBS3).DNA(binding,us!8,ds!9,type~gfp).DNA(binding,us!9,ds,type~Ter2) 1
+end seed species
+
+begin observables
+ 	Molecules RNA1 RNA(binding,ds!1,type~pSpaRKtss).RNA(binding,us!1,type~RBS1)
+	Molecules RNA2 RNA(binding,ds!1,type~pSpaRKtss).RNA(binding,us!1,ds!2,type~RBS1).RNA(binding,us!2,type~spaK)
+	Molecules RNA3 RNA(binding,ds!1,type~pSpaRKtss).RNA(binding,us!1,ds!2,type~RBS1).RNA(binding,us!2,ds!3,type~spaK).RNA(binding,us!3,type~RBS2)
+	Molecules RNA4 RNA(binding,ds!1,type~pSpaRKtss).RNA(binding,us!1,ds!2,type~RBS1).RNA(binding,us!2,ds!3,type~spaK).RNA(binding,us!3,ds!4,type~RBS2).RNA(binding,us!4,type~spaR)
+	Molecules SpaK P(binding,type~spaK)
+	Molecules SpaR P(binding,type~spaR)
+	Molecules SpaK_RBS2 P(ds!1,type~spaK).P(us!1,type~RBS2)
+	Molecules SpaK_RBS2_spaR P(ds!1,type~spaK).P(us!1,ds!2,type~RBS2).P(us!2,type~spaR)
+	Molecules SpaK_RBS2_spaR_Ter1 P(ds!1,type~spaK).P(us!1,ds!2,type~RBS2).P(us!2,ds!3,type~spaR).P(us!3,type~Ter1)
+	Molecules Protein P()
+	Molecules Protease Protease(binding)
+	Molecules RNADeg_free RNADeg(binding)
+	Molecules RNAdeg RNA(us,deg!1).RNADeg(binding!1)
+	#Can not have observables using the ? sign
+#	Molecules slideleft RNA(us!2,ds?,deg!1).RNADeg(binding!1).RNA(ds!2,deg)
+	Molecules slideleft RNA(us!2,deg!1).RNADeg(binding!1).RNA(ds!2,deg)
+
+end observables
+
+
+#%obs:'RNA' RNA(binding,ds!1,type~pSpaRKtss).RNA(binding,us!1,ds!2,type~RBS1).RNA(binding,us!2,ds!3,type~spaK).RNA(binding,us!3,ds!4,type~RBS2).RNA(binding,us!4,ds!5,type~spaR).RNA(binding,us!5,type~Ter1)
+#%obs:'RNAP' RNAP(dna,rna)
+#%obs:'RNAP-dna' RNAP(dna!_,rna)
+#%obs:'RNAP-rna' RNAP(dna,rna!_)
+#%obs:'SpaR' P(binding,type~spaR)
+#%obs: 'Ribosome_free' Ribosome(rna,protein)
+#%obs: 'Ribosome_rna' Ribosome(rna!_,protein)
+#%obs: 'Ribosome_protein' Ribosome(rna,protein!_)
+#%obs: 'Ribosome_protein_rna' Ribosome(rna!_,protein!_)
+
+#%obs: 'chain1left' RNA(binding!1,ds!2,type~spaK).Ribosome(rna!1,protein!3).RNA (binding,us!2,type~RBS2).P(binding!3,type~spaK) 
+#%obs: 'chain2left' RNA(binding!1,ds!2,type~RBS2).Ribosome(rna!1,protein!3).RNA (binding,us!2,type~spaR).P(binding!3,type~RBS2)
+#%obs: 'chain3left' RNA(binding!1,ds!2,type~spaR).Ribosome(rna!1,protein!3).RNA (binding,us!2,type~Ter1).P(binding!3,type~spaR)
+
+#%obs: 'left' RNA(binding,ds!2,type~spaK).Ribosome(rna!1,protein!3).RNA (binding!1,us!2,type~RBS2).P(binding!3,type~spaK) 
+#%obs: 'right' RNA(binding,ds!2,type~spaK).Ribosome(rna!1,protein!3).RNA (binding!1,us!2,type~RBS2).P(ds!4,binding,type~spaK).P(type~RBS2,us!4,binding!3) 
+#%obs:'RNA tss' RNA(binding,us,ds,type~pSpaRKtss)
+
+
+
+
+begin reaction rules
+
+# RULE 1: RNAP binding to promoter region
+DNA(binding,type~pSpaRK) + RNAP(dna,rna) -> DNA(binding!1,type~pSpaRK).RNAP(dna!1,rna) RNAP_binding_rate
+
+#RULE 2: transcription initiation - corresponds to transcription of the DNA sequence of 5'-UTR and the formation of first RNA block
+#GMGM: Had to the all sites for created molecules. Added the deg site for RNAs on the right hand side
+transcription_initiation: DNA(binding!1,ds!2,type~pSpaRK).RNAP(dna!1,rna).DNA(us!2,binding,type~pSpaRKtss) -> DNA(binding,ds!2,type~pSpaRK).RNAP(dna!1,rna!3).DNA(us!2,binding!1,type~pSpaRKtss).RNA(binding,us,ds!3,deg,type~pSpaRKtss) transcription_initiation_rate
+
+#RULE 3: Transcription sliding
+DNA(binding,us!2,type~RBS1).RNAP(dna!1,rna!3).DNA(ds!2,binding!1,type~pSpaRKtss).RNA(ds!3,type~pSpaRKtss) -> DNA(binding!1,us!2,type~RBS1).RNAP(dna!1,rna!3).DNA(ds!2,binding,type~pSpaRKtss).RNA(ds!4,type~pSpaRKtss).RNA(binding,us!4,ds!3,deg,type~RBS1) sliding_rate
+DNA(binding,us!2,type~spaK).RNAP(dna!1,rna!3).DNA(ds!2,binding!1,type~RBS1).RNA(ds!3,type~RBS1) -> DNA(binding!1,us!2,type~spaK).RNAP(dna!1,rna!3).DNA(ds!2,binding,type~RBS1).RNA(ds!4,type~RBS1).RNA(binding,us!4,ds!3,deg,type~spaK) sliding_rate
+DNA(binding,us!2,type~RBS2).RNAP(dna!1,rna!3).DNA(ds!2,binding!1,type~spaK).RNA(ds!3,type~spaK) -> DNA(binding!1,us!2,type~RBS2).RNAP(dna!1,rna!3).DNA(ds!2,binding,type~spaK).RNA(ds!4,type~spaK).RNA(binding,us!4,ds!3,deg,type~RBS2) sliding_rate
+DNA(binding,us!2,type~spaR).RNAP(dna!1,rna!3).DNA(ds!2,binding!1,type~RBS2).RNA(ds!3,type~RBS2) -> DNA(binding!1,us!2,type~spaR).RNAP(dna!1,rna!3).DNA(ds!2,binding,type~RBS2).RNA(ds!4,type~RBS2).RNA(binding,us!4,ds!3,deg,type~spaR) sliding_rate
+DNA(binding,us!2,type~Ter1).RNAP(dna!1,rna!3).DNA(ds!2,binding!1,type~spaR).RNA(ds!3,type~spaR) -> DNA(binding!1,us!2,type~Ter1).RNAP(dna!1,rna!3).DNA(ds!2,binding,type~spaR).RNA(ds!4,type~spaR).RNA(binding,us!4,ds!3,deg,type~Ter1) sliding_rate
+
+#Without the typeof the preceeding component is much more neat but the simulation times is not reasonable
+#DNA(binding,us!2,type~RBS1).RNAP(dna!1,rna!3).DNA(ds!2,binding!1).RNA(ds!3) -> DNA(binding!1,us!2,type~RBS1).RNAP(dna!1,rna!3).DNA(ds!2,binding).RNA(ds!4).RNA(binding,us!4,ds!3,type~RBS1)@'sliding rate'
+#DNA(binding,us!2,type~spaK).RNAP(dna!1,rna!3).DNA(ds!2,binding!1).RNA(ds!3) -> DNA(binding!1,us!2,type~spaK).RNAP(dna!1,rna!3).DNA(ds!2,binding).RNA(ds!4).RNA(binding,us!4,ds!3,type~spaK)@'sliding rate'
+#DNA(binding,us!2,type~RBS2).RNAP(dna!1,rna!3).DNA(ds!2,binding!1).RNA(ds!3) -> DNA(binding!1,us!2,type~RBS2).RNAP(dna!1,rna!3).DNA(ds!2,binding).RNA(ds!4).RNA(binding,us!4,ds!3,type~RBS2)@'sliding rate'
+#DNA(binding,us!2,type~spaR).RNAP(dna!1,rna!3).DNA(ds!2,binding!1).RNA(ds!3) -> DNA(binding!1,us!2,type~spaR).RNAP(dna!1,rna!3).DNA(ds!2,binding).RNA(ds!4).RNA(binding,us!4,ds!3,type~spaR)@'sliding rate'
+#DNA(binding,us!2,type~Ter1).RNAP(dna!1,rna!3).DNA(ds!2,binding!1).RNA(ds!3) -> DNA(binding!1,us!2,type~Ter1).RNAP(dna!1,rna!3).DNA(ds!2,binding).RNA(ds!4).RNA(binding,us!4,ds!3,type~Ter1)@'sliding rate'
+
+#RULE 5: RNAP fell off from DNA
+RNAP(dna!1).DNA(binding!1) -> RNAP(dna) + DNA(binding) rnap_dna_felloff_rate
+RNAP(dna!1).DNA(binding!1,type~Ter1) -> RNAP(dna) + DNA(binding,type~Ter1) rnap_dna_high_felloff_rate
+
+
+#RULE 6: RNAP fell off from RNA
+RNAP(rna!1).RNA(ds!1) -> RNAP(rna) + RNA(ds) rnap_rna_felloff_rate
+RNAP(rna!1).RNA(ds!1,type~Ter1) -> RNAP(rna) + RNA(ds,type~Ter1) rnap_rna_high_felloff_rate
+
+
+#RULE 7: Translation initiation
+RBS1_Ribosome_binding: RNA(binding,type~RBS1).Ribosome(rna) -> RNA(binding!1,type~RBS1).Ribosome(rna!1) ribosome_binding_rate
+RBS2_Ribosome_binding: RNA(binding,type~RBS2).Ribosome(rna) -> RNA(binding!1,type~RBS2).Ribosome(rna!1) ribosome_binding_rate
+#TODO 'RBS_Ribosome binding' RNA(binding,type~RBS3).Ribosome(rna) -> RNA(binding!1,type~RBS3).Ribosome(rna!1) @ 'ribosome binding rate'
+
+#RULE 8: Translation sliding
+#GMGM: Ni space between agents and brackets
+RNA(binding!1,ds!2).Ribosome(rna!1).RNA(binding,us!2,type~RBS1) ->RNA(binding,ds!2).Ribosome(rna!1).RNA(binding!1,us!2,type~RBS1) translation_sliding_rate
+RNA(binding!1,ds!2).Ribosome(rna!1).RNA(binding,us!2,type~RBS2) ->RNA(binding,ds!2).Ribosome(rna!1).RNA(binding!1,us!2,type~RBS2) translation_sliding_rate
+RNA(binding!1,ds!2).Ribosome(rna!1).RNA(binding,us!2,type~Ter1) ->RNA(binding,ds!2).Ribosome(rna!1).RNA(binding!1,us!2,type~Ter1) translation_sliding_rate
+
+#RULE 9: Translation
+#GMGM: Had to add all sites for created proteins
+RNA(binding!1,ds!2).Ribosome(rna!1,protein).RNA(binding,us!2,type~spaK) ->RNA(binding,ds!2).Ribosome(rna!1,protein!3).RNA(binding!1,us!2,type~spaK).P(binding!3,us,ds,deg,type~spaK) translation_sliding_rate
+RNA(binding!1,ds!2).Ribosome(rna!1,protein).RNA(binding,us!2,type~spaR) ->RNA(binding,ds!2).Ribosome(rna!1,protein!3).RNA(binding!1,us!2,type~spaR).P(binding!3,us,ds,deg,type~spaR) translation_sliding_rate
+
+#RULE 10: Translation chain
+#RNA(binding!1,ds!2,type~spaK).Ribosome(rna!1,protein!3).RNA(binding,us!2,type~RBS2).P(binding!3,type~spaK) -> RNA(binding,ds!2,type~spaK).Ribosome(rna!1,protein!3).RNA(binding!1,us!2,type~RBS2).P(ds!4,binding,type~spaK).P(type~RBS2,us!4,ds,deg,binding!3) translation_sliding_rate
+#RNA(binding!1,ds!2,type~RBS2).Ribosome(rna!1,protein!3).RNA(binding,us!2,type~spaR).P(binding!3,type~RBS2) -> RNA(binding,ds!2,type~RBS2).Ribosome(rna!1,protein!3).RNA(binding!1,us!2,type~spaR).P(ds!4,binding,type~RBS2).P(type~spaR,us!4,binding!3) translation_sliding_rate
+#RNA(binding!1,ds!2,type~spaR).Ribosome(rna!1,protein!3).RNA(binding,us!2,type~Ter1).P(binding!3,type~spaR) -> RNA(binding,ds!2,type~spaR).Ribosome(rna!1,protein!3).RNA(binding!1,us!2,type~Ter1).P(ds!4,binding,type~spaR).P(type~Ter1,us!4,binding!3) translation_sliding_rate
+#GMGM:Added the free ds site for the first protein in the chain on the first hand side
+#GMGM: Added the free deg and ds sites for the second protein on the right hand side
+RNA(binding!1,ds!2,type~spaK).Ribosome(rna!1,protein!3).RNA(binding,us!2,type~RBS2).P(binding!3,ds,type~spaK) -> RNA(binding,ds!2,type~spaK).Ribosome(rna!1,protein!3).RNA(binding!1,us!2,type~RBS2).P(ds!4,binding,type~spaK).P(type~RBS2,us!4,ds,deg,binding!3) translation_sliding_rate
+RNA(binding!1,ds!2,type~RBS2).Ribosome(rna!1,protein!3).RNA(binding,us!2,type~spaR).P(binding!3,ds,type~RBS2) -> RNA(binding,ds!2,type~RBS2).Ribosome(rna!1,protein!3).RNA(binding!1,us!2,type~spaR).P(ds!4,binding,type~RBS2).P(type~spaR,us!4,ds,deg,binding!3) translation_sliding_rate
+RNA(binding!1,ds!2,type~spaR).Ribosome(rna!1,protein!3).RNA(binding,us!2,type~Ter1).P(binding!3,ds,type~spaR) -> RNA(binding,ds!2,type~spaR).Ribosome(rna!1,protein!3).RNA(binding!1,us!2,type~Ter1).P(ds!4,binding,type~spaR).P(type~Ter1,us!4,ds,deg,binding!3) translation_sliding_rate
+
+
+#RULE 11: Ribosome rna fell off
+Ribosome(rna!1).RNA(binding!1,type~pSpaRKtss) -> Ribosome(rna) + RNA(binding,type~pSpaRKtss) ribosome_rna_fell_off_low_rate
+Ribosome(rna!1).RNA(binding!1,type~RBS1) -> Ribosome(rna) + RNA(binding,type~RBS1) ribosome_rna_fell_off_low_rate
+Ribosome(rna!1).RNA(binding!1,type~spaK) -> Ribosome(rna) + RNA(binding,type~spaK) ribosome_rna_fell_off_high_rate
+Ribosome(rna!1).RNA(binding!1,type~RBS2) -> Ribosome(rna) + RNA(binding,type~RBS2) ribosome_rna_fell_off_low_rate
+Ribosome(rna!1).RNA(binding!1,type~spaR) -> Ribosome(rna) + RNA(binding,type~spaR) ribosome_rna_fell_off_high_rate
+Ribosome(rna!1).RNA(binding!1,type~Ter1) -> Ribosome(rna) + RNA(binding,type~Ter1) ribosome_rna_fell_off_low_rate
+
+
+#RULE 12: Ribosome protein fell off
+Ribosome(protein!3).P(binding!3) -> Ribosome(protein) + P(binding) ribosome_protein_fell_off_rate
+
+#RULE 13:
+P(deg) + Protease(binding) -> P(deg!1).Protease(binding!1) protease_binding_rate
+P(deg!1).Protease(binding!1) -> P(deg) + Protease(binding) protease_unbinding_rate
+
+
+#RULE 14:
+
+#Degrade a single domain protein
+P(us,deg!1).Protease(binding!1) -> Protease(binding) degratation_rate
+#Degrade a multiple domain protein,slide and degrade
+#P(us!2,ds?,deg!1).Protease(binding!1).P(ds!2,deg) -> Protease(binding!1).P(ds,deg!1)  slide_and_degratation_rate
+P(us!2,deg!1).Protease(binding!1).P(ds!2,deg) -> Protease(binding!1).P(ds,deg!1)  slide_and_degratation_rate
+
+
+#RULE 15: RNADeg-RNA binding-unbinding
+RNA(deg) + RNADeg(binding) -> RNA(deg!1).RNADeg(binding!1) mrna_deg_binding_rate
+RNA(deg!1).RNADeg(binding!1) -> RNA(deg) + RNADeg(binding) mrna_deg_unbinding_rate
+
+#RULE 16: Sliding and degradation
+#Degrade a single domain protein
+#Add the ds? 
+RNAdegradation: RNA(us,deg!1).RNADeg(binding!1) -> RNADeg(binding) mrna_degratation_rate
+#Degrade a multiple domain protein,slide and degrade
+RNA(us!2,deg!1).RNADeg(binding!1).RNA(ds!2,deg)-> RNADeg(binding!1).RNA(ds,deg!1)  mrna_slide_and_degratation_rate
+
+end reaction rules
+end model
+writeXML()
+
+generate_network({overwrite=>1})
+
+simulate({method=>"ode",t_end=>5000,n_steps=>50})
+
+#simulate_ssa({suffix=>"burnin",t_start=>0,t_end=>100,n_steps=>100})
