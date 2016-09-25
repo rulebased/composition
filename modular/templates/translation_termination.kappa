@@ -7,7 +7,7 @@
 #^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/> .
 #^ @prefix obo: <http://purl.obolibrary.org/obo/> .
 
-#^ :model a rbmo:Kappa  ;
+#^ :t a rbmc:Template  ;
 #^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" .
 
 #RULE 11: Ribosome rna fell off

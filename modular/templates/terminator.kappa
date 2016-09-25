@@ -12,7 +12,7 @@
 #^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/> .
 #^ @prefix biopax: <http://www.biopax.org/release/biopax-level3.owl#> .
 
-#^ :model a rbmo:Kappa  ;
+#^ :t a rbmc:Template  ;
 #^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ; 
 #^   rbmc:include rbmt:genericpart.kappa .
 

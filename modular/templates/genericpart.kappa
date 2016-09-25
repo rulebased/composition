@@ -4,7 +4,7 @@
 #^ @prefix rbmt: <http://purl.org/rbm/templates/> .
 #^ @prefix dct: <http://purl.org/dc/terms/>.
 
-#^ :model a rbmo:Kappa  ;
+#^ :t a rbmc:Template  ;
 #^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ; 
 #^   rbmc:include rbmt:transcription_elongation.kappa ;
 #^   rbmc:include rbmt:transcription_termination.kappa ;

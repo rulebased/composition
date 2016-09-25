@@ -6,7 +6,7 @@
 #^ @prefix dct: <http://purl.org/dc/terms/> .
 #^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/> .
 
-#^ :model a rbmo:Kappa  ;
+#^ :t a rbmc:Template  ;
 #^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" .
 
 #RULE 10: Translation chain

@@ -14,7 +14,7 @@
 #^ @prefix biopax: <http://www.biopax.org/release/biopax-level3.owl#> .
 #^  @prefix obo: <http://purl.obolibrary.org/obo/BFO_0000050/> .
 
-#^ :model a rbmo:Kappa  ;
+#^ :t a rbmc:Template ;
 #^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" .
 
 #RULE 5: RNAP fall off from DNA
