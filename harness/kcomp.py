@@ -128,6 +128,19 @@ class KappaRdf(object):
                 plist.append(Part(self.identifier, self.templates, self.graph, p))
         return plist
 
+    @property
+    @memoize("__tokens__")
+    def tokens(self):
+        q = """
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX rbmc: <http://purl.org/rbm/comp#>
+
+        SELECT DISTINCT ?label WHERE {
+            [ rbmc:tokens [ rdfs:label ?label ] ]
+        } ORDER BY ?label
+        """
+        return [row[0] for row in self.merged_graph.query(q)]
+
 def get_one(g, t):
     triples = list(g.triples(t))
     if len(triples) == 0:
@@ -170,7 +183,12 @@ if __name__ == '__main__':
                         help='Starting File')
     parser.add_argument('--templates', type=str, default=None,
                         help='Template prefix')
+    parser.add_argument('--tokens', default=False,
+                        action="store_true", help='Output expected tokens')
     args = parser.parse_args()
 
     kr = KappaRdf(args.filename, args.templates)
-    print kr.merged
+    if args.tokens:
+        print " ".join(kr.tokens)
+    else:
+        print kr.merged

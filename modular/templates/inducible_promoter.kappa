@@ -20,7 +20,7 @@
 #^   dct:title "Constituve promoter" ;
 #^   dct:description "A rule-based modelling template that can be instantiated to create models of constitutive promoters" ;
 #^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ;
-#^   rbmo:tokens [ rdfs:label "IDENT" ],
+#^   rbmc:tokens [ rdfs:label "IDENT" ],
 #^               [ rdfs:label "BINDINGSITE" ] .
 #^
 #^ :DNA a rbmo:Agent ; 
