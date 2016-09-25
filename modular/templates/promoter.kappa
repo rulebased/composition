@@ -14,10 +14,15 @@
 #^ @prefix biopax: <http://www.biopax.org/release/biopax-level3.owl#>.
 #^ @prefix prov: <http://www.w3.org/ns/prov#> .
 
+## XXX Same as with irreducible_promoter, this does not appear
+## XXX to inherit sensibly from other templates, and the meaning
+## XXX of the sbol:model annotation is unclear
+
 #^ :t a rbmc:Template  ;
 #^   dct:title "Constituve promoter" ;
 #^   dct:description "A rule-based modelling template that can be instantiated to create models of constitutive promoters" ;
-#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" . 
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ;
+#^   rbmc:tokens [ rdfs:label "IDENT" ] .
 
 #^ :DNA a rbmo:Agent ; 
 #^   rbmo:hasSite :DNA:part .

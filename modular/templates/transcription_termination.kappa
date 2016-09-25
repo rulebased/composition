@@ -2,34 +2,30 @@
 #^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 #^ @prefix rbmo: <http://purl.org/rbm/rbmo#> .
 #^ @prefix rbmc: <http://purl.org/rbm/comp#> .
-#^ @prefix rbmt: <http://purl.org/rbm/templates/> .
-#^ @prefix sbol: <http://sbols.org/v2#> .
-#^ @prefix so: <http://identifiers.org/so/> .
 #^ @prefix go: <http://identifiers.org/go/> .
-#^ @prefix pr: <http://identifiers.org/pr/> .
-#^ @prefix sbo: <http://identifiers.org/biomodels.sbo/> .
 #^ @prefix dct: <http://purl.org/dc/terms/> .
-#^ @prefix owl: <http://www.w3.org/2002/07/owl#> .
 #^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/> .
-#^ @prefix biopax: <http://www.biopax.org/release/biopax-level3.owl#> .
-#^  @prefix obo: <http://purl.obolibrary.org/obo/BFO_0000050/> .
+#^ @prefix obo: <http://purl.obolibrary.org/obo/BFO_0000050/> .
 
 #^ :t a rbmc:Template ;
-#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" .
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ;
+#^   rbmc:tokens [ rdfs:label "IDENT" ] .
 
 #RULE 5: RNAP fall off from DNA
 %var: 'IDENT-rnap_dna_fall_off_rate' 0.00001
-#^ :transcription-termination a rbmo:Rule ;
+#^ :IDENT-transcription-termination a rbmo:Rule ;
 #^   obo:part_of go:GO:0006353 ;
 #^   dct:title "Transcription termination" ;
 #^   dct:description "DNA templated transcription termination. RNAP fall off from DNA." .
+## XXX Again, why obo:part of and not bqbiol:is
 'IDENT-transcription-termination' RNAP(dna!1), DNA(binding!1, part~IDENT) -> RNAP(dna), DNA(binding, part~IDENT)@'IDENT-rnap_dna_fall_off_rate'
 
 #RULE 6: RNAP fall off from RNA
 %var: 'IDENT-rnap_rna_fall_off_rate' 0.00001
-#^ :translation-termination a rbmo:Rule ;
+#^ :IDENT-translation-termination a rbmo:Rule ;
 #^   obo:part_of go:GO:0006415 ;
 #^   dct:title "Translational termination" ;
 #^   dct:description "RNAP fall off from RNA." .
-'IDENFITIER-translation-termination' RNAP(rna!1), RNA(ds!1,part~IDENT) -> RNAP(rna), RNA(ds,part~IDENT)@'IDENT-rnap_rna_fall_off_rate'
+## XXX Again, why obo:part of and not bqbiol:is
+'IDENT-translation-termination' RNAP(rna!1), RNA(ds!1,part~IDENT) -> RNAP(rna), RNA(ds,part~IDENT)@'IDENT-rnap_rna_fall_off_rate'
 

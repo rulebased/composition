@@ -1,4 +1,5 @@
 #^ @prefix : <#> .
+#^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 #^ @prefix rbmo: <http://purl.org/rbm/rbmo#> .
 #^ @prefix rbmc: <http://purl.org/rbm/comp#> .
 #^ @prefix rbmt: <http://purl.org/rbm/templates/> .
@@ -7,11 +8,12 @@
 #^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/> .
 
 #^ :t a rbmc:Template ;
-#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" .
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ;
+#^   rbmc:tokens [ rdfs:label "IDENT" ] .
 
 #RULE 8: Translation sliding
 %var: 'IDENT-translation_sliding_rate' 1
-#^ :transcription-elongation a rbmo:Rule ;
+#^ :IDENT-transcription-elongation a rbmo:Rule ;
 #^   bqbiol:isVersionOf go:GO:0006414 ;
 #^   dct:title "Translational elongation" ;
 #^   dct:description "Translational elongation to translate the downstream RNA component." .

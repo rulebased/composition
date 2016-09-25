@@ -1,4 +1,5 @@
 #^ @prefix : <#> .
+#^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 #^ @prefix rbmo: <http://purl.org/rbm/rbmo#> .
 #^ @prefix rbmc: <http://purl.org/rbm/comp#> .
 #^ @prefix rbmt: <http://purl.org/rbm/templates/> .
@@ -7,11 +8,12 @@
 #^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/> .
 
 #^ :t a rbmc:Template  ;
-#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" .
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ;
+#^   rbmc:tokens [ rdfs:label "IDENT" ] .
 
 #RULE 10: Translation chain
 #Only if the component is placed after a CDS
-#^ :translation-chain a rbmo:Rule ;
+#^ :IDENT-translation-chain a rbmo:Rule ;
 #^   bqbiol:isVersionOf go:GO:0006415 ;
 #^   dct:title "Formation of translational chains, due to gene fusion or leakiness of stop codons" ;
 #^   dct:description "RNAP fall off from RNA ." .

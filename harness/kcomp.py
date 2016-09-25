@@ -147,7 +147,7 @@ class Part(KappaRdf):
     @property
     def identifier(self):
         return self.filename
-    
+
     @property
     @memoize("__data__")
     def data(self):

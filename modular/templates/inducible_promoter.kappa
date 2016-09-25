@@ -13,11 +13,16 @@
 #^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/> .
 #^ @prefix biopax: <http://www.biopax.org/release/biopax-level3.owl#> .
 
+## XXX This template does not appear to inherit from other
+## XXX templates, what about the other rules?
+
 #^ :t a rbmc:Template  ;
 #^   dct:title "Constituve promoter" ;
 #^   dct:description "A rule-based modelling template that can be instantiated to create models of constitutive promoters" ;
-#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" . 
-
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ;
+#^   rbmo:tokens [ rdfs:label "IDENT" ],
+#^               [ rdfs:label "BINDINGSITE" ] .
+#^
 #^ :DNA a rbmo:Agent ; 
 #^   rbmo:hasSite :DNA:part .
 #^ :DNA:part a rbmo:Site ;
@@ -35,6 +40,10 @@
 #^   sbol:type biopax:DnaRegion ;
 #^   sbol:annotation :DNA:part:IDENTtss ;
 #^   sbol:model rbmt:generic_part.kappa .
+
+## XXX What is the meaning of sbol:model referencing a template
+## XXX within a site annotation?
+
 #^ :DNA:part:IDENTtss a rbmo:State ;
 #^   dct:title "TSS" ;
 #^   dct:description "Transcription Start Site" ;
