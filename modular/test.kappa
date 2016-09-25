@@ -1,0 +1,26 @@
+#^ @prefix : <#> .
+#^ @prefix rbmo: <http://purl.org/rbm/rbmo#> .
+#^ @prefix rbmc: <http://purl.org/rbm/comp#> .
+#^ @prefix rbmt: <http://purl.org/rbm/templates/> .
+#^ @prefix dct: <http://purl.org/dc/terms/>.
+
+
+#^ :model a rbmo:Kappa  ;
+#^   dct:title "Test Modular System" ;
+#^   dct:description "Testing Modular Assembly" ;
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ;
+#^   rbmc:include <host.kappa> ;
+#^   rbmc:parts (
+#^       [ rbmc:template rbmt:promoter.kappa ;
+#^         rbmc:replace [ rbmc:token "IDENT"; rbmc:value "P1" ] ]
+#^       [ rbmc:template rbmt:cds.kappa ;
+#^         rbmc:replace [ rbmc:token "IDENT"; rbmc:value "C1" ] ]
+#^       [ rbmc:template rbmt:terminator.kappa ;
+#^         rbmc:replace [ rbmc:token "IDENT"; rbmc:value "T1" ] ]
+#^       [ rbmc:template rbmt:promoter.kappa ;
+#^         rbmc:replace [ rbmc:token "IDENT"; rbmc:value "P2" ] ]
+#^       [ rbmc:template rbmt:cds.kappa ;
+#^         rbmc:replace [ rbmc:token "IDENT"; rbmc:value "C2" ] ]
+#^       [ rbmc:template rbmt:terminator.kappa ;
+#^         rbmc:replace [ rbmc:token "IDENT"; rbmc:value "T2" ] ]
+#^   ) .

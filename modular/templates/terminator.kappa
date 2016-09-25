@@ -18,4 +18,4 @@
 
 #RULE 5: RNAP fall off from DNA
 #Higher fall off rate
-%var: 'IDENTIFIER-rnap_dna_fall_off_rate' 1
+%var: 'IDENT-rnap_dna_fall_off_rate' 1

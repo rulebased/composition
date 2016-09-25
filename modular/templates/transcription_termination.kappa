@@ -18,18 +18,18 @@
 #^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" .
 
 #RULE 5: RNAP fall off from DNA
-%var: 'IDENTIFIER-rnap_dna_fall_off_rate' 0.00001
+%var: 'IDENT-rnap_dna_fall_off_rate' 0.00001
 #^ :transcription-termination a rbmo:Rule ;
 #^   obo:part_of go:GO:0006353 ;
 #^   dct:title "Transcription termination" ;
 #^   dct:description "DNA templated transcription termination. RNAP fall off from DNA." .
-'IDENTIFIER-transcription-termination' RNAP(dna!1), DNA(binding!1, part~IDENTIFIER) -> RNAP(dna), DNA(binding, part~IDENTIFIER)@'IDENTIFIER-rnap_dna_fall_off_rate'
+'IDENT-transcription-termination' RNAP(dna!1), DNA(binding!1, part~IDENT) -> RNAP(dna), DNA(binding, part~IDENT)@'IDENT-rnap_dna_fall_off_rate'
 
 #RULE 6: RNAP fall off from RNA
-%var: 'IDENTIFIER-rnap_rna_fall_off_rate' 0.00001
+%var: 'IDENT-rnap_rna_fall_off_rate' 0.00001
 #^ :translation-termination a rbmo:Rule ;
 #^   obo:part_of go:GO:0006415 ;
 #^   dct:title "Translational termination" ;
 #^   dct:description "RNAP fall off from RNA." .
-'IDENFITIER-translation-termination' RNAP(rna!1), RNA(ds!1,part~IDENTIFIER) -> RNAP(rna), RNA(ds,part~IDENTIFIER)@'IDENTIFIER-rnap_rna_fall_off_rate'
+'IDENFITIER-translation-termination' RNAP(rna!1), RNA(ds!1,part~IDENT) -> RNAP(rna), RNA(ds,part~IDENT)@'IDENT-rnap_rna_fall_off_rate'
 

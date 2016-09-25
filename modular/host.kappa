@@ -36,10 +36,10 @@
 #^ :DNA:ds a rbmo:Site ;
 #^   so:finishes :DNA .
 #^ :DNA:part a rbmo:Site ;
-#^   rbmo:hasState :DNA:part:IDENTIFIER .
-#^ :DNA:part:IDENTIFIER a rbmo:State ;
+#^   rbmo:hasState :DNA:part:IDENT .
+#^ :DNA:part:IDENT a rbmo:State ;
 #^   sbol:type biopax:DnaRegion .
-%agent: DNA(binding,us,ds,part~IDENTIFIER)
+%agent: DNA(binding,us,ds,part~IDENT)
 
 #^ :RNA a rbmo:Agent ; 
 #^   dct:isPartOf :model ;
@@ -61,10 +61,10 @@
 #^ :RNA:deg a rbmo:Site ;
 #^   so:finishes :RNA .
 #^ :RNA:part a rbmo:Site ;
-#^   rbmo:hasState :RNA:part:IDENTIFIER .
-#^ :RNA:part:IDENTIFIER a rbmo:State ;
+#^   rbmo:hasState :RNA:part:IDENT .
+#^ :RNA:part:IDENT a rbmo:State ;
 #^   sbol:type biopax:RnaRegion .
-%agent: RNA(ds,us,binding,deg,part~IDENTIFIER)
+%agent: RNA(ds,us,binding,deg,part~IDENT)
 
 #^ :P a rbmo:Agent ; 
 #^   dct:isPartOf :model ;
@@ -84,10 +84,10 @@
 #^ :P:ds a rbmo:Site ;
 #^   so:finishes :P .
 #^ :P:part a rbmo:Site ;
-#^   rbmo:hasState :P:part:IDENTIFIER .
-#^ :P:part:IDENTIFIER a rbmo:State ;
+#^   rbmo:hasState :P:part:IDENT .
+#^ :P:part:IDENT a rbmo:State ;
 #^   sbol:type biopax:Protein .
-%agent: P(ds,us, binding, deg, dna, protein,part~IDENTIFIER)
+%agent: P(ds,us, binding, deg, dna, protein,part~IDENT)
 
 
 #^ :RNAP a rbmo:Agent ; 

@@ -11,11 +11,11 @@
 #^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" .
 
 #RULE 11: Ribosome rna fell off
-%var: 'IDENTIFIER-ribosome_rna_fall_off_rate' 0.0001
+%var: 'IDENT-ribosome_rna_fall_off_rate' 0.0001
 #^ :ribosome-rna-off a rbmo:Rule ;
 #^   obo:part_of go:GO:0006415 ;
 #^   dct:title "Ribosome RNA fall off" ;
 #^   dct:description "A ribosome fall off from an RNA.".
-'IDENTIFIER-ribosome-rna-fall-off' Ribosome(rna!1), RNA (binding!1, part~IDENTIFIER) -> Ribosome(rna), RNA (binding, part~IDENTIFIER) @'IDENTIFIER-ribosome_rna_fall_off_rate'
+'IDENT-ribosome-rna-fall-off' Ribosome(rna!1), RNA (binding!1, part~IDENT) -> Ribosome(rna), RNA (binding, part~IDENT) @'IDENT-ribosome_rna_fall_off_rate'
 
 

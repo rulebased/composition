@@ -21,8 +21,8 @@
 #^   rbmc:include rbmt:genericpart.kappa .
 
 #RULE 7: Translation initiation
-%var: 'IDENTIFIER-ribosome_binding_rate' 0.00001
+%var: 'IDENT-ribosome_binding_rate' 0.00001
 #^ :translation-initiation a rbmo:Rule ;
 #^   obo:part_of go:GO:0006413 ;
 #^   dct:title "Translational initiation" .
-'IDENTIFIER-translation_initiation' RNA(binding,type~IDENTIFIER), Ribosome(rna) -> RNA(binding!1, type~IDENTIFIER), Ribosome(rna!1) @ 'IDENTIFIER-ribosome_binding_rate'
+'IDENT-translation_initiation' RNA(binding,type~IDENT), Ribosome(rna) -> RNA(binding!1, type~IDENT), Ribosome(rna!1) @ 'IDENT-ribosome_binding_rate'

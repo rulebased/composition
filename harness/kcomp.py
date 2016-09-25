@@ -1,4 +1,5 @@
 import rdflib
+from rdflib.collection import Collection
 import argparse
 import logging
 logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', level = logging.INFO)
@@ -78,7 +79,7 @@ class KappaRdf(object):
             if self.templates is not None:
                 template = os.path.join(self.templates, os.path.basename(template))
             children.append(KappaRdf(template, self.templates))
-        return children
+        return children + self.parts
 
     @property
     def identifier(self):
@@ -89,9 +90,9 @@ class KappaRdf(object):
             logging.error("RDF graph in %s does not contain an RBM class" % self.filename)
             raise Exception("RDF graph in %s does not contain an RBM class" % self.filename)
         if len(triples) > 1:
-            logging.error("RDF graph in %s contains too many RBM classes: %s" % (self.filename, join(triples, " ")))
+            logging.warning("RDF graph in %s contains too many RBM classes:\n%s" % (self.filename, "\n".join("%s\t%s" % (t[0], t[2]) for t in triples)))
         return triples[0][0]
-        
+
     @property
     def merged_graph(self):
         g = rdflib.Graph(identifier = self.identifier)
@@ -115,6 +116,53 @@ class KappaRdf(object):
         rdf_section = join(rdflines, "\n")
         kappa_section = self.merged_kappa
         return join((rdf_section, "\n", "#" * 80, "\n", kappa_section), "\n")
+
+    @property
+    @memoize("__parts__")
+    def parts(self):
+        plist = []
+        q = (self.identifier, RBMC["parts"], None)
+        for _, _, o in self.graph.triples(q):
+            l = Collection(self.graph, o)
+            for p in l:
+                plist.append(Part(self.identifier, self.templates, self.graph, p))
+        return plist
+
+def get_one(g, t):
+    triples = list(g.triples(t))
+    if len(triples) == 0:
+        logging.error("get_one returned no triples")
+        return
+    if len(triples) > 1:
+        logging.error("get_one returned more than one triple")
+        return
+    return triples[0]
+
+class Part(KappaRdf):
+    def __init__(self, filename, templates, g, p):
+        super(Part, self).__init__(filename, templates)
+        self.__g = g
+        self.__p = p
+
+    @property
+    def identifier(self):
+        return self.filename
+    
+    @property
+    @memoize("__data__")
+    def data(self):
+        _,_,t = get_one(self.__g, (self.__p, RBMC["template"], None))
+        logging.info("processing part using template %s" % t)
+        if self.templates is not None:
+            t = os.path.join(self.templates, os.path.basename(t))
+        kr = KappaRdf(t, self.templates)
+        merged = kr.merged
+        for _,_,r in self.__g.triples((self.__p, RBMC["replace"], None)):
+            _,_,tok = get_one(self.__g, (r, RBMC["token"], None))
+            _,_,val = get_one(self.__g, (r, RBMC["value"], None))
+            logging.info("replacing %s with %s" % (tok, val))
+            merged = merged.replace(str(tok), str(val))
+        return merged
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Test extract RDF from a Kappa/RDF file')

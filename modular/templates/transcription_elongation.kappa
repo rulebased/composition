@@ -18,11 +18,11 @@
 
 #RULE 3: Transcription sliding
 #Except the first component in the design
-%var: 'IDENTIFIER-sliding_rate' 1
+%var: 'IDENT-sliding_rate' 1
 
 #^ :transcription-elongation a rbmo:Rule ;
 #^   bqbiol:isVersionOf go:GO:0006354 ;
 #^   dct:title "Transcriptional elongation" ;
 #^   dct:description "Transcriptional elongation to transcribe the downstream DNA component." .
-'IDENTIFIER-transcription-elongation' DNA(binding,us!2,part~IDENTIFIER), RNAP(dna!1,rna!3),DNA(ds!2, binding!1), RNA(ds!3) -> DNA(binding!1,us!2,part~IDENTIFIER), RNAP(dna!1,rna!3),DNA(ds!2, binding), RNA(ds!4), RNA(binding, us!4, ds!3, part~IDENTIFIER)@'IDENTIFIER-sliding_rate'
+'IDENT-transcription-elongation' DNA(binding,us!2,part~IDENT), RNAP(dna!1,rna!3),DNA(ds!2, binding!1), RNA(ds!3) -> DNA(binding!1,us!2,part~IDENT), RNAP(dna!1,rna!3),DNA(ds!2, binding), RNA(ds!4), RNA(binding, us!4, ds!3, part~IDENT)@'IDENT-sliding_rate'
 
