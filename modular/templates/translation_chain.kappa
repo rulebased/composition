@@ -1,0 +1,19 @@
+#^ @prefix : <#> .
+#^ @prefix rbmo: <http://purl.org/rbm/rbmo#> .
+#^ @prefix rbmc: <http://purl.org/rbm/comp#> .
+#^ @prefix rbmt: <http://purl.org/rbm/templates/> .
+#^ @prefix go: <http://identifiers.org/go/> .
+#^ @prefix dct: <http://purl.org/dc/terms/> .
+#^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/> .
+
+#^ :model a rbmo:Kappa  ;
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" .
+
+#RULE 10: Translation chain
+#Only if the component is placed after a CDS
+#^ :translation-chain a rbmo:Rule ;
+#^   bqbiol:isVersionOf go:GO:0006415 ;
+#^   dct:title "Formation of translational chains, due to gene fusion or leakiness of stop codons" ;
+#^   dct:description "RNAP fall off from RNA ." .
+'IDENTIFIER-translation-chain' RNA(binding!1, ds!2), Ribosome(rna!1, protein!3), RNA (binding,us!2, part~IDENTIFIER), P(binding!3,ds) -> RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, part~IDENTIFIER), P(ds!4, binding), P(part~IDENTIFIER, us!4, binding!3) @'IDENTIFIER-translation_sliding_rate'
+

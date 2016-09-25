@@ -41,7 +41,6 @@
 #^   sbol:type biopax:DnaRegion .
 %agent: DNA(binding,us,ds,part~IDENTIFIER)
 
-
 #^ :RNA a rbmo:Agent ; 
 #^   dct:isPartOf :model ;
 #^   dct:title "RNA" ;

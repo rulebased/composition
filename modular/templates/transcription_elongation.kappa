@@ -1,0 +1,28 @@
+#^ @prefix : <#> .
+#^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+#^ @prefix rbmo: <http://purl.org/rbm/rbmo#> .
+#^ @prefix rbmc: <http://purl.org/rbm/comp#> .
+#^ @prefix rbmt: <http://purl.org/rbm/templates/> .
+#^ @prefix sbol: <http://sbols.org/v2#> .
+#^ @prefix so: <http://identifiers.org/so/> .
+#^ @prefix go: <http://identifiers.org/go/> .
+#^ @prefix pr: <http://identifiers.org/pr/> .
+#^ @prefix sbo: <http://identifiers.org/biomodels.sbo/> .
+#^ @prefix dct: <http://purl.org/dc/terms/> .
+#^ @prefix owl: <http://www.w3.org/2002/07/owl#> .
+#^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/> .
+#^ @prefix biopax: <http://www.biopax.org/release/biopax-level3.owl#> .
+
+#^ :model a rbmo:Kappa  ;
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" .
+
+#RULE 3: Transcription sliding
+#Except the first component in the design
+%var: 'IDENTIFIER-sliding_rate' 1
+
+#^ :transcription-elongation a rbmo:Rule ;
+#^   bqbiol:isVersionOf go:GO:0006354 ;
+#^   dct:title "Transcriptional elongation" ;
+#^   dct:description "Transcriptional elongation to transcribe the downstream DNA component." .
+'IDENTIFIER-transcription-elongation' DNA(binding,us!2,part~IDENTIFIER), RNAP(dna!1,rna!3),DNA(ds!2, binding!1), RNA(ds!3) -> DNA(binding!1,us!2,part~IDENTIFIER), RNAP(dna!1,rna!3),DNA(ds!2, binding), RNA(ds!4), RNA(binding, us!4, ds!3, part~IDENTIFIER)@'IDENTIFIER-sliding_rate'
+

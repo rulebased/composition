@@ -1,0 +1,21 @@
+#^ @prefix : <#> .
+#^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+#^ @prefix rbmo: <http://purl.org/rbm/rbmo#> .
+#^ @prefix rbmc: <http://purl.org/rbm/comp#> .
+#^ @prefix rbmt: <http://purl.org/rbm/templates/> .
+#^ @prefix sbol: <http://sbols.org/v2#> .
+#^ @prefix so: <http://identifiers.org/so/> .
+#^ @prefix pr: <http://identifiers.org/pr/> .
+#^ @prefix sbo: <http://identifiers.org/biomodels.sbo/> .
+#^ @prefix dct: <http://purl.org/dc/terms/> .
+#^ @prefix owl: <http://www.w3.org/2002/07/owl#> .
+#^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/> .
+#^ @prefix biopax: <http://www.biopax.org/release/biopax-level3.owl#> .
+
+#^ :model a rbmo:Kappa  ;
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ; 
+#^   rbmc:include rbmt:genericpart.kappa .
+
+#RULE 5: RNAP fall off from DNA
+#Higher fall off rate
+%var: 'IDENTIFIER-rnap_dna_fall_off_rate' 1

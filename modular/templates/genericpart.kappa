@@ -1,0 +1,13 @@
+#^ @prefix : <#> .
+#^ @prefix rbmo: <http://purl.org/rbm/rbmo#> .
+#^ @prefix rbmc: <http://purl.org/rbm/comp#> .
+#^ @prefix rbmt: <http://purl.org/rbm/templates/> .
+#^ @prefix dct: <http://purl.org/dc/terms/>.
+
+#^ :model a rbmo:Kappa  ;
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ; 
+#^   rbmc:include rbmt:transcription_elongation.kappa ;
+#^   rbmc:include rbmt:transcription_termination.kappa ;
+#^   rbmc:include rbmt:translation_elongation.kappa ;
+#^   rbmc:include rbmt:translation_termination.kappa ;
+#^   rbmc:include rbmt:translation_chain.kappa .

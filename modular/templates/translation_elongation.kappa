@@ -1,0 +1,19 @@
+#^ @prefix : <#> .
+#^ @prefix rbmo: <http://purl.org/rbm/rbmo#> .
+#^ @prefix rbmc: <http://purl.org/rbm/comp#> .
+#^ @prefix rbmt: <http://purl.org/rbm/templates/> .
+#^ @prefix go: <http://identifiers.org/go/>.
+#^ @prefix dct: <http://purl.org/dc/terms/>.
+#^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/> .
+
+#^ :model a rbmo:Kappa  ;
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" .
+
+#RULE 8: Translation sliding
+%var: 'IDENTIFIER-translation_sliding_rate' 1
+#^ :transcription-elongation a rbmo:Rule ;
+#^   bqbiol:isVersionOf go:GO:0006414 ;
+#^   dct:title "Translational elongation" ;
+#^   dct:description "Translational elongation to translate the downstream RNA component." .
+'IDENTIFIER-translation-elongation' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, part~IDENTIFIER) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, part~IDENTIFIER) @'IDENTIFIER-translation_sliding_rate'
+

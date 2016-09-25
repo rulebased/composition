@@ -1,6 +1,8 @@
-#^ @prefix : <https://github.com/rulebased/composition/tree/master/templates/promoter.kappa#>.
-#^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
-#^ @prefix rbmo: <http://purl.org/rbm/rbmo#>.
+#^ @prefix : <#> .
+#^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+#^ @prefix rbmo: <http://purl.org/rbm/rbmo#> .
+#^ @prefix rbmc: <http://purl.org/rbm/comp#> .
+#^ @prefix rbmt: <http://purl.org/rbm/templates/> .
 #^ @prefix sbol: <http://sbols.org/v2#>.
 #^ @prefix so: <http://identifiers.org/so/>.
 #^ @prefix go: <http://identifiers.org/go/>.
@@ -27,13 +29,13 @@
 #^   sbol:role so:SO:0000167 ;
 #^   sbol:type biopax:DnaRegion ;
 #^   sbol:annotation :DNA:part:IDENTIFIERtss ;
-#^   sbol:model <https://github.com/rulebased/composition/tree/master/templates/generic_part.kappa> .
+#^   sbol:model rbmt:generic_part.kappa .
 #^ :DNA:part:IDENTIFIERtss a rbmo:State ;
 #^   dct:title "TSS" ;
 #^   dct:description "Transcription Start Site" ;
 #^   sbol:role so:SO:0000315 ;
-#^   sbol:model <https://github.com/rulebased/composition/tree/master/templates/generic_part.kappa> .
-%agent: DNA(binding,us,ds,part~IDENTIFIER~IDENTIFIERtss)
+#^   sbol:model rbmt:generic_part.kappa .
+#%agent: DNA(binding,us,ds,part~IDENTIFIER~IDENTIFIERtss)
 
 
 #^ :RNA a rbmo:Agent ; 
@@ -46,27 +48,27 @@
 #^   sbol:annotation :RNA:part:IDENTIFIERtss .
 #^ :RNA:part:IDENTIFIERtss a rbmo:State ;
 #^   sbol:role so:SO:0000315 .
-%agent: RNA(ds,us,binding,deg,part~IDENTIFIER~IDENTIFIERtss)
+#%agent: RNA(ds,us,binding,deg,part~IDENTIFIER~IDENTIFIERtss)
 
 
 # RULE 1: RNAP binding to promoter region
-%var: 'RNAP_binding_rate' 0.0001
+%var: 'IDENTIFIER-RNAP_binding_rate' 0.0001
 
 #^ :RNAP-to-promoter a rbmo:Rule ;
 #^   bqbiol:isVersionOf go:GO:0070063 ;
 #^   dct:title "RNAP-promoter" ;
 #^   dct:description "RNAP binding to a promoter region" .
-'RNAP-to-promoter' DNA(binding, part~IDENTIFIER), RNAP(dna, rna) -> DNA(binding!1,part~IDENTIFIER), RNAP(dna!1,rna) @'RNAP_binding_rate'
+'IDENTIFIER-RNAP-to-promoter' DNA(binding, part~IDENTIFIER), RNAP(dna, rna) -> DNA(binding!1,part~IDENTIFIER), RNAP(dna!1,rna) @'IDENTIFIER-RNAP_binding_rate'
 
 
 
 #RULE 2: transcription initiation
-%var: 'transcription_initiation_rate' 1
+%var: 'IDENTIFIER-transcription_initiation_rate' 1
 
 #^ :transcription-initiation a rbmo:Rule ;
 #^   bqbiol:isVersionOf go:GO:0070063 ;
 #^   dct:title "Transcription initiation" ;
 #^   dct:description "RNAP binds to a promoter and initiates transcription" .
-'transcription-initiation' DNA(binding!1,ds!2,part~IDENTIFIER), RNAP(dna!1,rna),DNA(us!2, binding, part~IDENTIFIERtss) -> DNA(binding,ds!2,part~IDENTIFIER), RNAP(dna!1,rna!3),DNA(us!2, binding!1, part~IDENTIFIERtss), RNA(binding, us, ds!3, part~IDENTIFIERtss)@'transcription_initiation_rate'
+'IDENTIFIER-transcription-initiation' DNA(binding!1,ds!2,part~IDENTIFIER), RNAP(dna!1,rna),DNA(us!2, binding, part~IDENTIFIERtss) -> DNA(binding,ds!2,part~IDENTIFIER), RNAP(dna!1,rna!3),DNA(us!2, binding!1, part~IDENTIFIERtss), RNA(binding, us, ds!3, part~IDENTIFIERtss)@'IDENTIFIER-transcription_initiation_rate'
 
 
