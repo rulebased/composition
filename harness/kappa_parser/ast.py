@@ -1,12 +1,10 @@
-from __future__ import unicode_literals
-
 from functools import total_ordering
 from abc import ABCMeta
 
 
 def _assert_all_is_instance(iterable, klass):
     for o in iterable:
-        assert isinstance(o, klass), o
+        assert isinstance(o, klass), repr(o)
 
 
 class ASTBase(object):
@@ -28,14 +26,11 @@ class ASTBase(object):
         assert type(self) == type(other)  # generally we don't want allow cross-classes comparisons
         return self.__dict__.items() < other.__dict__.items()
 
-    def __unicode__(self):
+    def __str__(self):
         items = self.__dict__.items()
         attrs = ' '.join('%s=%s' % (attr, val) for attr, val in items)
         type_name = type(self).__name__
         return '<%s %s>' % (type_name, attrs) if attrs else "<%s>" % type_name
-
-    def __str__(self):
-        return unicode(self).encode()
 
     def __repr__(self):
         return str(self)
@@ -66,9 +61,9 @@ class Link(LinkP):
     def __init__(self, text):
         """
         :param text: annotation for a link
-        :type text: unicode
+        :type text: str
         """
-        assert isinstance(text, unicode)
+        assert isinstance(text, str)
         self.text = text
 
 
@@ -83,9 +78,9 @@ class State(StateP):
     def __init__(self, text):
         """
         :param text: annoutation for a state
-        :type text: unicode
+        :type text: str
         """
-        assert isinstance(text, unicode), text
+        assert isinstance(text, str), text
         self.text = text
 
 
@@ -117,14 +112,14 @@ class AgentP(ASTBase):
     def __init__(self, name, sites):
         """
         :param name: agent's human-readable name
-        :type name: unicode
+        :type name: str
 
         :param sites: mapping between site names and sites
-        :type sites: dict[unicode, SiteP]
+        :type sites: dict[str, SiteP]
         """
-        assert isinstance(name, unicode), name
+        assert isinstance(name, str), name
         assert isinstance(sites, dict)
-        _assert_all_is_instance(sites.keys(), unicode)
+        _assert_all_is_instance(sites.keys(), str)
         _assert_all_is_instance(sites.values(), SiteP)
         self.name = name
         self.sites = sites
@@ -146,15 +141,15 @@ class AgentD(ASTBase):
     def __init__(self, name, sites):
         """
         :param name: human-readable name of an agent
-        :type name: unicode
+        :type name: str
         :param sites: mapping between site names of an agent and their possible values
-        :type sites: dict[unicode, tuple[unicode]]
+        :type sites: dict[str, tuple[str]]
         """
-        assert isinstance(name, unicode), name
-        _assert_all_is_instance(sites.keys(), unicode)
+        assert isinstance(name, str), name
+        _assert_all_is_instance(sites.keys(), str)
         for site in sites.values():
             assert isinstance(site, tuple), tuple
-            _assert_all_is_instance(site, unicode)
+            _assert_all_is_instance(site, str)
         self.name = name
         self.sites = sites
 
@@ -174,9 +169,9 @@ class Var(Expr):
     def __init__(self, name):
         """
         :param name: variable's name
-        :type name: unicode
+        :type name: str
         """
-        assert isinstance(name, unicode), name
+        assert isinstance(name, str), name
         self.name = name
 
 
@@ -284,12 +279,12 @@ class TokE(ASTBase):
     def __init__(self, name, expr):
         """
         :param name: token's name
-        :type name: unicode
+        :type name: str
 
         :param expr: token's expressions
         :type expr: Expr
         """
-        assert isinstance(name, unicode), name
+        assert isinstance(name, str), name
         assert isinstance(expr, Expr), expr
         self.name = name
         self.expr = expr
@@ -318,12 +313,12 @@ class Rule(ASTBase):
         :type rate_c: Expr
 
         :param desc: rule human-readable description
-        :type desc: unicode
+        :type desc: str
         """
         # TODO: type validation for lhs and rhs
         assert isinstance(rate, Expr), rate
         assert isinstance(rate_c, Expr), rate_c
-        assert isinstance(desc, unicode), desc
+        assert isinstance(desc, str), desc
         self.lhs = lhs
         self.rhs = rhs
         self.rate = rate
@@ -336,12 +331,12 @@ class VarD(ASTBase):
     def __init__(self, name, expr):
         """
         :param name: name of a variable
-        :type name: unicode
+        :type name: str
 
         :param expr: expression to bind to variable
         :type expr: Expr
         """
-        assert isinstance(name, unicode), name
+        assert isinstance(name, str), name
         assert isinstance(expr, Expr), name
         self.name = name
         self.expr = expr
@@ -352,9 +347,9 @@ class TokD(ASTBase):
     def __init__(self, name):
         """
         :param name: token's name
-        :type name: unicode
+        :type name: str
         """
-        assert isinstance(name, unicode), unicode
+        assert isinstance(name, str), str
         self.name = name
 
 
@@ -363,12 +358,12 @@ class Obs(ASTBase):
     def __init__(self, name, pattern):
         """
         :param name: name of an observation
-        :type name: unicode
+        :type name: str
 
         :param pattern: pattern to observe
         :type pattern: AgentP
         """
-        assert isinstance(name, unicode), name
+        assert isinstance(name, str), name
         assert isinstance(pattern, AgentP), pattern
         self.pattern = pattern
 
@@ -480,7 +475,7 @@ class RDF(Statement):
     def __init__(self, value):
         """
         :param value: annotation text
-        :type value: unicode
+        :type value: str
         """
-        assert isinstance(value, unicode), value
+        assert isinstance(value, str), value
         self.value = value

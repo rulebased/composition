@@ -1,8 +1,10 @@
-from __future__ import unicode_literals, absolute_import, print_function
+from __future__ import absolute_import, print_function
 
 from pyparsing import *
 
 from . import ast
+
+ParserElement.enablePackrat()
 
 # Utility parser -- consume 0 or more whitespaces
 many_space = Optional(White()).suppress()
