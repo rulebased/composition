@@ -67,6 +67,9 @@
 #^   dct:description "RNAP binding to an inducible promoter region when the promoter is activated." .
 'BINDINGSITE-IDENT-RNAP-to-promoter-activated' P(dna!3, type~TF), DNA(binding!3, ds!2,type~BINDINGSITE), DNA(binding,us!2,type~PROMOTER), RNAP(dna, rna) -> P(dna!3, type~TF), DNA(binding!3, ds!2,type~BINDINGSITE), DNA(binding!1,us!2,type~PROMOTER), RNAP(dna!1,rna) @'BINDINGSITE-IDENT-RNAP_binding_rate_activated'
 
+## binding of transcription factor to binding site
+%var: 'BINDINGSITE-protein-to-dna_rate' 1
+'BINDINGSITE-protein-to-dna' P(dna), DNA(binding, type~BINDINGSITE) -> P(dna!1), DNA(binding!1, type~BINDINGSITE) @'BINDINGSITE-protein-to-dna_rate'
 
 #RULE 2: transcription initiation
 %var: 'BINDINGSITE-IDENT-transcription_initiation_rate' 1

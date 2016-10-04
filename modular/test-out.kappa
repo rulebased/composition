@@ -1,0 +1,1575 @@
+#^ @prefix ns1: <http://purl.org/dc/terms/> .
+#^ @prefix ns10: <http://www.obofoundry.org/ro/ro.owl#> .
+#^ @prefix ns2: <http://purl.org/rbm/comp#> .
+#^ @prefix ns3: <http://purl.org/rbm/rbmo#> .
+#^ @prefix ns4: <http://biomodels.net/biology-qualifiers/> .
+#^ @prefix ns5: <http://identifiers.org/so/> .
+#^ @prefix ns6: <http://sbols.org/v2#> .
+#^ @prefix ns7: <http://www.w3.org/ns/prov#> .
+#^ @prefix ns8: <http://purl.obolibrary.org/obo/BFO_0000050/> .
+#^ @prefix ns9: <http://purl.obolibrary.org/obo/> .
+#^ @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+#^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+#^ @prefix xml: <http://www.w3.org/XML/1998/namespace> .
+#^ @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/cds.kappa#C1-transcription-elongation> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0006414> ;
+#^     ns1:description "Translational elongation to translate the downstream RNA component" ;
+#^     ns1:title "Translational elongation" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/cds.kappa#C2-transcription-elongation> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0006414> ;
+#^     ns1:description "Translational elongation to translate the downstream RNA component" ;
+#^     ns1:title "Translational elongation" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/cds.kappa#t> a ns2:Template ;
+#^     ns1:creator "Goksel Misirli",
+#^         "Matteo Cavaliere",
+#^         "William Waites" ;
+#^     ns1:description "Ribosome Binding Site" ;
+#^     ns1:title "RBS" ;
+#^     ns2:include <http://purl.org/rbm/templates/transcription_elongation.kappa>,
+#^         <http://purl.org/rbm/templates/transcription_termination.kappa>,
+#^         <http://purl.org/rbm/templates/translation_chain.kappa>,
+#^         <http://purl.org/rbm/templates/translation_termination.kappa> ;
+#^     ns2:tokens [ rdfs:label "C1" ],
+#^         [ rdfs:label "C2" ] ;
+#^     ns7:derivesFrom <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_elongation.kappa#t>,
+#^         <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa#t>,
+#^         <file:///home/ww/Projects/Composition/composition/modular/templates/translation_chain.kappa#t>,
+#^         <file:///home/ww/Projects/Composition/composition/modular/templates/translation_termination.kappa#t> .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#DNA> a ns3:Agent ;
+#^     ns3:hasSite <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#DNA:part> .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#RNA> a ns3:Agent ;
+#^     ns3:hasSite <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#RNA:part> .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#RNAP-to-promoter> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0070063> ;
+#^     ns1:description "RNAP binding to a promoter region" ;
+#^     ns1:title "RNAP-promoter" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#t> a ns2:Template ;
+#^     ns1:creator "Goksel Misirli",
+#^         "Matteo Cavaliere",
+#^         "William Waites" ;
+#^     ns1:description "A rule-based modelling template that can be instantiated to create models of constitutive promoters" ;
+#^     ns1:title "Constituve promoter" ;
+#^     ns2:tokens [ rdfs:label "P2" ],
+#^         [ rdfs:label "P1" ] .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#transcription-initiation> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0070063> ;
+#^     ns1:description "RNAP binds to a promoter and initiates transcription" ;
+#^     ns1:title "Transcription initiation" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/terminator.kappa#t> a ns2:Template ;
+#^     ns1:creator "Goksel Misirli",
+#^         "Matteo Cavaliere",
+#^         "William Waites" ;
+#^     ns2:include <http://purl.org/rbm/templates/genericpart.kappa> ;
+#^     ns2:tokens [ rdfs:label "T1" ],
+#^         [ rdfs:label "T2" ] ;
+#^     ns7:derivesFrom <file:///home/ww/Projects/Composition/composition/modular/templates/genericpart.kappa#t> .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_elongation.kappa#C1-transcription-elongation> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0006354> ;
+#^     ns1:description "Transcriptional elongation to transcribe the downstream DNA component." ;
+#^     ns1:title "Transcriptional elongation" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_elongation.kappa#C2-transcription-elongation> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0006354> ;
+#^     ns1:description "Transcriptional elongation to transcribe the downstream DNA component." ;
+#^     ns1:title "Transcriptional elongation" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_elongation.kappa#IDENT-transcription-elongation> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0006354> ;
+#^     ns1:description "Transcriptional elongation to transcribe the downstream DNA component." ;
+#^     ns1:title "Transcriptional elongation" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_elongation.kappa#T1-transcription-elongation> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0006354> ;
+#^     ns1:description "Transcriptional elongation to transcribe the downstream DNA component." ;
+#^     ns1:title "Transcriptional elongation" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_elongation.kappa#T2-transcription-elongation> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0006354> ;
+#^     ns1:description "Transcriptional elongation to transcribe the downstream DNA component." ;
+#^     ns1:title "Transcriptional elongation" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa#C1-transcription-termination> a ns3:Rule ;
+#^     ns8:part_of <http://identifiers.org/go/GO:0006353> ;
+#^     ns1:description "DNA templated transcription termination. RNAP fall off from DNA." ;
+#^     ns1:title "Transcription termination" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa#C1-translation-termination> a ns3:Rule ;
+#^     ns8:part_of <http://identifiers.org/go/GO:0006415> ;
+#^     ns1:description "RNAP fall off from RNA." ;
+#^     ns1:title "Translational termination" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa#C2-transcription-termination> a ns3:Rule ;
+#^     ns8:part_of <http://identifiers.org/go/GO:0006353> ;
+#^     ns1:description "DNA templated transcription termination. RNAP fall off from DNA." ;
+#^     ns1:title "Transcription termination" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa#C2-translation-termination> a ns3:Rule ;
+#^     ns8:part_of <http://identifiers.org/go/GO:0006415> ;
+#^     ns1:description "RNAP fall off from RNA." ;
+#^     ns1:title "Translational termination" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa#IDENT-transcription-termination> a ns3:Rule ;
+#^     ns8:part_of <http://identifiers.org/go/GO:0006353> ;
+#^     ns1:description "DNA templated transcription termination. RNAP fall off from DNA." ;
+#^     ns1:title "Transcription termination" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa#IDENT-translation-termination> a ns3:Rule ;
+#^     ns8:part_of <http://identifiers.org/go/GO:0006415> ;
+#^     ns1:description "RNAP fall off from RNA." ;
+#^     ns1:title "Translational termination" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa#T1-transcription-termination> a ns3:Rule ;
+#^     ns8:part_of <http://identifiers.org/go/GO:0006353> ;
+#^     ns1:description "DNA templated transcription termination. RNAP fall off from DNA." ;
+#^     ns1:title "Transcription termination" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa#T1-translation-termination> a ns3:Rule ;
+#^     ns8:part_of <http://identifiers.org/go/GO:0006415> ;
+#^     ns1:description "RNAP fall off from RNA." ;
+#^     ns1:title "Translational termination" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa#T2-transcription-termination> a ns3:Rule ;
+#^     ns8:part_of <http://identifiers.org/go/GO:0006353> ;
+#^     ns1:description "DNA templated transcription termination. RNAP fall off from DNA." ;
+#^     ns1:title "Transcription termination" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa#T2-translation-termination> a ns3:Rule ;
+#^     ns8:part_of <http://identifiers.org/go/GO:0006415> ;
+#^     ns1:description "RNAP fall off from RNA." ;
+#^     ns1:title "Translational termination" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/translation_chain.kappa#C1-translation-chain> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     ns1:description "RNAP fall off from RNA ." ;
+#^     ns1:title "Formation of translational chains, due to gene fusion or leakiness of stop codons" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/translation_chain.kappa#C2-translation-chain> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     ns1:description "RNAP fall off from RNA ." ;
+#^     ns1:title "Formation of translational chains, due to gene fusion or leakiness of stop codons" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/translation_chain.kappa#IDENT-translation-chain> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     ns1:description "RNAP fall off from RNA ." ;
+#^     ns1:title "Formation of translational chains, due to gene fusion or leakiness of stop codons" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/translation_chain.kappa#T1-translation-chain> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     ns1:description "RNAP fall off from RNA ." ;
+#^     ns1:title "Formation of translational chains, due to gene fusion or leakiness of stop codons" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/translation_chain.kappa#T2-translation-chain> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     ns1:description "RNAP fall off from RNA ." ;
+#^     ns1:title "Formation of translational chains, due to gene fusion or leakiness of stop codons" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/translation_elongation.kappa#IDENT-transcription-elongation> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0006414> ;
+#^     ns1:description "Translational elongation to translate the downstream RNA component." ;
+#^     ns1:title "Translational elongation" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/translation_elongation.kappa#T1-transcription-elongation> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0006414> ;
+#^     ns1:description "Translational elongation to translate the downstream RNA component." ;
+#^     ns1:title "Translational elongation" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/translation_elongation.kappa#T2-transcription-elongation> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0006414> ;
+#^     ns1:description "Translational elongation to translate the downstream RNA component." ;
+#^     ns1:title "Translational elongation" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/translation_termination.kappa#C1-ribosome-rna-off> a ns3:Rule ;
+#^     ns9:part_of <http://identifiers.org/go/GO:0006415> ;
+#^     ns1:description "A ribosome fall off from an RNA." ;
+#^     ns1:title "Ribosome RNA fall off" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/translation_termination.kappa#C2-ribosome-rna-off> a ns3:Rule ;
+#^     ns9:part_of <http://identifiers.org/go/GO:0006415> ;
+#^     ns1:description "A ribosome fall off from an RNA." ;
+#^     ns1:title "Ribosome RNA fall off" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/translation_termination.kappa#IDENT-ribosome-rna-off> a ns3:Rule ;
+#^     ns9:part_of <http://identifiers.org/go/GO:0006415> ;
+#^     ns1:description "A ribosome fall off from an RNA." ;
+#^     ns1:title "Ribosome RNA fall off" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/translation_termination.kappa#T1-ribosome-rna-off> a ns3:Rule ;
+#^     ns9:part_of <http://identifiers.org/go/GO:0006415> ;
+#^     ns1:description "A ribosome fall off from an RNA." ;
+#^     ns1:title "Ribosome RNA fall off" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/translation_termination.kappa#T2-ribosome-rna-off> a ns3:Rule ;
+#^     ns9:part_of <http://identifiers.org/go/GO:0006415> ;
+#^     ns1:description "A ribosome fall off from an RNA." ;
+#^     ns1:title "Ribosome RNA fall off" .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#P:binding> a ns3:Site ;
+#^     ns1:title "binding" ;
+#^     ns6:type <http://www.biopax.org/release/biopax-level3.owl#Protein> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#P:ds> a ns3:Site ;
+#^     ns5:finishes <https://github.com/rulebased/composition/tree/master/templates/host.kappa#P> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#P:part> a ns3:Site ;
+#^     ns3:hasState <https://github.com/rulebased/composition/tree/master/templates/host.kappa#P:part:IDENT> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#P:us> a ns3:Site ;
+#^     ns5:starts <https://github.com/rulebased/composition/tree/master/templates/host.kappa#P> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#Protease> a ns3:Agent ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0000502> ;
+#^     ns1:isPartOf <https://github.com/rulebased/composition/tree/master/templates/host.kappa#model> ;
+#^     ns1:title "Ribosome" ;
+#^     ns3:hasSite <https://github.com/rulebased/composition/tree/master/templates/host.kappa#Protease:binding> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNADeg> a ns3:Agent ;
+#^     ns1:isPartOf <https://github.com/rulebased/composition/tree/master/templates/host.kappa#model> ;
+#^     ns1:title "Ribosome" ;
+#^     ns3:hasSite <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNADeg:binding> ;
+#^     ns10:has_function <http://identifiers.org/go/GO:0006401> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNAP> a ns3:Agent ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0030880> ;
+#^     ns1:isPartOf <https://github.com/rulebased/composition/tree/master/templates/host.kappa#model> ;
+#^     ns1:title "RNAP" ;
+#^     ns3:hasSite <https://github.com/rulebased/composition/tree/master/templates/host.kappa#Ribosome:dna>,
+#^         <https://github.com/rulebased/composition/tree/master/templates/host.kappa#Ribosome:rna> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNAP:dna> a ns3:Site ;
+#^     ns1:title "dna" ;
+#^     ns6:type <http://www.biopax.org/release/biopax-level3.owl#Protein> ;
+#^     ns10:has_function <http://identifiers.org/go/GO:0003677> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNAP:rna> a ns3:Site ;
+#^     ns1:title "rna" ;
+#^     ns6:type <http://www.biopax.org/release/biopax-level3.owl#Protein> ;
+#^     ns10:has_function <http://identifiers.org/go/GO:0003723> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#Ribosome> a ns3:Agent ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0005840> ;
+#^     ns1:isPartOf <https://github.com/rulebased/composition/tree/master/templates/host.kappa#model> ;
+#^     ns1:title "Ribosome" ;
+#^     ns3:hasSite <https://github.com/rulebased/composition/tree/master/templates/host.kappa#Ribosome:dna>,
+#^         <https://github.com/rulebased/composition/tree/master/templates/host.kappa#Ribosome:rna> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#Ribosome:protein> a ns3:Site ;
+#^     ns1:title "protein" ;
+#^     ns6:type <http://www.biopax.org/release/biopax-level3.owl#Protein> ;
+#^     ns10:has_function <http://identifiers.org/go/GO:0005515> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#enzyme-RNA-binding> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0019899> ;
+#^     ns1:description "Binding of an enzyme to an mRNA for its degradation." ;
+#^     ns1:title "enzyme-RNA binding" .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#protease-protein-binding> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0002020> ;
+#^     ns1:description "Binding of a protease or a peptidase to a protein." ;
+#^     ns1:title "Protease-protein binding" .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#protein-degradation> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0009056> ;
+#^     ns1:description "Degradation of a single protein." ;
+#^     ns1:title "Protein degradation" .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#proteinchain-degradation-sliding-left> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0009056> ;
+#^     ns1:description "Degradation of a protein in a chain and sliding to the left protein in the chain." ;
+#^     ns1:title "Protein degradation in a chain" .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#proteinchain-degradation-sliding-right> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0009056> ;
+#^     ns1:description "Degradation of a protein in a chain and sliding to the right protein in the chain." ;
+#^     ns1:title "Protein degradation in a chain" .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#ribosome-protein-off> a ns3:Rule ;
+#^     ns9:part_of <http://identifiers.org/go/GO:0006415> ;
+#^     ns1:description "A ribosome fall off from a protein." ;
+#^     ns1:title "Ribosome protein fall off" .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#rna-degradation> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0006401> ;
+#^     ns1:description "Degradation of a RNA component." ;
+#^     ns1:title "RNA degradation" .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#rna-degradation-sliding-left> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0006401> ;
+#^     ns1:description "Degradation of a component in a RNA chain and sliding to the left component in the chain." ;
+#^     ns1:title "RNA degradation" .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#rna-degradation-sliding-right> a ns3:Rule ;
+#^     ns4:isVersionOf <http://identifiers.org/go/GO:0006401> ;
+#^     ns1:description "Degradation of a component in a RNA chain and sliding to the right component in the chain." ;
+#^     ns1:title "RNA degradation" .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#DNA:part> a ns3:Site ;
+#^     ns3:hasState <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#DNA:part:P1>,
+#^         <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#DNA:part:P1tss>,
+#^         <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#DNA:part:P2>,
+#^         <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#DNA:part:P2tss> .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#DNA:part:P1> a ns3:State ;
+#^     ns1:title "Promoter" ;
+#^     ns6:annotation <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#DNA:part:P1tss> ;
+#^     ns6:model <http://purl.org/rbm/templates/generic_part.kappa> ;
+#^     ns6:role <http://identifiers.org/so/SO:0000167> ;
+#^     ns6:type <http://www.biopax.org/release/biopax-level3.owl#DnaRegion> .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#DNA:part:P2> a ns3:State ;
+#^     ns1:title "Promoter" ;
+#^     ns6:annotation <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#DNA:part:P2tss> ;
+#^     ns6:model <http://purl.org/rbm/templates/generic_part.kappa> ;
+#^     ns6:role <http://identifiers.org/so/SO:0000167> ;
+#^     ns6:type <http://www.biopax.org/release/biopax-level3.owl#DnaRegion> .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#RNA:part> a ns3:Site ;
+#^     ns3:hasState <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#RNA:part:P1>,
+#^         <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#RNA:part:P1tss>,
+#^         <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#RNA:part:P2>,
+#^         <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#RNA:part:P2tss> .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#RNA:part:P1> a ns3:State ;
+#^     ns6:annotation <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#RNA:part:P1tss> ;
+#^     ns6:role <http://identifiers.org/so/SO:0000167> .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#RNA:part:P2> a ns3:State ;
+#^     ns6:annotation <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#RNA:part:P2tss> ;
+#^     ns6:role <http://identifiers.org/so/SO:0000167> .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/test.kappa#model> a ns3:Kappa ;
+#^     ns1:creator "Goksel Misirli",
+#^         "Matteo Cavaliere",
+#^         "William Waites" ;
+#^     ns1:description "Testing Modular Assembly" ;
+#^     ns1:title "Test Modular System" ;
+#^     ns2:include <file:///home/ww/Projects/Composition/composition/modular/host.kappa> ;
+#^     ns2:parts ( [ ns2:replace [ ns2:token "IDENT" ;
+#^                         ns2:value "P1" ] ;
+#^                 ns2:template <http://purl.org/rbm/templates/promoter.kappa> ] [ ns2:replace [ ns2:token "IDENT" ;
+#^                         ns2:value "C1" ] ;
+#^                 ns2:template <http://purl.org/rbm/templates/cds.kappa> ] [ ns2:replace [ ns2:token "IDENT" ;
+#^                         ns2:value "T1" ] ;
+#^                 ns2:template <http://purl.org/rbm/templates/terminator.kappa> ] [ ns2:replace [ ns2:token "IDENT" ;
+#^                         ns2:value "P2" ] ;
+#^                 ns2:template <http://purl.org/rbm/templates/promoter.kappa> ] [ ns2:replace [ ns2:token "IDENT" ;
+#^                         ns2:value "C2" ] ;
+#^                 ns2:template <http://purl.org/rbm/templates/cds.kappa> ] [ ns2:replace [ ns2:token "IDENT" ;
+#^                         ns2:value "T2" ] ;
+#^                 ns2:template <http://purl.org/rbm/templates/terminator.kappa> ] ) ;
+#^     ns7:derivesFrom <file:///home/ww/Projects/Composition/composition/modular/templates/genericpart.kappa#t>,
+#^         <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_elongation.kappa#t>,
+#^         <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa#t>,
+#^         <file:///home/ww/Projects/Composition/composition/modular/templates/translation_chain.kappa#t>,
+#^         <file:///home/ww/Projects/Composition/composition/modular/templates/translation_elongation.kappa#t>,
+#^         <file:///home/ww/Projects/Composition/composition/modular/templates/translation_termination.kappa#t>,
+#^         <file:///home/ww/Projects/Composition/composition/modular/test.kappa#model>,
+#^         <https://github.com/rulebased/composition/tree/master/templates/host.kappa#model> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#DNA:part:IDENT> a ns3:State ;
+#^     ns6:type <http://www.biopax.org/release/biopax-level3.owl#DnaRegion> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#P:part:IDENT> a ns3:State ;
+#^     ns6:type <http://www.biopax.org/release/biopax-level3.owl#Protein> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#Protease:binding> a ns3:Site ;
+#^     ns1:title "protein" ;
+#^     ns6:type <http://www.biopax.org/release/biopax-level3.owl#Protein> ;
+#^     ns10:has_function <http://identifiers.org/go/GO:0005515> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNA:binding> a ns3:Site ;
+#^     ns1:title "binding" ;
+#^     ns6:role <http://identifiers.org/so/SO:0000057> ;
+#^     ns6:type <http://www.biopax.org/release/biopax-level3.owl#RnaRegion> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNA:deg> a ns3:Site ;
+#^     ns5:finishes <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNA> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNA:ds> a ns3:Site ;
+#^     ns5:finishes <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNA> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNA:part> a ns3:Site ;
+#^     ns3:hasState <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNA:part:IDENT> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNA:part:IDENT> a ns3:State ;
+#^     ns6:type <http://www.biopax.org/release/biopax-level3.owl#RnaRegion> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNA:us> a ns3:Site ;
+#^     ns5:starts <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNA> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNADeg:binding> a ns3:Site ;
+#^     ns1:title "binding" ;
+#^     ns10:has_function <http://identifiers.org/go/GO:0003723> .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/genericpart.kappa#t> a ns2:Template ;
+#^     ns1:creator "Goksel Misirli",
+#^         "Matteo Cavaliere",
+#^         "William Waites" ;
+#^     ns2:include <http://purl.org/rbm/templates/transcription_elongation.kappa>,
+#^         <http://purl.org/rbm/templates/transcription_termination.kappa>,
+#^         <http://purl.org/rbm/templates/translation_chain.kappa>,
+#^         <http://purl.org/rbm/templates/translation_elongation.kappa>,
+#^         <http://purl.org/rbm/templates/translation_termination.kappa> ;
+#^     ns7:derivesFrom <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_elongation.kappa#t>,
+#^         <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa#t>,
+#^         <file:///home/ww/Projects/Composition/composition/modular/templates/translation_chain.kappa#t>,
+#^         <file:///home/ww/Projects/Composition/composition/modular/templates/translation_elongation.kappa#t>,
+#^         <file:///home/ww/Projects/Composition/composition/modular/templates/translation_termination.kappa#t> .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#DNA:part:P1tss> a ns3:State ;
+#^     ns1:description "Transcription Start Site" ;
+#^     ns1:title "TSS" ;
+#^     ns6:model <http://purl.org/rbm/templates/generic_part.kappa> ;
+#^     ns6:role <http://identifiers.org/so/SO:0000315> .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#DNA:part:P2tss> a ns3:State ;
+#^     ns1:description "Transcription Start Site" ;
+#^     ns1:title "TSS" ;
+#^     ns6:model <http://purl.org/rbm/templates/generic_part.kappa> ;
+#^     ns6:role <http://identifiers.org/so/SO:0000315> .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#RNA:part:P1tss> a ns3:State ;
+#^     ns6:role <http://identifiers.org/so/SO:0000315> .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa#RNA:part:P2tss> a ns3:State ;
+#^     ns6:role <http://identifiers.org/so/SO:0000315> .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/translation_elongation.kappa#t> a ns2:Template ;
+#^     ns1:creator "Goksel Misirli",
+#^         "Matteo Cavaliere",
+#^         "William Waites" ;
+#^     ns2:tokens [ rdfs:label "T1" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "T2" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "IDENT" ] .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#DNA> a ns3:Agent ;
+#^     ns1:isPartOf <https://github.com/rulebased/composition/tree/master/templates/host.kappa#model> ;
+#^     ns1:title "DNA" ;
+#^     ns3:hasSite <https://github.com/rulebased/composition/tree/master/templates/host.kappa#DNA:binding>,
+#^         <https://github.com/rulebased/composition/tree/master/templates/host.kappa#DNA:ds>,
+#^         <https://github.com/rulebased/composition/tree/master/templates/host.kappa#DNA:part>,
+#^         <https://github.com/rulebased/composition/tree/master/templates/host.kappa#DNA:us> ;
+#^     ns6:type <http://www.biopax.org/release/biopax-level3.owl#DnaRegion> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#DNA:binding> a ns3:Site ;
+#^     ns1:title "binding" ;
+#^     ns6:type <http://www.biopax.org/release/biopax-level3.owl#DnaRegion> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#DNA:ds> a ns3:Site ;
+#^     ns5:finishes <https://github.com/rulebased/composition/tree/master/templates/host.kappa#DNA> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#DNA:part> a ns3:Site ;
+#^     ns3:hasState <https://github.com/rulebased/composition/tree/master/templates/host.kappa#DNA:part:IDENT> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#DNA:us> a ns3:Site ;
+#^     ns5:starts <https://github.com/rulebased/composition/tree/master/templates/host.kappa#DNA> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#P> a ns3:Agent ;
+#^     ns1:isPartOf <https://github.com/rulebased/composition/tree/master/templates/host.kappa#model> ;
+#^     ns1:title "P" ;
+#^     ns3:hasSite <https://github.com/rulebased/composition/tree/master/templates/host.kappa#DNA:binding>,
+#^         <https://github.com/rulebased/composition/tree/master/templates/host.kappa#DNA:deg>,
+#^         <https://github.com/rulebased/composition/tree/master/templates/host.kappa#DNA:dna>,
+#^         <https://github.com/rulebased/composition/tree/master/templates/host.kappa#DNA:ds>,
+#^         <https://github.com/rulebased/composition/tree/master/templates/host.kappa#DNA:part>,
+#^         <https://github.com/rulebased/composition/tree/master/templates/host.kappa#DNA:us> ;
+#^     ns6:type <http://www.biopax.org/release/biopax-level3.owl#Protein> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#Ribosome:rna> a ns3:Site ;
+#^     ns1:title "rna" ;
+#^     ns6:type <http://www.biopax.org/release/biopax-level3.owl#Protein> ;
+#^     ns10:has_function <http://identifiers.org/go/GO:0003723> .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_elongation.kappa#t> a ns2:Template ;
+#^     ns1:creator "Goksel Misirli",
+#^         "Matteo Cavaliere",
+#^         "William Waites" ;
+#^     ns2:tokens [ rdfs:label "C1" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "T1" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "C2" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "T2" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "IDENT" ] .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa#t> a ns2:Template ;
+#^     ns1:creator "Goksel Misirli",
+#^         "Matteo Cavaliere",
+#^         "William Waites" ;
+#^     ns2:tokens [ rdfs:label "C1" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "T1" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "C2" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "T2" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "IDENT" ] .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/translation_chain.kappa#t> a ns2:Template ;
+#^     ns1:creator "Goksel Misirli",
+#^         "Matteo Cavaliere",
+#^         "William Waites" ;
+#^     ns2:tokens [ rdfs:label "C1" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "T1" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "C2" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "T2" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "IDENT" ] .
+#^ 
+#^ <file:///home/ww/Projects/Composition/composition/modular/templates/translation_termination.kappa#t> a ns2:Template ;
+#^     ns1:creator "Goksel Misirli",
+#^         "Matteo Cavaliere",
+#^         "William Waites" ;
+#^     ns2:tokens [ rdfs:label "C1" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "T1" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "C2" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "T2" ],
+#^         [ rdfs:label "IDENT" ],
+#^         [ rdfs:label "IDENT" ] .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNA> a ns3:Agent ;
+#^     ns1:isPartOf <https://github.com/rulebased/composition/tree/master/templates/host.kappa#model> ;
+#^     ns1:title "RNA" ;
+#^     ns3:hasSite <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNA:binding>,
+#^         <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNA:deg>,
+#^         <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNA:ds>,
+#^         <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNA:part>,
+#^         <https://github.com/rulebased/composition/tree/master/templates/host.kappa#RNA:us> ;
+#^     ns6:type <http://www.biopax.org/release/biopax-level3.owl#RnaRegion> .
+#^ 
+#^ <https://github.com/rulebased/composition/tree/master/templates/host.kappa#model> a ns3:Kappa ;
+#^     ns1:creator "Goksel Misirli",
+#^         "Matteo Cavaliere",
+#^         "William Waites" ;
+#^     ns1:description "Definitions of agents in a generic host" ;
+#^     ns1:title "Agent definitions" .
+#^ 
+#^ 
+
+
+################################################################################
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/test.kappa
+##
+
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/host.kappa
+##
+
+
+
+
+%agent: DNA(binding,us,ds,part~IDENT)
+
+%agent: RNA(ds,us,binding,deg,part~IDENT)
+
+%agent: P(ds,us, binding, deg, dna, protein,part~IDENT)
+
+
+%agent: RNAP(rna,dna)
+
+%agent: Ribosome(rna, protein)
+
+%agent: Protease(binding)
+
+
+%agent: RNADeg(binding)
+
+%init: 1000 RNAP(dna,rna)
+
+%init: 10000 Ribosome(rna)
+
+%init: 1000 Protease(binding)
+%init: 100 RNADeg(binding)
+
+
+#RULE 12: Ribosome protein fall off
+#Incorporated without instantiating
+%var: 'ribosome_protein_fall_off_rate' 0.1
+'ribosome-protein-off' Ribosome(protein!3), P(binding!3) -> Ribosome(protein), P(binding)@'ribosome_protein_fall_off_rate'
+
+
+#RULE 13: Binding of protease to a protein, which can be in a chain
+#Incorporated without instantiated
+%var: 'protease_binding_rate' 0.00005
+'protease-protein-binding' P(deg),Protease(binding) -> P(deg!1), Protease(binding!1) @'protease_binding_rate'
+
+
+#RULE 14:
+#Incorporated without instantiated
+%var: 'degradation_rate' 0.01
+%var: 'slide_and_degradation_rate' 0.01
+%var: 'deg_sliding_rate' 0.01
+
+#Degrade a single domain protein
+'protein-degradation' P(us,ds,deg!1), Protease(binding!1) -> Protease(binding) @'degradation_rate'
+
+#Degrade a multiple domain protein, slide and degrade
+'proteinchain-degradation-sliding-right' P(us!2,ds,deg!1), Protease(binding!1), P(ds!2, deg)-> Protease(binding!1), P(ds,deg!1), SlideDegRule()  @'slide_and_degradation_rate'
+
+'proteinchain-degradation-sliding-left' P(ds!2,deg!1), Protease(binding!1), P(us!2, deg)-> P(ds!2,deg), Protease(binding!1), P(us!2, deg!1) @'deg_sliding_rate'
+
+
+
+#RULE 15: RNADeg-RNA binding-unbinding
+%var: 'mrna_deg_binding_rate' 0.000005
+'enzyme-RNA-binding' RNA(deg),RNADeg(binding) -> RNA(deg!1), RNADeg(binding!1) @'mrna_deg_binding_rate'
+
+#RULE 16: Sliding and degradation
+%var: 'mrna_degratation_rate' 0.01
+%var: 'mrna_slide_and_degratation_rate' 0.02
+%var: 'mrna_deg_sliding_rate' 0.02
+
+#Degrade a single domain protein
+'rna-degradation' RNA(us,ds,deg!1), RNADeg(binding!1) -> RNADeg(binding), RNADegRule() @'mrna_degratation_rate'
+
+#Degrade a multiple domain rna, slide and degrade
+'rna-degradation-sliding-right' RNA(us!2,ds,deg!1), RNADeg(binding!1), RNA(ds!2, deg)-> RNADeg(binding!1), RNA(ds,deg!1)  @'mrna_slide_and_degratation_rate'
+
+'rna-degradation-sliding-left' RNA(ds!2,deg!1), RNADeg(binding!1), RNA(us!2, deg)-> RNA(ds!2,deg), RNADeg(binding!1), RNA(us!2, deg!1) @'mrna_deg_sliding_rate'
+
+
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/test.kappa
+##
+
+
+
+################################################################################
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa
+##
+
+
+## XXX Same as with irreducible_promoter, this does not appear
+## XXX to inherit sensibly from other templates, and the meaning
+## XXX of the sbol:model annotation is unclear
+
+
+#%agent: DNA(binding,us,ds,part~P1~P1tss)
+
+
+#%agent: RNA(ds,us,binding,deg,part~P1~P1tss)
+
+
+# RULE 1: RNAP binding to promoter region
+%var: 'P1-RNAP_binding_rate' 0.0001
+
+'P1-RNAP-to-promoter' DNA(binding, part~P1), RNAP(dna, rna) -> DNA(binding!1,part~P1), RNAP(dna!1,rna) @'P1-RNAP_binding_rate'
+
+
+
+#RULE 2: transcription initiation
+%var: 'P1-transcription_initiation_rate' 1
+
+'P1-transcription-initiation' DNA(binding!1,ds!2,part~P1), RNAP(dna!1,rna),DNA(us!2, binding, part~P1tss) -> DNA(binding,ds!2,part~P1), RNAP(dna!1,rna!3),DNA(us!2, binding!1, part~P1tss), RNA(binding, us, ds!3, part~P1tss)@'P1-transcription_initiation_rate'
+
+
+
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/test.kappa
+##
+
+
+
+################################################################################
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/cds.kappa
+##
+
+
+
+#RULE 9: Translation
+#Overrides the generic translaton sliding
+%var: 'C1-translation_sliding_rate' 1
+
+'C1-translation-elongation' RNA(binding!1, ds!2), Ribosome(rna!1, protein), RNA(binding,us!2, type~C1) -> RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~C1), P(binding!3, type~C1) @'C1-translation_sliding_rate'
+
+# RULE 11: Ribosome rna fell off
+# Override the translation termination with a higher rate
+# depending on the stop codon's availability
+## XXX Unclear what "override" means, this may be a brittle
+## XXX dependency on KaSim's behaviour
+%var: 'C1-ribosome_rna_fall_off_rate' 10
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa
+##
+
+
+
+#RULE 5: RNAP fall off from DNA
+%var: 'C1-rnap_dna_fall_off_rate' 0.00001
+## XXX Again, why obo:part of and not bqbiol:is
+'C1-transcription-termination' RNAP(dna!1), DNA(binding!1, part~C1) -> RNAP(dna), DNA(binding, part~C1)@'C1-rnap_dna_fall_off_rate'
+
+#RULE 6: RNAP fall off from RNA
+%var: 'C1-rnap_rna_fall_off_rate' 0.00001
+## XXX Again, why obo:part of and not bqbiol:is
+'C1-translation-termination' RNAP(rna!1), RNA(ds!1,part~C1) -> RNAP(rna), RNA(ds,part~C1)@'C1-rnap_rna_fall_off_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_chain.kappa
+##
+
+
+
+#RULE 10: Translation chain
+#Only if the component is placed after a CDS
+'C1-translation-chain' RNA(binding!1, ds!2), Ribosome(rna!1, protein!3), RNA (binding,us!2, part~C1), P(binding!3,ds) -> RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, part~C1), P(ds!4, binding), P(part~C1, us!4, binding!3) @'C1-translation_sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_termination.kappa
+##
+
+
+
+#RULE 11: Ribosome rna fell off
+%var: 'C1-ribosome_rna_fall_off_rate' 0.0001
+'C1-ribosome-rna-fall-off' Ribosome(rna!1), RNA (binding!1, part~C1) -> Ribosome(rna), RNA (binding, part~C1) @'C1-ribosome_rna_fall_off_rate'
+
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/transcription_elongation.kappa
+##
+
+
+
+#RULE 3: Transcription sliding
+#Except the first component in the design
+%var: 'C1-sliding_rate' 1
+
+'C1-transcription-elongation' DNA(binding,us!2,part~C1), RNAP(dna!1,rna!3),DNA(ds!2, binding!1), RNA(ds!3) -> DNA(binding!1,us!2,part~C1), RNAP(dna!1,rna!3),DNA(ds!2, binding), RNA(ds!4), RNA(binding, us!4, ds!3, part~C1)@'C1-sliding_rate'
+
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_chain.kappa
+##
+
+
+
+#RULE 10: Translation chain
+#Only if the component is placed after a CDS
+'IDENT-translation-chain' RNA(binding!1, ds!2), Ribosome(rna!1, protein!3), RNA (binding,us!2, part~IDENT), P(binding!3,ds) -> RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, part~IDENT), P(ds!4, binding), P(part~IDENT, us!4, binding!3) @'IDENT-translation_sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa
+##
+
+
+
+#RULE 5: RNAP fall off from DNA
+%var: 'IDENT-rnap_dna_fall_off_rate' 0.00001
+## XXX Again, why obo:part of and not bqbiol:is
+'IDENT-transcription-termination' RNAP(dna!1), DNA(binding!1, part~IDENT) -> RNAP(dna), DNA(binding, part~IDENT)@'IDENT-rnap_dna_fall_off_rate'
+
+#RULE 6: RNAP fall off from RNA
+%var: 'IDENT-rnap_rna_fall_off_rate' 0.00001
+## XXX Again, why obo:part of and not bqbiol:is
+'IDENT-translation-termination' RNAP(rna!1), RNA(ds!1,part~IDENT) -> RNAP(rna), RNA(ds,part~IDENT)@'IDENT-rnap_rna_fall_off_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/transcription_elongation.kappa
+##
+
+
+
+#RULE 3: Transcription sliding
+#Except the first component in the design
+%var: 'IDENT-sliding_rate' 1
+
+'IDENT-transcription-elongation' DNA(binding,us!2,part~IDENT), RNAP(dna!1,rna!3),DNA(ds!2, binding!1), RNA(ds!3) -> DNA(binding!1,us!2,part~IDENT), RNAP(dna!1,rna!3),DNA(ds!2, binding), RNA(ds!4), RNA(binding, us!4, ds!3, part~IDENT)@'IDENT-sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_termination.kappa
+##
+
+
+
+#RULE 11: Ribosome rna fell off
+%var: 'IDENT-ribosome_rna_fall_off_rate' 0.0001
+'IDENT-ribosome-rna-fall-off' Ribosome(rna!1), RNA (binding!1, part~IDENT) -> Ribosome(rna), RNA (binding, part~IDENT) @'IDENT-ribosome_rna_fall_off_rate'
+
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/test.kappa
+##
+
+
+
+################################################################################
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/terminator.kappa
+##
+
+
+
+#RULE 5: RNAP fall off from DNA
+#Higher fall off rate
+## XXX Unclear if this really has the effect of overriding the
+## XXX fall off rate and strongly depends on KaSim's implementation
+%var: 'T1-rnap_dna_fall_off_rate' 1
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/genericpart.kappa
+##
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_termination.kappa
+##
+
+
+
+#RULE 11: Ribosome rna fell off
+%var: 'T1-ribosome_rna_fall_off_rate' 0.0001
+'T1-ribosome-rna-fall-off' Ribosome(rna!1), RNA (binding!1, part~T1) -> Ribosome(rna), RNA (binding, part~T1) @'T1-ribosome_rna_fall_off_rate'
+
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_elongation.kappa
+##
+
+
+
+#RULE 8: Translation sliding
+%var: 'T1-translation_sliding_rate' 1
+'T1-translation-elongation' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, part~T1) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, part~T1) @'T1-translation_sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa
+##
+
+
+
+#RULE 5: RNAP fall off from DNA
+%var: 'T1-rnap_dna_fall_off_rate' 0.00001
+## XXX Again, why obo:part of and not bqbiol:is
+'T1-transcription-termination' RNAP(dna!1), DNA(binding!1, part~T1) -> RNAP(dna), DNA(binding, part~T1)@'T1-rnap_dna_fall_off_rate'
+
+#RULE 6: RNAP fall off from RNA
+%var: 'T1-rnap_rna_fall_off_rate' 0.00001
+## XXX Again, why obo:part of and not bqbiol:is
+'T1-translation-termination' RNAP(rna!1), RNA(ds!1,part~T1) -> RNAP(rna), RNA(ds,part~T1)@'T1-rnap_rna_fall_off_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_chain.kappa
+##
+
+
+
+#RULE 10: Translation chain
+#Only if the component is placed after a CDS
+'T1-translation-chain' RNA(binding!1, ds!2), Ribosome(rna!1, protein!3), RNA (binding,us!2, part~T1), P(binding!3,ds) -> RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, part~T1), P(ds!4, binding), P(part~T1, us!4, binding!3) @'T1-translation_sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/transcription_elongation.kappa
+##
+
+
+
+#RULE 3: Transcription sliding
+#Except the first component in the design
+%var: 'T1-sliding_rate' 1
+
+'T1-transcription-elongation' DNA(binding,us!2,part~T1), RNAP(dna!1,rna!3),DNA(ds!2, binding!1), RNA(ds!3) -> DNA(binding!1,us!2,part~T1), RNAP(dna!1,rna!3),DNA(ds!2, binding), RNA(ds!4), RNA(binding, us!4, ds!3, part~T1)@'T1-sliding_rate'
+
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_termination.kappa
+##
+
+
+
+#RULE 11: Ribosome rna fell off
+%var: 'IDENT-ribosome_rna_fall_off_rate' 0.0001
+'IDENT-ribosome-rna-fall-off' Ribosome(rna!1), RNA (binding!1, part~IDENT) -> Ribosome(rna), RNA (binding, part~IDENT) @'IDENT-ribosome_rna_fall_off_rate'
+
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_chain.kappa
+##
+
+
+
+#RULE 10: Translation chain
+#Only if the component is placed after a CDS
+'IDENT-translation-chain' RNA(binding!1, ds!2), Ribosome(rna!1, protein!3), RNA (binding,us!2, part~IDENT), P(binding!3,ds) -> RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, part~IDENT), P(ds!4, binding), P(part~IDENT, us!4, binding!3) @'IDENT-translation_sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/transcription_elongation.kappa
+##
+
+
+
+#RULE 3: Transcription sliding
+#Except the first component in the design
+%var: 'IDENT-sliding_rate' 1
+
+'IDENT-transcription-elongation' DNA(binding,us!2,part~IDENT), RNAP(dna!1,rna!3),DNA(ds!2, binding!1), RNA(ds!3) -> DNA(binding!1,us!2,part~IDENT), RNAP(dna!1,rna!3),DNA(ds!2, binding), RNA(ds!4), RNA(binding, us!4, ds!3, part~IDENT)@'IDENT-sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa
+##
+
+
+
+#RULE 5: RNAP fall off from DNA
+%var: 'IDENT-rnap_dna_fall_off_rate' 0.00001
+## XXX Again, why obo:part of and not bqbiol:is
+'IDENT-transcription-termination' RNAP(dna!1), DNA(binding!1, part~IDENT) -> RNAP(dna), DNA(binding, part~IDENT)@'IDENT-rnap_dna_fall_off_rate'
+
+#RULE 6: RNAP fall off from RNA
+%var: 'IDENT-rnap_rna_fall_off_rate' 0.00001
+## XXX Again, why obo:part of and not bqbiol:is
+'IDENT-translation-termination' RNAP(rna!1), RNA(ds!1,part~IDENT) -> RNAP(rna), RNA(ds,part~IDENT)@'IDENT-rnap_rna_fall_off_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/genericpart.kappa
+##
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_elongation.kappa
+##
+
+
+
+#RULE 8: Translation sliding
+%var: 'IDENT-translation_sliding_rate' 1
+'IDENT-translation-elongation' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, part~IDENT) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, part~IDENT) @'IDENT-translation_sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_chain.kappa
+##
+
+
+
+#RULE 10: Translation chain
+#Only if the component is placed after a CDS
+'IDENT-translation-chain' RNA(binding!1, ds!2), Ribosome(rna!1, protein!3), RNA (binding,us!2, part~IDENT), P(binding!3,ds) -> RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, part~IDENT), P(ds!4, binding), P(part~IDENT, us!4, binding!3) @'IDENT-translation_sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/transcription_elongation.kappa
+##
+
+
+
+#RULE 3: Transcription sliding
+#Except the first component in the design
+%var: 'IDENT-sliding_rate' 1
+
+'IDENT-transcription-elongation' DNA(binding,us!2,part~IDENT), RNAP(dna!1,rna!3),DNA(ds!2, binding!1), RNA(ds!3) -> DNA(binding!1,us!2,part~IDENT), RNAP(dna!1,rna!3),DNA(ds!2, binding), RNA(ds!4), RNA(binding, us!4, ds!3, part~IDENT)@'IDENT-sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa
+##
+
+
+
+#RULE 5: RNAP fall off from DNA
+%var: 'IDENT-rnap_dna_fall_off_rate' 0.00001
+## XXX Again, why obo:part of and not bqbiol:is
+'IDENT-transcription-termination' RNAP(dna!1), DNA(binding!1, part~IDENT) -> RNAP(dna), DNA(binding, part~IDENT)@'IDENT-rnap_dna_fall_off_rate'
+
+#RULE 6: RNAP fall off from RNA
+%var: 'IDENT-rnap_rna_fall_off_rate' 0.00001
+## XXX Again, why obo:part of and not bqbiol:is
+'IDENT-translation-termination' RNAP(rna!1), RNA(ds!1,part~IDENT) -> RNAP(rna), RNA(ds,part~IDENT)@'IDENT-rnap_rna_fall_off_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_termination.kappa
+##
+
+
+
+#RULE 11: Ribosome rna fell off
+%var: 'IDENT-ribosome_rna_fall_off_rate' 0.0001
+'IDENT-ribosome-rna-fall-off' Ribosome(rna!1), RNA (binding!1, part~IDENT) -> Ribosome(rna), RNA (binding, part~IDENT) @'IDENT-ribosome_rna_fall_off_rate'
+
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_elongation.kappa
+##
+
+
+
+#RULE 8: Translation sliding
+%var: 'IDENT-translation_sliding_rate' 1
+'IDENT-translation-elongation' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, part~IDENT) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, part~IDENT) @'IDENT-translation_sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/test.kappa
+##
+
+
+
+################################################################################
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/promoter.kappa
+##
+
+
+## XXX Same as with irreducible_promoter, this does not appear
+## XXX to inherit sensibly from other templates, and the meaning
+## XXX of the sbol:model annotation is unclear
+
+
+#%agent: DNA(binding,us,ds,part~P2~P2tss)
+
+
+#%agent: RNA(ds,us,binding,deg,part~P2~P2tss)
+
+
+# RULE 1: RNAP binding to promoter region
+%var: 'P2-RNAP_binding_rate' 0.0001
+
+'P2-RNAP-to-promoter' DNA(binding, part~P2), RNAP(dna, rna) -> DNA(binding!1,part~P2), RNAP(dna!1,rna) @'P2-RNAP_binding_rate'
+
+
+
+#RULE 2: transcription initiation
+%var: 'P2-transcription_initiation_rate' 1
+
+'P2-transcription-initiation' DNA(binding!1,ds!2,part~P2), RNAP(dna!1,rna),DNA(us!2, binding, part~P2tss) -> DNA(binding,ds!2,part~P2), RNAP(dna!1,rna!3),DNA(us!2, binding!1, part~P2tss), RNA(binding, us, ds!3, part~P2tss)@'P2-transcription_initiation_rate'
+
+
+
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/test.kappa
+##
+
+
+
+################################################################################
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/cds.kappa
+##
+
+
+
+#RULE 9: Translation
+#Overrides the generic translaton sliding
+%var: 'C2-translation_sliding_rate' 1
+
+'C2-translation-elongation' RNA(binding!1, ds!2), Ribosome(rna!1, protein), RNA(binding,us!2, type~C2) -> RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~C2), P(binding!3, type~C2) @'C2-translation_sliding_rate'
+
+# RULE 11: Ribosome rna fell off
+# Override the translation termination with a higher rate
+# depending on the stop codon's availability
+## XXX Unclear what "override" means, this may be a brittle
+## XXX dependency on KaSim's behaviour
+%var: 'C2-ribosome_rna_fall_off_rate' 10
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_chain.kappa
+##
+
+
+
+#RULE 10: Translation chain
+#Only if the component is placed after a CDS
+'C2-translation-chain' RNA(binding!1, ds!2), Ribosome(rna!1, protein!3), RNA (binding,us!2, part~C2), P(binding!3,ds) -> RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, part~C2), P(ds!4, binding), P(part~C2, us!4, binding!3) @'C2-translation_sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/transcription_elongation.kappa
+##
+
+
+
+#RULE 3: Transcription sliding
+#Except the first component in the design
+%var: 'C2-sliding_rate' 1
+
+'C2-transcription-elongation' DNA(binding,us!2,part~C2), RNAP(dna!1,rna!3),DNA(ds!2, binding!1), RNA(ds!3) -> DNA(binding!1,us!2,part~C2), RNAP(dna!1,rna!3),DNA(ds!2, binding), RNA(ds!4), RNA(binding, us!4, ds!3, part~C2)@'C2-sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa
+##
+
+
+
+#RULE 5: RNAP fall off from DNA
+%var: 'C2-rnap_dna_fall_off_rate' 0.00001
+## XXX Again, why obo:part of and not bqbiol:is
+'C2-transcription-termination' RNAP(dna!1), DNA(binding!1, part~C2) -> RNAP(dna), DNA(binding, part~C2)@'C2-rnap_dna_fall_off_rate'
+
+#RULE 6: RNAP fall off from RNA
+%var: 'C2-rnap_rna_fall_off_rate' 0.00001
+## XXX Again, why obo:part of and not bqbiol:is
+'C2-translation-termination' RNAP(rna!1), RNA(ds!1,part~C2) -> RNAP(rna), RNA(ds,part~C2)@'C2-rnap_rna_fall_off_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_termination.kappa
+##
+
+
+
+#RULE 11: Ribosome rna fell off
+%var: 'C2-ribosome_rna_fall_off_rate' 0.0001
+'C2-ribosome-rna-fall-off' Ribosome(rna!1), RNA (binding!1, part~C2) -> Ribosome(rna), RNA (binding, part~C2) @'C2-ribosome_rna_fall_off_rate'
+
+
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa
+##
+
+
+
+#RULE 5: RNAP fall off from DNA
+%var: 'IDENT-rnap_dna_fall_off_rate' 0.00001
+## XXX Again, why obo:part of and not bqbiol:is
+'IDENT-transcription-termination' RNAP(dna!1), DNA(binding!1, part~IDENT) -> RNAP(dna), DNA(binding, part~IDENT)@'IDENT-rnap_dna_fall_off_rate'
+
+#RULE 6: RNAP fall off from RNA
+%var: 'IDENT-rnap_rna_fall_off_rate' 0.00001
+## XXX Again, why obo:part of and not bqbiol:is
+'IDENT-translation-termination' RNAP(rna!1), RNA(ds!1,part~IDENT) -> RNAP(rna), RNA(ds,part~IDENT)@'IDENT-rnap_rna_fall_off_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_chain.kappa
+##
+
+
+
+#RULE 10: Translation chain
+#Only if the component is placed after a CDS
+'IDENT-translation-chain' RNA(binding!1, ds!2), Ribosome(rna!1, protein!3), RNA (binding,us!2, part~IDENT), P(binding!3,ds) -> RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, part~IDENT), P(ds!4, binding), P(part~IDENT, us!4, binding!3) @'IDENT-translation_sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/transcription_elongation.kappa
+##
+
+
+
+#RULE 3: Transcription sliding
+#Except the first component in the design
+%var: 'IDENT-sliding_rate' 1
+
+'IDENT-transcription-elongation' DNA(binding,us!2,part~IDENT), RNAP(dna!1,rna!3),DNA(ds!2, binding!1), RNA(ds!3) -> DNA(binding!1,us!2,part~IDENT), RNAP(dna!1,rna!3),DNA(ds!2, binding), RNA(ds!4), RNA(binding, us!4, ds!3, part~IDENT)@'IDENT-sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_termination.kappa
+##
+
+
+
+#RULE 11: Ribosome rna fell off
+%var: 'IDENT-ribosome_rna_fall_off_rate' 0.0001
+'IDENT-ribosome-rna-fall-off' Ribosome(rna!1), RNA (binding!1, part~IDENT) -> Ribosome(rna), RNA (binding, part~IDENT) @'IDENT-ribosome_rna_fall_off_rate'
+
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/test.kappa
+##
+
+
+
+################################################################################
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/terminator.kappa
+##
+
+
+
+#RULE 5: RNAP fall off from DNA
+#Higher fall off rate
+## XXX Unclear if this really has the effect of overriding the
+## XXX fall off rate and strongly depends on KaSim's implementation
+%var: 'T2-rnap_dna_fall_off_rate' 1
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/genericpart.kappa
+##
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa
+##
+
+
+
+#RULE 5: RNAP fall off from DNA
+%var: 'T2-rnap_dna_fall_off_rate' 0.00001
+## XXX Again, why obo:part of and not bqbiol:is
+'T2-transcription-termination' RNAP(dna!1), DNA(binding!1, part~T2) -> RNAP(dna), DNA(binding, part~T2)@'T2-rnap_dna_fall_off_rate'
+
+#RULE 6: RNAP fall off from RNA
+%var: 'T2-rnap_rna_fall_off_rate' 0.00001
+## XXX Again, why obo:part of and not bqbiol:is
+'T2-translation-termination' RNAP(rna!1), RNA(ds!1,part~T2) -> RNAP(rna), RNA(ds,part~T2)@'T2-rnap_rna_fall_off_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_termination.kappa
+##
+
+
+
+#RULE 11: Ribosome rna fell off
+%var: 'T2-ribosome_rna_fall_off_rate' 0.0001
+'T2-ribosome-rna-fall-off' Ribosome(rna!1), RNA (binding!1, part~T2) -> Ribosome(rna), RNA (binding, part~T2) @'T2-ribosome_rna_fall_off_rate'
+
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/transcription_elongation.kappa
+##
+
+
+
+#RULE 3: Transcription sliding
+#Except the first component in the design
+%var: 'T2-sliding_rate' 1
+
+'T2-transcription-elongation' DNA(binding,us!2,part~T2), RNAP(dna!1,rna!3),DNA(ds!2, binding!1), RNA(ds!3) -> DNA(binding!1,us!2,part~T2), RNAP(dna!1,rna!3),DNA(ds!2, binding), RNA(ds!4), RNA(binding, us!4, ds!3, part~T2)@'T2-sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_elongation.kappa
+##
+
+
+
+#RULE 8: Translation sliding
+%var: 'T2-translation_sliding_rate' 1
+'T2-translation-elongation' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, part~T2) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, part~T2) @'T2-translation_sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_chain.kappa
+##
+
+
+
+#RULE 10: Translation chain
+#Only if the component is placed after a CDS
+'T2-translation-chain' RNA(binding!1, ds!2), Ribosome(rna!1, protein!3), RNA (binding,us!2, part~T2), P(binding!3,ds) -> RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, part~T2), P(ds!4, binding), P(part~T2, us!4, binding!3) @'T2-translation_sliding_rate'
+
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_elongation.kappa
+##
+
+
+
+#RULE 8: Translation sliding
+%var: 'IDENT-translation_sliding_rate' 1
+'IDENT-translation-elongation' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, part~IDENT) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, part~IDENT) @'IDENT-translation_sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa
+##
+
+
+
+#RULE 5: RNAP fall off from DNA
+%var: 'IDENT-rnap_dna_fall_off_rate' 0.00001
+## XXX Again, why obo:part of and not bqbiol:is
+'IDENT-transcription-termination' RNAP(dna!1), DNA(binding!1, part~IDENT) -> RNAP(dna), DNA(binding, part~IDENT)@'IDENT-rnap_dna_fall_off_rate'
+
+#RULE 6: RNAP fall off from RNA
+%var: 'IDENT-rnap_rna_fall_off_rate' 0.00001
+## XXX Again, why obo:part of and not bqbiol:is
+'IDENT-translation-termination' RNAP(rna!1), RNA(ds!1,part~IDENT) -> RNAP(rna), RNA(ds,part~IDENT)@'IDENT-rnap_rna_fall_off_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/transcription_elongation.kappa
+##
+
+
+
+#RULE 3: Transcription sliding
+#Except the first component in the design
+%var: 'IDENT-sliding_rate' 1
+
+'IDENT-transcription-elongation' DNA(binding,us!2,part~IDENT), RNAP(dna!1,rna!3),DNA(ds!2, binding!1), RNA(ds!3) -> DNA(binding!1,us!2,part~IDENT), RNAP(dna!1,rna!3),DNA(ds!2, binding), RNA(ds!4), RNA(binding, us!4, ds!3, part~IDENT)@'IDENT-sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_chain.kappa
+##
+
+
+
+#RULE 10: Translation chain
+#Only if the component is placed after a CDS
+'IDENT-translation-chain' RNA(binding!1, ds!2), Ribosome(rna!1, protein!3), RNA (binding,us!2, part~IDENT), P(binding!3,ds) -> RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, part~IDENT), P(ds!4, binding), P(part~IDENT, us!4, binding!3) @'IDENT-translation_sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/genericpart.kappa
+##
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_elongation.kappa
+##
+
+
+
+#RULE 8: Translation sliding
+%var: 'IDENT-translation_sliding_rate' 1
+'IDENT-translation-elongation' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, part~IDENT) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, part~IDENT) @'IDENT-translation_sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/transcription_elongation.kappa
+##
+
+
+
+#RULE 3: Transcription sliding
+#Except the first component in the design
+%var: 'IDENT-sliding_rate' 1
+
+'IDENT-transcription-elongation' DNA(binding,us!2,part~IDENT), RNAP(dna!1,rna!3),DNA(ds!2, binding!1), RNA(ds!3) -> DNA(binding!1,us!2,part~IDENT), RNAP(dna!1,rna!3),DNA(ds!2, binding), RNA(ds!4), RNA(binding, us!4, ds!3, part~IDENT)@'IDENT-sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_termination.kappa
+##
+
+
+
+#RULE 11: Ribosome rna fell off
+%var: 'IDENT-ribosome_rna_fall_off_rate' 0.0001
+'IDENT-ribosome-rna-fall-off' Ribosome(rna!1), RNA (binding!1, part~IDENT) -> Ribosome(rna), RNA (binding, part~IDENT) @'IDENT-ribosome_rna_fall_off_rate'
+
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/transcription_termination.kappa
+##
+
+
+
+#RULE 5: RNAP fall off from DNA
+%var: 'IDENT-rnap_dna_fall_off_rate' 0.00001
+## XXX Again, why obo:part of and not bqbiol:is
+'IDENT-transcription-termination' RNAP(dna!1), DNA(binding!1, part~IDENT) -> RNAP(dna), DNA(binding, part~IDENT)@'IDENT-rnap_dna_fall_off_rate'
+
+#RULE 6: RNAP fall off from RNA
+%var: 'IDENT-rnap_rna_fall_off_rate' 0.00001
+## XXX Again, why obo:part of and not bqbiol:is
+'IDENT-translation-termination' RNAP(rna!1), RNA(ds!1,part~IDENT) -> RNAP(rna), RNA(ds,part~IDENT)@'IDENT-rnap_rna_fall_off_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_chain.kappa
+##
+
+
+
+#RULE 10: Translation chain
+#Only if the component is placed after a CDS
+'IDENT-translation-chain' RNA(binding!1, ds!2), Ribosome(rna!1, protein!3), RNA (binding,us!2, part~IDENT), P(binding!3,ds) -> RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, part~IDENT), P(ds!4, binding), P(part~IDENT, us!4, binding!3) @'IDENT-translation_sliding_rate'
+
+
+
+
+##
+## file:///home/ww/Projects/Composition/composition/modular/templates/translation_termination.kappa
+##
+
+
+
+#RULE 11: Ribosome rna fell off
+%var: 'IDENT-ribosome_rna_fall_off_rate' 0.0001
+'IDENT-ribosome-rna-fall-off' Ribosome(rna!1), RNA (binding!1, part~IDENT) -> Ribosome(rna), RNA (binding, part~IDENT) @'IDENT-ribosome_rna_fall_off_rate'
+
+
+
+
+
