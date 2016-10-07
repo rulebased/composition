@@ -1,4 +1,3 @@
-from functools import total_ordering
 from abc import ABCMeta
 
 
@@ -20,11 +19,7 @@ class ASTBase(object):
         return not self.__eq__(other)
 
     def __hash__(self):
-        return hash(self.__dict__.items())
-
-    def __lt__(self, other):
-        assert type(self) == type(other)  # generally we don't want allow cross-classes comparisons
-        return self.__dict__.items() < other.__dict__.items()
+        return hash(tuple(self.__dict__.items()))
 
     def __str__(self):
         items = self.__dict__.items()
@@ -36,9 +31,7 @@ class ASTBase(object):
         return str(self)
 
 
-# data LinkP   = Bound | Unbound | MaybeBound | Link Text deriving (Eq, Ord)
 class LinkP(ASTBase):
-    # TODO: implement proper ordering
     pass
 
 
@@ -90,7 +83,6 @@ UndefinedState = UndefinedState()
 
 
 # type SiteP   = (LinkP, StateP)
-@total_ordering
 class SiteP(ASTBase):
     def __init__(self, link, state):
         """
@@ -107,7 +99,6 @@ class SiteP(ASTBase):
 
 
 # data AgentP  = AgentP Text (HashMap Text SiteP) deriving(Eq)
-@total_ordering
 class AgentP(ASTBase):
     def __init__(self, name, sites):
         """
@@ -122,18 +113,13 @@ class AgentP(ASTBase):
         _assert_all_is_instance(sites.keys(), str)
         _assert_all_is_instance(sites.values(), SiteP)
         self.name = name
+        #: :type: dict[str, SiteP]
         self.sites = sites
 
-    def __lt__(self, other):
-        """
-        :type other: AgentP
-        :rtype: bool
-        """
-        return (self.name, self.sites.items()) < (other.name, other.sites.items())
+    def __hash__(self):
+        return hash((self.name, tuple(self.sites.items())))
 
 
-# data AgentD = AgentD Text (HashMap Text [Text]) deriving(Eq)
-@total_ordering
 class AgentD(ASTBase):
     """
     Agent definition
@@ -142,23 +128,20 @@ class AgentD(ASTBase):
         """
         :param name: human-readable name of an agent
         :type name: str
+
         :param sites: mapping between site names of an agent and their possible values
-        :type sites: dict[str, tuple[str]]
+        :type sites: dict[str, frozenset[str]]
         """
         assert isinstance(name, str), name
         _assert_all_is_instance(sites.keys(), str)
         for site in sites.values():
-            assert isinstance(site, tuple), tuple
+            assert isinstance(site, frozenset), site
             _assert_all_is_instance(site, str)
         self.name = name
         self.sites = sites
 
-    def __lt__(self, other):
-        """
-        :type other: AgentD
-        :rtype: bool
-        """
-        return (self.name, sorted(self.sites.items())) < (other.name, sorted(other.sites.items()))
+    def __hash__(self):
+        return hash((self.name, tuple(self.sites.items())))
 
 
 class Expr(ASTBase):
@@ -301,10 +284,10 @@ class Rule(ASTBase):
     def __init__(self, lhs, rhs, rate, rate_c=Lit(0.0), desc=""):
         """
         :param lhs: origin part of a rule
-        :type lhs: tuple[tuple[AgentP], tuple[TokE]] | None
+        :type lhs: tuple[tuple[AgentP], tuple[TokE]]
 
         :param rhs: result part of a rule
-        :type rhs: tuple[tuple[AgentP], tuple[TokE]] | None
+        :type rhs: tuple[tuple[AgentP], tuple[TokE]]
 
         :param rate: rate of a rule
         :type rate: Expr
@@ -365,6 +348,7 @@ class Obs(ASTBase):
         """
         assert isinstance(name, str), name
         assert isinstance(pattern, AgentP), pattern
+        self.name = name
         self.pattern = pattern
 
 

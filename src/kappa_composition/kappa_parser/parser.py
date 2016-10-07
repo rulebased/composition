@@ -31,10 +31,10 @@ comment = Suppress("#") + (lineEnd ^ (CharsNotIn("^\r\n", exact=1) + SkipTo(line
 # Utility parser -- eat up until end of line
 eol = (many_space + comment) ^ lineEnd.suppress()
 
-bare_site_sig = tok.copy().setParseAction(lambda toks: (toks[0], ()))
+bare_site_sig = tok.copy().setParseAction(lambda toks: (toks[0], frozenset()))
 
 ils_site_sig = And([tok, Suppress("~"), delimitedList(stok, delim="~", combine=True)])\
-    .setParseAction(lambda toks: (toks[0], tuple(toks[1].split("~"))))
+    .setParseAction(lambda toks: (toks[0], frozenset(toks[1].split("~"))))
 
 site_sig = bare_site_sig ^ ils_site_sig
 
@@ -70,7 +70,7 @@ def e_op(op, op_token):
     :type op: type
 
     :param op_token: text representation of this operand
-    :type op_token: unicode
+    :type op_token: str
 
     :return: parser for this operator
     :rtype: ParserElement
@@ -85,7 +85,7 @@ def e_binop(op, op_token):
     :type op: type
 
     :param op_token: text representation of this operand
-    :type op_token: unicode
+    :type op_token: str
 
     :return: parser for this operator
     :rtype: ParserElement
@@ -179,8 +179,8 @@ pure_rule = And([
     Optional(tok_expr)("rhs_tokens"),
     many_space, Suppress("@"), many_space,
     expr("rate")
-]).setParseAction(lambda ts: [ast.Rule(lhs=(ts.lhs_agents, ts.lhs_tokens),
-                                       rhs=(ts.rhs_agents, ts.rhs_tokens),
+]).setParseAction(lambda ts: [ast.Rule(lhs=(tuple(ts.lhs_agents), tuple(ts.lhs_tokens)),
+                                       rhs=(tuple(ts.rhs_agents), tuple(ts.rhs_tokens)),
                                        rate=ts.rate, desc=ts.desc[0])])
 
 bi_rule = And([
@@ -195,11 +195,11 @@ bi_rule = And([
     expr("rate_forward"),
     many_space, Suppress(","), many_space,
     expr("rate_backward"),
-]).setParseAction(lambda ts: [ast.Rule(lhs=(ts.lhs_agents, ts.lhs_tokens),
-                                       rhs=(ts.rhs_agents, ts.rhs_tokens),
+]).setParseAction(lambda ts: [ast.Rule(lhs=(tuple(ts.lhs_agents), tuple(ts.lhs_tokens)),
+                                       rhs=(tuple(ts.rhs_agents), tuple(ts.rhs_tokens)),
                                        rate=ts.rate_forward, desc=ts.desc),
-                              ast.Rule(lhs=(ts.rhs_agents, ts.rhs_tokens),
-                                       rhs=(ts.lhs_agents, ts.lhs_tokens),
+                              ast.Rule(lhs=(tuple(ts.rhs_agents), tuple(ts.rhs_tokens)),
+                                       rhs=(tuple(ts.lhs_agents), tuple(ts.lhs_tokens)),
                                        rate=ts.rate_backward, desc=ts.desc[0])])
 
 circ_rule = And([
@@ -215,8 +215,8 @@ circ_rule = And([
     many_space, Suppress("("), many_space,
     expr("rate_c"),
     many_space, Suppress(")")
-]).setParseAction(lambda ts: [ast.Rule(lhs=(ts.lhs_agents, ts.lhs_tokens),
-                                       rhs=(ts.rhs_agents, ts.rhs_tokens),
+]).setParseAction(lambda ts: [ast.Rule(lhs=(tuple(ts.lhs_agents), tuple(ts.lhs_tokens)),
+                                       rhs=(tuple(ts.rhs_agents), tuple(ts.rhs_tokens)),
                                        rate=ts.rate, rate_c=ts.rate_c, desc=ts.desc[0])])
 
 rule_pat = pure_rule ^ bi_rule ^ circ_rule
