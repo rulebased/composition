@@ -1,0 +1,48 @@
+#RULE 3: Transcription sliding
+%var: 'sliding_rate_spak' 1
+'transcript_sliding_part1' DNA(binding,us!2,type~spaK), RNAP(dna!1,rna!3),DNA(ds!2, binding!1, type~RBS1), RNA(ds!3, type~RBS1) -> DNA(binding!1,us!2,type~spaK), RNAP(dna!1,rna!3),DNA(ds!2, binding, type~RBS1), RNA(ds!4, type~RBS1), RNA(binding, us!4, ds!3, type~spaK)@'sliding_rate_spak'
+
+#RULE 5: RNAP fell off from DNA
+%var: 'rnap_dna_felloff_rate_spak' 0.00001
+'rnap_dna_felloff-part4' RNAP(dna!1), DNA(binding!1, type~spaK) -> RNAP(dna), DNA(binding, type~spaK)@'rnap_dna_felloff_rate_spak'
+
+#RULE 6: RNAP fell off from RNA
+%var: 'rnap_rna_felloff_rate_spak' 0.00001
+'rnap_rna_felloff-part3' RNAP(rna!1), RNA(ds!1,type~spaK) -> RNAP(rna), RNA(ds,type~spaK)@'rnap_rna_felloff_rate_spak'
+
+#RULE 9: Translation
+'translation_part1' RNA(binding!1, ds!2), Ribosome(rna!1, protein), RNA (binding,us!2, type~spaK) ->RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~spaK), P(binding!3, type~spaK) @'translation_sliding_rate'
+
+#RULE 11: Ribosome rna fell off
+
+%var: 'ribosome_rna_fell_off_low_rate_spak' 0.0001
+'ribosome_felloff_10'  Ribosome(rna!1), RNA (binding!1, type~spaK) -> Ribosome(rna), RNA (binding, type~spaK) @'ribosome_rna_fell_off_low_rate_spak'
+
+#TWO COMPONENT SYSTEM PHOSPHORYLATION
+%var: 'kdp' 0.001
+%var: 'kk_p' 0.000001
+
+'authop_2' P(protein, dna, type~spaKP) -> P(protein, dna, type~spaK) @'kdp'
+
+#K phosphorylation
+'KP'            P(type~spaK) -> P(type~spaKP) @ 'kk_p' 
+
+#Unbinding of RR~P from K
+'RR_P_unb' P(protein!1, dna, type~spaRP), P(protein!1, type~spaK) ->  P(protein, dna, type~spaRP), P(protein, type~spaK) @'ku_rrp_k'
+
+#INTERACTIONS ITH OTHER PARTS-------------
+#TWO COMPONENT SYSTEM PHOSPHORYLATION
+%var: 'ku_rrp_k' 0.1 
+%var: 'kb_rr_kp' 0.05 
+%var: 'kb_rr_kp_sc' 0.1
+%var: 'ku_rr_kp'  2 
+%var: 'kp_kp_rr' 0.1
+
+#RR binds to K~P
+'RR-KP'	  P(protein, dna, type~spaR), P(protein, type~spaKP) ->   P(protein!1, dna, type~spaR), P(protein!1, type~spaKP) @ 'kb_rr_kp' ('kb_rr_kp_sc') 
+
+#RR unbinds from KK~P
+'RRunbKP'    P(protein!1, dna, type~spaR), P(protein!1, type~spaKP) -> P(protein, dna, type~spaR), P(protein, type~spaKP) @ 'ku_rr_kp'
+
+#K phosphrylates RR
+'KphosRR' P(protein!1, dna, type~spaR), P(protein!1, type~spaKP) -> P(protein!1, dna, type~spaRP), P(protein!1, type~spaK) @ 'kp_kp_rr'

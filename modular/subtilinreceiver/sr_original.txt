@@ -1,0 +1,306 @@
+%agent: DNA(binding,us,ds,type~pSpaRK~pSpaRKtss~RBS1~spaK~RBS2~spaR~Ter1~SpaRBS~pSpaS~pSpaStss~RBS3~gfp~Ter2)
+%agent: RNA(ds,us,binding,deg,type~pSpaRKtss~RBS1~spaK~RBS2~spaR~Ter1~SpaRBS~pSpaS~pSpaStss~RBS3~gfp~Ter2)
+%agent: P(ds,us, binding, deg, dna, protein,type~pSpaRKtss~RBS1~spaK~RBS2~spaR~Ter1~SpaRBS~pSpaS~pSpaStss~RBS3~gfp~Ter2~spaKP~spaRP)
+%agent: SlideDegRule()
+%agent: RNADegRule()
+
+%agent: RNAP(rna,dna)
+%agent: Ribosome(rna, protein)
+%agent: Protease(binding)
+%agent: RNADeg(binding)
+
+%init: 1000 RNAP(dna,rna)
+%init: 10000 Ribosome(rna)
+%init: 1000 Protease(binding)
+%init: 100 RNADeg(binding)
+
+# list of obserables
+
+%obs:'GFP' P(type~gfp)
+
+
+#circuit
+
+%init: 1 DNA(binding,us,ds!1, type~pSpaRK), DNA(binding,us!1,ds!100, type~pSpaRKtss), DNA(binding, us!100, ds!2, type~RBS1), DNA(binding, us!2, ds!3, type~spaK), DNA(binding, us!3, ds!4, type~RBS2), DNA(binding, us!4, ds!5, type~spaR), DNA(binding, us!5, ds!6, type~Ter1), DNA(binding, us!6, ds!61, type~SpaRBS), DNA(binding, us!61, ds!7, type~pSpaS), DNA(binding, us!7, ds!99, type~pSpaStss), DNA(binding, us!99, ds!8, type~RBS3), DNA(binding, us!8, ds!9, type~gfp), DNA(binding, us!9, ds, type~Ter2)
+
+# RULE 1: RNAP binding to promoter region
+%var: 'RNAP_binding_rate' 0.0001
+%var: 'RNAP_basal_binding_rate' 0.00000001
+%var: 'RNAP_binding_rate_pspas' 0.1
+
+'RNAp_bind_promot' DNA(binding, type~pSpaRK), RNAP(dna, rna) -> DNA(binding!1,type~pSpaRK), RNAP(dna!1,rna)@'RNAP_binding_rate'
+
+'RNAp_bind_promot_basal' DNA(binding, ds!2,type~SpaRBS), DNA(binding,us!2,type~pSpaS), RNAP(dna, rna) -> DNA(binding, ds!2,type~SpaRBS), DNA(binding!1,us!2,type~pSpaS), RNAP(dna!1,rna) @'RNAP_basal_binding_rate'
+
+'RNAp_bind_promot_pspas' P(dna!3, type~spaRP), DNA(binding!3, ds!2,type~SpaRBS), DNA(binding,us!2,type~pSpaS), RNAP(dna, rna) -> P(dna!3, type~spaRP), DNA(binding!3, ds!2,type~SpaRBS), DNA(binding!1,us!2,type~pSpaS), RNAP(dna!1,rna) @'RNAP_binding_rate_pspas'
+
+#RULE 2: transcription initiation - corresponds to transcription of the DNA sequence of 5'-UTR and the formation of first RNA block
+
+%var: 'transcription_initiation_rate' 1
+
+'transcription initiation' DNA(binding!1,ds!2,type~pSpaRK), RNAP(dna!1,rna),DNA(us!2, binding, type~pSpaRKtss) -> DNA(binding,ds!2,type~pSpaRK), RNAP(dna!1,rna!3),DNA(us!2, binding!1, type~pSpaRKtss), RNA(binding, us, ds!3, type~pSpaRKtss)@'transcription_initiation_rate'
+
+'transcription initiation pspaS' DNA(binding!1,ds!2,type~pSpaS), RNAP(dna!1,rna),DNA(us!2, binding, type~pSpaStss) -> DNA(binding,ds!2,type~pSpaS), RNAP(dna!1,rna!3),DNA(us!2, binding!1, type~pSpaStss), RNA(binding, us, ds!3, type~pSpaStss)@'transcription_initiation_rate'
+
+
+#RULE 3: Transcription sliding
+
+%var: 'sliding_rate' 1
+
+'transcript_sliding' DNA(binding,us!2,type~RBS1), RNAP(dna!1,rna!3),DNA(ds!2, binding!1, type~pSpaRKtss), RNA(ds!3, type~pSpaRKtss) -> DNA(binding!1,us!2,type~RBS1), RNAP(dna!1,rna!3),DNA(ds!2, binding, type~pSpaRKtss), RNA(ds!4, type~pSpaRKtss), RNA(binding, us!4, ds!3, type~RBS1)@'sliding_rate'
+
+'transcript_sliding_part1' DNA(binding,us!2,type~spaK), RNAP(dna!1,rna!3),DNA(ds!2, binding!1, type~RBS1), RNA(ds!3, type~RBS1) -> DNA(binding!1,us!2,type~spaK), RNAP(dna!1,rna!3),DNA(ds!2, binding, type~RBS1), RNA(ds!4, type~RBS1), RNA(binding, us!4, ds!3, type~spaK)@'sliding_rate'
+
+'transcript_sliding_part2' DNA(binding,us!2,type~RBS2), RNAP(dna!1,rna!3),DNA(ds!2, binding!1, type~spaK), RNA(ds!3, type~spaK) -> DNA(binding!1,us!2,type~RBS2), RNAP(dna!1,rna!3),DNA(ds!2, binding, type~spaK), RNA(ds!4, type~spaK), RNA(binding, us!4, ds!3, type~RBS2)@'sliding_rate'
+
+'transcript_sliding_part3' DNA(binding,us!2,type~spaR), RNAP(dna!1,rna!3),DNA(ds!2, binding!1, type~RBS2), RNA(ds!3, type~RBS2) -> DNA(binding!1,us!2,type~spaR), RNAP(dna!1,rna!3),DNA(ds!2, binding, type~RBS2), RNA(ds!4, type~RBS2), RNA(binding, us!4, ds!3, type~spaR)@'sliding_rate'
+
+'transcript_sliding_part4' DNA(binding,us!2,type~Ter1), RNAP(dna!1,rna!3),DNA(ds!2, binding!1, type~spaR), RNA(ds!3, type~spaR) -> DNA(binding!1,us!2,type~Ter1), RNAP(dna!1,rna!3),DNA(ds!2, binding, type~spaR), RNA(ds!4, type~spaR), RNA(binding, us!4, ds!3, type~Ter1)@'sliding_rate'
+
+'transcript_sliding_part5' DNA(binding,us!2,type~SpaRBS), RNAP(dna!1,rna!3),DNA(ds!2, binding!1, type~Ter1), RNA(ds!3, type~Ter1) -> DNA(binding!1,us!2,type~SpaRBS), RNAP(dna!1,rna!3),DNA(ds!2, binding, type~Ter1), RNA(ds!4, type~Ter1), RNA(binding, us!4, ds!3, type~SpaRBS)@'sliding_rate'
+
+'transcript_sliding_part6' DNA(binding,us!2,type~pSpaS), RNAP(dna!1,rna!3),DNA(ds!2, binding!1, type~SpaRBS), RNA(ds!3, type~SpaRBS) -> DNA(binding!1,us!2,type~pSpaS), RNAP(dna!1,rna!3),DNA(ds!2, binding, type~SpaRBS), RNA(ds!4, type~SpaRBS), RNA(binding, us!4, ds!3, type~pSpaS)@'sliding_rate'
+
+'transcript_sliding_part7' DNA(binding,us!2,type~pSpaStss), RNAP(dna!1,rna!3),DNA(ds!2, binding!1, type~pSpaS), RNA(ds!3, type~pSpaS) -> DNA(binding!1,us!2,type~pSpaStss), RNAP(dna!1,rna!3),DNA(ds!2, binding, type~pSpaS), RNA(ds!4, type~pSpaS), RNA(binding, us!4, ds!3, type~pSpaStss)@'sliding_rate'
+
+'transcript_sliding_part8' DNA(binding,us!2,type~RBS3), RNAP(dna!1,rna!3),DNA(ds!2, binding!1, type~pSpaStss), RNA(ds!3, type~pSpaStss) -> DNA(binding!1,us!2,type~RBS3), RNAP(dna!1,rna!3),DNA(ds!2, binding, type~pSpaStss), RNA(ds!4, type~pSpaStss), RNA(binding, us!4, ds!3, type~RBS3)@'sliding_rate'
+
+'transcript_sliding_part9' DNA(binding,us!2,type~gfp), RNAP(dna!1,rna!3),DNA(ds!2, binding!1, type~RBS3), RNA(ds!3, type~RBS3) -> DNA(binding!1,us!2,type~gfp), RNAP(dna!1,rna!3),DNA(ds!2, binding, type~RBS3), RNA(ds!4, type~RBS3), RNA(binding, us!4, ds!3, type~gfp)@'sliding_rate'
+
+'transcript_sliding_part10' DNA(binding,us!2,type~Ter2), RNAP(dna!1,rna!3),DNA(ds!2, binding!1, type~gfp), RNA(ds!3, type~gfp) -> DNA(binding!1,us!2,type~Ter2), RNAP(dna!1,rna!3),DNA(ds!2, binding, type~gfp), RNA(ds!4, type~gfp), RNA(binding, us!4, ds!3, type~Ter2)@'sliding_rate'
+
+
+
+#RULE 5: RNAP fell off from DNA
+
+%var: 'rnap_dna_felloff_rate' 0.00001
+%var: 'rnap_dna_high_felloff_rate' 10
+
+'rnap_dna_felloff-part1' RNAP(dna!1), DNA(binding!1, type~pSpaRK) -> RNAP(dna), DNA(binding, type~pSpaRK)@'rnap_dna_felloff_rate'
+
+'rnap_dna_felloff-part2' RNAP(dna!1), DNA(binding!1, type~pSpaRKtss) -> RNAP(dna), DNA(binding, type~pSpaRKtss)@'rnap_dna_felloff_rate'
+
+'rnap_dna_felloff-part3' RNAP(dna!1), DNA(binding!1, type~RBS1) -> RNAP(dna), DNA(binding, type~RBS1)@'rnap_dna_felloff_rate'
+
+'rnap_dna_felloff-part4' RNAP(dna!1), DNA(binding!1, type~spaK) -> RNAP(dna), DNA(binding, type~spaK)@'rnap_dna_felloff_rate'
+
+'rnap_dna_felloff-part5' RNAP(dna!1), DNA(binding!1, type~RBS2) -> RNAP(dna), DNA(binding, type~RBS2)@'rnap_dna_felloff_rate'
+
+'rnap_dna_felloff-part6' RNAP(dna!1), DNA(binding!1, type~spaR) -> RNAP(dna), DNA(binding, type~spaR)@'rnap_dna_felloff_rate'
+
+'rnap_dna_felloff-part7' RNAP(dna!1), DNA(binding!1, type~SpaRBS) -> RNAP(dna), DNA(binding, type~SpaRBS)@'rnap_dna_felloff_rate'
+
+'rnap_dna_felloff-part8' RNAP(dna!1), DNA(binding!1, type~pSpaS) -> RNAP(dna), DNA(binding, type~pSpaS)@'rnap_dna_felloff_rate'
+
+'rnap_dna_felloff-part9' RNAP(dna!1), DNA(binding!1, type~pSpaStss) -> RNAP(dna), DNA(binding, type~pSpaStss)@'rnap_dna_felloff_rate'
+
+'rnap_dna_felloff-part10' RNAP(dna!1), DNA(binding!1, type~RBS3) -> RNAP(dna), DNA(binding, type~RBS3)@'rnap_dna_felloff_rate'
+
+'rnap_dna_felloff-part11' RNAP(dna!1), DNA(binding!1, type~gfp) -> RNAP(dna), DNA(binding, type~gfp)@'rnap_dna_felloff_rate'
+
+'rnap_dna_felloff-part12' RNAP(dna!1), DNA(binding!1, type~Ter1) -> RNAP(dna), DNA(binding, type~Ter1)@'rnap_dna_felloff_rate'
+
+'rnap_dna_felloff-part13' RNAP(dna!1), DNA(binding!1, type~Ter2) -> RNAP(dna), DNA(binding, type~Ter2)@'rnap_dna_high_felloff_rate'
+
+
+#RULE 6: RNAP fell off from RNA
+
+%var: 'rnap_rna_felloff_rate' 0.00001
+%var: 'rnap_rna_high_felloff_rate' 10
+
+'rnap_rna_felloff-part1' RNAP(rna!1), RNA(ds!1,type~pSpaRKtss) -> RNAP(rna), RNA(ds,type~pSpaRKtss)@'rnap_rna_felloff_rate'
+
+'rnap_rna_felloff-part2' RNAP(rna!1), RNA(ds!1,type~RBS1) -> RNAP(rna), RNA(ds,type~RBS1)@'rnap_rna_felloff_rate'
+
+'rnap_rna_felloff-part3' RNAP(rna!1), RNA(ds!1,type~spaK) -> RNAP(rna), RNA(ds,type~spaK)@'rnap_rna_felloff_rate'
+
+'rnap_rna_felloff-part4' RNAP(rna!1), RNA(ds!1,type~RBS2) -> RNAP(rna), RNA(ds,type~RBS2)@'rnap_rna_felloff_rate'
+
+'rnap_rna_felloff-part5' RNAP(rna!1), RNA(ds!1,type~spaR) -> RNAP(rna), RNA(ds,type~spaR)@'rnap_rna_felloff_rate'
+
+'rnap_rna_felloff-part6' RNAP(rna!1), RNA(ds!1,type~SpaRBS) -> RNAP(rna), RNA(ds,type~SpaRBS)@'rnap_rna_felloff_rate'
+
+'rnap_rna_felloff-part7' RNAP(rna!1), RNA(ds!1,type~pSpaS) -> RNAP(rna), RNA(ds,type~pSpaS)@'rnap_rna_felloff_rate'
+
+'rnap_rna_felloff-part8' RNAP(rna!1), RNA(ds!1,type~pSpaStss) -> RNAP(rna), RNA(ds,type~pSpaStss)@'rnap_rna_felloff_rate'
+
+'rnap_rna_felloff-part9' RNAP(rna!1), RNA(ds!1,type~RBS3) -> RNAP(rna), RNA(ds,type~RBS3)@'rnap_rna_felloff_rate'
+
+'rnap_rna_felloff-part10' RNAP(rna!1), RNA(ds!1,type~gfp) -> RNAP(rna), RNA(ds,type~gfp)@'rnap_rna_felloff_rate'
+
+'rnap_rna_felloff-part11' RNAP(rna!1), RNA(ds!1,type~Ter1) -> RNAP(rna), RNA(ds,type~Ter1)@'rnap_rna_felloff_rate'
+
+'rnap_rna_felloff-part12' RNAP(rna!1), RNA(ds!1,type~Ter2) -> RNAP(rna), RNA(ds,type~Ter2)@'rnap_rna_high_felloff_rate'
+
+
+
+#RULE 7: Translation initiation
+
+%var: 'ribosome_binding_rate' 0.00001
+
+'RBS1_Ribosome binding' RNA(binding,type~RBS1), Ribosome(rna) -> RNA(binding!1, type~RBS1), Ribosome(rna!1) @ 'ribosome_binding_rate'
+
+'RBS2_Ribosome binding' RNA(binding,type~RBS2), Ribosome(rna) -> RNA(binding!1, type~RBS2), Ribosome(rna!1) @ 'ribosome_binding_rate'
+
+'RBS3_Ribosome binding' RNA(binding,type~RBS3), Ribosome(rna) -> RNA(binding!1, type~RBS3), Ribosome(rna!1) @ 'ribosome_binding_rate'
+
+#RULE 8: Translation sliding
+
+%var: 'translation_sliding_rate' 1
+
+'translation_sliding_part1' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, type~RBS1) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, type~RBS1) @'translation_sliding_rate'
+
+'translation_sliding_part2' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, type~RBS2) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, type~RBS2) @'translation_sliding_rate'
+
+'translation_sliding_part3'RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, type~RBS3) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, type~RBS3) @'translation_sliding_rate'
+
+'translation_sliding_part4' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, type~Ter1) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, type~Ter1) @'translation_sliding_rate'
+
+'translation_sliding_part5' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, type~Ter2) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, type~Ter2) @'translation_sliding_rate'
+
+'translation_sliding_part6' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, type~SpaRBS) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, type~SpaRBS) @'translation_sliding_rate'
+
+'translation_sliding_part7' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, type~pSpaS) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, type~pSpaS) @'translation_sliding_rate'
+
+'translation_sliding_part8' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, type~pSpaStss) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, type~pSpaStss) @'translation_sliding_rate'
+
+
+#RULE 9: Translation
+
+'translation_part1' RNA(binding!1, ds!2), Ribosome(rna!1, protein), RNA (binding,us!2, type~spaK) ->RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~spaK), P(binding!3, type~spaK) @'translation_sliding_rate'
+
+'translation_part2' RNA(binding!1, ds!2), Ribosome(rna!1, protein), RNA (binding,us!2, type~spaR) ->RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~spaR), P(binding!3, type~spaR) @'translation_sliding_rate'
+
+'translation_part3' RNA(binding!1, ds!2), Ribosome(rna!1, protein), RNA (binding,us!2, type~gfp) ->RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~gfp), P(binding!3, type~gfp) @'translation_sliding_rate'
+
+#RULE 10: Translation chain
+
+'translation_chain_part1'RNA(binding!1, ds!2, type~spaK), Ribosome(rna!1, protein!3), RNA (binding,us!2, type~RBS2), P(binding!3,ds,type~spaK) -> RNA(binding, ds!2, type~spaK), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~RBS2), P(ds!4, binding, type~spaK), P(type~RBS2, us!4, binding!3) @'translation_sliding_rate'
+
+'translation_chain_part2' RNA(binding!1, ds!2, type~RBS2), Ribosome(rna!1, protein!3), RNA (binding,us!2, type~spaR), P(binding!3,ds,type~RBS2) -> RNA(binding, ds!2, type~RBS2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~spaR), P(ds!4, binding, type~RBS2), P(type~spaR, us!4, binding!3) @'translation_sliding_rate'
+
+'translation_chain_part3' RNA(binding!1, ds!2, type~spaR), Ribosome(rna!1, protein!3), RNA (binding,us!2, type~Ter1), P(binding!3,ds,type~spaR) -> RNA(binding, ds!2, type~spaR), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~Ter1), P(ds!4, binding, type~spaR), P(type~Ter1, us!4, binding!3) @'translation_sliding_rate'
+
+'translation_chain_part4' RNA(binding!1, ds!2, type~Ter1), Ribosome(rna!1, protein!3), RNA (binding,us!2, type~SpaRBS), P(binding!3,ds,type~Ter1) -> RNA(binding, ds!2, type~Ter1), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~SpaRBS), P(ds!4, binding, type~Ter1), P(type~SpaRBS, us!4, binding!3) @'translation_sliding_rate'
+
+'translation_chain_part5' RNA(binding!1, ds!2, type~SpaRBS), Ribosome(rna!1, protein!3), RNA (binding,us!2, type~pSpaS), P(binding!3,ds,type~SpaRBS) -> RNA(binding, ds!2, type~SpaRBS), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~pSpaS), P(ds!4, binding, type~SpaRBS), P(type~pSpaS, us!4, binding!3) @'translation_sliding_rate'
+
+'translation_chain_part6' RNA(binding!1, ds!2, type~pSpaS), Ribosome(rna!1, protein!3), RNA (binding,us!2, type~pSpaStss), P(binding!3,ds,type~pSpaS) -> RNA(binding, ds!2, type~pSpaS), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~pSpaStss), P(ds!4, binding, type~pSpaS), P(type~pSpaStss, us!4, binding!3) @'translation_sliding_rate'
+
+'translation_chain_part7' RNA(binding!1, ds!2, type~pSpaStss), Ribosome(rna!1, protein!3), RNA (binding,us!2, type~RBS3), P(binding!3,ds,type~pSpaStss) -> RNA(binding, ds!2, type~pSpaStss), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~RBS3), P(ds!4, binding, type~pSpaStss), P(type~RBS3, us!4, binding!3) @'translation_sliding_rate'
+
+'translation_chain_part8' RNA(binding!1, ds!2, type~RBS3), Ribosome(rna!1, protein!3), RNA (binding,us!2, type~gfp), P(binding!3,ds,type~RBS3) -> RNA(binding, ds!2, type~RBS3), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~gfp), P(ds!4, binding, type~RBS3), P(type~gfp, us!4, binding!3) @'translation_sliding_rate'
+
+'translation_chain_part9' RNA(binding!1, ds!2, type~gfp), Ribosome(rna!1, protein!3), RNA (binding,us!2, type~Ter2), P(binding!3,ds,type~gfp) -> RNA(binding, ds!2, type~gfp), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~Ter2), P(ds!4, binding, type~gfp), P(type~Ter2, us!4, binding!3) @'translation_sliding_rate'
+
+
+
+#RULE 11: Ribosome rna fell off
+
+%var: 'ribosome_rna_fell_off_low_rate' 0.0001
+%var: 'ribosome_rna_fell_off_high_rate' 10
+
+'ribosome_felloff_1' Ribosome(rna!1), RNA (binding!1, type~pSpaRKtss) -> Ribosome(rna), RNA (binding, type~pSpaRKtss) @'ribosome_rna_fell_off_low_rate'
+
+'ribosome_felloff_2'  Ribosome(rna!1), RNA (binding!1, type~RBS1) -> Ribosome(rna), RNA (binding, type~RBS1) @'ribosome_rna_fell_off_low_rate'
+
+'ribosome_felloff_3'  Ribosome(rna!1), RNA (binding!1, type~RBS2) -> Ribosome(rna), RNA (binding, type~RBS2) @'ribosome_rna_fell_off_low_rate'
+
+'ribosome_felloff_4'  Ribosome(rna!1), RNA (binding!1, type~Ter1) -> Ribosome(rna), RNA (binding, type~Ter1) @'ribosome_rna_fell_off_low_rate'
+
+'ribosome_felloff_5'  Ribosome(rna!1), RNA (binding!1, type~SpaRBS) -> Ribosome(rna), RNA (binding, type~SpaRBS) @'ribosome_rna_fell_off_low_rate'
+
+'ribosome_felloff_6'  Ribosome(rna!1), RNA (binding!1, type~pSpaS) -> Ribosome(rna), RNA (binding, type~pSpaS) @'ribosome_rna_fell_off_low_rate'
+
+'ribosome_felloff_7'  Ribosome(rna!1), RNA (binding!1, type~pSpaStss) -> Ribosome(rna), RNA (binding, type~pSpaStss)@'ribosome_rna_fell_off_low_rate'
+
+'ribosome_felloff_8'  Ribosome(rna!1), RNA (binding!1, type~RBS3) -> Ribosome(rna), RNA (binding, type~RBS3) @'ribosome_rna_fell_off_low_rate'
+
+'ribosome_felloff_9'  Ribosome(rna!1), RNA (binding!1, type~Ter2) -> Ribosome(rna), RNA (binding, type~Ter2) @'ribosome_rna_fell_off_high_rate'
+
+'ribosome_felloff_10'  Ribosome(rna!1), RNA (binding!1, type~spaK) -> Ribosome(rna), RNA (binding, type~spaK) @'ribosome_rna_fell_off_low_rate'
+
+'ribosome_felloff_11'  Ribosome(rna!1), RNA (binding!1, type~spaR) -> Ribosome(rna), RNA (binding, type~spaR) @'ribosome_rna_fell_off_low_rate'
+
+'ribosome_felloff_12'  Ribosome(rna!1), RNA (binding!1, type~gfp) -> Ribosome(rna), RNA (binding, type~gfp) @'ribosome_rna_fell_off_high_rate'
+
+
+#RULE 12: Ribosome protein fell off
+
+%var: 'ribosome_protein_fell_off_rate' 0.1
+
+'ribosome_felloff_protein' Ribosome(protein!3), P(binding!3) -> Ribosome(protein), P(binding)@'ribosome_protein_fell_off_rate'
+
+#RULE 13:
+
+%var: 'protease_binding_rate' 0.00005
+
+'protein_binding' P(deg),Protease(binding) -> P(deg!1), Protease(binding!1) @'protease_binding_rate'
+
+
+#RULE 14:
+
+%var: 'degradation_rate' 0.01
+%var: 'slide_and_degratation_rate' 0.01
+%var: 'deg_sliding_rate' 0.01
+
+#Degrade a single domain protein
+'domain_degrad' P(us,ds,deg!1), Protease(binding!1) -> Protease(binding) @'degradation_rate'
+
+#Degrade a multiple domain protein, slide and degrade
+'slide_degrade_1' P(us!2,ds,deg!1), Protease(binding!1), P(ds!2, deg)-> Protease(binding!1), P(ds,deg!1) @'slide_and_degratation_rate'
+
+'slide_degrade_2' P(ds!2,deg!1), Protease(binding!1), P(us!2, deg)-> P(ds!2,deg), Protease(binding!1), P(us!2, deg!1) @'deg_sliding_rate'
+
+
+#RULE 15: RNADeg-RNA binding-unbinding
+
+%var: 'mrna_deg_binding_rate' 0.000005
+
+'mrna_deg_bind' RNA(deg),RNADeg(binding) -> RNA(deg!1), RNADeg(binding!1) @'mrna_deg_binding_rate'
+
+
+#RULE 16: Sliding and degradation
+
+%var: 'mrna_degratation_rate' 0.01
+%var: 'mrna_slide_and_degratation_rate' 0.02
+%var: 'mrna_deg_sliding_rate' 0.02
+
+#Degrade a single domain 
+'rna_degrd_1' RNA(us,ds,deg!1), RNADeg(binding!1) -> RNADeg(binding), RNADegRule() @'mrna_degratation_rate'
+
+#Degrade a multiple domain rna, slide and degrade
+'rna_degrd_2' RNA(us!2,ds,deg!1), RNADeg(binding!1), RNA(ds!2, deg)-> RNADeg(binding!1), RNA(ds,deg!1)  @'mrna_slide_and_degratation_rate'
+
+'rna_degrd_3' RNA(ds!2,deg!1), RNADeg(binding!1), RNA(us!2, deg)-> RNA(ds!2,deg), RNADeg(binding!1), RNA(us!2, deg!1) @'mrna_deg_sliding_rate'
+
+#TWO COMPONENT SYSTEM PHOSPHORYLATION
+
+%var: 'kk_p' 0.000001
+%var: 'kb_rr_kp' 0.05 
+%var: 'kb_rr_kp_sc' 0.1
+%var: 'ku_rr_kp'  2 
+%var: 'kp_kp_rr' 0.1
+%var: 'ku_rrp_k' 0.1 
+%var: 'kdp' 0.001
+
+#K phosphorylation
+'KP'            P(type~spaK) -> P(type~spaKP) @ 'kk_p' 
+
+#RR binds to K~P
+'RR-KP'	  P(protein, dna, type~spaR), P(protein, type~spaKP) ->   P(protein!1, dna, type~spaR), P(protein!1, type~spaKP) @ 'kb_rr_kp' ('kb_rr_kp_sc') 
+
+#RR unbinds from KK~P
+'RRunbKP'    P(protein!1, dna, type~spaR), P(protein!1, type~spaKP) -> P(protein, dna, type~spaR), P(protein, type~spaKP) @ 'ku_rr_kp'
+
+#K phosphrylates RR
+'KphosRR' P(protein!1, dna, type~spaR), P(protein!1, type~spaKP) -> P(protein!1, dna, type~spaRP), P(protein!1, type~spaK) @ 'kp_kp_rr'
+
+#Unbinding of RR~P from K
+'RR_P_unb' P(protein!1, dna, type~spaRP), P(protein!1, type~spaK) ->  P(protein, dna, type~spaRP), P(protein, type~spaK) @'ku_rrp_k'
+
+#Auto dephosphorylation
+'autoph_1' P(protein, dna, type~spaRP) -> P(protein, dna, type~spaR) @'kdp'
+'authop_2' P(protein, dna, type~spaKP) -> P(protein, dna, type~spaK) @'kdp'
+
+ 

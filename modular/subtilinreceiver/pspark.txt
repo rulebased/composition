@@ -1,0 +1,20 @@
+#pSpaRK constitutive promoter
+
+# RULE 1: RNAP binding to promoter region
+%var: 'RNAP_binding_rate_pspark' 0.0001
+
+'RNAp_bind_promot_pspark' DNA(binding, type~pSpaRK), RNAP(dna, rna) -> DNA(binding!1,type~pSpaRK), RNAP(dna!1,rna)@'RNAP_binding_rate_pspark'
+
+#RULE 2: transcription initiation - corresponds to transcription of the DNA sequence of 5'-UTR and the formation of first RNA block
+
+%var: 'transcription_initiation_rate_pspark' 1
+
+'transcription_initiation_pspark' DNA(binding!1,ds!2,type~pSpaRK), RNAP(dna!1,rna),DNA(us!2, binding, type~pSpaRKtss) -> DNA(binding,ds!2,type~pSpaRK), RNAP(dna!1,rna!3),DNA(us!2, binding!1, type~pSpaRKtss), RNA(binding, us, ds!3, type~pSpaRKtss)@'transcription_initiation_rate_pspark'
+
+
+#RULE 5: RNAP fell off from DNA
+
+%var: 'rnap_dna_felloff_rate_pspark' 0.00001
+%var: 'rnap_dna_high_felloff_rate_pspark' 10
+
+'rnap_dna_felloff-part1' RNAP(dna!1), DNA(binding!1, type~pSpaRK) -> RNAP(dna), DNA(binding, type~pSpaRK)@'rnap_dna_felloff_rate_pspark'
