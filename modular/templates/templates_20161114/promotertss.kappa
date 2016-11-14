@@ -1,0 +1,39 @@
+#^ @prefix : <#> .
+#^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+#^ @prefix rbmo: <http://purl.org/rbm/rbmo#> .
+#^ @prefix rbmc: <http://purl.org/rbm/comp#> .
+#^ @prefix rbmt: <http://purl.org/rbm/templates/> .
+#^ @prefix sbol: <http://sbols.org/v2#>.
+#^ @prefix so: <http://identifiers.org/so/>.
+#^ @prefix go: <http://identifiers.org/go/>.
+#^ @prefix pr: <http://identifiers.org/pr/>.
+#^ @prefix sbo: <http://identifiers.org/biomodels.sbo/>.
+#^ @prefix dct: <http://purl.org/dc/terms/>.
+#^ @prefix owl: <http://www.w3.org/2002/07/owl#>.
+#^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/>.
+#^ @prefix biopax: <http://www.biopax.org/release/biopax-level3.owl#>.
+#^ @prefix prov: <http://www.w3.org/ns/prov#> .
+
+#^ :t a rbmc:Template  ;
+#^   dct:title "Constitutive promoter" ;
+#^   dct:description "A rule-based modelling template that can be instantiated to create models of constitutive promoters" ;
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ;
+
+#^ :DNA a rbmo:Agent ; 
+#^   rbmo:hasSite :DNA:part .
+#^ :DNA:part a rbmo:Site ;
+#^   rbmo:hasState :DNA:type:promotertss .
+#^ :DNA:type:promotertss a rbmo:State ;
+#^   dct:title "TSS" ;
+#^   dct:description "Transcription Start Site" ;
+#^   bqbiol:isVersionOf so:SO:0000315 .
+#%agent: DNA(binding,us,ds,type~promoter~promotertss)
+
+#%agent: RNA(ds,us,binding,deg,type~promotertss)
+
+rbmc:templateUse[
+	rbmc:template <https://github.com/rulebased/composition/tree/master/modular/templates/rbmt:generic.kappa> ;
+	rbmc:initialize [rbmc:entityType biopax:DNA :DNA:type:promotertss’
+		rbmc:replace [rbmc:entityType rbmc:TranslationElongationRate"; rbmc:value 5];
+	]
+]

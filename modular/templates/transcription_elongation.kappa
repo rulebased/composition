@@ -7,16 +7,25 @@
 #^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/> .
 
 #^ :t a rbmc:Template ;
-#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ;
-#^   rbmc:tokens [ rdfs:label "IDENT" ] .
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" .
+
+#^ :DNA a rbmo:Agent ; 
+#^   rbmo:hasSite :DNA:part .
+#^ :DNA:part a rbmo:Site ;
+#^   rbmo:hasState :DNA:part:IDENT .
+#^ :DNA:type:IDENT a rbmo:State ;
+#^   dct:title “DNA region” ;
+#^   bqbio:isVersionOf biopax:DnaRegion .
+%agent: DNA(binding,us,ds,part~IDENT)
 
 #RULE 3: Transcription sliding
-#Except the first component in the design
-%var: 'IDENT-sliding_rate' 1
+#^ :sliding_rate a rbmo:Variable ;
+#^   bqbiol:isVersionOf rbmc:TranscriptionSlidingRate ;
+%var: ‘sliding_rate' 1
 
-#^ :IDENT-transcription-elongation a rbmo:Rule ;
+#^ :transcription-elongation a rbmo:Rule ;
 #^   bqbiol:isVersionOf go:GO:0006354 ;
 #^   dct:title "Transcriptional elongation" ;
 #^   dct:description "Transcriptional elongation to transcribe the downstream DNA component." .
-'IDENT-transcription-elongation' DNA(binding,us!2,part~IDENT), RNAP(dna!1,rna!3),DNA(ds!2, binding!1), RNA(ds!3) -> DNA(binding!1,us!2,part~IDENT), RNAP(dna!1,rna!3),DNA(ds!2, binding), RNA(ds!4), RNA(binding, us!4, ds!3, part~IDENT)@'IDENT-sliding_rate'
+‘transcription-elongation' DNA(binding,us!2,part~IDENT), RNAP(dna!1,rna!3),DNA(ds!2, binding!1), RNA(ds!3) -> DNA(binding!1,us!2,part~IDENT), RNAP(dna!1,rna!3),DNA(ds!2, binding), RNA(ds!4), RNA(binding, us!4, ds!3, part~IDENT)@'sliding_rate'
 

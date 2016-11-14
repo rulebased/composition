@@ -1,0 +1,16 @@
+#^ @prefix : <#> .
+#^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+#^ @prefix rbmc: <http://purl.org/rbm/comp#> .
+#^ @prefix rbmt: <http://purl.org/rbm/templates/> .
+#^ @prefix dct: <http://purl.org/dc/terms/> .
+
+#^ :t a rbmc:Template  ;
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ; 
+#^   rbmc:include rbmt:genericpart.kappa ;
+#^   rbmc:tokens [ rdfs:label "IDENT" ] .
+
+#RULE 5: RNAP fall off from DNA
+#Higher fall off rate
+## XXX Unclear if this really has the effect of overriding the
+## XXX fall off rate and strongly depends on KaSim's implementation
+%var: 'IDENT-rnap_dna_fall_off_rate' 1

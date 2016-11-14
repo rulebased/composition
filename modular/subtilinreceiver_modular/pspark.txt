@@ -1,0 +1,30 @@
+#^ :DNA:type:pspark a rbmc:PartModel  ;
+#^   dct:title "PspaRK promoter" ;
+#^   dct:description "A model of the constitutive pspark promoter" ;
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ;
+
+%agent DNA(type~pspark)
+
+rbmc:templateUse
+[
+	rbmc:template <https://github.com/rulebased/composition/tree/master/modular/templates/promoter.kappa> ;
+	rbmc:initialize [bqbiol:isVersionOf so:SO:0000167 :DNA:type:pspark'
+		rbmc:replace [bqbiol:isVersionOf rbmc:RNAPBindingRate "; rbmc:value 0.0001];
+		rbmc:replace [bqbiol:isVersionOf rbmc:TranscriptionInitiationRate "; rbmc:value 1];
+		rbmc:replace [bqbiol:isVersionOf rbmc:RNAPDNAFellOffRate "; rbmc:value 0.00001];
+		rbmc:replace [bqbiol:isVersionOf rbmc:TranslationSlidingRate"; rbmc:value 1];
+		rbmc:replace [bqbiol:isVersionOf rbmc:TranslationChainRate "; rbmc:value 1];
+		rbmc:replace [bqbiol:isVersionOf rbmc:RibosomeRNAFellOffRate "; rbmc:value 0.0001];
+		rbmc:replace [bqbiol:isVersionOf so:SO:0000315"; :DNA:type:psparktss]	
+	]
+],
+[
+	rbmc:template <https://github.com/rulebased/composition/tree/master/modular/templates/promotertss.kappa> ;
+	rbmc:initialize [bqbiol:isVersionOf so:SO:0000315 :DNA:type:psparktss'
+		rbmc:replace [bqbiol:isVersionOf rbmc:RNAPBindingRate "; rbmc:value 0.0001];
+		rbmc:replace [bqbiol:isVersionOf rbmc:RNAPDNAFellOffRate "; rbmc:value 0.00001];
+		rbmc:replace [bqbiol:isVersionOf rbmc:TranslationSlidingRate"; rbmc:value 1];
+		rbmc:replace [bqbiol:isVersionOf rbmc:TranslationChainRate "; rbmc:value 1];
+		rbmc:replace [bqbiol:isVersionOf rbmc:RibosomeRNAFellOffRate "; rbmc:value 0.0001];	
+	]
+]

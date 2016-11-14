@@ -1,0 +1,24 @@
+#^ @prefix : <#> .
+#^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+#^ @prefix rbmo: <http://purl.org/rbm/rbmo#> .
+#^ @prefix rbmc: <http://purl.org/rbm/comp#> .
+#^ @prefix rbmt: <http://purl.org/rbm/templates/> .
+#^ @prefix go: <http://identifiers.org/go/> .
+#^ @prefix dct: <http://purl.org/dc/terms/> .
+#^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/> .
+#^ @prefix obo: <http://purl.obolibrary.org/obo/> .
+
+#^ :t a rbmc:Template  ;
+#^   dct:title "RBS" ;
+#^   dct:description "Ribosome Binding Site" ;
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ; 
+#^   rbmc:include rbmt:genericpart.kappa ;
+#^   rbmc:tokens [ rdfs:label "IDENT" ] .
+
+#RULE 7: Translation initiation
+%var: 'IDENT-ribosome_binding_rate' 0.00001
+#^ :IDENT-translation-initiation a rbmo:Rule ;
+#^   obo:part_of go:GO:0006413 ;
+#^   dct:title "Translational initiation" .
+## XXX why do we use obo:part_of here and bqbiol:is elsewhere?
+'IDENT-translation_initiation' RNA(binding,type~IDENT), Ribosome(rna) -> RNA(binding!1, type~IDENT), Ribosome(rna!1) @ 'IDENT-ribosome_binding_rate'

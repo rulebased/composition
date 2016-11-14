@@ -1,0 +1,32 @@
+#RULE 3: Transcription sliding
+
+%var: 'sliding_rate_rbs3' 1
+'transcript_sliding_part8' DNA(binding,us!2,type~RBS3), RNAP(dna!1,rna!3),DNA(ds!2, binding!1, type~pSpaStss), RNA(ds!3, type~pSpaStss) -> DNA(binding!1,us!2,type~RBS3), RNAP(dna!1,rna!3),DNA(ds!2, binding, type~pSpaStss), RNA(ds!4, type~pSpaStss), RNA(binding, us!4, ds!3, type~RBS3)@'sliding_rate_rbs3'
+
+#RULE 5: RNAP fell off from DNA
+
+%var: 'rnap_dna_felloff_rate_rbs3' 0.00001
+'rnap_dna_felloff-part10' RNAP(dna!1), DNA(binding!1, type~RBS3) -> RNAP(dna), DNA(binding, type~RBS3)@'rnap_dna_felloff_rate'
+
+#RULE 6: RNAP fell off from RNA
+
+%var: 'rnap_rna_felloff_rate_rbs3' 0.00001
+'rnap_rna_felloff-part9' RNAP(rna!1), RNA(ds!1,type~RBS3) -> RNAP(rna), RNA(ds,type~RBS3)@'rnap_rna_felloff_rate_rbs3'
+
+#RULE 7: Translation initiation
+
+%var: 'ribosome_binding_rate_rbs3' 0.00001
+'RBS3_Ribosome binding' RNA(binding,type~RBS3), Ribosome(rna) -> RNA(binding!1, type~RBS3), Ribosome(rna!1) @ 'ribosome_binding_rate_rbs3'
+
+
+#RULE 8: Translation sliding
+%var: 'translation_sliding_rate_rbs3' 1
+'translation_sliding_part3'RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, type~RBS3) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, type~RBS3) @'translation_sliding_rate_rbs3'
+
+#RULE 10: Translation chain
+'translation_chain_part7' RNA(binding!1, ds!2, type~pSpaStss), Ribosome(rna!1, protein!3), RNA (binding,us!2, type~RBS3), P(binding!3,ds,type~pSpaStss) -> RNA(binding, ds!2, type~pSpaStss), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~RBS3), P(ds!4, binding, type~pSpaStss), P(type~RBS3, us!4, binding!3) @'translation_sliding_rate_rbs3'
+
+#RULE 11: Ribosome rna fell off
+
+%var: 'ribosome_rna_fell_off_rate_rbs3' 0.0001
+'ribosome_felloff_8'  Ribosome(rna!1), RNA (binding!1, type~RBS3) -> Ribosome(rna), RNA (binding, type~RBS3) @'ribosome_rna_fell_off_rate_rbs3'

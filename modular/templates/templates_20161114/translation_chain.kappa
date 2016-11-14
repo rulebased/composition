@@ -1,0 +1,21 @@
+#^ @prefix : <#> .
+#^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+#^ @prefix rbmo: <http://purl.org/rbm/rbmo#> .
+#^ @prefix rbmc: <http://purl.org/rbm/comp#> .
+#^ @prefix rbmt: <http://purl.org/rbm/templates/> .
+#^ @prefix go: <http://identifiers.org/go/> .
+#^ @prefix dct: <http://purl.org/dc/terms/> .
+#^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/> .
+
+#^ :t a rbmc:Template  ;
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ;
+#^   rbmc:tokens [ rdfs:label "IDENT" ] .
+
+#RULE 10: Translation chain
+#Only if the component is placed after a CDS
+#^ :IDENT-translation-chain a rbmo:Rule ;
+#^   bqbiol:isVersionOf go:GO:0006415 ;
+#^   dct:title "Formation of translational chains, due to gene fusion or leakiness of stop codons" ;
+#^   dct:description "RNAP fall off from RNA ." .
+'IDENT-translation-chain' RNA(binding!1, ds!2), Ribosome(rna!1, protein!3), RNA (binding,us!2, part~IDENT), P(binding!3,ds) -> RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, part~IDENT), P(ds!4, binding), P(part~IDENT, us!4, binding!3) @'IDENT-translation_sliding_rate'
+

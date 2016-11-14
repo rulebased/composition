@@ -1,0 +1,67 @@
+#1)Interactions between parts:
+#Each part model includes rules for all interactions of the part. When the model of a desired system is built, duplicate rules are removed.
+#We have two types of promoters
+#   constitutive promoter:
+#   a promoter with a TFBS in the middle. If the TF is an activator then the transcription rate is higher in the bound state. If the TF is a repressor, 
+#transcription rate is lower in the bound state.
+# In the future we will implement a generic terminator model that can also be used to represent operators which can be used as repressors throughout the circuits.
+
+
+%agent: DNA(binding,us,ds,type~pSpaRK~pSpaRKtss~RBS1~spaK~RBS2~spaR~Ter1~SpaRBS~pSpaS~pSpaStss~RBS3~gfp~Ter2)
+%agent: RNA(ds,us,binding,deg,type~pSpaRKtss~RBS1~spaK~RBS2~spaR~Ter1~SpaRBS~pSpaS~pSpaStss~RBS3~gfp~Ter2)
+%agent: P(ds,us, binding, deg, dna, protein,type~pSpaRKtss~RBS1~spaK~RBS2~spaR~Ter1~SpaRBS~pSpaS~pSpaStss~RBS3~gfp~Ter2~spaKP~spaRP)
+
+# list of obserables
+
+%obs:'GFP' P(type~gfp)
+%obs:'RNA' RNA(type~pSpaRKtss)
+%obs: 'RNAP_pspark' RNAP(dna!1), DNA(binding!1, type~pSpaRK)
+%obs: 'GFP_Protease' P(deg!1, type~gfp), Protease(binding!1)
+%obs: 'Full chain' P(binding, ds!3, type~spaK), P(binding, us!3, ds!4, type~RBS2), P(binding, us!4, ds!5, type~spaR), P(binding, us!5, ds!6, type~Ter1), P(binding, us!6, ds!61, type~SpaRBS), P(binding, us!61, ds!7, type~pSpaS), P(binding, us!7, ds!99, type~pSpaStss), P(binding, us!99, ds!8, type~RBS3), P(binding, us!8, ds!9, type~gfp), P(binding, us!9, ds, type~Ter2)
+%obs: 'tr1' P(binding, ds!3, type~spaK), P(binding, us!3, ds!4, type~RBS2), P(binding, us!4, type~spaR)
+%obs: 'RNAP' RNAP(dna,rna)
+%obs: 'Rib' Ribosome(rna)
+%obs: 'Protease' Protease(binding)
+%obs: 'RNAPDeg' RNADeg(binding)
+%obs: 'RNAP_dna' RNAP(dna!_,rna)
+%obs: 'RNAP_rna' RNAP(dna,rna!_)
+%obs: 'RNAP_dna_rna' RNAP(dna!_,rna!_)
+%obs: 'RNAP_any' RNAP(dna?,rna?)
+#%obs: 'RNAP_psparktss' RNAP(dna,rna!1), RNA(ds!1,type~pSpaRKtss)
+#%obs: 'RNAP_psparktss_bound' RNAP(dna!_,rna!1), RNA(ds!1,type~pSpaRKtss)
+#%obs: 'RNAP_RBS1' RNAP(dna,rna!1), RNA(ds!1,type~RBS1)
+#%obs: 'RNAP_RBS1_bound' RNAP(dna!_,rna!1), RNA(ds!1,type~RBS1)
+#%obs: 'RNAP_spaK' RNAP(dna,rna!1), RNA(ds!1,type~spaK)
+#%obs: 'RNAP_RBS2' RNAP(dna,rna!1), RNA(ds!1,type~RBS2)
+#%obs: 'RNAP_spaR' RNAP(dna,rna!1), RNA(ds!1,type~spaR)
+#%obs: 'RNAP_Ter1' RNAP(dna,rna!1), RNA(ds!1,type~Ter1)
+#%obs: 'RNAP_SpaRBS' RNAP(dna,rna!1), RNA(ds!1,type~SpaRBS)
+#%obs: 'RNAP_pSpaS' RNAP(dna,rna!1), RNA(ds!1,type~pSpaS)
+#%obs: 'RNAP_pSpaStss' RNAP(dna,rna!1), RNA(ds!1,type~pSpaStss)
+#%obs: 'RNAP_RBS3' RNAP(dna,rna!1), RNA(ds!1,type~RBS3)
+#%obs: 'RNAP_gfp' RNAP(dna,rna!1), RNA(ds!1,type~gfp)
+#%obs: 'RNAP_Ter2' RNAP(dna,rna!1), RNA(ds!1,type~Ter2)
+
+%obs: 'RNAP_psparktss' Ribosome(rna!1), RNA(binding!1,type~pSpaRKtss)
+%obs: 'RNAP_RBS1' Ribosome(rna!1), RNA(binding!1,type~RBS1)
+%obs: 'RNA_RBS1'  RNA(type~RBS1)
+%obs: 'RNAP_spaK' Ribosome(rna!1), RNA(binding!1,type~spaK)
+%obs: 'RNAP_RBS2' Ribosome(rna!1), RNA(binding!1,type~RBS2)
+%obs: 'RNAP_spaR' Ribosome(rna!1), RNA(binding!1,type~spaR)
+%obs: 'RNAP_Ter1' Ribosome(rna!1), RNA(binding!1,type~Ter1)
+%obs: 'RNAP_SpaRBS' Ribosome(rna!1), RNA(binding!1,type~SpaRBS)
+%obs: 'RNAP_pSpaS' Ribosome(rna!1), RNA(binding!1,type~pSpaS)
+%obs: 'RNAP_pSpaStss' Ribosome(rna!1), RNA(binding!1,type~pSpaStss)
+%obs: 'RNAP_RBS3' Ribosome(rna!1), RNA(binding!1,type~RBS3)
+%obs: 'RNAP_gfp' Ribosome(rna!1), RNA(binding!1,type~gfp)
+%obs: 'RNAP_Ter2' Ribosome(rna!1), RNA(binding!1,type~Ter2)
+
+
+
+
+
+
+
+#circuit
+%init: 1 DNA(binding,us,ds!1, type~pSpaRK), DNA(binding,us!1,ds!100, type~pSpaRKtss), DNA(binding, us!100, ds!2, type~RBS1), DNA(binding, us!2, ds!3, type~spaK), DNA(binding, us!3, ds!4, type~RBS2), DNA(binding, us!4, ds!5, type~spaR), DNA(binding, us!5, ds!6, type~Ter1), DNA(binding, us!6, ds!61, type~SpaRBS), DNA(binding, us!61, ds!7, type~pSpaS), DNA(binding, us!7, ds!99, type~pSpaStss), DNA(binding, us!99, ds!8, type~RBS3), DNA(binding, us!8, ds!9, type~gfp), DNA(binding, us!9, ds, type~Ter2)
+

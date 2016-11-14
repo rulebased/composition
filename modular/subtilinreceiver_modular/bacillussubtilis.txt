@@ -1,0 +1,4 @@
+%init: 1250 RNAP(dna,rna)
+%init: 10000 Ribosome(rna)
+%init: 1000 Protease(binding)
+%init: 100 RNADeg(binding)

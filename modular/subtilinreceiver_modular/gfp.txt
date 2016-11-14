@@ -1,0 +1,29 @@
+#RULE 3: Transcription sliding
+
+%var: 'sliding_rate_gfp' 1
+'transcript_sliding_part9' DNA(binding,us!2,type~gfp), RNAP(dna!1,rna!3),DNA(ds!2, binding!1, type~RBS3), RNA(ds!3, type~RBS3) -> DNA(binding!1,us!2,type~gfp), RNAP(dna!1,rna!3),DNA(ds!2, binding, type~RBS3), RNA(ds!4, type~RBS3), RNA(binding, us!4, ds!3, type~gfp)@'sliding_rate_gfp'
+
+
+#RULE 5: RNAP fell off from DNA
+
+%var: 'rnap_dna_felloff_rate_gfp' 0.00001
+'rnap_dna_felloff-part11' RNAP(dna!1), DNA(binding!1, type~gfp) -> RNAP(dna), DNA(binding, type~gfp)@'rnap_dna_felloff_rate_gfp'
+
+#RULE 6: RNAP fell off from RNA
+
+%var: 'rnap_rna_felloff_rate_gfp' 0.00001
+'rnap_rna_felloff-part10' RNAP(rna!1), RNA(ds!1,type~gfp) -> RNAP(rna), RNA(ds,type~gfp)@'rnap_rna_felloff_rate'
+
+#RULE 9: Translation
+
+'translation_part3' RNA(binding!1, ds!2), Ribosome(rna!1, protein), RNA (binding,us!2, type~gfp) ->RNA(binding, ds!2), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~gfp), P(binding!3, type~gfp) @'translation_sliding_rate_gfp'
+
+#RULE 10: Translation chain
+%var: 'translation_sliding_rate_gfp' 1
+'translation_chain_part8' RNA(binding!1, ds!2, type~RBS3), Ribosome(rna!1, protein!3), RNA (binding,us!2, type~gfp), P(binding!3,ds,type~RBS3) -> RNA(binding, ds!2, type~RBS3), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~gfp), P(ds!4, binding, type~RBS3), P(type~gfp, us!4, binding!3) @'translation_sliding_rate_gfp'
+
+
+#RULE 11: Ribosome rna fell off
+
+%var: 'ribosome_rna_fell_off_rate_gfp' 1
+'ribosome_felloff_12'  Ribosome(rna!1), RNA (binding!1, type~gfp) -> Ribosome(rna), RNA (binding, type~gfp) @'ribosome_rna_fell_off_rate_gfp'
