@@ -15,8 +15,8 @@
 
 #RULE 11: Ribosome rna fell off
 
-%var: 'ribosome_rna_fell_off_low_rate_spak' 0.0001
-'ribosome_felloff_10'  Ribosome(rna!1), RNA (binding!1, type~spaK) -> Ribosome(rna), RNA (binding, type~spaK) @'ribosome_rna_fell_off_low_rate_spak'
+%var: 'ribosome_rna_fell_off_rate_spak' 1
+'ribosome_felloff_10'  Ribosome(rna!1), RNA (binding!1, type~spaK) -> Ribosome(rna), RNA (binding, type~spaK) @'ribosome_rna_fell_off_rate_spak'
 
 #TWO COMPONENT SYSTEM PHOSPHORYLATION
 %var: 'kdp' 0.001

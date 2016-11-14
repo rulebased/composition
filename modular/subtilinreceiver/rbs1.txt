@@ -20,6 +20,5 @@
 'translation_sliding_part1' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, type~RBS1) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, type~RBS1) @'translation_sliding_rate'
 
 #RULE 11: Ribosome rna fell off
-%var: 'ribosome_rna_fell_off_low_rate' 0.0001
-%var: 'ribosome_rna_fell_off_high_rate' 10
-'ribosome_felloff_2'  Ribosome(rna!1), RNA (binding!1, type~RBS1) -> Ribosome(rna), RNA (binding, type~RBS1) @'ribosome_rna_fell_off_low_rate'
+%var: 'ribosome_rna_fell_off_rate' 0.1
+'ribosome_felloff_2'  Ribosome(rna!1), RNA (binding!1, type~RBS1) -> Ribosome(rna), RNA (binding, type~RBS1) @'ribosome_rna_fell_off_rate'

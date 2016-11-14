@@ -16,32 +16,33 @@
 
 #RULE 5: RNAP fell off from DNA
 %var: 'rnap_dna_felloff_rate_pspas' 0.00001
-%var: 'rnap_dna_high_felloff_rate_pspas' 10
-'rnap_dna_felloff-part7' RNAP(dna!1), DNA(binding!1, type~SpaRBS) -> RNAP(dna), DNA(binding, type~SpaRBS)@'rnap_dna_felloff_rate_pspas'
+%var: 'rnap_dna_felloff_rate_spar_bs' 0.00001
+'rnap_dna_felloff-part7' RNAP(dna!1), DNA(binding!1, type~SpaRBS) -> RNAP(dna), DNA(binding, type~SpaRBS)@'rnap_dna_felloff_rate_spar_bs'
 'rnap_dna_felloff-part8' RNAP(dna!1), DNA(binding!1, type~pSpaS) -> RNAP(dna), DNA(binding, type~pSpaS)@'rnap_dna_felloff_rate_pspas'
 
 
 #RULE 6: RNAP fell off from RNA
 %var: 'rnap_rna_felloff_rate_pspas' 0.00001
-%var: 'rnap_rna_high_felloff_rate_pspas' 10
-'rnap_rna_felloff-part6' RNAP(rna!1), RNA(ds!1,type~SpaRBS) -> RNAP(rna), RNA(ds,type~SpaRBS)@'rnap_rna_felloff_rate_pspas'
+%var: 'rnap_rna_felloff_rate_spar_bs' 0.00001
+'rnap_rna_felloff-part6' RNAP(rna!1), RNA(ds!1,type~SpaRBS) -> RNAP(rna), RNA(ds,type~SpaRBS)@'rnap_rna_felloff_rate_spar_bs'
 'rnap_rna_felloff-part7' RNAP(rna!1), RNA(ds!1,type~pSpaS) -> RNAP(rna), RNA(ds,type~pSpaS)@'rnap_rna_felloff_rate_pspas'
 
 #RULE 8: Translation sliding
 %var: 'translation_sliding_rate_pspas' 1
-'translation_sliding_part6' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, type~SpaRBS) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, type~SpaRBS) @'translation_sliding_rate_pspas'
+%var: 'translation_sliding_rate_spar_bs' 1
+'translation_sliding_part6' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, type~SpaRBS) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, type~SpaRBS) @'translation_sliding_rate_spar_bs'
 'translation_sliding_part7' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, type~pSpaS) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, type~pSpaS) @'translation_sliding_rate_pspas'
 
 #RULE 10: Translation chain
-
-'translation_chain_part4' RNA(binding!1, ds!2, type~Ter1), Ribosome(rna!1, protein!3), RNA (binding,us!2, type~SpaRBS), P(binding!3,ds,type~Ter1) -> RNA(binding, ds!2, type~Ter1), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~SpaRBS), P(ds!4, binding, type~Ter1), P(type~SpaRBS, us!4, binding!3) @'translation_sliding_rate_pspas'
-
-'translation_chain_part5' RNA(binding!1, ds!2, type~SpaRBS), Ribosome(rna!1, protein!3), RNA (binding,us!2, type~pSpaS), P(binding!3,ds,type~SpaRBS) -> RNA(binding, ds!2, type~SpaRBS), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~pSpaS), P(ds!4, binding, type~SpaRBS), P(type~pSpaS, us!4, binding!3) @'translation_sliding_rate_pspas'
+%var: 'translation_chain_rate_pspas' 1
+%var: 'translation_chain_rate_spar_bs' 1
+'translation_chain_part4' RNA(binding!1, ds!2, type~Ter1), Ribosome(rna!1, protein!3), RNA (binding,us!2, type~SpaRBS), P(binding!3,ds,type~Ter1) -> RNA(binding, ds!2, type~Ter1), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~SpaRBS), P(ds!4, binding, type~Ter1), P(type~SpaRBS, us!4, binding!3) @'translation_chain_rate_spar_bs'
+'translation_chain_part5' RNA(binding!1, ds!2, type~SpaRBS), Ribosome(rna!1, protein!3), RNA (binding,us!2, type~pSpaS), P(binding!3,ds,type~SpaRBS) -> RNA(binding, ds!2, type~SpaRBS), Ribosome(rna!1, protein!3), RNA (binding!1,us!2, type~pSpaS), P(ds!4, binding, type~SpaRBS), P(type~pSpaS, us!4, binding!3) @'translation_chain_rate_pspas'
 
 
 #RULE 11: Ribosome rna fell off
-%var: 'ribosome_rna_fell_off_low_rate_pspas' 0.0001
-%var: 'ribosome_rna_fell_off_high_rate_pspas' 10
-'ribosome_felloff_5'  Ribosome(rna!1), RNA (binding!1, type~SpaRBS) -> Ribosome(rna), RNA (binding, type~SpaRBS) @'ribosome_rna_fell_off_low_rate_pspas'
-'ribosome_felloff_6'  Ribosome(rna!1), RNA (binding!1, type~pSpaS) -> Ribosome(rna), RNA (binding, type~pSpaS) @'ribosome_rna_fell_off_low_rate_pspas'
+%var: 'ribosome_rna_fell_off_rate_pspas' 0.0001
+%var: 'ribosome_rna_fell_off_rate_spar_bs' 0.0001
+'ribosome_felloff_5'  Ribosome(rna!1), RNA (binding!1, type~SpaRBS) -> Ribosome(rna), RNA (binding, type~SpaRBS) @'ribosome_rna_fell_off_rate_spar_bs'
+'ribosome_felloff_6'  Ribosome(rna!1), RNA (binding!1, type~pSpaS) -> Ribosome(rna), RNA (binding, type~pSpaS) @'ribosome_rna_fell_off_rate_pspas'
 

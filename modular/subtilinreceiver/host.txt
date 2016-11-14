@@ -11,16 +11,18 @@
 
 #RULE 13:
 
-%var: 'protease_binding_rate' 0.00005
+%var: 'protease_binding_rate' 0.0005
+%var: 'protease_unbinding_rate' 0.000005
 
 'protein_binding' P(deg),Protease(binding) -> P(deg!1), Protease(binding!1) @'protease_binding_rate'
+'protein_unbinding' P(deg!1), Protease(binding!1) -> P(deg),Protease(binding) @'protease_unbinding_rate'
 
 
 #RULE 14:
 
-%var: 'degradation_rate' 0.01
-%var: 'slide_and_degratation_rate' 0.01
-%var: 'deg_sliding_rate' 0.01
+%var: 'degradation_rate' 10
+%var: 'slide_and_degratation_rate' 1
+%var: 'deg_sliding_rate' 1
 
 #Degrade a single domain protein
 'domain_degrad' P(us,ds,deg!1), Protease(binding!1) -> Protease(binding) @'degradation_rate'
@@ -28,15 +30,17 @@
 #Degrade a multiple domain protein, slide and degrade
 'slide_degrade_1' P(us!2,ds,deg!1), Protease(binding!1), P(ds!2, deg)-> Protease(binding!1), P(ds,deg!1) @'slide_and_degratation_rate'
 
+#Only slides to the right
 'slide_degrade_2' P(ds!2,deg!1), Protease(binding!1), P(us!2, deg)-> P(ds!2,deg), Protease(binding!1), P(us!2, deg!1) @'deg_sliding_rate'
 
 
 #RULE 15: RNADeg-RNA binding-unbinding
 
 %var: 'mrna_deg_binding_rate' 0.000005
+%var: 'mrna_deg_unbinding_rate' 0.0000005
 
 'mrna_deg_bind' RNA(deg),RNADeg(binding) -> RNA(deg!1), RNADeg(binding!1) @'mrna_deg_binding_rate'
-
+'mrna_deg_unbind' RNA(deg!1), RNADeg(binding!1) -> RNA(deg),RNADeg(binding) @'mrna_deg_unbinding_rate'
 
 #RULE 16: Sliding and degradation
 

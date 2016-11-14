@@ -7,13 +7,11 @@
 #RULE 5: RNAP fell off from DNA
 
 %var: 'rnap_dna_felloff_rate_gfp' 0.00001
-
 'rnap_dna_felloff-part11' RNAP(dna!1), DNA(binding!1, type~gfp) -> RNAP(dna), DNA(binding, type~gfp)@'rnap_dna_felloff_rate_gfp'
 
 #RULE 6: RNAP fell off from RNA
 
 %var: 'rnap_rna_felloff_rate_gfp' 0.00001
-
 'rnap_rna_felloff-part10' RNAP(rna!1), RNA(ds!1,type~gfp) -> RNAP(rna), RNA(ds,type~gfp)@'rnap_rna_felloff_rate'
 
 #RULE 9: Translation
@@ -27,7 +25,5 @@
 
 #RULE 11: Ribosome rna fell off
 
-%var: 'ribosome_rna_fell_off_low_rate_gfp' 0.0001
-%var: 'ribosome_rna_fell_off_high_rate_gfp' 10
-
-'ribosome_felloff_12'  Ribosome(rna!1), RNA (binding!1, type~gfp) -> Ribosome(rna), RNA (binding, type~gfp) @'ribosome_rna_fell_off_high_rate_gfp'
+%var: 'ribosome_rna_fell_off_rate_gfp' 1
+'ribosome_felloff_12'  Ribosome(rna!1), RNA (binding!1, type~gfp) -> Ribosome(rna), RNA (binding, type~gfp) @'ribosome_rna_fell_off_rate_gfp'

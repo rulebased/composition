@@ -28,5 +28,5 @@
 
 #RULE 11: Ribosome rna fell off
 
-%var: 'ribosome_rna_fell_off_low_rate_rbs3' 0.0001
-'ribosome_felloff_8'  Ribosome(rna!1), RNA (binding!1, type~RBS3) -> Ribosome(rna), RNA (binding, type~RBS3) @'ribosome_rna_fell_off_low_rate_rbs3'
+%var: 'ribosome_rna_fell_off_rate_rbs3' 0.0001
+'ribosome_felloff_8'  Ribosome(rna!1), RNA (binding!1, type~RBS3) -> Ribosome(rna), RNA (binding, type~RBS3) @'ribosome_rna_fell_off_rate_rbs3'

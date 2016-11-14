@@ -1,12 +1,13 @@
 #pSpaRK tss - it is part of the promoter and not directly stored in databases.
 
 #RULE 6: RNAP fell off from RNA
-%var: 'rnap_rna_felloff_rate_pspark' 0.00001
+%var: 'rnap_rna_felloff_rate_pspark' 0.005
 'rnap_rna_felloff-pspark' RNAP(rna!1), RNA(ds!1,type~pSpaRKtss) -> RNAP(rna), RNA(ds,type~pSpaRKtss)@'rnap_rna_felloff_rate_pspark'
 
 #RULE 11: Ribosome rna fell off
 %var: 'ribosome_rna_fell_off_low_rate_psparktss' 0.0001
 'ribosome_felloff_1' Ribosome(rna!1), RNA (binding!1, type~pSpaRKtss) -> Ribosome(rna), RNA (binding, type~pSpaRKtss) @'ribosome_rna_fell_off_low_rate_psparktss'
 
-%var: 'rnap_dna_high_felloff_rate_psparktss' 10
-'rnap_dna_felloff-part2' RNAP(dna!1), DNA(binding!1, type~pSpaRKtss) -> RNAP(dna), DNA(binding, type~pSpaRKtss)@'rnap_dna_high_felloff_rate_psparktss'
+#RULE 5: RNAP fell off from DNA
+%var: 'rnap_dna_felloff_rate_psparktss' 5
+'rnap_dna_felloff-part2' RNAP(dna!1), DNA(binding!1, type~pSpaRKtss) -> RNAP(dna), DNA(binding, type~pSpaRKtss)@'rnap_dna_felloff_rate_psparktss'
