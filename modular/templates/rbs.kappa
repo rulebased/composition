@@ -13,12 +13,12 @@
 #^   dct:description "Ribosome Binding Site" ;
 #^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ; 
 #^   rbmc:include rbmt:genericpart.kappa ;
-#^   rbmc:tokens [ rdfs:label "IDENT" ] .
-
+#^   rbmc:tokens [ rdfs:label "IDENT" ],
+#^               [ rdfs:label "BINDING_RATE", rbmc:default 0.0001 ] .
+#^
 #RULE 7: Translation initiation
-%var: 'IDENT-ribosome_binding_rate' 0.00001
 #^ :IDENT-translation-initiation a rbmo:Rule ;
 #^   obo:part_of go:GO:0006413 ;
 #^   dct:title "Translational initiation" .
 ## XXX why do we use obo:part_of here and bqbiol:is elsewhere?
-'IDENT-translation_initiation' RNA(binding,type~IDENT), Ribosome(rna) -> RNA(binding!1, type~IDENT), Ribosome(rna!1) @ 'IDENT-ribosome_binding_rate'
+'IDENT-translation_initiation' RNA(binding,type~IDENT), Ribosome(rna) -> RNA(binding!1, type~IDENT), Ribosome(rna!1) @ BINDING_RATE
