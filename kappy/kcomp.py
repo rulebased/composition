@@ -1,9 +1,12 @@
 import argparse
 import logging
 import os
+import sys
 
 from kappy.hybrid import KappaRdf
-from kappy.merge  import merge
+from kappy.merge  import merge_graph, merge_kappa
+from kappy.kasim  import declare_agents
+from kappy.utils  import Graph
 
 logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', level=logging.DEBUG)
 
@@ -20,7 +23,13 @@ def main():
     if args.tokens:
         print " ".join(kr.tokens)
     else:
-        print merge(kr)
+        rdf   = merge_graph(kr)
+        kappa = merge_kappa(kr)
+        agents = declare_agents(kappa)
+
+        rdf.serialize(sys.stdout, format="application/x-kappa")
+        sys.stdout.write(agents)
+        sys.stdout.write(kappa)
 
 
 if __name__ == '__main__':

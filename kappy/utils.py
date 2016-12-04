@@ -56,3 +56,5 @@ def get_one(g, t):
         return
     return triples[0]
 
+def isstring(s):
+    return isinstance(s, str) or isinstance(s, unicode)

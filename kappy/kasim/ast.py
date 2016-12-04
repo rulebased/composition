@@ -1,10 +1,14 @@
 from abc import ABCMeta
-
+from kappy.utils import isstring
 
 def _assert_all_is_instance(iterable, klass):
     for o in iterable:
         assert isinstance(o, klass), repr(o)
 
+def _assert_all_isstring(iterable):
+    "ugh"
+    for o in iterable:
+        assert isstring(o), o
 
 class ASTBase(object):
     """
@@ -56,7 +60,7 @@ class Link(LinkP):
         :param text: annotation for a link
         :type text: str
         """
-        assert isinstance(text, str)
+        assert isstring(text), text
         self.text = text
 
 
@@ -73,7 +77,7 @@ class State(StateP):
         :param text: annoutation for a state
         :type text: str
         """
-        assert isinstance(text, str), text
+        assert isstring(text), text
         self.text = text
 
 
@@ -108,9 +112,9 @@ class AgentP(ASTBase):
         :param sites: mapping between site names and sites
         :type sites: dict[str, SiteP]
         """
-        assert isinstance(name, str), name
+        assert isstring(name), name
         assert isinstance(sites, dict)
-        _assert_all_is_instance(sites.keys(), str)
+        _assert_all_isstring(sites.keys())
         _assert_all_is_instance(sites.values(), SiteP)
         self.name = name
         #: :type: dict[str, SiteP]
@@ -132,11 +136,11 @@ class AgentD(ASTBase):
         :param sites: mapping between site names of an agent and their possible values
         :type sites: dict[str, frozenset[str]]
         """
-        assert isinstance(name, str), name
-        _assert_all_is_instance(sites.keys(), str)
+        assert isstring(name), name
+        _assert_all_isstring(sites.keys())
         for site in sites.values():
             assert isinstance(site, frozenset), site
-            _assert_all_is_instance(site, str)
+            _assert_all_isstring(site)
         self.name = name
         self.sites = sites
 
@@ -154,7 +158,7 @@ class Var(Expr):
         :param name: variable's name
         :type name: str
         """
-        assert isinstance(name, str), name
+        assert isstring(name), name
         self.name = name
 
 
@@ -301,7 +305,7 @@ class Rule(ASTBase):
         # TODO: type validation for lhs and rhs
         assert isinstance(rate, Expr), rate
         assert isinstance(rate_c, Expr), rate_c
-        assert isinstance(desc, str), desc
+        assert isstring(desc), desc
         self.lhs = lhs
         self.rhs = rhs
         self.rate = rate
@@ -461,5 +465,5 @@ class RDF(Statement):
         :param value: annotation text
         :type value: str
         """
-        assert isinstance(value, str), value
+        assert isstring(value), value
         self.value = value
