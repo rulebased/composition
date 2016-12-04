@@ -1,23 +1,20 @@
-#^ @prefix : <#> .
 #^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 #^ @prefix rbmo: <http://purl.org/rbm/rbmo#> .
 #^ @prefix rbmc: <http://purl.org/rbm/comp#> .
-#^ @prefix rbmt: <http://purl.org/rbm/templates/> .
+#^ @prefix rbmt: <http://purl.org/rbm/templates/>.
 #^ @prefix go: <http://identifiers.org/go/> .
 #^ @prefix dct: <http://purl.org/dc/terms/> .
 #^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/> .
-#^ @prefix obo: <http://purl.obolibrary.org/obo/> .
 
-#^ :t a rbmc:Template  ;
+#^ rbmt:translation_termination.kappa a rbmc:Template  ;
 #^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ;
-#^   rbmc:tokens [ rdfs:label "IDENT" ] .
+#^   rbmc:tokens [ rdfs:label "PART" ],
+#^               [ rdfs:label "RNAPFallOffRateRNA"; rbmc:default 0.00001 ].
 
-#RULE 11: Ribosome rna fell off
-%var: 'IDENT-ribosome_rna_fall_off_rate' 0.0001
-#^ :IDENT-ribosome-rna-off a rbmo:Rule ;
-#^   obo:part_of go:GO:0006415 ;
-#^   dct:title "Ribosome RNA fall off" ;
-#^   dct:description "A ribosome fall off from an RNA.".
-'IDENT-ribosome-rna-fall-off' Ribosome(rna!1), RNA (binding!1, part~IDENT) -> Ribosome(rna), RNA (binding, part~IDENT) @'IDENT-ribosome_rna_fall_off_rate'
-
+#^ :PART-translation-termination a rbmo:Rule;
+#^   bqbiol:isVersionOf go:GO:0006415;
+#^   dct:isPartOf :m;
+#^   dct:title "PART translational termination";
+#^   dct:description "RNA templated tanslation termination for PART. RNAP fall off from RNA.".
+'PART-translation-termination' RNAP(rna!1), RNA(ds!1,part~PART) -> RNAP(rna), RNA(ds,part~PART)@RNAPFallOffRateRNA
 

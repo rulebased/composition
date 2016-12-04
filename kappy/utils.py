@@ -45,3 +45,14 @@ def Graph(*av, **kw):
     else:
         g.namespace_manager = kappy.namespace_manager
     return g
+
+def get_one(g, t):
+    triples = list(g.triples(t))
+    if len(triples) == 0:
+        logging.error("get_one returned no triples")
+        return
+    if len(triples) > 1:
+        logging.error("get_one returned more than one triple")
+        return
+    return triples[0]
+

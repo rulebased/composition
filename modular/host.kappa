@@ -1,4 +1,3 @@
-#^ @prefix : <https://github.com/rulebased/composition/tree/master/templates/host.kappa#>.
 #^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 #^ @prefix rbmo: <http://purl.org/rbm/rbmo#>.
 #^ @prefix sbol: <http://sbols.org/v2#>.

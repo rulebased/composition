@@ -1,4 +1,3 @@
-#^ @prefix : <#> .
 #^ @prefix rbmo: <http://purl.org/rbm/rbmo#> .
 #^ @prefix rbmc: <http://purl.org/rbm/comp#> .
 #^ @prefix rbmt: <http://purl.org/rbm/templates/> .

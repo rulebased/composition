@@ -1,21 +1,20 @@
-#^ @prefix : <#> .
-#^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-#^ @prefix rbmo: <http://purl.org/rbm/rbmo#> .
-#^ @prefix rbmc: <http://purl.org/rbm/comp#> .
-#^ @prefix rbmt: <http://purl.org/rbm/templates/> .
+#^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+#^ @prefix rbmo: <http://purl.org/rbm/rbmo#>.
+#^ @prefix rbmc: <http://purl.org/rbm/comp#>.
+#^ @prefix rbmt: <http://purl.org/rbm/templates/>.
 #^ @prefix go: <http://identifiers.org/go/>.
 #^ @prefix dct: <http://purl.org/dc/terms/>.
 #^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/> .
 
-#^ :t a rbmc:Template ;
-#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" ;
-#^   rbmc:tokens [ rdfs:label "IDENT" ] .
+#^ rbmt:translation_elongation.kappa a rbmc:Template ;
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites";
+#^   rbmc:tokens [ rdfs:label "PART" ],
+#^               [ rdfs:label "TranslationSlidingRate"; rbmc:default 0.05 ].
 
-#RULE 8: Translation sliding
-%var: 'IDENT-translation_sliding_rate' 1
-#^ :IDENT-transcription-elongation a rbmo:Rule ;
-#^   bqbiol:isVersionOf go:GO:0006414 ;
-#^   dct:title "Translational elongation" ;
+#^ :PART-transcription-elongation a rbmo:Rule ;
+#^   bqbiol:isVersionOf go:GO:0006414 
+#^   dct:isPartOf :m;
+#^   dct:title "PART Translational elongation" ;
 #^   dct:description "Translational elongation to translate the downstream RNA component." .
-'IDENT-translation-elongation' RNA(binding!1, ds!2), Ribosome(rna!1), RNA (binding,us!2, part~IDENT) ->RNA(binding, ds!2), Ribosome(rna!1), RNA (binding!1,us!2, part~IDENT) @'IDENT-translation_sliding_rate'
+'PART-translation-elongation' RNA(binding!1,ds!2), Ribosome(rna!1), RNA (binding,us!2,part~PART) -> RNA(binding,ds!2), Ribosome(rna!1), RNA(binding!1,us!2,part~PART) @TranslationSlidingRate
 

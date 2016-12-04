@@ -1,31 +1,21 @@
-#^ @prefix : <#> .
-#^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-#^ @prefix rbmo: <http://purl.org/rbm/rbmo#> .
-#^ @prefix rbmc: <http://purl.org/rbm/comp#> .
-#^ @prefix go: <http://identifiers.org/go/> .
-#^ @prefix dct: <http://purl.org/dc/terms/> .
-#^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/> .
+#^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+#^ @prefix rbmo: <http://purl.org/rbm/rbmo#>.
+#^ @prefix rbmc: <http://purl.org/rbm/comp#>.
+#^ @prefix rbmt: <http://purl.org/rbm/templates/>.
+#^ @prefix go: <http://identifiers.org/go/>.
+#^ @prefix dct: <http://purl.org/dc/terms/>.
+#^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/>.
 
-#^ :t a rbmc:Template ;
-#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites" .
+#^ rbmt:transcription_elongation.kappa a rbmc:Template;
+#^   dct:creator "Matteo Cavaliere", "Goksel Misirli", "William Waites";
+#^   rbmc:tokens [ rdfs:label "PART" ],
+#^               [ rdfs:label "TranscriptionSlidingRate"; rbmc:default 1 ].
 
-#^ :DNA a rbmo:Agent ; 
-#^   rbmo:hasSite :DNA:part .
-#^ :DNA:part a rbmo:Site ;
-#^   rbmo:hasState :DNA:part:IDENT .
-#^ :DNA:type:IDENT a rbmo:State ;
-#^   dct:title “DNA region” ;
-#^   bqbio:isVersionOf biopax:DnaRegion .
-%agent: DNA(binding,us,ds,part~IDENT)
 
-#RULE 3: Transcription sliding
-#^ :sliding_rate a rbmo:Variable ;
-#^   bqbiol:isVersionOf rbmc:TranscriptionSlidingRate ;
-%var: ‘sliding_rate' 1
-
-#^ :transcription-elongation a rbmo:Rule ;
-#^   bqbiol:isVersionOf go:GO:0006354 ;
-#^   dct:title "Transcriptional elongation" ;
+#^ :PART-transcription-elongation a rbmo:Rule;
+#^   bqbiol:isVersionOf go:GO:0006354;
+#^   dct:isPartOf :m;
+#^   dct:title "PART Transcriptional elongation";
 #^   dct:description "Transcriptional elongation to transcribe the downstream DNA component." .
-‘transcription-elongation' DNA(binding,us!2,part~IDENT), RNAP(dna!1,rna!3),DNA(ds!2, binding!1), RNA(ds!3) -> DNA(binding!1,us!2,part~IDENT), RNAP(dna!1,rna!3),DNA(ds!2, binding), RNA(ds!4), RNA(binding, us!4, ds!3, part~IDENT)@'sliding_rate'
+'PART-transcription-elongation' DNA(binding,us!2,part~PART), RNAP(dna!1,rna!3),DNA(ds!2, binding!1), RNA(ds!3) -> DNA(binding!1,us!2,part~PART), RNAP(dna!1,rna!3),DNA(ds!2, binding), RNA(ds!4), RNA(binding, us!4, ds!3, part~PART)@TranscriptionSlidingRate
 
