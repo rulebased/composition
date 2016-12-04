@@ -41,30 +41,16 @@ class KappaRdf(object):
         ## first try to parse as plain turtle
         g = Graph()
         try:
-            g.parse(
-                data=self.data,
-                format="text/turtle",
-                publicID=self.location
-            )
+            g.parse(data=self.data, format="text/turtle", publicID=self.location)
             if len(g) > 0:
                 self.__embedded = False
                 return g
         except:
             pass
 
-        ## ok, that didn't work or we got no triples so look for
-        ## embedded kappa
-        rdf_lines = []
-        for line in self.data.split("\n"):
-            if line.startswith("#^ "):
-                rdf_lines.append(line[3:])
-        g = self.NewGraph()
-        g.parse(
-            data="\n".join(rdf_lines),
-            format="text/turtle",
-            publicID=self.location
-        )
-
+        ## ok, that didn't work or we got no triples so look for embedded kappa
+        g = Graph()
+        g.parse(data=self.data, format="application/x-kappa", publicID=self.location)
         return g
 
     @property
@@ -82,6 +68,8 @@ class KappaRdf(object):
         data += "\n\n"
         return data
 
+    @property
+    @memoize("__includes__")
     def includes(self):
         q = """
         PREFIX rbmc: <http://purl.org/rbm/comp#>
@@ -90,14 +78,14 @@ class KappaRdf(object):
             ?model rbmc:include ?template
         }
         """
-        return [t[0] for t in self.graph.query(q)]
+        return list(t[0] for t in self.graph.query(q))
 
     @property
     @memoize("__children__")
     def children(self):
         logging.debug("finding children of %s" % self.identifier)
         children = []
-        for template in self.includes():
+        for template in self.includes:
             if self.templates is not None:
                 template = os.path.join(self.templates, os.path.basename(template))
             child = KappaRdf(template, self.templates, ns=self.namespace_manager, location=self.location)
