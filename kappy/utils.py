@@ -32,10 +32,11 @@ def Graph(*av, **kw):
     We use our own function for creating a graph because
     we want, for aesthetic reasons, to make sure we keep
     all the namespaces that we wish to see.
-    
+
     >>> g1 = Graph()
     >>> g2 = Graph()
     >>> id(g1.namespace_manager) == id(g2.namespace_manager)
+    True
     """
     g = rdflib.Graph(*av, **kw)
     import kappy
