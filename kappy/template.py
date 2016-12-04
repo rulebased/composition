@@ -5,7 +5,6 @@ class TemplateError(Exception):
     "Raised when there is a problem with a template"
 
 class Template(KappaRdf):
-    @memoize("__data__")
     def data(self):
         prefix = None
         for pfx, ns in self.namespace_manager.namespaces():

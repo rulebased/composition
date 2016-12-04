@@ -1,9 +1,11 @@
 from kappy.namespace import PROV
 from kappy.utils     import Graph
+from kappy.kasim     import declare_agents
 
 def merge(fragment):
     graph = merge_graph(fragment)
     kappa = merge_kappa(fragment)
+#    declare_agents(kappa)
     lines = []
     for line in graph.serialize(format="text/turtle").split("\n"):
         lines.append("#^ %s" % line)

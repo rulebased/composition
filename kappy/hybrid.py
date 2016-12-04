@@ -16,13 +16,11 @@ class KappaRdf(object):
         else:
             self.location = location
 
-    @memoize('__data__')
     def data(self):
-        logging.info("reading and parsing %s..." % self.filename)
+        #logging.info("reading and parsing %s..." % self.filename)
         with open(self.filename) as fp:
             return fp.read()
 
-    @memoize('__graph__')
     def graph(self):
         ## first try to parse as plain turtle
         g = Graph()
@@ -39,7 +37,6 @@ class KappaRdf(object):
         g.parse(data=self.data(), format="application/x-kappa", publicID=self.location)
         return g
 
-    @memoize('__kappa__')
     def kappa(self):
         if self.__embedded is False:
             return ""
@@ -70,7 +67,6 @@ class KappaRdf(object):
         logging.info("Model identifier is %s" % ident)
         return ident
 
-    @memoize("__includes__")
     def includes(self):
         q = """
         PREFIX rbmc: <http://purl.org/rbm/comp#>
@@ -81,9 +77,7 @@ class KappaRdf(object):
         """ % self.identifier.n3()
         return list(t[0] for t in self.graph().query(q))
 
-    @memoize("__children__")
     def children(self):
-        logging.debug("finding children of %s" % self.identifier)
         children = []
         for template in self.includes():
             if self.templates is not None:
@@ -101,27 +95,15 @@ class KappaRdf(object):
             for cc in c.children():
                 yield c
 
-    @memoize("__parts__")
     def parts(self):
         from kappy.part import Part # XXX Bad style
         logging.info("looking for the parts of %s" % self.identifier)
         plist = []
+        g = self.graph()
         q = (self.identifier, RBMC["parts"], None)
-        for _, _, o in self.graph().triples(q):
-            l = Collection(self.graph(), o)
+        for _, _, o in g.triples(q):
+            l = Collection(g, o)
             for p in l:
                 logging.info("found part %s" % p)
-                plist.append(Part(p, self.templates, self.graph(), p))
+                plist.append(Part(p, self.templates, g, p))
         return plist
-
-    @memoize("__tokens__")
-    def tokens(self):
-        q = """
-        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-        PREFIX rbmc: <http://purl.org/rbm/comp#>
-
-        SELECT DISTINCT ?label WHERE {
-            [ rbmc:tokens [ rdfs:label ?label ] ]
-        } ORDER BY ?label
-        """
-        return [row[0] for row in self.graph().query(q)]

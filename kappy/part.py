@@ -2,8 +2,8 @@ import os
 import logging
 
 from kappy.hybrid    import KappaRdf
-from kappy.template  import Template
-from kappy.merge     import merge
+from kappy.template  import Template, TemplateError
+from kappy.merge     import merge, merge_graph
 from kappy.utils     import memoize, get_one
 from kappy.namespace import RBMC
 
@@ -17,7 +17,6 @@ class Part(KappaRdf):
     def identifier(self):
         return self.filename
 
-    @memoize("__template__")
     def template(self):
         _, _, t = get_one(self.__g, (self.__p, RBMC["template"], None))
         logging.info("processing part using template %s" % t)
@@ -25,26 +24,48 @@ class Part(KappaRdf):
             t = os.path.join(self.templates, os.path.basename(t))
         return Template(t, self.templates, ns=self.namespace_manager)
 
-    @memoize("__replacements__")
     def replacements(self):
         rep = {}
         for _, _, r in self.__g.triples((self.__p, RBMC["replace"], None)):
             _, _, tok = get_one(self.__g, (r, RBMC["string"], None))
             _, _, val = get_one(self.__g, (r, RBMC["value"], None))
+            yield (tok, val)
             rep[tok] = val
-        return rep
 
-    @memoize("__data__")
+        defined = list(rep.keys())
+        for label, default in self.tokens():
+            if label not in defined:
+                if default is None:
+                    err = "Required replacement %s not made and no default" % label
+                    raise TemplateError(err)
+                logging.info("using default for %s", label)
+                yield (label, default)
+                rep[label] = default
+
+    def tokens(self):
+        q = """
+        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+        PREFIX rbmc: <http://purl.org/rbm/comp#>
+
+        SELECT DISTINCT ?label ?default WHERE {
+           ?template rbmc:tokens ?tok .
+           ?tok rdfs:label ?label .
+           OPTIONAL { ?tok rbmc:default ?default } .
+        } ORDER BY ?label
+        """
+        merged = merge_graph(self.template())
+        return merged.query(q)
+
     def data(self):
         template = self.template()
-        logging.info("processing part using template %s", template.identifier)
+        logging.info("[%s] processing %s", id(self), self.identifier)
+        logging.info("[%s] using template %s", id(self), template.identifier)
         merged = merge(template)
-        for tok, val in self.replacements().items():
-            logging.info("replacing %s with %s" % (tok, val))
+        for tok, val in self.replacements():
+            logging.info("[%s] replacing '%s' with '%s'", id(self), str(tok), str(val))
             merged = merged.replace(str(tok), str(val))
         return merged
 
-    @memoize("__graph__")
     def graph(self):
         g = KappaRdf.graph(self)
         remove = []

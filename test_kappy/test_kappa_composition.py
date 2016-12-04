@@ -55,7 +55,7 @@ class TestTopLevel(Fragment):
             self,
             KAPPA,
             "http://id.inf.ed.ac.uk/rbm/examples/sr#m",
-            sha256 = "60b171ba682eac6f427c84a1fad7682c5902cefa417608748c3ce7de8fc722d8",
+            sha256 = "3d98aafb6d66038e8ba4168491b191c73a91e265aa4f7bbd17d560dbd9dd3fe8",
             ask = """
             PREFIX : <http://id.inf.ed.ac.uk/rbm/examples/sr#>
             PREFIX rbmo: <http://purl.org/rbm/rbmo#>

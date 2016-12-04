@@ -24,7 +24,8 @@
    dct:description "The SpaRK promoter XXX Better Description";
    rbmc:template rbmt:promoter.kappa ;
    rbmc:replace [ rbmc:string "PART"; rbmc:value "pspark" ],
-                [ rbmc:string "TSS";  rbmc:value "psparktss" ].
+                [ rbmc:string "TSS";  rbmc:value "psparktss" ],
+                [ rbmc:string "TranslationSlidingRate"; rbmc:value 50 ].
 :DNA:part:pspark prov:derivesFrom :pspark.
 :RNA:part:pspark prov:derivesFrom :pspark.
 
