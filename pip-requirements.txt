@@ -2,3 +2,4 @@ rdflib
 pyparsing
 nose
 coverage
+jinja2
