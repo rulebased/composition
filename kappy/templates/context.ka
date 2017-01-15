@@ -1,0 +1,25 @@
+{% macro part(oper, i, first, last) %}
+    DNA({# #}
+{% if oper.site is defined %}type~{{ oper.site }}{% endif %}
+{% if not first %}, us!{{i-1}}{% endif %}
+{% if not last %}, ds!{{i+1}}{% endif %}
+{% if oper.bound is defined %}, {% if oper.bound %}bs!_{% else %}bs{% endif %}{% endif %}
+){# #}
+{% endmacro %}
+
+{% macro sequence(rate) %}
+{% for i in range(len(rate["upstream"])) %}
+{% if i == 0 %}{% set first = True %}{% else %}{% set first = False %}{% endif %}
+{{ part(rate["upstream"][i], i, first, False) }}, \
+{% endfor %}
+{% for i in range(len(rate["downstream"])) %}
+{% if i == len(rate["upstream"]) - 1 %}{% set last = True %}{% else %}{% set last = False %}{% endif %}
+{% set j = len(rate["upstream"]) + i %}
+{{ part(rate["upstream"][j], j, False, last) }}, \
+{% endfor %}
+{% endmacro %}
+
+{% macro link(rate) %}
+{% if rate.upstream_size > 0 %}, us!{{ rate.upstream_size - 1 }}{% endif %}
+{% if rate.downstream_size > 0 %}, ds!{{ rate.upstream_size + 2 }}{% endif %}
+{% endmacro %}

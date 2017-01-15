@@ -1,5 +1,6 @@
 rdflib
-pyparsing
+pyparsing==2.1.0
 nose
 coverage
 jinja2
+git+git://github.com/gjhiggins/FuXi

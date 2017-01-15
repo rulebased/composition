@@ -2,35 +2,31 @@ import argparse
 import logging
 import os
 import sys
+from pkg_resources import resource_filename
 
-from kappy.hybrid import KappaRdf
-from kappy.merge  import merge_graph, merge_kappa
-from kappy.kasim  import declare_agents
-from kappy.utils  import Graph
+from kappy.compiler import compile
 
-logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', level=logging.DEBUG)
+FACT_FILES = map(lambda x: resource_filename("kappy", "rdf/%s" % x), [
+    "composition.ttl"
+])
+
+RULE_FILES = map(lambda x: resource_filename("kappy", "rdf/%s" % x), [
+    "rdfs-rules.n3",
+    "composition.n3"
+])
 
 def main():
     parser = argparse.ArgumentParser(description='Test extract RDF from a Kappa/RDF file')
-    parser.add_argument('filename', type=str,
-                        help='Starting File')
-    parser.add_argument('--templates', type=str, default=None,
-                        help='Template prefix')
-    parser.add_argument('--tokens', default=False,
-                        action="store_true", help='Output expected tokens')
+    parser.add_argument('filename', type=str, help='Starting File')
+    parser.add_argument('debug', action="store_true", default=False, help='Turn on debugging')
     args = parser.parse_args()
-    kr = KappaRdf(args.filename, args.templates)
-    if args.tokens:
-        print " ".join(kr.tokens)
-    else:
-        rdf   = merge_graph(kr)
-        kappa = merge_kappa(kr)
-        agents = declare_agents(kappa)
 
-        rdf.serialize(sys.stdout, format="application/x-kappa")
-        sys.stdout.write(agents)
-        sys.stdout.write(kappa)
+    if args.debug: loglevel=logging.DEBUG
+    else: loglevel=logging.INFO
+    logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', level=loglevel)
 
+    data = compile(args.filename, facts=FACT_FILES, rules=RULE_FILES)
+    print data
 
 if __name__ == '__main__':
     main()

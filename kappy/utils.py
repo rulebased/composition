@@ -1,4 +1,6 @@
 import rdflib
+import logging
+from jinja2 import Environment, PackageLoader
 
 def memoize(prop):
     """
@@ -56,5 +58,25 @@ def get_one(g, t):
         return
     return triples[0]
 
+def exists(g, t):
+    return len(list(g.triples(t))) == 1
+
 def isstring(s):
     return isinstance(s, str) or isinstance(s, unicode)
+
+def slug(s):
+    sp = s.rsplit("#", 1)
+    if len(sp) == 2: return sp[1]
+    sp = s.rsplit("/", 1)
+    if len(sp) == 2: return sp[1]
+    return s
+
+def get_template(name, local_templates=True, **kw):
+    if local_templates:
+        env = Environment(
+            loader=PackageLoader("kappy", "templates"),
+            autoescape=False, trim_blocks=True
+        )
+        _, filename = name.rsplit("/", 1)
+        return env.get_template(filename)
+    raise Exception("don't know how to deal with remote templates yet")

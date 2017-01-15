@@ -9,5 +9,15 @@ setup(
         "console_scripts": [
             "kcomp = kappy.kcomp:main"
         ]
-    }
+    },
+    data_files = [
+        ("rdf", ["rdf/rdfs-rules.n3",
+                 "rdf/owl-rules.n3",
+                 "rdf/composition.n3",
+                 "rdf/composition.ttl"]
+        ),
+        ("templates", ["templates/operator.ka",
+                       "templates/promoter.ka"]
+        )
+    ]
 )

@@ -2,14 +2,18 @@ from kappy.kasim.model import KappaModel
 from kappy.kasim import parser
 
 def declare_agents(s):
-    ## kludge
+    ## kludge -- remove coments and escaped newlines
     ss = []
     for l in s.split("\n"):
         l = l.strip()
         if l.startswith("#") or l == "":
             continue
+        if l.endswith("\\"):
+            l = l[:-1]
+        else:
+            l = l + "\n"
         ss.append(l)
-    s = "\n".join(ss)
+    s = "".join(ss)
     ast = parser.parseString(s)
     kasim = KappaModel(ast)
 
@@ -27,16 +31,4 @@ def declare_agents(s):
         agent = agent + ",".join(sites) + ")"
         agents.append(agent)
 
-    declarations = """
-##
-## automatically derived agents
-##
-
-""" + "\n".join(agents) + """
-
-##
-## end automatically derived agents
-##
-
-"""
-    return declarations
+    return agents

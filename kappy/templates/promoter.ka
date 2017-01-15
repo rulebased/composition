@@ -1,0 +1,75 @@
+################################################################################
+## Auto-generated Promoter {{ name }}
+{% include "header.ka" %}
+{% import "context.ka" as context with context %}
+{% import "meta.ka" as meta with context %}
+
+{% if rnapBindingRate is defined %}
+{% if type(rnapBindingRate) == type([]) %}
+{% for rateno in range(len(rnapBindingRate)) %}
+{% set rate = rnapBindingRate[rateno] %}
+{% set rule = "%s-RNAp-binding-%s" % (name, rateno) %}
+
+#^ :{{ rule }} a rbmo:Rule;
+{{ meta.rule() }}{# #}
+#^     rdfs:label "{{ name }} RNAp binding".
+# {{ name }} RNAp binding
+'{{rule}}' \
+{{ context.sequence(rate) }}{# #}
+    DNA(type~{{ name }}{{ context.link(rate) }}, bs), \
+    RNAp(dna) -> \
+{{ context.sequence(rate) }}{# #}
+    DNA(type~{{ name }}{{ context.link(rate) }}, bs!{{ rate.context_size }}),
+    RNAp(dna!{{ rate.context_size }}) \
+    @{{ rate.value }}
+{% endfor %}
+{% else %}{# list-valued rate #}
+{% set rule = name + "-activation" %}
+
+#^ :{{ rule }} a rbmo:Rule;
+{{ meta.rule() }}{# #}
+#^     rdfs:label "{{ name }} RNAp binding".
+# {{ name }} RNAp binding
+'{{rule}}' \
+    DNA(type~{{ name }}, bs),
+    RNAp(dna) -> \
+    DNA(type~{{ name }}, bs!1), \
+    RNAp(dna!1) \
+    @{{ rnapBindingRate }}
+{% endif %}
+{% endif %}{# rnapBindingRate defined #}
+
+{% if rnapUnbindingRate is defined %}
+{% if type(rnapUnbindingRate) == type([]) %}
+{% for rateno in range(len(rnapUnbindingRate)) %}
+{% set rate = rnapUnbindingRate[rateno] %}
+{% set rule = "%s-RNAp-unbinding-%s" % (name, rateno) %}
+
+#^ :{{ rule }} a rbmo:Rule;
+{{ meta.rule() }}{# #}
+#^     rdfs:label "{{ name }} RNAp unbinding".
+# {{ name }} RNAp unbinding
+'{{rule}}' \
+{{ context.sequence(rate) }}{# #}
+    DNA(type~{{ name }}{{ context.link(rate) }}, bs!{{ rate.context_size }}), \
+    RNAp(dna!{{ rate.context_size }}) -> \
+{{ context.sequence(rate) }}{# #}
+    DNA(type~{{ name }}{{ context.link(rate) }}, bs),
+    RNAp(dna) \
+    @{{ rate.value }}
+{% endfor %}
+{% else %}{# list-valued rate #}
+{% set rule = name + "-RNAp unbinding" %}
+
+#^ :{{ rule }} a rbmo:Rule;
+{{ meta.rule() }}{# #}
+#^     rdfs:label "{{ name }} RNAp unbinding".
+# {{ name }} RNAp unbinding
+'{{rule}}' \
+    DNA(type~{{ name }}, bs!1), \
+    RNAp(dna!1) -> \
+    DNA(type~{{ name }}, bs),
+    RNAp(dna) \
+    @{{ rnapUnbindingRate }}
+{% endif %}
+{% endif %}{# rnapUnbindingRate defined #}

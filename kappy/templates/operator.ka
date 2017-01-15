@@ -1,0 +1,73 @@
+################################################################################
+## Auto-generated Operator {{ name }}
+{% include "header.ka" %}
+{% import "context.ka" as context with context %}
+{% import "meta.ka" as meta with context %}
+
+{% if type(transcriptionFactorBindingRate) == type([]) %}
+{% for rateno in range(len(transcriptionFactorBindingRate)) %}
+{% set rate = transcriptionFactorBindingRate[rateno] %}
+{% set rule = "%s-activation-%s" % (name, rateno) %}
+
+#^ :{{ rule }} a rbmo:Rule;
+{{ meta.rule() }}{# #}
+#^     rdfs:label "{{ name }} operator activation".
+# {{ name }} operator activation
+'{{rule}}' \
+{{ context.sequence(rate) }}{# #}
+    DNA(type~{{ name }}{{ context.link(rate) }}, bs), \
+    {{ transcriptionFactor }}(dna) -> \
+{{ context.sequence(rate) }}{# #}
+    DNA(type~{{ name }}{{ context.link(rate) }}, bs!{{ rate.context_size }}), \
+    {{ transcriptionFactor }}(dna!{{ rate.context_size }}) \
+    @{{ rate.value }}
+{% endfor %}
+{% else %}{# list-valued rate #}
+{% set rule = name + "-activation" %}
+
+#^ :{{ rule }} a rbmo:Rule;
+{{ meta.rule() }}{# #}
+#^     rdfs:label "{{ name }} operator activation".
+# {{ name }} operator activation
+'{{rule}}' \
+    DNA(type~{{ name }}, bs), \
+    {{ transcriptionFactor }}(dna) -> \
+    DNA(type~{{ name }}, bs!1), \
+    {{ transcriptionFactor }}(dna!1) \
+    @{{ transcriptionFactorBindingRate }}
+{% endif %}
+
+{% if transcriptionFactorUnbindingRate is defined %}
+{% if type(transcriptionFactorUnbindingRate) == type([]) %}
+{% for rateno in range(len(transcriptionFactorUnbindingRate)) %}
+{% set rate = transcriptionFactorUnbindingRate[rateno] %}
+{% set rule = "%s-deactivation-%s" % (name, rateno) %}
+
+#^ :{{ rule }} a rbmo:Rule;
+{{ meta.rule() }}{# #}
+#^     rdfs:label "{{ name }} operator deactivation".
+# {{ name }} operator deactivation
+'{{rule}}' \
+{{ context.sequence(rate) }}{# #}
+    DNA(type~{{ name }}{{ context.link(rate) }}, bs!{{ rate.context_size }}), \
+    {{ transcriptionFactor }}(dna!{{ rate.context_size }}) -> \
+{{ context.sequence(rate) }}{# #}
+    DNA(type~{{ name }}{{ context.link(rate) }}, bs), \
+    {{ transcriptionFactor }}(dna) \
+    @{{ rate.value }}
+{% endfor %}
+{% else %}{# list-valued rate #}
+{% set rule = name + "-deactivation" %}
+
+#^ :{{ rule }} a rbmo:Rule;
+{{ meta.rule() }}{# #}
+#^     rdfs:label "{{ name }} operator deactivation".
+# {{ name }} operator deactivation
+'{{rule}}' \
+    DNA(type~{{ name }}, bs!1), \
+    {{ transcriptionFactor }}(dna!1) -> \
+    DNA(type~{{ name }}, bs), \
+    {{ transcriptionFactor }}(dna) \
+    @{{ transcriptionFactorUnbindingRate }}
+{% endif %}
+{% endif %}{# transcriptionFactorUnbindingRate defined #}

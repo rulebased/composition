@@ -1,0 +1,37 @@
+# -*- n3 -*-
+@prefix dct:  <http://purl.org/dc/terms/>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix prov: <http://www.w3.org/ns/prov#>.
+@prefix rbmo: <http://purl.org/rbm/rbmo#>.
+@prefix rbmc: <http://purl.org/rbm/comp#>.
+@prefix rbmt: <http://purl.org/rbm/templates/>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+
+rbmc:part a rbmc:Token; skos:prefLabel "name".
+rbmc:Part a owl:Class;
+    rbmc:tokens rbmc:part.
+
+
+rbmc:transcriptionFactor a rbmc:Token;
+    skos:prefLabel "transcriptionFactor".
+rbmc:transcriptionFactorBindingRate a rbmc:Token;
+    skos:prefLabel "transcriptionFactorBindingRate".
+rbmc:transcriptionFactorUnbindingRate a rbmc:Token;
+    skos:prefLabel "transcriptionFactorUnbindingRate".
+
+rbmc:Operator rdfs:subClassOf rbmc:Part;
+    rbmc:kappaTemplate rbmt:operator.ka;
+    rbmc:bnglTemplate rbmt:operator.bngl;
+    rbmc:tokens
+        rbmc:transcriptionFactor,
+        rbmc:transcriptionFactorBindingRate,
+        rbmc:transcriptionFactorUnbindingRate.
+
+rbmc:tss a rbmc:Token; skos:prefLabel "tss".
+rbmc:rnapBindingRate a rbmc:Token; skos:prefLabel "rnapBindingRate".
+rbmc:Promoter rdfs:subClassOf rbmc:Part;
+    rbmc:kappaTemplate rbmt:promoter.ka;
+    rbmc:bnglTemplate rbmt:promoter.bngl;
+    rbmc:tokens rbmc:tss, rbmc:rnapBindingRate.
