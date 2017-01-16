@@ -15,11 +15,14 @@ rbmc:Part a owl:Class;
 
 
 rbmc:transcriptionFactor a rbmc:Token;
-    skos:prefLabel "transcriptionFactor".
+    skos:prefLabel "transcriptionFactor";
+    rbmc:default 1.
 rbmc:transcriptionFactorBindingRate a rbmc:Token;
-    skos:prefLabel "transcriptionFactorBindingRate".
+    skos:prefLabel "transcriptionFactorBindingRate";
+    rbmc:default 1.
 rbmc:transcriptionFactorUnbindingRate a rbmc:Token;
-    skos:prefLabel "transcriptionFactorUnbindingRate".
+    skos:prefLabel "transcriptionFactorUnbindingRate";
+    rbmc:default 1.
 
 rbmc:Operator rdfs:subClassOf rbmc:Part;
     rbmc:kappaTemplate rbmt:operator.ka;
@@ -30,8 +33,13 @@ rbmc:Operator rdfs:subClassOf rbmc:Part;
         rbmc:transcriptionFactorUnbindingRate.
 
 rbmc:tss a rbmc:Token; skos:prefLabel "tss".
-rbmc:rnapBindingRate a rbmc:Token; skos:prefLabel "rnapBindingRate".
+rbmc:rnapBindingRate a rbmc:Token;
+    skos:prefLabel "rnapBindingRate";
+    rbmc:default 1.
+rbmc:rnapUnbindingRate a rbmc:Token;
+    skos:prefLabel "rnapUnbindingRate";
+    rbmc:default 1.
 rbmc:Promoter rdfs:subClassOf rbmc:Part;
     rbmc:kappaTemplate rbmt:promoter.ka;
     rbmc:bnglTemplate rbmt:promoter.bngl;
-    rbmc:tokens rbmc:tss, rbmc:rnapBindingRate.
+    rbmc:tokens rbmc:tss, rbmc:rnapBindingRate, rbmc:rnapUnbindingRate.

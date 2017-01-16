@@ -1,5 +1,5 @@
 from rdflib.collection import Collection
-from rdflib.term import Literal
+from rdflib.term import Literal, URIRef
 import logging
 
 from kappy.namespace import RBMC, RBMO, RDF, SKOS
@@ -21,13 +21,25 @@ def describe_operators(g, oplist):
         operators.append(state)
     return operators
 
+def add_defaults(g, part):
+    for _, _, kind in g.triples((URIRef(part["uri"]), RDF["type"], None)):
+        for _, _, token in g.triples((kind, RBMC["tokens"], None)):
+            _, _, label = get_one(g, (token, SKOS["prefLabel"], None))
+            if label.toPython() in part:
+                continue
+            if exists(g, (token, RBMC["default"], None)):
+                _, _, default = get_one(g, (token, RBMC["default"], None))
+                part[label.toPython()] = default.toPython()
+    return part
+
 def describe_part(g, parturi):
     """
     Emit a Python dictionary with a description of a single part,
     used by the second-stage compiler.
     """
     def literal(v):
-        v = v.toPython()
+        return v.toPython()
+
         if isinstance(v, str) or isinstance(v, unicode):
             return v
         return "%.16f" % v
@@ -65,7 +77,7 @@ def describe_part(g, parturi):
 
         part.setdefault(token.toPython(), []).append(data)
 
-    return part
+    return add_defaults(g, part)
 
 def compile_stage2(ir, debug=False, **kw):
     """

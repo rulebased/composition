@@ -59,7 +59,7 @@
     @{{ rate.value }}
 {% endfor %}
 {% else %}{# list-valued rate #}
-{% set rule = name + "-RNAp unbinding" %}
+{% set rule = name + "-RNAp-unbinding" %}
 
 #^ :{{ rule }} a rbmo:Rule;
 {{ meta.rule() }}{# #}
