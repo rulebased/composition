@@ -20,6 +20,6 @@
 {% endmacro %}
 
 {% macro link(rate) %}
-{% if rate.upstream_size > 0 %}, us!{{ rate.upstream_size - 1 }}{% endif %}
-{% if rate.downstream_size > 0 %}, ds!{{ rate.upstream_size + 2 }}{% endif %}
+{% if rate.upstream_size > 0 %}, us!{{ rate.upstream_size }}{% endif %}
+{% if rate.downstream_size > 0 %}, ds!{{ rate.upstream_size + 1 }}{% endif %}
 {% endmacro %}

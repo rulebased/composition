@@ -16,7 +16,8 @@
 '{{rule}}' \
 {{ context.sequence(rate) }}{# #}
     DNA(type~{{ name }}{{ context.link(rate) }}, bs), \
-    {{ transcriptionFactor }}(dna) -> \
+    {{ transcriptionFactor }}(dna) \
+-> \
 {{ context.sequence(rate) }}{# #}
     DNA(type~{{ name }}{{ context.link(rate) }}, bs!{{ rate.context_size }}), \
     {{ transcriptionFactor }}(dna!{{ rate.context_size }}) \
@@ -31,7 +32,8 @@
 # {{ name }} operator activation
 '{{rule}}' \
     DNA(type~{{ name }}, bs), \
-    {{ transcriptionFactor }}(dna) -> \
+    {{ transcriptionFactor }}(dna) \
+-> \
     DNA(type~{{ name }}, bs!1), \
     {{ transcriptionFactor }}(dna!1) \
     @{{ transcriptionFactorBindingRate }}
@@ -50,7 +52,8 @@
 '{{rule}}' \
 {{ context.sequence(rate) }}{# #}
     DNA(type~{{ name }}{{ context.link(rate) }}, bs!{{ rate.context_size }}), \
-    {{ transcriptionFactor }}(dna!{{ rate.context_size }}) -> \
+    {{ transcriptionFactor }}(dna!{{ rate.context_size }}) \
+-> \
 {{ context.sequence(rate) }}{# #}
     DNA(type~{{ name }}{{ context.link(rate) }}, bs), \
     {{ transcriptionFactor }}(dna) \
@@ -65,7 +68,8 @@
 # {{ name }} operator deactivation
 '{{rule}}' \
     DNA(type~{{ name }}, bs!1), \
-    {{ transcriptionFactor }}(dna!1) -> \
+    {{ transcriptionFactor }}(dna!1) \
+-> \
     DNA(type~{{ name }}, bs), \
     {{ transcriptionFactor }}(dna) \
     @{{ transcriptionFactorUnbindingRate }}

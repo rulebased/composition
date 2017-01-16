@@ -11,15 +11,17 @@
 {% set rule = "%s-RNAp-binding-%s" % (name, rateno) %}
 
 #^ :{{ rule }} a rbmo:Rule;
+#^   bqbiol:isVersionOf go:GO:0070063;
 {{ meta.rule() }}{# #}
 #^     rdfs:label "{{ name }} RNAp binding".
 # {{ name }} RNAp binding
 '{{rule}}' \
 {{ context.sequence(rate) }}{# #}
     DNA(type~{{ name }}{{ context.link(rate) }}, bs), \
-    RNAp(dna) -> \
+    RNAp(dna) \
+-> \
 {{ context.sequence(rate) }}{# #}
-    DNA(type~{{ name }}{{ context.link(rate) }}, bs!{{ rate.context_size }}),
+    DNA(type~{{ name }}{{ context.link(rate) }}, bs!{{ rate.context_size }}), \
     RNAp(dna!{{ rate.context_size }}) \
     @{{ rate.value }}
 {% endfor %}
@@ -27,12 +29,14 @@
 {% set rule = name + "-activation" %}
 
 #^ :{{ rule }} a rbmo:Rule;
+#^   bqbiol:isVersionOf go:GO:0070063;
 {{ meta.rule() }}{# #}
 #^     rdfs:label "{{ name }} RNAp binding".
 # {{ name }} RNAp binding
 '{{rule}}' \
-    DNA(type~{{ name }}, bs),
-    RNAp(dna) -> \
+    DNA(type~{{ name }}, bs), \
+    RNAp(dna) \
+-> \
     DNA(type~{{ name }}, bs!1), \
     RNAp(dna!1) \
     @{{ rnapBindingRate }}
@@ -52,9 +56,10 @@
 '{{rule}}' \
 {{ context.sequence(rate) }}{# #}
     DNA(type~{{ name }}{{ context.link(rate) }}, bs!{{ rate.context_size }}), \
-    RNAp(dna!{{ rate.context_size }}) -> \
+    RNAp(dna!{{ rate.context_size }}) \
+-> \
 {{ context.sequence(rate) }}{# #}
-    DNA(type~{{ name }}{{ context.link(rate) }}, bs),
+    DNA(type~{{ name }}{{ context.link(rate) }}, bs), \
     RNAp(dna) \
     @{{ rate.value }}
 {% endfor %}
@@ -67,9 +72,30 @@
 # {{ name }} RNAp unbinding
 '{{rule}}' \
     DNA(type~{{ name }}, bs!1), \
-    RNAp(dna!1) -> \
-    DNA(type~{{ name }}, bs),
+    RNAp(dna!1) \
+-> \
+    DNA(type~{{ name }}, bs), \
     RNAp(dna) \
     @{{ rnapUnbindingRate }}
 {% endif %}
 {% endif %}{# rnapUnbindingRate defined #}
+
+{% if transcriptionInitiationRate is defined %}
+{% set rule = name + "-transcription-initiation" %}
+
+#^ :{{ rule }} a rbmo:Rule;
+#^     bqbiol:isVersionOf go:GO:0070063;
+{{ meta.rule() }}{# #}
+#^     rdfs:label "{{ name }} transcription initiation".
+# {{ name }} transcription initiation
+'{{rule}}' \
+    DNA(type~{{ name }}, bs!1, ds!2), \
+    DNA(type~{{ tss }}, bs, us!2), \
+    RNAp(dna!1, rna) \
+-> \
+    DNA(type~{{ name }}, bs, ds!2), \
+    DNA(type~{{ tss }}, bs!1, us!2), \
+    RNAp(dna!1, rna!3), \
+    RNA(type~{{ tss }}, bs, us, ds!3) \
+    @{{ transcriptionInitiationRate }}
+{% endif %}
