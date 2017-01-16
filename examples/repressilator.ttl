@@ -1,0 +1,146 @@
+# -*- n3 -*-
+@prefix : <http://id.inf.ed.ac.uk/rbm/examples/repressilator#>.
+@prefix dct:  <http://purl.org/dc/terms/>.
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix prov: <http://www.w3.org/ns/prov#>.
+@prefix rbmo: <http://purl.org/rbm/rbmo#>.
+@prefix rbmc: <http://purl.org/rbm/comp#>.
+@prefix rbmt: <http://purl.org/rbm/templates/>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+
+## Top-level model description.
+:m a rbmo:Model;
+    ## bibliographic metadata
+    dct:title "The Elowitz repressilator constructed from BioBrick parts";
+    dct:description "Transcription of the treatment of the Elowitz repressilator given in the Kappa BioBricks Framework book chapter";
+    rdfs:seeAlso <http://link.springer.com/protocol/10.1007/978-1-4939-1878-2_6>;
+    rbmc:prefix <http://id.inf.ed.ac.uk/rbm/examples/repressilator#>;
+    ## include the host environment
+    rbmc:include <host.ka>;
+    ## The expression of the model as a genetic circuit
+    rbmc:circular (
+        :R0040o :R0040p :R0040tss :B0034a :C0051 :B0011a
+        :R0051o :R0051p :R0051tss :B0034b :C0012 :B0011b
+        :R0010o :R0010p :R0010tss :B0034c :C0040 :B0011c
+    ).
+
+:P0040 a rbmc:Protein;
+    skos:prefLabel "P0040";
+    rdfs:label "TetR".
+
+:P0051 a rbmc:Protein;
+    skos:prefLabel "P0051";
+    rdfs:label "λ-Cl".
+
+:P0010 a rbmc:Protein;
+    skos:prefLabel "P0010";
+    rdfs:label "LacI".
+
+:C0051 a rbmc:CodingSequence;
+    rdfs:label "Coding sequence for λ-Cl";
+    rbmc:part "C0051";
+    rbmc:protein :P0051.
+
+:C0012 a rbmc:CodingSequence;
+    rbmc:label "Coding sequence for LacI";
+    rbmc:part "C0012";
+    rbmc:protein :P0010.
+
+:C0040 a rbmc:CodingSequence;
+    rbmc:label "Coding sequence for TetR";
+    rbmc:part "C0040";
+    rbmc:protein :P0040.
+
+:B0034a a rbmc:RibosomeBindingSite;
+    rdfs:label "Ribosome binding site";
+    rbmc:part "B0034a".
+
+:B0011a a rbmc:Terminator;
+    rdfs:label "Terminator, stop codon";
+    rbmc:part "B0011a".
+
+:B0034b a rbmc:RibosomeBindingSite;
+    rdfs:label "Ribosome binding site";
+    rbmc:part "B0034b".
+
+:B0011b a rbmc:Terminator;
+    rdfs:label "Terminator, stop codon";
+    rbmc:part "B0011b".
+
+:B0034c a rbmc:RibosomeBindingSite;
+    rdfs:label "Ribosome binding site";
+    rbmc:part "B0034c".
+
+:B0011c a rbmc:Terminator;
+    rdfs:label "Terminator, stop codon";
+    rbmc:part "B0011c".
+
+:R0040o a rbmc:Operator;
+    rdfs:label "TetR activated operator";
+    rbmc:part "R0040o";
+    rbmc:transcriptionFactor :P0040;
+    rbmc:transcriptionFactorBindingRate 0.01;
+    rbmc:transcriptionFactorUnbindingRate 0.01.
+
+:R0040p a rbmc:Promoter;
+    rdfs:label "TetR repressible promoter";
+    rbmc:part "R0040p";
+    rbmc:tss  "R0040tss";
+    rbmc:rnapBindingRate [
+      rbmc:upstream ( [a rbmo:BoundState; rbmo:stateOf :R0040o] );
+      rbmc:value 7e-7
+    ], [
+      rbmc:upstream ( [a rbmo:UnboundState; rbmo:stateOf :R0040o] );
+      rbmc:value 0.0007
+    ].
+
+:R0040tss a rbmc:TranscriptionStartSite;
+    rdfs:label "Transcription start site";
+    rbmc:part "R0040tss".
+
+:R0051o a rbmc:Operator;
+    rdfs:label "λ-Cl activated operator";
+    rbmc:part "R0051o";
+    rbmc:transcriptionFactor :P0051;
+    rbmc:transcriptionFactorUnbindingRate 0.01;
+    rbmc:transcriptionFactorBindingRate 0.01.
+
+:R0051p a rbmc:Promoter;
+    rdfs:label "λ-Cl repressible promoter";
+    rbmc:part "R0051p";
+    rbmc:tss "R0051tss";
+    rbmc:rnapBindingRate [
+        rbmc:upstream ( [a rbmo:BoundState; rbmo:stateOf :R0051o] );
+        rbmc:value 7e-7
+    ], [
+        rbmc:upstream ( [a rbmo:UnboundState; rbmo:stateOf :R0051o] );
+        rbmc:value 0.0007
+    ].
+
+:R0051tss a rbmc:TranscriptionStartSite;
+    rdfs:label "Transcription start site";
+    rbmc:part "R0051tss".
+
+:R0010o a rbmc:Operator;
+    rdfs:label "LacI activated operator";
+    rbmc:part "R0010o";
+    rbmc:transcriptionFactor :P0010;
+    rbmc:transcriptionFactorBindingRate 0.01;
+    rbmc:transcriptionFactorUnbindingRate 0.01.
+
+:R0010p a rbmc:Promoter;
+    rdfs:label "LacI repressible promoter";
+    rbmc:part "R0010p";
+    rbmc:tss "R0010tss";
+    rbmc:rnapBindingRate [
+        rbmc:upstream ( [a rbmo:BoundState; rbmo:stateOf :R0010o] );
+        rbmc:value 7e-7
+    ], [
+        rbmc:upstream ( [a rbmo:UnboundState; rbmo:stateOf :R0010o] );
+        rbmc:value 0.0007
+    ].
+
+:R0010tss a rbmc:TranscriptionStartSite;
+    rdfs:label "Transcription start site";
+    rbmc:part "R0010tss".

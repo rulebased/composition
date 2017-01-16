@@ -1,0 +1,15 @@
+{% set rule = "%s-translation-termination" % name %}
+
+#^ :{{ rule }} a rbmo:Rule;
+#^     bqbiol:isVersionOf go:GO:0006415;
+{{ meta.rule() }}{# #}
+#^     rdfs:label "{{ name }} RNAp unbinding from RNA, translation termination".
+# {{ name }} RNAp unbinding from RNA, translation termination
+'{{ rule }}' \
+    RNAp(rna!1), \
+    RNA(type~{{ name }}, ds!1) \
+-> \
+    RNAp(rna), \
+    RNA(type~{{ name }}, ds) \
+    @{{ rnapRNAUnbindingRate }}
+

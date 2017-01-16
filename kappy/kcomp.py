@@ -26,7 +26,7 @@ def main():
     logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', level=loglevel)
 
     data = compile(args.filename, facts=FACT_FILES, rules=RULE_FILES)
-    print data
+    sys.stdout.write(data.encode("utf-8"))
 
 if __name__ == '__main__':
     main()

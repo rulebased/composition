@@ -15,13 +15,13 @@ rbmc:Part a owl:Class;
 
 rbmc:transcriptionFactor a rbmc:Token;
     skos:prefLabel "transcriptionFactor";
-    rbmc:default 1.
+    rbmc:default 1.0.
 rbmc:transcriptionFactorBindingRate a rbmc:Token;
     skos:prefLabel "transcriptionFactorBindingRate";
-    rbmc:default 1.
+    rbmc:default 1.0.
 rbmc:transcriptionFactorUnbindingRate a rbmc:Token;
     skos:prefLabel "transcriptionFactorUnbindingRate";
-    rbmc:default 1.
+    rbmc:default 1.0.
 
 rbmc:Operator rdfs:subClassOf rbmc:Part;
     rbmc:kappaTemplate rbmt:operator.ka;
@@ -32,20 +32,86 @@ rbmc:Operator rdfs:subClassOf rbmc:Part;
         rbmc:transcriptionFactorUnbindingRate.
 
 rbmc:tss a rbmc:Token; skos:prefLabel "tss".
+
 rbmc:rnapBindingRate a rbmc:Token;
     skos:prefLabel "rnapBindingRate";
-    rbmc:default 1.
-rbmc:rnapUnbindingRate a rbmc:Token;
-    skos:prefLabel "rnapUnbindingRate";
-    rbmc:default 1.
+    rbmc:default 1.0.
+rbmc:rnapDNAUnbindingRate a rbmc:Token;
+    skos:prefLabel "rnapDNAUnbindingRate";
+    rbmc:default 1.0.
+rbmc:rnapRNAUnbindingRate a rbmc:Token;
+    skos:prefLabel "rnapRNAUnbindingRate";
+    rbmc:default 1.0.
+
 rbmc:transcriptionInitiationRate a rbmc:Token;
     skos:prefLabel "transcriptionInitiationRate";
-    rbmc:default 1.
+    rbmc:default 1.0.
+rbmc:transcriptionElongationRate a rbmc:Token;
+    skos:prefLabel "transcriptionElongationRate";
+    rbmc:default 1.0.
+
+rbmc:translationInitiationRate a rbmc:Token;
+    skos:prefLabel "translationInitiationRate";
+    rbmc:default 1.0.
+rbmc:translationElongationRate a rbmc:Token;
+    skos:prefLabel "translationElongationRate";
+    rbmc:default 1.0.
+
 rbmc:Promoter rdfs:subClassOf rbmc:Part;
     rbmc:kappaTemplate rbmt:promoter.ka;
     rbmc:bnglTemplate rbmt:promoter.bngl;
     rbmc:tokens
         rbmc:tss,
         rbmc:rnapBindingRate,
-        rbmc:rnapUnbindingRate,
-        rbmc:transcriptionInitiationRate.
+        rbmc:rnapDNAUnbindingRate,
+        rbmc:rnapRNAUnbindingRate,
+        rbmc:transcriptionInitiationRate,
+        rbmc:transcriptionElongationRate,
+        rbmc:translationElongationRate.
+
+rbmc:TranscriptionStartSite rdfs:subClassOf rbmc:Part;
+    rbmc:kappaTemplate rbmt:generic.ka;
+    rbmc:bnglTemplate rbmt:generic.bngl;
+    rbmc:tokens
+        rbmc:rnapDNAUnbindingRate,
+        rbmc:rnapRNAUnbindingRate,
+        rbmc:transcriptionInitiationRate,
+        rbmc:transcriptionElongationRate,
+        rbmc:translationElongationRate.
+
+rbmc:RibosomeBindingSite rdfs:subClassOf rbmc:Part;
+    rbmc:kappaTemplate rbmt:rbs.ka;
+    rbmc:bnglTemplate rbmt:rbs.bngl;
+    rbmc:tokens
+        rbmc:rnapDNAUnbindingRate,
+        rbmc:rnapRNAUnbindingRate,
+        rbmc:transcriptionInitiationRate,
+        rbmc:transcriptionElongationRate,
+        rbmc:translationInitiationRate,
+        rbmc:translationElongationRate.
+
+rbmc:protein a rbmc:Token;
+    skos:prefLabel "protein".
+
+rbmc:CodingSequence rdfs:subClassOf rbmc:Part;
+    rbmc:kappaTemplate rbmt:cds.ka;
+    rbmc:bnglTemplate rbmt:cds.bngl;
+    rbmc:tokens
+        rbmc:protein,
+        rbmc:rnapDNAUnbindingRate,
+        rbmc:rnapRNAUnbindingRate,
+        rbmc:transcriptionInitiationRate,
+        rbmc:transcriptionElongationRate,
+        rbmc:translationInitiationRate,
+        rbmc:translationElongationRate.
+
+rbmc:Terminator rdfs:subClassOf rbmc:Part;
+    rbmc:kappaTemplate rbmt:generic.ka;
+    rbmc:bnglTemplate rbmt:generic.bngl;
+    rbmc:tokens
+        rbmc:rnapDNAUnbindingRate,
+        rbmc:rnapRNAUnbindingRate,
+        rbmc:transcriptionInitiationRate,
+        rbmc:transcriptionElongationRate,
+        rbmc:translationElongationRate.
+

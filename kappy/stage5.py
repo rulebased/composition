@@ -1,29 +1,18 @@
-from kappy.namespace import RBMT
-from kappy.utils import Graph, get_template
+from kappy.namespace import RDF, RBMC, RBMO
+from kappy.utils import get_one
+from rdflib.parser import create_input_source
+import logging
 
-def compile_stage5(model, docs, **kw):
+def compile_stage5(g, docs, **kw):
     """
     Derive initialisation for genetic circuits present
     in the model
     """
-    circuits = []
-    for circuit in model["circuits"]:
-        parts = circuit["parts"]
-        init = []
-        for i in range(len(parts)):
-            part = "DNA(type~" + parts[i]["name"]
-            if i == 0 and circuit["topology"] == "circular":
-                part += ", us!%d" % (len(parts) - 1)
-            else:
-                part += ", us!%d" % (i - 1)
-            if i == len(parts) - 1 and circuit["topology"] == "circular":
-                part += ", ds!%d" % (len(parts) - 1)
-            else:
-                part += ", ds!%d" % i
-            part += ")"
-            init.append(part)
-        circuits.append(", ".join(init))
-
-    t = get_template(RBMT["init.ka"])
-    docs.insert(0, t.render(circuits = circuits))
+    model, _, _ = get_one(g, (None, RDF["type"], RBMO["Model"]))
+    for _, _, inc in g.triples((model, RBMC["include"], None)):
+        logging.info("stage5: including %s" % inc)
+        fp = create_input_source(inc.toPython()).getByteStream()
+        doc = fp.read()
+        fp.close()
+        docs.insert(0, doc)
     return docs

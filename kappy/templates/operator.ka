@@ -16,11 +16,11 @@
 '{{rule}}' \
 {{ context.sequence(rate) }}{# #}
     DNA(type~{{ name }}{{ context.link(rate) }}, bs), \
-    {{ transcriptionFactor }}(dna) \
+    P(type~{{ transcriptionFactor }}, dna) \
 -> \
 {{ context.sequence(rate) }}{# #}
     DNA(type~{{ name }}{{ context.link(rate) }}, bs!{{ rate.context_size }}), \
-    {{ transcriptionFactor }}(dna!{{ rate.context_size }}) \
+    P(type~{{ transcriptionFactor }}, dna!{{ rate.context_size }}) \
     @{{ rate.value }}
 {% endfor %}
 {% else %}{# list-valued rate #}
@@ -32,10 +32,10 @@
 # {{ name }} operator activation
 '{{rule}}' \
     DNA(type~{{ name }}, bs), \
-    {{ transcriptionFactor }}(dna) \
+    P(type~{{ transcriptionFactor }}, dna) \
 -> \
     DNA(type~{{ name }}, bs!1), \
-    {{ transcriptionFactor }}(dna!1) \
+    P(type~{{ transcriptionFactor }}, dna!1) \
     @{{ transcriptionFactorBindingRate }}
 {% endif %}
 
@@ -52,11 +52,11 @@
 '{{rule}}' \
 {{ context.sequence(rate) }}{# #}
     DNA(type~{{ name }}{{ context.link(rate) }}, bs!{{ rate.context_size }}), \
-    {{ transcriptionFactor }}(dna!{{ rate.context_size }}) \
+    P(type~{{ transcriptionFactor }}, dna!{{ rate.context_size }}) \
 -> \
 {{ context.sequence(rate) }}{# #}
     DNA(type~{{ name }}{{ context.link(rate) }}, bs), \
-    {{ transcriptionFactor }}(dna) \
+    P(type~{{ transcriptionFactor }}, dna) \
     @{{ rate.value }}
 {% endfor %}
 {% else %}{# list-valued rate #}
@@ -68,10 +68,10 @@
 # {{ name }} operator deactivation
 '{{rule}}' \
     DNA(type~{{ name }}, bs!1), \
-    {{ transcriptionFactor }}(dna!1) \
+    P(type~{{ transcriptionFactor }}, dna!1) \
 -> \
     DNA(type~{{ name }}, bs), \
-    {{ transcriptionFactor }}(dna) \
+    P(type~{{ transcriptionFactor }}, dna) \
     @{{ transcriptionFactorUnbindingRate }}
 {% endif %}
 {% endif %}{# transcriptionFactorUnbindingRate defined #}

@@ -38,18 +38,31 @@ def describe_part(g, parturi):
     used by the second-stage compiler.
     """
     def literal(v):
-        return v.toPython()
-
+        v = v.toPython()
         if isinstance(v, str) or isinstance(v, unicode):
             return v
         return "%.16f" % v
 
     part = { "uri": parturi.toPython() }
-    _, _, template = get_one(g, (parturi, RBMC["kappaTemplate"], None))
+    try:
+        _, _, template = get_one(g, (parturi, RBMC["kappaTemplate"], None))
+    except Exception, e:
+        logging.error("%s could not find template" % (parturi,))
+        raise e
+    
     part["template"] = template.toPython()
     for _, _, replace in g.triples((parturi, RBMC["replace"], None)):
-        _, _, token = get_one(g, (replace, RBMC["string"], None))
-        _, _, value = get_one(g, (replace, RBMC["value"], None))
+        try:
+            _, _, token = get_one(g, (replace, RBMC["string"], None))
+        except Exception, e:
+            logging.error("%s could not find replacement token" % (parturi,))
+            raise e
+
+        try:
+            _, _, value = get_one(g, (replace, RBMC["value"], None))
+        except Exception, e:
+            logging.error("%s could not find value for %s" % (parturi, token))
+            raise
 
         if isinstance(value, Literal):
             part[token.toPython()] = literal(value)

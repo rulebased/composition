@@ -8,6 +8,7 @@ ParserElement.enablePackrat()
 
 # Utility parser -- consume 0 or more whitespaces
 many_space = Optional(White()).suppress()
+#many_space = many_space_ + Optional(Literal("\\") + lineEnd + many_space_).suppress()
 
 # Utility parser -- parse a floating point number
 double = Combine(Optional(Literal("-")) + Word(nums) + Optional(Literal(".") + Word(nums)))\
@@ -234,3 +235,21 @@ rdf_line = (Suppress("#^ ") + CharsNotIn("\n") + lineEnd.suppress()).setParseAct
 statement = rdf_line ^ agent_dec ^ var_dec ^ tok_dec ^ rule_dec ^ obs_dec ^ init_dec
 
 kappa_parser = ZeroOrMore(eol) + ZeroOrMore(statement + ZeroOrMore(eol))
+
+def parseString(s):
+    ## kludge -- remove coments and escaped newlines
+    ## parser above doesn't deal properly with them
+    if isinstance(s, str):
+        s = unicode(s)
+    ss = []
+    for l in s.split(u"\n"):
+        l = l.strip()
+        if l.startswith(u"#") or l == "":
+            continue
+        if l.endswith(u"\\"):
+            l = l[:-1]
+        else:
+            l = l + u"\n"
+        ss.append(l)
+    s = u"".join(ss)
+    return kappa_parser.parseString(s)

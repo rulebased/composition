@@ -11,7 +11,7 @@
 {% set rule = "%s-RNAp-binding-%s" % (name, rateno) %}
 
 #^ :{{ rule }} a rbmo:Rule;
-#^   bqbiol:isVersionOf go:GO:0070063;
+#^     bqbiol:isVersionOf go:GO:0070063;
 {{ meta.rule() }}{# #}
 #^     rdfs:label "{{ name }} RNAp binding".
 # {{ name }} RNAp binding
@@ -29,7 +29,7 @@
 {% set rule = name + "-activation" %}
 
 #^ :{{ rule }} a rbmo:Rule;
-#^   bqbiol:isVersionOf go:GO:0070063;
+#^     bqbiol:isVersionOf go:GO:0070063;
 {{ meta.rule() }}{# #}
 #^     rdfs:label "{{ name }} RNAp binding".
 # {{ name }} RNAp binding
@@ -42,43 +42,6 @@
     @{{ rnapBindingRate }}
 {% endif %}
 {% endif %}{# rnapBindingRate defined #}
-
-{% if rnapUnbindingRate is defined %}
-{% if type(rnapUnbindingRate) == type([]) %}
-{% for rateno in range(len(rnapUnbindingRate)) %}
-{% set rate = rnapUnbindingRate[rateno] %}
-{% set rule = "%s-RNAp-unbinding-%s" % (name, rateno) %}
-
-#^ :{{ rule }} a rbmo:Rule;
-{{ meta.rule() }}{# #}
-#^     rdfs:label "{{ name }} RNAp unbinding".
-# {{ name }} RNAp unbinding
-'{{rule}}' \
-{{ context.sequence(rate) }}{# #}
-    DNA(type~{{ name }}{{ context.link(rate) }}, bs!{{ rate.context_size }}), \
-    RNAp(dna!{{ rate.context_size }}) \
--> \
-{{ context.sequence(rate) }}{# #}
-    DNA(type~{{ name }}{{ context.link(rate) }}, bs), \
-    RNAp(dna) \
-    @{{ rate.value }}
-{% endfor %}
-{% else %}{# list-valued rate #}
-{% set rule = name + "-RNAp-unbinding" %}
-
-#^ :{{ rule }} a rbmo:Rule;
-{{ meta.rule() }}{# #}
-#^     rdfs:label "{{ name }} RNAp unbinding".
-# {{ name }} RNAp unbinding
-'{{rule}}' \
-    DNA(type~{{ name }}, bs!1), \
-    RNAp(dna!1) \
--> \
-    DNA(type~{{ name }}, bs), \
-    RNAp(dna) \
-    @{{ rnapUnbindingRate }}
-{% endif %}
-{% endif %}{# rnapUnbindingRate defined #}
 
 {% if transcriptionInitiationRate is defined %}
 {% set rule = name + "-transcription-initiation" %}
@@ -99,3 +62,9 @@
     RNA(type~{{ tss }}, bs, us, ds!3) \
     @{{ transcriptionInitiationRate }}
 {% endif %}
+
+{% include "transcription_elongation.ka" %}
+{% include "transcription_termination.ka" %}
+{% include "translation_chain.ka" %}
+{% include "translation_termination.ka" %}
+
