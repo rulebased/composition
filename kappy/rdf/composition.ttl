@@ -31,8 +31,6 @@ rbmc:Operator rdfs:subClassOf rbmc:Part;
         rbmc:transcriptionFactorBindingRate,
         rbmc:transcriptionFactorUnbindingRate.
 
-rbmc:tss a rbmc:Token; skos:prefLabel "tss".
-
 rbmc:rnapBindingRate a rbmc:Token;
     skos:prefLabel "rnapBindingRate";
     rbmc:default 1.0.
@@ -61,18 +59,7 @@ rbmc:Promoter rdfs:subClassOf rbmc:Part;
     rbmc:kappaTemplate rbmt:promoter.ka;
     rbmc:bnglTemplate rbmt:promoter.bngl;
     rbmc:tokens
-        rbmc:tss,
         rbmc:rnapBindingRate,
-        rbmc:rnapDNAUnbindingRate,
-        rbmc:rnapRNAUnbindingRate,
-        rbmc:transcriptionInitiationRate,
-        rbmc:transcriptionElongationRate,
-        rbmc:translationElongationRate.
-
-rbmc:TranscriptionStartSite rdfs:subClassOf rbmc:Part;
-    rbmc:kappaTemplate rbmt:generic.ka;
-    rbmc:bnglTemplate rbmt:generic.bngl;
-    rbmc:tokens
         rbmc:rnapDNAUnbindingRate,
         rbmc:rnapRNAUnbindingRate,
         rbmc:transcriptionInitiationRate,

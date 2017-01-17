@@ -17,6 +17,14 @@ def merge(model, docs):
     rdf = g.serialize(format="application/x-kappa")
     if isinstance(rdf, str):
         rdf = unicode(rdf, "utf-8")
-    return rdf + u"\n\n" + u"\n\n".join(k)
+    header = u"""
+###
+### This is an automatically generated simulation program derived from:
+### %s
+###
+
+""" % (model,)
+
+    return header + rdf + u"\n\n" + u"\n\n".join(k)
 
 

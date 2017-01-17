@@ -20,9 +20,9 @@
     rbmc:include <host.ka>;
     ## The expression of the model as a genetic circuit
     rbmc:circular (
-        :R0040o :R0040p :R0040tss :B0034a :C0051 :B0011a
-        :R0051o :R0051p :R0051tss :B0034b :C0012 :B0011b
-        :R0010o :R0010p :R0010tss :B0034c :C0040 :B0011c
+        :R0040o :R0040p :B0034a :C0051 :B0011a
+        :R0051o :R0051p :B0034b :C0012 :B0011b
+        :R0010o :R0010p :B0034c :C0040 :B0011c
     ).
 
 :P0040 a rbmc:Protein;
@@ -86,7 +86,6 @@
 :R0040p a rbmc:Promoter;
     rdfs:label "TetR repressible promoter";
     rbmc:part "R0040p";
-    rbmc:tss  "R0040tss";
     rbmc:rnapBindingRate [
       rbmc:upstream ( [a rbmo:BoundState; rbmo:stateOf :R0040o] );
       rbmc:value 7e-7
@@ -94,10 +93,6 @@
       rbmc:upstream ( [a rbmo:UnboundState; rbmo:stateOf :R0040o] );
       rbmc:value 0.0007
     ].
-
-:R0040tss a rbmc:TranscriptionStartSite;
-    rdfs:label "Transcription start site";
-    rbmc:part "R0040tss".
 
 :R0051o a rbmc:Operator;
     rdfs:label "λ-Cl activated operator";
@@ -109,7 +104,6 @@
 :R0051p a rbmc:Promoter;
     rdfs:label "λ-Cl repressible promoter";
     rbmc:part "R0051p";
-    rbmc:tss "R0051tss";
     rbmc:rnapBindingRate [
         rbmc:upstream ( [a rbmo:BoundState; rbmo:stateOf :R0051o] );
         rbmc:value 7e-7
@@ -117,10 +111,6 @@
         rbmc:upstream ( [a rbmo:UnboundState; rbmo:stateOf :R0051o] );
         rbmc:value 0.0007
     ].
-
-:R0051tss a rbmc:TranscriptionStartSite;
-    rdfs:label "Transcription start site";
-    rbmc:part "R0051tss".
 
 :R0010o a rbmc:Operator;
     rdfs:label "LacI activated operator";
@@ -132,7 +122,6 @@
 :R0010p a rbmc:Promoter;
     rdfs:label "LacI repressible promoter";
     rbmc:part "R0010p";
-    rbmc:tss "R0010tss";
     rbmc:rnapBindingRate [
         rbmc:upstream ( [a rbmo:BoundState; rbmo:stateOf :R0010o] );
         rbmc:value 7e-7
@@ -140,7 +129,3 @@
         rbmc:upstream ( [a rbmo:UnboundState; rbmo:stateOf :R0010o] );
         rbmc:value 0.0007
     ].
-
-:R0010tss a rbmc:TranscriptionStartSite;
-    rdfs:label "Transcription start site";
-    rbmc:part "R0010tss".

@@ -1,0 +1,1494 @@
+
+###
+### This is an automatically generated simulation program derived from:
+### repressilator.ttl
+###
+
+#^ @prefix : <http://id.inf.ed.ac.uk/rbm/examples/repressilator#> .
+#^ @prefix biopax: <http://www.biopax.org/release/biopax-level3.owl#> .
+#^ @prefix bqbiol: <http://biomodels.net/biology-qualifiers/> .
+#^ @prefix dct: <http://purl.org/dc/terms/> .
+#^ @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+#^ @prefix go: <http://identifiers.org/go/> .
+#^ @prefix owl: <http://www.w3.org/2002/07/owl#> .
+#^ @prefix prov: <http://www.w3.org/ns/prov#> .
+#^ @prefix rbmc: <http://purl.org/rbm/comp#> .
+#^ @prefix rbmo: <http://purl.org/rbm/rbmo#> .
+#^ @prefix rbmt: <http://purl.org/rbm/templates/> .
+#^ @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+#^ @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+#^ @prefix sbol: <http://sbols.org/v2#> .
+#^ @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+#^ @prefix so: <http://identifiers.org/so/> .
+#^ @prefix xml: <http://www.w3.org/XML/1998/namespace> .
+#^ @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+#^ 
+#^ :B0011a-transcription-elongation a rbmo:Rule ;
+#^     rdfs:label "B0011a transcription of downstream DNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006354> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011a .
+#^ 
+#^ :B0011a-transcription-termination a rbmo:Rule ;
+#^     rdfs:label "B0011a RNAp unbinding from DNA, transcription termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006353> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011a .
+#^ 
+#^ :B0011a-translation-chain a rbmo:Rule ;
+#^     rdfs:label "B0011a formation of translational chains, due to gene fusion or leakiness of stop codons" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011a .
+#^ 
+#^ :B0011a-translation-elongation a rbmo:Rule ;
+#^     rdfs:label "B0011a translation of the downstream RNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006414> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011a .
+#^ 
+#^ :B0011a-translation-termination a rbmo:Rule ;
+#^     rdfs:label "B0011a RNAp unbinding from RNA, translation termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011a .
+#^ 
+#^ :B0011b-transcription-elongation a rbmo:Rule ;
+#^     rdfs:label "B0011b transcription of downstream DNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006354> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011b .
+#^ 
+#^ :B0011b-transcription-termination a rbmo:Rule ;
+#^     rdfs:label "B0011b RNAp unbinding from DNA, transcription termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006353> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011b .
+#^ 
+#^ :B0011b-translation-chain a rbmo:Rule ;
+#^     rdfs:label "B0011b formation of translational chains, due to gene fusion or leakiness of stop codons" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011b .
+#^ 
+#^ :B0011b-translation-elongation a rbmo:Rule ;
+#^     rdfs:label "B0011b translation of the downstream RNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006414> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011b .
+#^ 
+#^ :B0011b-translation-termination a rbmo:Rule ;
+#^     rdfs:label "B0011b RNAp unbinding from RNA, translation termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011b .
+#^ 
+#^ :B0011c-transcription-elongation a rbmo:Rule ;
+#^     rdfs:label "B0011c transcription of downstream DNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006354> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011c .
+#^ 
+#^ :B0011c-transcription-termination a rbmo:Rule ;
+#^     rdfs:label "B0011c RNAp unbinding from DNA, transcription termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006353> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011c .
+#^ 
+#^ :B0011c-translation-chain a rbmo:Rule ;
+#^     rdfs:label "B0011c formation of translational chains, due to gene fusion or leakiness of stop codons" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011c .
+#^ 
+#^ :B0011c-translation-elongation a rbmo:Rule ;
+#^     rdfs:label "B0011c translation of the downstream RNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006414> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011c .
+#^ 
+#^ :B0011c-translation-termination a rbmo:Rule ;
+#^     rdfs:label "B0011c RNAp unbinding from RNA, translation termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011c .
+#^ 
+#^ :B0034a-transcription-elongation a rbmo:Rule ;
+#^     rdfs:label "B0034a transcription of downstream DNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006354> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034a .
+#^ 
+#^ :B0034a-transcription-termination a rbmo:Rule ;
+#^     rdfs:label "B0034a RNAp unbinding from DNA, transcription termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006353> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034a .
+#^ 
+#^ :B0034a-translation-chain a rbmo:Rule ;
+#^     rdfs:label "B0034a formation of translational chains, due to gene fusion or leakiness of stop codons" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034a .
+#^ 
+#^ :B0034a-translation-elongation a rbmo:Rule ;
+#^     rdfs:label "B0034a translation of the downstream RNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006414> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034a .
+#^ 
+#^ :B0034a-translation-initiation a rbmo:Rule ;
+#^     rdfs:label "B0034a translational initiation" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006413> .
+#^ 
+#^ :B0034a-translation-termination a rbmo:Rule ;
+#^     rdfs:label "B0034a RNAp unbinding from RNA, translation termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034a .
+#^ 
+#^ :B0034b-transcription-elongation a rbmo:Rule ;
+#^     rdfs:label "B0034b transcription of downstream DNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006354> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034b .
+#^ 
+#^ :B0034b-transcription-termination a rbmo:Rule ;
+#^     rdfs:label "B0034b RNAp unbinding from DNA, transcription termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006353> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034b .
+#^ 
+#^ :B0034b-translation-chain a rbmo:Rule ;
+#^     rdfs:label "B0034b formation of translational chains, due to gene fusion or leakiness of stop codons" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034b .
+#^ 
+#^ :B0034b-translation-elongation a rbmo:Rule ;
+#^     rdfs:label "B0034b translation of the downstream RNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006414> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034b .
+#^ 
+#^ :B0034b-translation-initiation a rbmo:Rule ;
+#^     rdfs:label "B0034b translational initiation" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006413> .
+#^ 
+#^ :B0034b-translation-termination a rbmo:Rule ;
+#^     rdfs:label "B0034b RNAp unbinding from RNA, translation termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034b .
+#^ 
+#^ :B0034c-transcription-elongation a rbmo:Rule ;
+#^     rdfs:label "B0034c transcription of downstream DNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006354> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034c .
+#^ 
+#^ :B0034c-transcription-termination a rbmo:Rule ;
+#^     rdfs:label "B0034c RNAp unbinding from DNA, transcription termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006353> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034c .
+#^ 
+#^ :B0034c-translation-chain a rbmo:Rule ;
+#^     rdfs:label "B0034c formation of translational chains, due to gene fusion or leakiness of stop codons" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034c .
+#^ 
+#^ :B0034c-translation-elongation a rbmo:Rule ;
+#^     rdfs:label "B0034c translation of the downstream RNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006414> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034c .
+#^ 
+#^ :B0034c-translation-initiation a rbmo:Rule ;
+#^     rdfs:label "B0034c translational initiation" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006413> .
+#^ 
+#^ :B0034c-translation-termination a rbmo:Rule ;
+#^     rdfs:label "B0034c RNAp unbinding from RNA, translation termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034c .
+#^ 
+#^ :C0012-transcription-elongation a rbmo:Rule ;
+#^     rdfs:label "C0012 transcription of downstream DNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006354> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0012 .
+#^ 
+#^ :C0012-transcription-termination a rbmo:Rule ;
+#^     rdfs:label "C0012 RNAp unbinding from DNA, transcription termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006353> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0012 .
+#^ 
+#^ :C0012-translation-chain a rbmo:Rule ;
+#^     rdfs:label "C0012 formation of translational chains, due to gene fusion or leakiness of stop codons" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0012 .
+#^ 
+#^ :C0012-translation-elongation a rbmo:Rule ;
+#^     rdfs:label "C0012 translation of downstream DNA component -- coding sequence." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006414> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0012 .
+#^ 
+#^ :C0012-translation-termination a rbmo:Rule ;
+#^     rdfs:label "C0012 RNAp unbinding from RNA, translation termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0012 .
+#^ 
+#^ :C0040-transcription-elongation a rbmo:Rule ;
+#^     rdfs:label "C0040 transcription of downstream DNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006354> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0040 .
+#^ 
+#^ :C0040-transcription-termination a rbmo:Rule ;
+#^     rdfs:label "C0040 RNAp unbinding from DNA, transcription termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006353> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0040 .
+#^ 
+#^ :C0040-translation-chain a rbmo:Rule ;
+#^     rdfs:label "C0040 formation of translational chains, due to gene fusion or leakiness of stop codons" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0040 .
+#^ 
+#^ :C0040-translation-elongation a rbmo:Rule ;
+#^     rdfs:label "C0040 translation of downstream DNA component -- coding sequence." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006414> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0040 .
+#^ 
+#^ :C0040-translation-termination a rbmo:Rule ;
+#^     rdfs:label "C0040 RNAp unbinding from RNA, translation termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0040 .
+#^ 
+#^ :C0051-transcription-elongation a rbmo:Rule ;
+#^     rdfs:label "C0051 transcription of downstream DNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006354> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0051 .
+#^ 
+#^ :C0051-transcription-termination a rbmo:Rule ;
+#^     rdfs:label "C0051 RNAp unbinding from DNA, transcription termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006353> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0051 .
+#^ 
+#^ :C0051-translation-chain a rbmo:Rule ;
+#^     rdfs:label "C0051 formation of translational chains, due to gene fusion or leakiness of stop codons" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0051 .
+#^ 
+#^ :C0051-translation-elongation a rbmo:Rule ;
+#^     rdfs:label "C0051 translation of downstream DNA component -- coding sequence." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006414> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0051 .
+#^ 
+#^ :C0051-translation-termination a rbmo:Rule ;
+#^     rdfs:label "C0051 RNAp unbinding from RNA, translation termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0051 .
+#^ 
+#^ :R0010o-activation a rbmo:Rule ;
+#^     rdfs:label "R0010o operator activation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010o .
+#^ 
+#^ :R0010o-deactivation a rbmo:Rule ;
+#^     rdfs:label "R0010o operator deactivation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010o .
+#^ 
+#^ :R0010p-RNAp-binding-0 a rbmo:Rule ;
+#^     rdfs:label "R0010p RNAp binding" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0070063> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010p .
+#^ 
+#^ :R0010p-RNAp-binding-1 a rbmo:Rule ;
+#^     rdfs:label "R0010p RNAp binding" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0070063> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010p .
+#^ 
+#^ :R0010p-transcription-elongation a rbmo:Rule ;
+#^     rdfs:label "R0010p transcription of downstream DNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006354> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010p .
+#^ 
+#^ :R0010p-transcription-initiation a rbmo:Rule ;
+#^     rdfs:label "R0010p transcription initiation" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0070063> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010p .
+#^ 
+#^ :R0010p-transcription-termination a rbmo:Rule ;
+#^     rdfs:label "R0010p RNAp unbinding from DNA, transcription termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006353> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010p .
+#^ 
+#^ :R0010p-translation-chain a rbmo:Rule ;
+#^     rdfs:label "R0010p formation of translational chains, due to gene fusion or leakiness of stop codons" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010p .
+#^ 
+#^ :R0010p-translation-termination a rbmo:Rule ;
+#^     rdfs:label "R0010p RNAp unbinding from RNA, translation termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010p .
+#^ 
+#^ :R0040o-activation a rbmo:Rule ;
+#^     rdfs:label "R0040o operator activation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040o .
+#^ 
+#^ :R0040o-deactivation a rbmo:Rule ;
+#^     rdfs:label "R0040o operator deactivation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040o .
+#^ 
+#^ :R0040p-RNAp-binding-0 a rbmo:Rule ;
+#^     rdfs:label "R0040p RNAp binding" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0070063> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040p .
+#^ 
+#^ :R0040p-RNAp-binding-1 a rbmo:Rule ;
+#^     rdfs:label "R0040p RNAp binding" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0070063> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040p .
+#^ 
+#^ :R0040p-transcription-elongation a rbmo:Rule ;
+#^     rdfs:label "R0040p transcription of downstream DNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006354> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040p .
+#^ 
+#^ :R0040p-transcription-initiation a rbmo:Rule ;
+#^     rdfs:label "R0040p transcription initiation" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0070063> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040p .
+#^ 
+#^ :R0040p-transcription-termination a rbmo:Rule ;
+#^     rdfs:label "R0040p RNAp unbinding from DNA, transcription termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006353> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040p .
+#^ 
+#^ :R0040p-translation-chain a rbmo:Rule ;
+#^     rdfs:label "R0040p formation of translational chains, due to gene fusion or leakiness of stop codons" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040p .
+#^ 
+#^ :R0040p-translation-termination a rbmo:Rule ;
+#^     rdfs:label "R0040p RNAp unbinding from RNA, translation termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040p .
+#^ 
+#^ :R0051o-activation a rbmo:Rule ;
+#^     rdfs:label "R0051o operator activation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051o .
+#^ 
+#^ :R0051o-deactivation a rbmo:Rule ;
+#^     rdfs:label "R0051o operator deactivation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051o .
+#^ 
+#^ :R0051p-RNAp-binding-0 a rbmo:Rule ;
+#^     rdfs:label "R0051p RNAp binding" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0070063> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051p .
+#^ 
+#^ :R0051p-RNAp-binding-1 a rbmo:Rule ;
+#^     rdfs:label "R0051p RNAp binding" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0070063> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051p .
+#^ 
+#^ :R0051p-transcription-elongation a rbmo:Rule ;
+#^     rdfs:label "R0051p transcription of downstream DNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006354> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051p .
+#^ 
+#^ :R0051p-transcription-initiation a rbmo:Rule ;
+#^     rdfs:label "R0051p transcription initiation" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0070063> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051p .
+#^ 
+#^ :R0051p-transcription-termination a rbmo:Rule ;
+#^     rdfs:label "R0051p RNAp unbinding from DNA, transcription termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006353> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051p .
+#^ 
+#^ :R0051p-translation-chain a rbmo:Rule ;
+#^     rdfs:label "R0051p formation of translational chains, due to gene fusion or leakiness of stop codons" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051p .
+#^ 
+#^ :R0051p-translation-termination a rbmo:Rule ;
+#^     rdfs:label "R0051p RNAp unbinding from RNA, translation termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051p .
+#^ 
+#^ :P0010 a rbmc:Protein ;
+#^     rdfs:label "LacI" ;
+#^     skos:prefLabel "P0010" .
+#^ 
+#^ :P0040 a rbmc:Protein ;
+#^     rdfs:label "TetR" ;
+#^     skos:prefLabel "P0040" .
+#^ 
+#^ :P0051 a rbmc:Protein ;
+#^     rdfs:label "λ-Cl" ;
+#^     skos:prefLabel "P0051" .
+#^ 
+#^ :R0010o a rbmc:Operator ;
+#^     rdfs:label "LacI activated operator" ;
+#^     rbmc:part "R0010o" ;
+#^     rbmc:transcriptionFactor :P0010 ;
+#^     rbmc:transcriptionFactorBindingRate 0.01 ;
+#^     rbmc:transcriptionFactorUnbindingRate 0.01 .
+#^ 
+#^ :R0040o a rbmc:Operator ;
+#^     rdfs:label "TetR activated operator" ;
+#^     rbmc:part "R0040o" ;
+#^     rbmc:transcriptionFactor :P0040 ;
+#^     rbmc:transcriptionFactorBindingRate 0.01 ;
+#^     rbmc:transcriptionFactorUnbindingRate 0.01 .
+#^ 
+#^ :R0051o a rbmc:Operator ;
+#^     rdfs:label "λ-Cl activated operator" ;
+#^     rbmc:part "R0051o" ;
+#^     rbmc:transcriptionFactor :P0051 ;
+#^     rbmc:transcriptionFactorBindingRate 0.01 ;
+#^     rbmc:transcriptionFactorUnbindingRate 0.01 .
+#^ 
+#^ :B0011a a rbmc:Terminator ;
+#^     rdfs:label "Terminator, stop codon" ;
+#^     rbmc:part "B0011a" .
+#^ 
+#^ :B0011b a rbmc:Terminator ;
+#^     rdfs:label "Terminator, stop codon" ;
+#^     rbmc:part "B0011b" .
+#^ 
+#^ :B0011c a rbmc:Terminator ;
+#^     rdfs:label "Terminator, stop codon" ;
+#^     rbmc:part "B0011c" .
+#^ 
+#^ :B0034a a rbmc:RibosomeBindingSite ;
+#^     rdfs:label "Ribosome binding site" ;
+#^     rbmc:part "B0034a" .
+#^ 
+#^ :B0034b a rbmc:RibosomeBindingSite ;
+#^     rdfs:label "Ribosome binding site" ;
+#^     rbmc:part "B0034b" .
+#^ 
+#^ :B0034c a rbmc:RibosomeBindingSite ;
+#^     rdfs:label "Ribosome binding site" ;
+#^     rbmc:part "B0034c" .
+#^ 
+#^ :C0012 a rbmc:CodingSequence ;
+#^     rbmc:label "Coding sequence for LacI" ;
+#^     rbmc:part "C0012" ;
+#^     rbmc:protein :P0010 .
+#^ 
+#^ :C0040 a rbmc:CodingSequence ;
+#^     rbmc:label "Coding sequence for TetR" ;
+#^     rbmc:part "C0040" ;
+#^     rbmc:protein :P0040 .
+#^ 
+#^ :C0051 a rbmc:CodingSequence ;
+#^     rdfs:label "Coding sequence for λ-Cl" ;
+#^     rbmc:part "C0051" ;
+#^     rbmc:protein :P0051 .
+#^ 
+#^ :R0010p a rbmc:Promoter ;
+#^     rdfs:label "LacI repressible promoter" ;
+#^     rbmc:part "R0010p" ;
+#^     rbmc:rnapBindingRate [ rbmc:upstream ( [ a rbmo:BoundState ;
+#^                         rbmo:stateOf :R0010o ] ) ;
+#^             rbmc:value 7e-07 ],
+#^         [ rbmc:upstream ( [ a rbmo:UnboundState ;
+#^                         rbmo:stateOf :R0010o ] ) ;
+#^             rbmc:value 0.0007 ] .
+#^ 
+#^ :R0040p a rbmc:Promoter ;
+#^     rdfs:label "TetR repressible promoter" ;
+#^     rbmc:part "R0040p" ;
+#^     rbmc:rnapBindingRate [ rbmc:upstream ( [ a rbmo:BoundState ;
+#^                         rbmo:stateOf :R0040o ] ) ;
+#^             rbmc:value 7e-07 ],
+#^         [ rbmc:upstream ( [ a rbmo:UnboundState ;
+#^                         rbmo:stateOf :R0040o ] ) ;
+#^             rbmc:value 0.0007 ] .
+#^ 
+#^ :R0051p a rbmc:Promoter ;
+#^     rdfs:label "λ-Cl repressible promoter" ;
+#^     rbmc:part "R0051p" ;
+#^     rbmc:rnapBindingRate [ rbmc:upstream ( [ a rbmo:BoundState ;
+#^                         rbmo:stateOf :R0051o ] ) ;
+#^             rbmc:value 7e-07 ],
+#^         [ rbmc:upstream ( [ a rbmo:UnboundState ;
+#^                         rbmo:stateOf :R0051o ] ) ;
+#^             rbmc:value 0.0007 ] .
+#^ 
+#^ :m a rbmo:Model ;
+#^     dct:description "Transcription of the treatment of the Elowitz repressilator given in the Kappa BioBricks Framework book chapter" ;
+#^     dct:title "The Elowitz repressilator constructed from BioBrick parts" ;
+#^     rbmc:circular ( :R0040o :R0040p :B0034a :C0051 :B0011a :R0051o :R0051p :B0034b :C0012 :B0011b :R0010o :R0010p :B0034c :C0040 :B0011c ) ;
+#^     rbmc:include <file:///Users/ww/Projects/Flowers/composition/examples/host.ka> ;
+#^     rbmc:prefix <http://id.inf.ed.ac.uk/rbm/examples/repressilator#> ;
+#^     rdfs:seeAlso <http://link.springer.com/protocol/10.1007/978-1-4939-1878-2_6> .
+#^ 
+
+
+################################################################################
+## Auto-genterated initialisation of genetic circuits
+
+%init: 1 (DNA(type~R0040o, us!14, ds!0), DNA(type~R0040p, us!0, ds!1), DNA(type~B0034a, us!1, ds!2), DNA(type~C0051, us!2, ds!3), DNA(type~B0011a, us!3, ds!4), DNA(type~R0051o, us!4, ds!5), DNA(type~R0051p, us!5, ds!6), DNA(type~B0034b, us!6, ds!7), DNA(type~C0012, us!7, ds!8), DNA(type~B0011b, us!8, ds!9), DNA(type~R0010o, us!9, ds!10), DNA(type~R0010p, us!10, ds!11), DNA(type~B0034c, us!11, ds!12), DNA(type~C0040, us!12, ds!13), DNA(type~B0011c, us!13, ds!14))
+
+
+%init: 700 (RNAp(dna,rna))
+%init: 180000 Ribosome(rna)
+
+%obs: 'LacI' P(type~P0010)
+%obs: 'TetR' P(type~P0040)
+%obs: 'LcI' P(type~P0051)
+
+
+################################################################################
+## Auto-generated Agents
+
+%agent: DNA(bs,ds,type~R0040p~R0010o~B0011b~B0011c~B0011a~R0051p~R0051o~B0034c~B0034b~B0034a~C0012~C0051~C0040~R0040o~R0010p,us)
+%agent: P(bs,dna,ds,type~R0040p~P0010~B0011b~R0010p~B0011a~R0051p~B0034c~B0034b~B0034a~C0012~C0051~P0040~C0040~P0051~B0011c,us)
+%agent: RNA(bs,ds,type~R0040p~B0011b~R0010p~B0011a~R0051p~B0034c~B0034b~B0034a~C0012~C0051~C0040~B0011c,us)
+%agent: RNAp(dna,rna)
+%agent: Ribosome(protein,rna)
+
+
+################################################################################
+## Auto-generated Operator R0040o
+
+# R0040o operator activation
+'R0040o-activation' \
+    DNA(type~R0040o, bs), \
+    P(type~P0040, dna) \
+-> \
+    DNA(type~R0040o, bs!1), \
+    P(type~P0040, dna!1) \
+    @0.0100000000000000
+
+
+# R0040o operator deactivation
+'R0040o-deactivation' \
+    DNA(type~R0040o, bs!1), \
+    P(type~P0040, dna!1) \
+-> \
+    DNA(type~R0040o, bs), \
+    P(type~P0040, dna) \
+    @0.0100000000000000
+
+
+################################################################################
+## Auto-generated Promoter R0040p
+
+# R0040p RNAp binding
+'R0040p-RNAp-binding-0' \
+    DNA(type~R0040o, ds!1, bs), \
+    DNA(type~R0040p, us!1, bs), \
+    RNAp(dna) \
+-> \
+    DNA(type~R0040o, ds!1, bs), \
+    DNA(type~R0040p, us!1, bs!2), \
+    RNAp(dna!2) \
+    @0.0007000000000000
+
+# R0040p RNAp binding
+'R0040p-RNAp-binding-1' \
+    DNA(type~R0040o, ds!1, bs!_), \
+    DNA(type~R0040p, us!1, bs), \
+    RNAp(dna) \
+-> \
+    DNA(type~R0040o, ds!1, bs!_), \
+    DNA(type~R0040p, us!1, bs!2), \
+    RNAp(dna!2) \
+    @0.0000007000000000
+
+
+# R0040p transcription initiation
+'R0040p-transcription-initiation' \
+    DNA(type~R0040p, bs!1), \
+    RNAp(dna!1, rna) \
+-> \
+    DNA(type~R0040p, bs!1), \
+    RNAp(dna!1, rna!2), \
+    RNA(type~R0040p, bs, us, ds!2) \
+    @1.0
+
+
+# R0040p transcription of downstream DNA component
+'R0040p-transcription-elongation' \
+    DNA(ds!2, bs!1), \
+    DNA(type~R0040p, us!2, bs), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!3) \
+-> \
+    DNA(ds!2, bs), \
+    DNA(type~R0040p, us!2, bs!1), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!4), \
+    RNA(type~R0040p, us!4, ds!3, bs)@1.0
+
+# R0040p RNAp unbinding from DNA, transcription termination
+'R0040p-transcription-termination' \
+    DNA(type~R0040p, bs!1), \
+    RNAp(dna!1) \
+-> \
+    DNA(type~R0040p, bs), \
+    RNAp(dna) \
+    @1.0
+
+# R0040p formation of translational chains, due to gene fusion or leakiness of stop codons
+'R0040p-translation-chain' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~R0040p, us!2, bs), \
+    P(ds, bs!3) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~R0040p, us!2, bs!1), \
+    P(ds!4, bs), \
+    P(type~R0040p, us!4, bs!3) \
+    @1.0
+
+# R0040p RNAp unbinding from RNA, translation termination
+'R0040p-translation-termination' \
+    RNAp(rna!1), \
+    RNA(type~R0040p, ds!1) \
+-> \
+    RNAp(rna), \
+    RNA(type~R0040p, ds) \
+    @1.0
+
+
+################################################################################
+## Auto-generated generic part B0034a
+
+# B0034a Ribosome Binding Site translation initiation
+'B0034a-translation-initiation' \
+    RNA(type~B0034a, bs), \
+    Ribosome(rna) \
+-> \
+    RNA(type~B0034a, bs!1), \
+    Ribosome(rna!1) \
+    @1.0
+
+
+# B0034a transcription of downstream DNA component
+'B0034a-transcription-elongation' \
+    DNA(ds!2, bs!1), \
+    DNA(type~B0034a, us!2, bs), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!3) \
+-> \
+    DNA(ds!2, bs), \
+    DNA(type~B0034a, us!2, bs!1), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!4), \
+    RNA(type~B0034a, us!4, ds!3, bs)@1.0
+
+# B0034a RNAp unbinding from DNA, transcription termination
+'B0034a-transcription-termination' \
+    DNA(type~B0034a, bs!1), \
+    RNAp(dna!1) \
+-> \
+    DNA(type~B0034a, bs), \
+    RNAp(dna) \
+    @1.0
+
+# B0034a formation of translational chains, due to gene fusion or leakiness of stop codons
+'B0034a-translation-chain' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~B0034a, us!2, bs), \
+    P(ds, bs!3) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~B0034a, us!2, bs!1), \
+    P(ds!4, bs), \
+    P(type~B0034a, us!4, bs!3) \
+    @1.0
+
+# B0034a translation of the downstream RNA component
+'B0034a-translation-elongation' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1), \
+    RNA(type~B0034a, us!2, bs) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1), \
+    RNA(type~B0034a, us!2, bs!1) \
+    @1.0
+
+# B0034a RNAp unbinding from RNA, translation termination
+'B0034a-translation-termination' \
+    RNAp(rna!1), \
+    RNA(type~B0034a, ds!1) \
+-> \
+    RNAp(rna), \
+    RNA(type~B0034a, ds) \
+    @1.0
+
+
+
+################################################################################
+## Auto-generated coding sequence C0051
+
+# C0051 translation of downstream DNA component -- coding sequence
+'C0051-translation-elongation' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1, protein), \
+    RNA(type~C0051, us!2, bs) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~C0051, us!2, bs!1), \
+    P(type~P0051, bs!3) \
+    @1.0
+
+
+# C0051 transcription of downstream DNA component
+'C0051-transcription-elongation' \
+    DNA(ds!2, bs!1), \
+    DNA(type~C0051, us!2, bs), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!3) \
+-> \
+    DNA(ds!2, bs), \
+    DNA(type~C0051, us!2, bs!1), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!4), \
+    RNA(type~C0051, us!4, ds!3, bs)@1.0
+
+# C0051 RNAp unbinding from DNA, transcription termination
+'C0051-transcription-termination' \
+    DNA(type~C0051, bs!1), \
+    RNAp(dna!1) \
+-> \
+    DNA(type~C0051, bs), \
+    RNAp(dna) \
+    @1.0
+
+# C0051 formation of translational chains, due to gene fusion or leakiness of stop codons
+'C0051-translation-chain' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~C0051, us!2, bs), \
+    P(ds, bs!3) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~C0051, us!2, bs!1), \
+    P(ds!4, bs), \
+    P(type~C0051, us!4, bs!3) \
+    @1.0
+
+# C0051 RNAp unbinding from RNA, translation termination
+'C0051-translation-termination' \
+    RNAp(rna!1), \
+    RNA(type~C0051, ds!1) \
+-> \
+    RNAp(rna), \
+    RNA(type~C0051, ds) \
+    @1.0
+
+
+################################################################################
+## Auto-generated generic part B0011a
+
+# B0011a transcription of downstream DNA component
+'B0011a-transcription-elongation' \
+    DNA(ds!2, bs!1), \
+    DNA(type~B0011a, us!2, bs), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!3) \
+-> \
+    DNA(ds!2, bs), \
+    DNA(type~B0011a, us!2, bs!1), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!4), \
+    RNA(type~B0011a, us!4, ds!3, bs)@1.0
+
+# B0011a RNAp unbinding from DNA, transcription termination
+'B0011a-transcription-termination' \
+    DNA(type~B0011a, bs!1), \
+    RNAp(dna!1) \
+-> \
+    DNA(type~B0011a, bs), \
+    RNAp(dna) \
+    @1.0
+
+# B0011a formation of translational chains, due to gene fusion or leakiness of stop codons
+'B0011a-translation-chain' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~B0011a, us!2, bs), \
+    P(ds, bs!3) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~B0011a, us!2, bs!1), \
+    P(ds!4, bs), \
+    P(type~B0011a, us!4, bs!3) \
+    @1.0
+
+# B0011a translation of the downstream RNA component
+'B0011a-translation-elongation' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1), \
+    RNA(type~B0011a, us!2, bs) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1), \
+    RNA(type~B0011a, us!2, bs!1) \
+    @1.0
+
+# B0011a RNAp unbinding from RNA, translation termination
+'B0011a-translation-termination' \
+    RNAp(rna!1), \
+    RNA(type~B0011a, ds!1) \
+-> \
+    RNAp(rna), \
+    RNA(type~B0011a, ds) \
+    @1.0
+
+
+################################################################################
+## Auto-generated Operator R0051o
+
+# R0051o operator activation
+'R0051o-activation' \
+    DNA(type~R0051o, bs), \
+    P(type~P0051, dna) \
+-> \
+    DNA(type~R0051o, bs!1), \
+    P(type~P0051, dna!1) \
+    @0.0100000000000000
+
+
+# R0051o operator deactivation
+'R0051o-deactivation' \
+    DNA(type~R0051o, bs!1), \
+    P(type~P0051, dna!1) \
+-> \
+    DNA(type~R0051o, bs), \
+    P(type~P0051, dna) \
+    @0.0100000000000000
+
+
+################################################################################
+## Auto-generated Promoter R0051p
+
+# R0051p RNAp binding
+'R0051p-RNAp-binding-0' \
+    DNA(type~R0051o, ds!1, bs), \
+    DNA(type~R0051p, us!1, bs), \
+    RNAp(dna) \
+-> \
+    DNA(type~R0051o, ds!1, bs), \
+    DNA(type~R0051p, us!1, bs!2), \
+    RNAp(dna!2) \
+    @0.0007000000000000
+
+# R0051p RNAp binding
+'R0051p-RNAp-binding-1' \
+    DNA(type~R0051o, ds!1, bs!_), \
+    DNA(type~R0051p, us!1, bs), \
+    RNAp(dna) \
+-> \
+    DNA(type~R0051o, ds!1, bs!_), \
+    DNA(type~R0051p, us!1, bs!2), \
+    RNAp(dna!2) \
+    @0.0000007000000000
+
+
+# R0051p transcription initiation
+'R0051p-transcription-initiation' \
+    DNA(type~R0051p, bs!1), \
+    RNAp(dna!1, rna) \
+-> \
+    DNA(type~R0051p, bs!1), \
+    RNAp(dna!1, rna!2), \
+    RNA(type~R0051p, bs, us, ds!2) \
+    @1.0
+
+
+# R0051p transcription of downstream DNA component
+'R0051p-transcription-elongation' \
+    DNA(ds!2, bs!1), \
+    DNA(type~R0051p, us!2, bs), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!3) \
+-> \
+    DNA(ds!2, bs), \
+    DNA(type~R0051p, us!2, bs!1), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!4), \
+    RNA(type~R0051p, us!4, ds!3, bs)@1.0
+
+# R0051p RNAp unbinding from DNA, transcription termination
+'R0051p-transcription-termination' \
+    DNA(type~R0051p, bs!1), \
+    RNAp(dna!1) \
+-> \
+    DNA(type~R0051p, bs), \
+    RNAp(dna) \
+    @1.0
+
+# R0051p formation of translational chains, due to gene fusion or leakiness of stop codons
+'R0051p-translation-chain' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~R0051p, us!2, bs), \
+    P(ds, bs!3) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~R0051p, us!2, bs!1), \
+    P(ds!4, bs), \
+    P(type~R0051p, us!4, bs!3) \
+    @1.0
+
+# R0051p RNAp unbinding from RNA, translation termination
+'R0051p-translation-termination' \
+    RNAp(rna!1), \
+    RNA(type~R0051p, ds!1) \
+-> \
+    RNAp(rna), \
+    RNA(type~R0051p, ds) \
+    @1.0
+
+
+################################################################################
+## Auto-generated generic part B0034b
+
+# B0034b Ribosome Binding Site translation initiation
+'B0034b-translation-initiation' \
+    RNA(type~B0034b, bs), \
+    Ribosome(rna) \
+-> \
+    RNA(type~B0034b, bs!1), \
+    Ribosome(rna!1) \
+    @1.0
+
+
+# B0034b transcription of downstream DNA component
+'B0034b-transcription-elongation' \
+    DNA(ds!2, bs!1), \
+    DNA(type~B0034b, us!2, bs), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!3) \
+-> \
+    DNA(ds!2, bs), \
+    DNA(type~B0034b, us!2, bs!1), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!4), \
+    RNA(type~B0034b, us!4, ds!3, bs)@1.0
+
+# B0034b RNAp unbinding from DNA, transcription termination
+'B0034b-transcription-termination' \
+    DNA(type~B0034b, bs!1), \
+    RNAp(dna!1) \
+-> \
+    DNA(type~B0034b, bs), \
+    RNAp(dna) \
+    @1.0
+
+# B0034b formation of translational chains, due to gene fusion or leakiness of stop codons
+'B0034b-translation-chain' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~B0034b, us!2, bs), \
+    P(ds, bs!3) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~B0034b, us!2, bs!1), \
+    P(ds!4, bs), \
+    P(type~B0034b, us!4, bs!3) \
+    @1.0
+
+# B0034b translation of the downstream RNA component
+'B0034b-translation-elongation' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1), \
+    RNA(type~B0034b, us!2, bs) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1), \
+    RNA(type~B0034b, us!2, bs!1) \
+    @1.0
+
+# B0034b RNAp unbinding from RNA, translation termination
+'B0034b-translation-termination' \
+    RNAp(rna!1), \
+    RNA(type~B0034b, ds!1) \
+-> \
+    RNAp(rna), \
+    RNA(type~B0034b, ds) \
+    @1.0
+
+
+
+################################################################################
+## Auto-generated coding sequence C0012
+
+# C0012 translation of downstream DNA component -- coding sequence
+'C0012-translation-elongation' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1, protein), \
+    RNA(type~C0012, us!2, bs) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~C0012, us!2, bs!1), \
+    P(type~P0010, bs!3) \
+    @1.0
+
+
+# C0012 transcription of downstream DNA component
+'C0012-transcription-elongation' \
+    DNA(ds!2, bs!1), \
+    DNA(type~C0012, us!2, bs), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!3) \
+-> \
+    DNA(ds!2, bs), \
+    DNA(type~C0012, us!2, bs!1), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!4), \
+    RNA(type~C0012, us!4, ds!3, bs)@1.0
+
+# C0012 RNAp unbinding from DNA, transcription termination
+'C0012-transcription-termination' \
+    DNA(type~C0012, bs!1), \
+    RNAp(dna!1) \
+-> \
+    DNA(type~C0012, bs), \
+    RNAp(dna) \
+    @1.0
+
+# C0012 formation of translational chains, due to gene fusion or leakiness of stop codons
+'C0012-translation-chain' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~C0012, us!2, bs), \
+    P(ds, bs!3) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~C0012, us!2, bs!1), \
+    P(ds!4, bs), \
+    P(type~C0012, us!4, bs!3) \
+    @1.0
+
+# C0012 RNAp unbinding from RNA, translation termination
+'C0012-translation-termination' \
+    RNAp(rna!1), \
+    RNA(type~C0012, ds!1) \
+-> \
+    RNAp(rna), \
+    RNA(type~C0012, ds) \
+    @1.0
+
+
+################################################################################
+## Auto-generated generic part B0011b
+
+# B0011b transcription of downstream DNA component
+'B0011b-transcription-elongation' \
+    DNA(ds!2, bs!1), \
+    DNA(type~B0011b, us!2, bs), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!3) \
+-> \
+    DNA(ds!2, bs), \
+    DNA(type~B0011b, us!2, bs!1), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!4), \
+    RNA(type~B0011b, us!4, ds!3, bs)@1.0
+
+# B0011b RNAp unbinding from DNA, transcription termination
+'B0011b-transcription-termination' \
+    DNA(type~B0011b, bs!1), \
+    RNAp(dna!1) \
+-> \
+    DNA(type~B0011b, bs), \
+    RNAp(dna) \
+    @1.0
+
+# B0011b formation of translational chains, due to gene fusion or leakiness of stop codons
+'B0011b-translation-chain' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~B0011b, us!2, bs), \
+    P(ds, bs!3) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~B0011b, us!2, bs!1), \
+    P(ds!4, bs), \
+    P(type~B0011b, us!4, bs!3) \
+    @1.0
+
+# B0011b translation of the downstream RNA component
+'B0011b-translation-elongation' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1), \
+    RNA(type~B0011b, us!2, bs) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1), \
+    RNA(type~B0011b, us!2, bs!1) \
+    @1.0
+
+# B0011b RNAp unbinding from RNA, translation termination
+'B0011b-translation-termination' \
+    RNAp(rna!1), \
+    RNA(type~B0011b, ds!1) \
+-> \
+    RNAp(rna), \
+    RNA(type~B0011b, ds) \
+    @1.0
+
+
+################################################################################
+## Auto-generated Operator R0010o
+
+# R0010o operator activation
+'R0010o-activation' \
+    DNA(type~R0010o, bs), \
+    P(type~P0010, dna) \
+-> \
+    DNA(type~R0010o, bs!1), \
+    P(type~P0010, dna!1) \
+    @0.0100000000000000
+
+
+# R0010o operator deactivation
+'R0010o-deactivation' \
+    DNA(type~R0010o, bs!1), \
+    P(type~P0010, dna!1) \
+-> \
+    DNA(type~R0010o, bs), \
+    P(type~P0010, dna) \
+    @0.0100000000000000
+
+
+################################################################################
+## Auto-generated Promoter R0010p
+
+# R0010p RNAp binding
+'R0010p-RNAp-binding-0' \
+    DNA(type~R0010o, ds!1, bs), \
+    DNA(type~R0010p, us!1, bs), \
+    RNAp(dna) \
+-> \
+    DNA(type~R0010o, ds!1, bs), \
+    DNA(type~R0010p, us!1, bs!2), \
+    RNAp(dna!2) \
+    @0.0007000000000000
+
+# R0010p RNAp binding
+'R0010p-RNAp-binding-1' \
+    DNA(type~R0010o, ds!1, bs!_), \
+    DNA(type~R0010p, us!1, bs), \
+    RNAp(dna) \
+-> \
+    DNA(type~R0010o, ds!1, bs!_), \
+    DNA(type~R0010p, us!1, bs!2), \
+    RNAp(dna!2) \
+    @0.0000007000000000
+
+
+# R0010p transcription initiation
+'R0010p-transcription-initiation' \
+    DNA(type~R0010p, bs!1), \
+    RNAp(dna!1, rna) \
+-> \
+    DNA(type~R0010p, bs!1), \
+    RNAp(dna!1, rna!2), \
+    RNA(type~R0010p, bs, us, ds!2) \
+    @1.0
+
+
+# R0010p transcription of downstream DNA component
+'R0010p-transcription-elongation' \
+    DNA(ds!2, bs!1), \
+    DNA(type~R0010p, us!2, bs), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!3) \
+-> \
+    DNA(ds!2, bs), \
+    DNA(type~R0010p, us!2, bs!1), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!4), \
+    RNA(type~R0010p, us!4, ds!3, bs)@1.0
+
+# R0010p RNAp unbinding from DNA, transcription termination
+'R0010p-transcription-termination' \
+    DNA(type~R0010p, bs!1), \
+    RNAp(dna!1) \
+-> \
+    DNA(type~R0010p, bs), \
+    RNAp(dna) \
+    @1.0
+
+# R0010p formation of translational chains, due to gene fusion or leakiness of stop codons
+'R0010p-translation-chain' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~R0010p, us!2, bs), \
+    P(ds, bs!3) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~R0010p, us!2, bs!1), \
+    P(ds!4, bs), \
+    P(type~R0010p, us!4, bs!3) \
+    @1.0
+
+# R0010p RNAp unbinding from RNA, translation termination
+'R0010p-translation-termination' \
+    RNAp(rna!1), \
+    RNA(type~R0010p, ds!1) \
+-> \
+    RNAp(rna), \
+    RNA(type~R0010p, ds) \
+    @1.0
+
+
+################################################################################
+## Auto-generated generic part B0034c
+
+# B0034c Ribosome Binding Site translation initiation
+'B0034c-translation-initiation' \
+    RNA(type~B0034c, bs), \
+    Ribosome(rna) \
+-> \
+    RNA(type~B0034c, bs!1), \
+    Ribosome(rna!1) \
+    @1.0
+
+
+# B0034c transcription of downstream DNA component
+'B0034c-transcription-elongation' \
+    DNA(ds!2, bs!1), \
+    DNA(type~B0034c, us!2, bs), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!3) \
+-> \
+    DNA(ds!2, bs), \
+    DNA(type~B0034c, us!2, bs!1), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!4), \
+    RNA(type~B0034c, us!4, ds!3, bs)@1.0
+
+# B0034c RNAp unbinding from DNA, transcription termination
+'B0034c-transcription-termination' \
+    DNA(type~B0034c, bs!1), \
+    RNAp(dna!1) \
+-> \
+    DNA(type~B0034c, bs), \
+    RNAp(dna) \
+    @1.0
+
+# B0034c formation of translational chains, due to gene fusion or leakiness of stop codons
+'B0034c-translation-chain' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~B0034c, us!2, bs), \
+    P(ds, bs!3) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~B0034c, us!2, bs!1), \
+    P(ds!4, bs), \
+    P(type~B0034c, us!4, bs!3) \
+    @1.0
+
+# B0034c translation of the downstream RNA component
+'B0034c-translation-elongation' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1), \
+    RNA(type~B0034c, us!2, bs) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1), \
+    RNA(type~B0034c, us!2, bs!1) \
+    @1.0
+
+# B0034c RNAp unbinding from RNA, translation termination
+'B0034c-translation-termination' \
+    RNAp(rna!1), \
+    RNA(type~B0034c, ds!1) \
+-> \
+    RNAp(rna), \
+    RNA(type~B0034c, ds) \
+    @1.0
+
+
+
+################################################################################
+## Auto-generated coding sequence C0040
+
+# C0040 translation of downstream DNA component -- coding sequence
+'C0040-translation-elongation' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1, protein), \
+    RNA(type~C0040, us!2, bs) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~C0040, us!2, bs!1), \
+    P(type~P0040, bs!3) \
+    @1.0
+
+
+# C0040 transcription of downstream DNA component
+'C0040-transcription-elongation' \
+    DNA(ds!2, bs!1), \
+    DNA(type~C0040, us!2, bs), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!3) \
+-> \
+    DNA(ds!2, bs), \
+    DNA(type~C0040, us!2, bs!1), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!4), \
+    RNA(type~C0040, us!4, ds!3, bs)@1.0
+
+# C0040 RNAp unbinding from DNA, transcription termination
+'C0040-transcription-termination' \
+    DNA(type~C0040, bs!1), \
+    RNAp(dna!1) \
+-> \
+    DNA(type~C0040, bs), \
+    RNAp(dna) \
+    @1.0
+
+# C0040 formation of translational chains, due to gene fusion or leakiness of stop codons
+'C0040-translation-chain' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~C0040, us!2, bs), \
+    P(ds, bs!3) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~C0040, us!2, bs!1), \
+    P(ds!4, bs), \
+    P(type~C0040, us!4, bs!3) \
+    @1.0
+
+# C0040 RNAp unbinding from RNA, translation termination
+'C0040-translation-termination' \
+    RNAp(rna!1), \
+    RNA(type~C0040, ds!1) \
+-> \
+    RNAp(rna), \
+    RNA(type~C0040, ds) \
+    @1.0
+
+
+################################################################################
+## Auto-generated generic part B0011c
+
+# B0011c transcription of downstream DNA component
+'B0011c-transcription-elongation' \
+    DNA(ds!2, bs!1), \
+    DNA(type~B0011c, us!2, bs), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!3) \
+-> \
+    DNA(ds!2, bs), \
+    DNA(type~B0011c, us!2, bs!1), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!4), \
+    RNA(type~B0011c, us!4, ds!3, bs)@1.0
+
+# B0011c RNAp unbinding from DNA, transcription termination
+'B0011c-transcription-termination' \
+    DNA(type~B0011c, bs!1), \
+    RNAp(dna!1) \
+-> \
+    DNA(type~B0011c, bs), \
+    RNAp(dna) \
+    @1.0
+
+# B0011c formation of translational chains, due to gene fusion or leakiness of stop codons
+'B0011c-translation-chain' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~B0011c, us!2, bs), \
+    P(ds, bs!3) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~B0011c, us!2, bs!1), \
+    P(ds!4, bs), \
+    P(type~B0011c, us!4, bs!3) \
+    @1.0
+
+# B0011c translation of the downstream RNA component
+'B0011c-translation-elongation' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1), \
+    RNA(type~B0011c, us!2, bs) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1), \
+    RNA(type~B0011c, us!2, bs!1) \
+    @1.0
+
+# B0011c RNAp unbinding from RNA, translation termination
+'B0011c-translation-termination' \
+    RNAp(rna!1), \
+    RNA(type~B0011c, ds!1) \
+-> \
+    RNAp(rna), \
+    RNA(type~B0011c, ds) \
+    @1.0
