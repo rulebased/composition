@@ -52,12 +52,14 @@
 #^     rdfs:label "{{ name }} transcription initiation".
 # {{ name }} transcription initiation
 '{{rule}}' \
-    DNA(type~{{ name }}, bs!1), \
-    RNAp(dna!1, rna) \
+    DNA(type~{{ name }}, ds!1, bs!2), \
+    DNA(type~{{ next }}, us!1), \
+    RNAp(dna!2, rna) \
 -> \
-    DNA(type~{{ name }}, bs!1), \
-    RNAp(dna!1, rna!2), \
-    RNA(type~{{ name }}, bs, us, ds!2) \
+    DNA(type~{{ name }}, ds!1, bs!2), \
+    DNA(type~{{ next }}, us!1), \
+    RNAp(dna!2, rna!3), \
+    RNA(type~{{ next }}, bs, us, ds!3) \
     @{{ transcriptionInitiationRate }}
 {% endif %}
 

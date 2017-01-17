@@ -470,7 +470,7 @@
 #^     skos:prefLabel "P0040" .
 #^ 
 #^ :P0051 a rbmc:Protein ;
-#^     rdfs:label "λ-Cl" ;
+#^     rdfs:label "Cl" ;
 #^     skos:prefLabel "P0051" .
 #^ 
 #^ :R0010o a rbmc:Operator ;
@@ -488,7 +488,7 @@
 #^     rbmc:transcriptionFactorUnbindingRate 0.01 .
 #^ 
 #^ :R0051o a rbmc:Operator ;
-#^     rdfs:label "λ-Cl activated operator" ;
+#^     rdfs:label "Cl activated operator" ;
 #^     rbmc:part "R0051o" ;
 #^     rbmc:transcriptionFactor :P0051 ;
 #^     rbmc:transcriptionFactorBindingRate 0.01 ;
@@ -529,12 +529,13 @@
 #^     rbmc:protein :P0040 .
 #^ 
 #^ :C0051 a rbmc:CodingSequence ;
-#^     rdfs:label "Coding sequence for λ-Cl" ;
+#^     rdfs:label "Coding sequence for Cl" ;
 #^     rbmc:part "C0051" ;
 #^     rbmc:protein :P0051 .
 #^ 
 #^ :R0010p a rbmc:Promoter ;
 #^     rdfs:label "LacI repressible promoter" ;
+#^     rbmc:next "B0034c" ;
 #^     rbmc:part "R0010p" ;
 #^     rbmc:rnapBindingRate [ rbmc:upstream ( [ a rbmo:BoundState ;
 #^                         rbmo:stateOf :R0010o ] ) ;
@@ -545,6 +546,7 @@
 #^ 
 #^ :R0040p a rbmc:Promoter ;
 #^     rdfs:label "TetR repressible promoter" ;
+#^     rbmc:next "B0034a" ;
 #^     rbmc:part "R0040p" ;
 #^     rbmc:rnapBindingRate [ rbmc:upstream ( [ a rbmo:BoundState ;
 #^                         rbmo:stateOf :R0040o ] ) ;
@@ -554,7 +556,8 @@
 #^             rbmc:value 0.0007 ] .
 #^ 
 #^ :R0051p a rbmc:Promoter ;
-#^     rdfs:label "λ-Cl repressible promoter" ;
+#^     rdfs:label "Cl repressible promoter" ;
+#^     rbmc:next "B0034b" ;
 #^     rbmc:part "R0051p" ;
 #^     rbmc:rnapBindingRate [ rbmc:upstream ( [ a rbmo:BoundState ;
 #^                         rbmo:stateOf :R0051o ] ) ;
@@ -590,7 +593,7 @@
 ################################################################################
 ## Auto-generated Agents
 
-%agent: DNA(bs,ds,type~R0040p~R0010o~B0011b~B0011c~B0011a~R0051p~R0051o~B0034c~B0034b~B0034a~C0012~C0051~C0040~R0040o~R0010p,us)
+%agent: DNA(bs,ds,type~R0040p~R0010o~B0011b~R0010p~B0011a~R0051p~R0051o~B0034c~B0034b~B0034a~C0012~C0051~C0040~R0040o~B0011c,us)
 %agent: P(bs,dna,ds,type~R0040p~P0010~B0011b~R0010p~B0011a~R0051p~B0034c~B0034b~B0034a~C0012~C0051~P0040~C0040~P0051~B0011c,us)
 %agent: RNA(bs,ds,type~R0040p~B0011b~R0010p~B0011a~R0051p~B0034c~B0034b~B0034a~C0012~C0051~C0040~B0011c,us)
 %agent: RNAp(dna,rna)
@@ -648,12 +651,14 @@
 
 # R0040p transcription initiation
 'R0040p-transcription-initiation' \
-    DNA(type~R0040p, bs!1), \
-    RNAp(dna!1, rna) \
+    DNA(type~R0040p, ds!1, bs!2), \
+    DNA(type~B0034a, us!1), \
+    RNAp(dna!2, rna) \
 -> \
-    DNA(type~R0040p, bs!1), \
-    RNAp(dna!1, rna!2), \
-    RNA(type~R0040p, bs, us, ds!2) \
+    DNA(type~R0040p, ds!1, bs!2), \
+    DNA(type~B0034a, us!1), \
+    RNAp(dna!2, rna!3), \
+    RNA(type~B0034a, bs, us, ds!3) \
     @1.0
 
 
@@ -924,17 +929,6 @@
 
 # R0051p RNAp binding
 'R0051p-RNAp-binding-0' \
-    DNA(type~R0051o, ds!1, bs), \
-    DNA(type~R0051p, us!1, bs), \
-    RNAp(dna) \
--> \
-    DNA(type~R0051o, ds!1, bs), \
-    DNA(type~R0051p, us!1, bs!2), \
-    RNAp(dna!2) \
-    @0.0007000000000000
-
-# R0051p RNAp binding
-'R0051p-RNAp-binding-1' \
     DNA(type~R0051o, ds!1, bs!_), \
     DNA(type~R0051p, us!1, bs), \
     RNAp(dna) \
@@ -944,15 +938,28 @@
     RNAp(dna!2) \
     @0.0000007000000000
 
+# R0051p RNAp binding
+'R0051p-RNAp-binding-1' \
+    DNA(type~R0051o, ds!1, bs), \
+    DNA(type~R0051p, us!1, bs), \
+    RNAp(dna) \
+-> \
+    DNA(type~R0051o, ds!1, bs), \
+    DNA(type~R0051p, us!1, bs!2), \
+    RNAp(dna!2) \
+    @0.0007000000000000
+
 
 # R0051p transcription initiation
 'R0051p-transcription-initiation' \
-    DNA(type~R0051p, bs!1), \
-    RNAp(dna!1, rna) \
+    DNA(type~R0051p, ds!1, bs!2), \
+    DNA(type~B0034b, us!1), \
+    RNAp(dna!2, rna) \
 -> \
-    DNA(type~R0051p, bs!1), \
-    RNAp(dna!1, rna!2), \
-    RNA(type~R0051p, bs, us, ds!2) \
+    DNA(type~R0051p, ds!1, bs!2), \
+    DNA(type~B0034b, us!1), \
+    RNAp(dna!2, rna!3), \
+    RNA(type~B0034b, bs, us, ds!3) \
     @1.0
 
 
@@ -1246,12 +1253,14 @@
 
 # R0010p transcription initiation
 'R0010p-transcription-initiation' \
-    DNA(type~R0010p, bs!1), \
-    RNAp(dna!1, rna) \
+    DNA(type~R0010p, ds!1, bs!2), \
+    DNA(type~B0034c, us!1), \
+    RNAp(dna!2, rna) \
 -> \
-    DNA(type~R0010p, bs!1), \
-    RNAp(dna!1, rna!2), \
-    RNA(type~R0010p, bs, us, ds!2) \
+    DNA(type~R0010p, ds!1, bs!2), \
+    DNA(type~B0034c, us!1), \
+    RNAp(dna!2, rna!3), \
+    RNA(type~B0034c, bs, us, ds!3) \
     @1.0
 
 

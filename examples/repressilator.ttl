@@ -86,6 +86,7 @@
 :R0040p a rbmc:Promoter;
     rdfs:label "TetR repressible promoter";
     rbmc:part "R0040p";
+    rbmc:next "B0034a";
     rbmc:rnapBindingRate [
       rbmc:upstream ( [a rbmo:BoundState; rbmo:stateOf :R0040o] );
       rbmc:value 7e-7
@@ -104,6 +105,7 @@
 :R0051p a rbmc:Promoter;
     rdfs:label "λ-Cl repressible promoter";
     rbmc:part "R0051p";
+    rbmc:next "B0034b";
     rbmc:rnapBindingRate [
         rbmc:upstream ( [a rbmo:BoundState; rbmo:stateOf :R0051o] );
         rbmc:value 7e-7
@@ -122,6 +124,7 @@
 :R0010p a rbmc:Promoter;
     rdfs:label "LacI repressible promoter";
     rbmc:part "R0010p";
+    rbmc:next "B0034c";
     rbmc:rnapBindingRate [
         rbmc:upstream ( [a rbmo:BoundState; rbmo:stateOf :R0010o] );
         rbmc:value 7e-7

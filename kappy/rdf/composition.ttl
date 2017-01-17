@@ -13,6 +13,8 @@ rbmc:part a rbmc:Token; skos:prefLabel "name".
 rbmc:Part a owl:Class;
     rbmc:tokens rbmc:part.
 
+rbmc:next a rbmc:Token; skos:prefLabel "next".
+
 rbmc:transcriptionFactor a rbmc:Token;
     skos:prefLabel "transcriptionFactor";
     rbmc:default 1.0.
@@ -59,6 +61,7 @@ rbmc:Promoter rdfs:subClassOf rbmc:Part;
     rbmc:kappaTemplate rbmt:promoter.ka;
     rbmc:bnglTemplate rbmt:promoter.bngl;
     rbmc:tokens
+        rbmc:next,
         rbmc:rnapBindingRate,
         rbmc:rnapDNAUnbindingRate,
         rbmc:rnapRNAUnbindingRate,
