@@ -7,7 +7,8 @@ setup(
     setup_requires=['nose'],
     entry_points = {
         "console_scripts": [
-            "kcomp = kappy.kcomp:main"
+            "kcomp = kappy.kcomp:main",
+            "kdumpviz = kappy.kviz:main"
         ]
     },
     data_files = [
