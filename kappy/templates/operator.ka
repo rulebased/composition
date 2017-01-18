@@ -75,3 +75,9 @@
     @{{ transcriptionFactorUnbindingRate }}
 {% endif %}
 {% endif %}{# transcriptionFactorUnbindingRate defined #}
+
+{% include "transcription_elongation.ka" %}
+{% include "transcription_termination.ka" %}
+{% include "translation_chain.ka" %}
+{% include "translation_elongation.ka" %}
+{% include "translation_termination.ka" %}
