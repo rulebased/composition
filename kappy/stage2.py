@@ -24,7 +24,11 @@ def describe_operators(g, oplist):
 def add_defaults(g, part):
     for _, _, kind in g.triples((URIRef(part["uri"]), RDF["type"], None)):
         for _, _, token in g.triples((kind, RBMC["tokens"], None)):
-            _, _, label = get_one(g, (token, SKOS["prefLabel"], None))
+            try:
+                _, _, label = get_one(g, (token, SKOS["prefLabel"], None))
+            except Exception, e:
+                logging.error("could not find label for %s" % token)
+                raise
             if label.toPython() in part:
                 continue
             if exists(g, (token, RBMC["default"], None)):

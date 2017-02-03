@@ -1,5 +1,4 @@
-{% set rule = "%s-translation-termination" % name %}
-
+{% set rule = "%s-rnap-rna-unbinding" % name %}
 #^ :{{ rule }} a rbmo:Rule;
 #^     bqbiol:isVersionOf go:GO:0006415;
 {{ meta.rule() }}{# #}
@@ -12,4 +11,3 @@
     RNAp(rna), \
     RNA(type~{{ name }}, ds) \
     @{{ rnapRNAUnbindingRate }}
-

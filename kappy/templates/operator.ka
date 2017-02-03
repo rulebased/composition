@@ -16,11 +16,11 @@
 '{{rule}}' \
 {{ context.sequence(rate) }}{# #}
     DNA(type~{{ name }}{{ context.link(rate) }}, bs), \
-    P(type~{{ transcriptionFactor }}, dna) \
+    P(type~{{ transcriptionFactor }}, bs) \
 -> \
 {{ context.sequence(rate) }}{# #}
     DNA(type~{{ name }}{{ context.link(rate) }}, bs!{{ rate.context_size }}), \
-    P(type~{{ transcriptionFactor }}, dna!{{ rate.context_size }}) \
+    P(type~{{ transcriptionFactor }}, bs!{{ rate.context_size }}) \
     @{{ rate.value }}
 {% endfor %}
 {% else %}{# list-valued rate #}
@@ -32,10 +32,10 @@
 # {{ name }} operator activation
 '{{rule}}' \
     DNA(type~{{ name }}, bs), \
-    P(type~{{ transcriptionFactor }}, dna) \
+    P(type~{{ transcriptionFactor }}, bs) \
 -> \
     DNA(type~{{ name }}, bs!1), \
-    P(type~{{ transcriptionFactor }}, dna!1) \
+    P(type~{{ transcriptionFactor }}, bs!1) \
     @{{ transcriptionFactorBindingRate }}
 {% endif %}
 
@@ -52,11 +52,11 @@
 '{{rule}}' \
 {{ context.sequence(rate) }}{# #}
     DNA(type~{{ name }}{{ context.link(rate) }}, bs!{{ rate.context_size }}), \
-    P(type~{{ transcriptionFactor }}, dna!{{ rate.context_size }}) \
+    P(type~{{ transcriptionFactor }}, bs!{{ rate.context_size }}) \
 -> \
 {{ context.sequence(rate) }}{# #}
     DNA(type~{{ name }}{{ context.link(rate) }}, bs), \
-    P(type~{{ transcriptionFactor }}, dna) \
+    P(type~{{ transcriptionFactor }}, bs) \
     @{{ rate.value }}
 {% endfor %}
 {% else %}{# list-valued rate #}
@@ -68,10 +68,10 @@
 # {{ name }} operator deactivation
 '{{rule}}' \
     DNA(type~{{ name }}, bs!1), \
-    P(type~{{ transcriptionFactor }}, dna!1) \
+    P(type~{{ transcriptionFactor }}, bs!1) \
 -> \
     DNA(type~{{ name }}, bs), \
-    P(type~{{ transcriptionFactor }}, dna) \
+    P(type~{{ transcriptionFactor }}, bs) \
     @{{ transcriptionFactorUnbindingRate }}
 {% endif %}
 {% endif %}{# transcriptionFactorUnbindingRate defined #}
@@ -81,3 +81,4 @@
 {% include "translation_chain.ka" %}
 {% include "translation_elongation.ka" %}
 {% include "translation_termination.ka" %}
+{% include "host_maintenance.ka" %}

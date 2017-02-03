@@ -25,14 +25,6 @@ rbmc:transcriptionFactorUnbindingRate a rbmc:Token;
     skos:prefLabel "transcriptionFactorUnbindingRate";
     rbmc:default 1.0.
 
-rbmc:Operator rdfs:subClassOf rbmc:Part;
-    rbmc:kappaTemplate rbmt:operator.ka;
-    rbmc:bnglTemplate rbmt:operator.bngl;
-    rbmc:tokens
-        rbmc:transcriptionFactor,
-        rbmc:transcriptionFactorBindingRate,
-        rbmc:transcriptionFactorUnbindingRate.
-
 rbmc:rnapBindingRate a rbmc:Token;
     skos:prefLabel "rnapBindingRate";
     rbmc:default 1.0.
@@ -43,6 +35,16 @@ rbmc:rnapRNAUnbindingRate a rbmc:Token;
     skos:prefLabel "rnapRNAUnbindingRate";
     rbmc:default 1.0.
 
+rbmc:ribosomeBindingRate a rbmc:Token;
+    skos:prefLabel "ribosomeBindingRate";
+    rbmc:default 1.0.
+rbmc:ribosomeRNAUnbindingRate a rbmc:Token;
+    skos:prefLabel "ribosomeRNAUnbindingRate";
+    rbmc:default 1.0.
+rbmc:ribosomeProteinUnbindingRate a rbmc:Token;
+    skos:prefLabel "ribosomeProteinUnbindingRate";
+    rbmc:default 1.0.
+
 rbmc:transcriptionInitiationRate a rbmc:Token;
     skos:prefLabel "transcriptionInitiationRate";
     rbmc:default 1.0.
@@ -50,12 +52,33 @@ rbmc:transcriptionElongationRate a rbmc:Token;
     skos:prefLabel "transcriptionElongationRate";
     rbmc:default 1.0.
 
-rbmc:translationInitiationRate a rbmc:Token;
-    skos:prefLabel "translationInitiationRate";
-    rbmc:default 1.0.
 rbmc:translationElongationRate a rbmc:Token;
     skos:prefLabel "translationElongationRate";
     rbmc:default 1.0.
+
+rbmc:rnaDegradationRate a rbmc:Token;
+    skos:prefLabel "rnaDegradationRate";
+    rbmc:default 1.0.
+rbmc:proteinDegradationRate a rbmc:Token;
+    skos:prefLabel "proteinDegradationRate";
+    rbmc:default 1.0.
+
+rbmc:Operator rdfs:subClassOf rbmc:Part;
+    rbmc:kappaTemplate rbmt:operator.ka;
+    rbmc:bnglTemplate rbmt:operator.bngl;
+    rbmc:tokens
+        rbmc:transcriptionFactor,
+        rbmc:transcriptionFactorBindingRate,
+        rbmc:transcriptionFactorUnbindingRate,
+        rbmc:rnapDNAUnbindingRate,
+        rbmc:rnapRNAUnbindingRate,
+        rbmc:transcriptionInitiationRate,
+        rbmc:transcriptionElongationRate,
+        rbmc:ribosomeRNAUnbindingRate,
+        rbmc:ribosomeProteinUnbindingRate,
+        rbmc:translationElongationRate,
+        rbmc:rnaDegradationRate,
+        rbmc:proteinDegradationRate.
 
 rbmc:Promoter rdfs:subClassOf rbmc:Part;
     rbmc:kappaTemplate rbmt:promoter.ka;
@@ -67,7 +90,11 @@ rbmc:Promoter rdfs:subClassOf rbmc:Part;
         rbmc:rnapRNAUnbindingRate,
         rbmc:transcriptionInitiationRate,
         rbmc:transcriptionElongationRate,
-        rbmc:translationElongationRate.
+        rbmc:ribosomeRNAUnbindingRate,
+        rbmc:ribosomeProteinUnbindingRate,
+        rbmc:translationElongationRate,
+        rbmc:rnaDegradationRate,
+        rbmc:proteinDegradationRate.
 
 rbmc:RibosomeBindingSite rdfs:subClassOf rbmc:Part;
     rbmc:kappaTemplate rbmt:rbs.ka;
@@ -75,10 +102,13 @@ rbmc:RibosomeBindingSite rdfs:subClassOf rbmc:Part;
     rbmc:tokens
         rbmc:rnapDNAUnbindingRate,
         rbmc:rnapRNAUnbindingRate,
-        rbmc:transcriptionInitiationRate,
         rbmc:transcriptionElongationRate,
-        rbmc:translationInitiationRate,
-        rbmc:translationElongationRate.
+        rbmc:ribosomeBindingRate,
+        rbmc:ribosomeRNAUnbindingRate,
+        rbmc:ribosomeProteinUnbindingRate,
+        rbmc:translationElongationRate,
+        rbmc:rnaDegradationRate,
+        rbmc:proteinDegradationRate.
 
 rbmc:protein a rbmc:Token;
     skos:prefLabel "protein".
@@ -90,10 +120,12 @@ rbmc:CodingSequence rdfs:subClassOf rbmc:Part;
         rbmc:protein,
         rbmc:rnapDNAUnbindingRate,
         rbmc:rnapRNAUnbindingRate,
-        rbmc:transcriptionInitiationRate,
         rbmc:transcriptionElongationRate,
-        rbmc:translationInitiationRate,
-        rbmc:translationElongationRate.
+        rbmc:ribosomeRNAUnbindingRate,
+        rbmc:ribosomeProteinUnbindingRate,
+        rbmc:translationElongationRate,
+        rbmc:rnaDegradationRate,
+        rbmc:proteinDegradationRate.
 
 rbmc:Terminator rdfs:subClassOf rbmc:Part;
     rbmc:kappaTemplate rbmt:generic.ka;
@@ -101,7 +133,9 @@ rbmc:Terminator rdfs:subClassOf rbmc:Part;
     rbmc:tokens
         rbmc:rnapDNAUnbindingRate,
         rbmc:rnapRNAUnbindingRate,
-        rbmc:transcriptionInitiationRate,
         rbmc:transcriptionElongationRate,
-        rbmc:translationElongationRate.
-
+        rbmc:ribosomeRNAUnbindingRate,
+        rbmc:ribosomeProteinUnbindingRate,
+        rbmc:translationElongationRate,
+        rbmc:rnaDegradationRate,
+        rbmc:proteinDegradationRate.

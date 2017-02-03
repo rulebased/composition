@@ -23,6 +23,32 @@
 #^ @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 #^ @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 #^ 
+#^ :B0011a-protein-degradation a rbmo:Rule ;
+#^     rdfs:label "B0011a Protein degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011a .
+#^ 
+#^ :B0011a-ribosome-protein-unbinding a rbmo:Rule ;
+#^     rdfs:label "B0011a Ribosome unbinding from Protein" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011a .
+#^ 
+#^ :B0011a-ribosome-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "B0011a Ribosome unbinding from RNA, translation termination" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011a .
+#^ 
+#^ :B0011a-rna-degradation a rbmo:Rule ;
+#^     rdfs:label "B0011a RNA degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011a .
+#^ 
+#^ :B0011a-rnap-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "B0011a RNAp unbinding from RNA, translation termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011a .
+#^ 
 #^ :B0011a-transcription-elongation a rbmo:Rule ;
 #^     rdfs:label "B0011a transcription of downstream DNA component." ;
 #^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006354> ;
@@ -47,11 +73,31 @@
 #^     dct:isPartOf :m ;
 #^     prov:wasDerivedFrom :B0011a .
 #^ 
-#^ :B0011a-translation-termination a rbmo:Rule ;
-#^     rdfs:label "B0011a RNAp unbinding from RNA, translation termination" ;
+#^ :B0011b-protein-degradation a rbmo:Rule ;
+#^     rdfs:label "B0011b Protein degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011b .
+#^ 
+#^ :B0011b-ribosome-protein-unbinding a rbmo:Rule ;
+#^     rdfs:label "B0011b Ribosome unbinding from Protein" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011b .
+#^ 
+#^ :B0011b-ribosome-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "B0011b Ribosome unbinding from RNA, translation termination" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011b .
+#^ 
+#^ :B0011b-rna-degradation a rbmo:Rule ;
+#^     rdfs:label "B0011b RNA degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011b .
+#^ 
+#^ :B0011b-rnap-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "B0011b RNAp unbinding from RNA, translation termination" ;
 #^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
 #^     dct:isPartOf :m ;
-#^     prov:wasDerivedFrom :B0011a .
+#^     prov:wasDerivedFrom :B0011b .
 #^ 
 #^ :B0011b-transcription-elongation a rbmo:Rule ;
 #^     rdfs:label "B0011b transcription of downstream DNA component." ;
@@ -77,11 +123,31 @@
 #^     dct:isPartOf :m ;
 #^     prov:wasDerivedFrom :B0011b .
 #^ 
-#^ :B0011b-translation-termination a rbmo:Rule ;
-#^     rdfs:label "B0011b RNAp unbinding from RNA, translation termination" ;
+#^ :B0011c-protein-degradation a rbmo:Rule ;
+#^     rdfs:label "B0011c Protein degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011c .
+#^ 
+#^ :B0011c-ribosome-protein-unbinding a rbmo:Rule ;
+#^     rdfs:label "B0011c Ribosome unbinding from Protein" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011c .
+#^ 
+#^ :B0011c-ribosome-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "B0011c Ribosome unbinding from RNA, translation termination" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011c .
+#^ 
+#^ :B0011c-rna-degradation a rbmo:Rule ;
+#^     rdfs:label "B0011c RNA degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0011c .
+#^ 
+#^ :B0011c-rnap-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "B0011c RNAp unbinding from RNA, translation termination" ;
 #^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
 #^     dct:isPartOf :m ;
-#^     prov:wasDerivedFrom :B0011b .
+#^     prov:wasDerivedFrom :B0011c .
 #^ 
 #^ :B0011c-transcription-elongation a rbmo:Rule ;
 #^     rdfs:label "B0011c transcription of downstream DNA component." ;
@@ -107,11 +173,31 @@
 #^     dct:isPartOf :m ;
 #^     prov:wasDerivedFrom :B0011c .
 #^ 
-#^ :B0011c-translation-termination a rbmo:Rule ;
-#^     rdfs:label "B0011c RNAp unbinding from RNA, translation termination" ;
+#^ :B0034a-protein-degradation a rbmo:Rule ;
+#^     rdfs:label "B0034a Protein degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034a .
+#^ 
+#^ :B0034a-ribosome-protein-unbinding a rbmo:Rule ;
+#^     rdfs:label "B0034a Ribosome unbinding from Protein" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034a .
+#^ 
+#^ :B0034a-ribosome-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "B0034a Ribosome unbinding from RNA, translation termination" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034a .
+#^ 
+#^ :B0034a-rna-degradation a rbmo:Rule ;
+#^     rdfs:label "B0034a RNA degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034a .
+#^ 
+#^ :B0034a-rnap-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "B0034a RNAp unbinding from RNA, translation termination" ;
 #^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
 #^     dct:isPartOf :m ;
-#^     prov:wasDerivedFrom :B0011c .
+#^     prov:wasDerivedFrom :B0034a .
 #^ 
 #^ :B0034a-transcription-elongation a rbmo:Rule ;
 #^     rdfs:label "B0034a transcription of downstream DNA component." ;
@@ -141,11 +227,31 @@
 #^     rdfs:label "B0034a translational initiation" ;
 #^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006413> .
 #^ 
-#^ :B0034a-translation-termination a rbmo:Rule ;
-#^     rdfs:label "B0034a RNAp unbinding from RNA, translation termination" ;
+#^ :B0034b-protein-degradation a rbmo:Rule ;
+#^     rdfs:label "B0034b Protein degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034b .
+#^ 
+#^ :B0034b-ribosome-protein-unbinding a rbmo:Rule ;
+#^     rdfs:label "B0034b Ribosome unbinding from Protein" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034b .
+#^ 
+#^ :B0034b-ribosome-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "B0034b Ribosome unbinding from RNA, translation termination" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034b .
+#^ 
+#^ :B0034b-rna-degradation a rbmo:Rule ;
+#^     rdfs:label "B0034b RNA degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034b .
+#^ 
+#^ :B0034b-rnap-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "B0034b RNAp unbinding from RNA, translation termination" ;
 #^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
 #^     dct:isPartOf :m ;
-#^     prov:wasDerivedFrom :B0034a .
+#^     prov:wasDerivedFrom :B0034b .
 #^ 
 #^ :B0034b-transcription-elongation a rbmo:Rule ;
 #^     rdfs:label "B0034b transcription of downstream DNA component." ;
@@ -175,11 +281,31 @@
 #^     rdfs:label "B0034b translational initiation" ;
 #^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006413> .
 #^ 
-#^ :B0034b-translation-termination a rbmo:Rule ;
-#^     rdfs:label "B0034b RNAp unbinding from RNA, translation termination" ;
+#^ :B0034c-protein-degradation a rbmo:Rule ;
+#^     rdfs:label "B0034c Protein degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034c .
+#^ 
+#^ :B0034c-ribosome-protein-unbinding a rbmo:Rule ;
+#^     rdfs:label "B0034c Ribosome unbinding from Protein" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034c .
+#^ 
+#^ :B0034c-ribosome-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "B0034c Ribosome unbinding from RNA, translation termination" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034c .
+#^ 
+#^ :B0034c-rna-degradation a rbmo:Rule ;
+#^     rdfs:label "B0034c RNA degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :B0034c .
+#^ 
+#^ :B0034c-rnap-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "B0034c RNAp unbinding from RNA, translation termination" ;
 #^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
 #^     dct:isPartOf :m ;
-#^     prov:wasDerivedFrom :B0034b .
+#^     prov:wasDerivedFrom :B0034c .
 #^ 
 #^ :B0034c-transcription-elongation a rbmo:Rule ;
 #^     rdfs:label "B0034c transcription of downstream DNA component." ;
@@ -209,11 +335,31 @@
 #^     rdfs:label "B0034c translational initiation" ;
 #^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006413> .
 #^ 
-#^ :B0034c-translation-termination a rbmo:Rule ;
-#^     rdfs:label "B0034c RNAp unbinding from RNA, translation termination" ;
+#^ :C0012-protein-degradation a rbmo:Rule ;
+#^     rdfs:label "C0012 Protein degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0012 .
+#^ 
+#^ :C0012-ribosome-protein-unbinding a rbmo:Rule ;
+#^     rdfs:label "C0012 Ribosome unbinding from Protein" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0012 .
+#^ 
+#^ :C0012-ribosome-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "C0012 Ribosome unbinding from RNA, translation termination" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0012 .
+#^ 
+#^ :C0012-rna-degradation a rbmo:Rule ;
+#^     rdfs:label "C0012 RNA degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0012 .
+#^ 
+#^ :C0012-rnap-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "C0012 RNAp unbinding from RNA, translation termination" ;
 #^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
 #^     dct:isPartOf :m ;
-#^     prov:wasDerivedFrom :B0034c .
+#^     prov:wasDerivedFrom :C0012 .
 #^ 
 #^ :C0012-transcription-elongation a rbmo:Rule ;
 #^     rdfs:label "C0012 transcription of downstream DNA component." ;
@@ -239,11 +385,31 @@
 #^     dct:isPartOf :m ;
 #^     prov:wasDerivedFrom :C0012 .
 #^ 
-#^ :C0012-translation-termination a rbmo:Rule ;
-#^     rdfs:label "C0012 RNAp unbinding from RNA, translation termination" ;
+#^ :C0040-protein-degradation a rbmo:Rule ;
+#^     rdfs:label "C0040 Protein degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0040 .
+#^ 
+#^ :C0040-ribosome-protein-unbinding a rbmo:Rule ;
+#^     rdfs:label "C0040 Ribosome unbinding from Protein" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0040 .
+#^ 
+#^ :C0040-ribosome-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "C0040 Ribosome unbinding from RNA, translation termination" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0040 .
+#^ 
+#^ :C0040-rna-degradation a rbmo:Rule ;
+#^     rdfs:label "C0040 RNA degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0040 .
+#^ 
+#^ :C0040-rnap-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "C0040 RNAp unbinding from RNA, translation termination" ;
 #^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
 #^     dct:isPartOf :m ;
-#^     prov:wasDerivedFrom :C0012 .
+#^     prov:wasDerivedFrom :C0040 .
 #^ 
 #^ :C0040-transcription-elongation a rbmo:Rule ;
 #^     rdfs:label "C0040 transcription of downstream DNA component." ;
@@ -269,11 +435,31 @@
 #^     dct:isPartOf :m ;
 #^     prov:wasDerivedFrom :C0040 .
 #^ 
-#^ :C0040-translation-termination a rbmo:Rule ;
-#^     rdfs:label "C0040 RNAp unbinding from RNA, translation termination" ;
+#^ :C0051-protein-degradation a rbmo:Rule ;
+#^     rdfs:label "C0051 Protein degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0051 .
+#^ 
+#^ :C0051-ribosome-protein-unbinding a rbmo:Rule ;
+#^     rdfs:label "C0051 Ribosome unbinding from Protein" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0051 .
+#^ 
+#^ :C0051-ribosome-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "C0051 Ribosome unbinding from RNA, translation termination" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0051 .
+#^ 
+#^ :C0051-rna-degradation a rbmo:Rule ;
+#^     rdfs:label "C0051 RNA degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :C0051 .
+#^ 
+#^ :C0051-rnap-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "C0051 RNAp unbinding from RNA, translation termination" ;
 #^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
 #^     dct:isPartOf :m ;
-#^     prov:wasDerivedFrom :C0040 .
+#^     prov:wasDerivedFrom :C0051 .
 #^ 
 #^ :C0051-transcription-elongation a rbmo:Rule ;
 #^     rdfs:label "C0051 transcription of downstream DNA component." ;
@@ -299,12 +485,6 @@
 #^     dct:isPartOf :m ;
 #^     prov:wasDerivedFrom :C0051 .
 #^ 
-#^ :C0051-translation-termination a rbmo:Rule ;
-#^     rdfs:label "C0051 RNAp unbinding from RNA, translation termination" ;
-#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
-#^     dct:isPartOf :m ;
-#^     prov:wasDerivedFrom :C0051 .
-#^ 
 #^ :R0010o-activation a rbmo:Rule ;
 #^     rdfs:label "R0010o operator activation" ;
 #^     dct:isPartOf :m ;
@@ -312,6 +492,56 @@
 #^ 
 #^ :R0010o-deactivation a rbmo:Rule ;
 #^     rdfs:label "R0010o operator deactivation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010o .
+#^ 
+#^ :R0010o-protein-degradation a rbmo:Rule ;
+#^     rdfs:label "R0010o Protein degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010o .
+#^ 
+#^ :R0010o-ribosome-protein-unbinding a rbmo:Rule ;
+#^     rdfs:label "R0010o Ribosome unbinding from Protein" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010o .
+#^ 
+#^ :R0010o-ribosome-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "R0010o Ribosome unbinding from RNA, translation termination" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010o .
+#^ 
+#^ :R0010o-rna-degradation a rbmo:Rule ;
+#^     rdfs:label "R0010o RNA degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010o .
+#^ 
+#^ :R0010o-rnap-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "R0010o RNAp unbinding from RNA, translation termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010o .
+#^ 
+#^ :R0010o-transcription-elongation a rbmo:Rule ;
+#^     rdfs:label "R0010o transcription of downstream DNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006354> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010o .
+#^ 
+#^ :R0010o-transcription-termination a rbmo:Rule ;
+#^     rdfs:label "R0010o RNAp unbinding from DNA, transcription termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006353> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010o .
+#^ 
+#^ :R0010o-translation-chain a rbmo:Rule ;
+#^     rdfs:label "R0010o formation of translational chains, due to gene fusion or leakiness of stop codons" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010o .
+#^ 
+#^ :R0010o-translation-elongation a rbmo:Rule ;
+#^     rdfs:label "R0010o translation of the downstream RNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006414> ;
 #^     dct:isPartOf :m ;
 #^     prov:wasDerivedFrom :R0010o .
 #^ 
@@ -324,6 +554,32 @@
 #^ :R0010p-RNAp-binding-1 a rbmo:Rule ;
 #^     rdfs:label "R0010p RNAp binding" ;
 #^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0070063> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010p .
+#^ 
+#^ :R0010p-protein-degradation a rbmo:Rule ;
+#^     rdfs:label "R0010p Protein degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010p .
+#^ 
+#^ :R0010p-ribosome-protein-unbinding a rbmo:Rule ;
+#^     rdfs:label "R0010p Ribosome unbinding from Protein" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010p .
+#^ 
+#^ :R0010p-ribosome-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "R0010p Ribosome unbinding from RNA, translation termination" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010p .
+#^ 
+#^ :R0010p-rna-degradation a rbmo:Rule ;
+#^     rdfs:label "R0010p RNA degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0010p .
+#^ 
+#^ :R0010p-rnap-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "R0010p RNAp unbinding from RNA, translation termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
 #^     dct:isPartOf :m ;
 #^     prov:wasDerivedFrom :R0010p .
 #^ 
@@ -351,12 +607,6 @@
 #^     dct:isPartOf :m ;
 #^     prov:wasDerivedFrom :R0010p .
 #^ 
-#^ :R0010p-translation-termination a rbmo:Rule ;
-#^     rdfs:label "R0010p RNAp unbinding from RNA, translation termination" ;
-#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
-#^     dct:isPartOf :m ;
-#^     prov:wasDerivedFrom :R0010p .
-#^ 
 #^ :R0040o-activation a rbmo:Rule ;
 #^     rdfs:label "R0040o operator activation" ;
 #^     dct:isPartOf :m ;
@@ -364,6 +614,56 @@
 #^ 
 #^ :R0040o-deactivation a rbmo:Rule ;
 #^     rdfs:label "R0040o operator deactivation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040o .
+#^ 
+#^ :R0040o-protein-degradation a rbmo:Rule ;
+#^     rdfs:label "R0040o Protein degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040o .
+#^ 
+#^ :R0040o-ribosome-protein-unbinding a rbmo:Rule ;
+#^     rdfs:label "R0040o Ribosome unbinding from Protein" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040o .
+#^ 
+#^ :R0040o-ribosome-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "R0040o Ribosome unbinding from RNA, translation termination" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040o .
+#^ 
+#^ :R0040o-rna-degradation a rbmo:Rule ;
+#^     rdfs:label "R0040o RNA degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040o .
+#^ 
+#^ :R0040o-rnap-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "R0040o RNAp unbinding from RNA, translation termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040o .
+#^ 
+#^ :R0040o-transcription-elongation a rbmo:Rule ;
+#^     rdfs:label "R0040o transcription of downstream DNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006354> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040o .
+#^ 
+#^ :R0040o-transcription-termination a rbmo:Rule ;
+#^     rdfs:label "R0040o RNAp unbinding from DNA, transcription termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006353> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040o .
+#^ 
+#^ :R0040o-translation-chain a rbmo:Rule ;
+#^     rdfs:label "R0040o formation of translational chains, due to gene fusion or leakiness of stop codons" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040o .
+#^ 
+#^ :R0040o-translation-elongation a rbmo:Rule ;
+#^     rdfs:label "R0040o translation of the downstream RNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006414> ;
 #^     dct:isPartOf :m ;
 #^     prov:wasDerivedFrom :R0040o .
 #^ 
@@ -376,6 +676,32 @@
 #^ :R0040p-RNAp-binding-1 a rbmo:Rule ;
 #^     rdfs:label "R0040p RNAp binding" ;
 #^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0070063> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040p .
+#^ 
+#^ :R0040p-protein-degradation a rbmo:Rule ;
+#^     rdfs:label "R0040p Protein degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040p .
+#^ 
+#^ :R0040p-ribosome-protein-unbinding a rbmo:Rule ;
+#^     rdfs:label "R0040p Ribosome unbinding from Protein" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040p .
+#^ 
+#^ :R0040p-ribosome-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "R0040p Ribosome unbinding from RNA, translation termination" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040p .
+#^ 
+#^ :R0040p-rna-degradation a rbmo:Rule ;
+#^     rdfs:label "R0040p RNA degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0040p .
+#^ 
+#^ :R0040p-rnap-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "R0040p RNAp unbinding from RNA, translation termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
 #^     dct:isPartOf :m ;
 #^     prov:wasDerivedFrom :R0040p .
 #^ 
@@ -403,12 +729,6 @@
 #^     dct:isPartOf :m ;
 #^     prov:wasDerivedFrom :R0040p .
 #^ 
-#^ :R0040p-translation-termination a rbmo:Rule ;
-#^     rdfs:label "R0040p RNAp unbinding from RNA, translation termination" ;
-#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
-#^     dct:isPartOf :m ;
-#^     prov:wasDerivedFrom :R0040p .
-#^ 
 #^ :R0051o-activation a rbmo:Rule ;
 #^     rdfs:label "R0051o operator activation" ;
 #^     dct:isPartOf :m ;
@@ -416,6 +736,56 @@
 #^ 
 #^ :R0051o-deactivation a rbmo:Rule ;
 #^     rdfs:label "R0051o operator deactivation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051o .
+#^ 
+#^ :R0051o-protein-degradation a rbmo:Rule ;
+#^     rdfs:label "R0051o Protein degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051o .
+#^ 
+#^ :R0051o-ribosome-protein-unbinding a rbmo:Rule ;
+#^     rdfs:label "R0051o Ribosome unbinding from Protein" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051o .
+#^ 
+#^ :R0051o-ribosome-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "R0051o Ribosome unbinding from RNA, translation termination" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051o .
+#^ 
+#^ :R0051o-rna-degradation a rbmo:Rule ;
+#^     rdfs:label "R0051o RNA degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051o .
+#^ 
+#^ :R0051o-rnap-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "R0051o RNAp unbinding from RNA, translation termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051o .
+#^ 
+#^ :R0051o-transcription-elongation a rbmo:Rule ;
+#^     rdfs:label "R0051o transcription of downstream DNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006354> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051o .
+#^ 
+#^ :R0051o-transcription-termination a rbmo:Rule ;
+#^     rdfs:label "R0051o RNAp unbinding from DNA, transcription termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006353> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051o .
+#^ 
+#^ :R0051o-translation-chain a rbmo:Rule ;
+#^     rdfs:label "R0051o formation of translational chains, due to gene fusion or leakiness of stop codons" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051o .
+#^ 
+#^ :R0051o-translation-elongation a rbmo:Rule ;
+#^     rdfs:label "R0051o translation of the downstream RNA component." ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006414> ;
 #^     dct:isPartOf :m ;
 #^     prov:wasDerivedFrom :R0051o .
 #^ 
@@ -428,6 +798,32 @@
 #^ :R0051p-RNAp-binding-1 a rbmo:Rule ;
 #^     rdfs:label "R0051p RNAp binding" ;
 #^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0070063> ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051p .
+#^ 
+#^ :R0051p-protein-degradation a rbmo:Rule ;
+#^     rdfs:label "R0051p Protein degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051p .
+#^ 
+#^ :R0051p-ribosome-protein-unbinding a rbmo:Rule ;
+#^     rdfs:label "R0051p Ribosome unbinding from Protein" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051p .
+#^ 
+#^ :R0051p-ribosome-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "R0051p Ribosome unbinding from RNA, translation termination" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051p .
+#^ 
+#^ :R0051p-rna-degradation a rbmo:Rule ;
+#^     rdfs:label "R0051p RNA degradation" ;
+#^     dct:isPartOf :m ;
+#^     prov:wasDerivedFrom :R0051p .
+#^ 
+#^ :R0051p-rnap-rna-unbinding a rbmo:Rule ;
+#^     rdfs:label "R0051p RNAp unbinding from RNA, translation termination" ;
+#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
 #^     dct:isPartOf :m ;
 #^     prov:wasDerivedFrom :R0051p .
 #^ 
@@ -455,12 +851,6 @@
 #^     dct:isPartOf :m ;
 #^     prov:wasDerivedFrom :R0051p .
 #^ 
-#^ :R0051p-translation-termination a rbmo:Rule ;
-#^     rdfs:label "R0051p RNAp unbinding from RNA, translation termination" ;
-#^     bqbiol:isVersionOf <http://identifiers.org/go/GO:0006415> ;
-#^     dct:isPartOf :m ;
-#^     prov:wasDerivedFrom :R0051p .
-#^ 
 #^ :P0010 a rbmc:Protein ;
 #^     rdfs:label "LacI" ;
 #^     skos:prefLabel "P0010" .
@@ -470,29 +860,8 @@
 #^     skos:prefLabel "P0040" .
 #^ 
 #^ :P0051 a rbmc:Protein ;
-#^     rdfs:label "Cl" ;
+#^     rdfs:label "λ-Cl" ;
 #^     skos:prefLabel "P0051" .
-#^ 
-#^ :R0010o a rbmc:Operator ;
-#^     rdfs:label "LacI activated operator" ;
-#^     rbmc:part "R0010o" ;
-#^     rbmc:transcriptionFactor :P0010 ;
-#^     rbmc:transcriptionFactorBindingRate 0.01 ;
-#^     rbmc:transcriptionFactorUnbindingRate 0.01 .
-#^ 
-#^ :R0040o a rbmc:Operator ;
-#^     rdfs:label "TetR activated operator" ;
-#^     rbmc:part "R0040o" ;
-#^     rbmc:transcriptionFactor :P0040 ;
-#^     rbmc:transcriptionFactorBindingRate 0.01 ;
-#^     rbmc:transcriptionFactorUnbindingRate 0.01 .
-#^ 
-#^ :R0051o a rbmc:Operator ;
-#^     rdfs:label "Cl activated operator" ;
-#^     rbmc:part "R0051o" ;
-#^     rbmc:transcriptionFactor :P0051 ;
-#^     rbmc:transcriptionFactorBindingRate 0.01 ;
-#^     rbmc:transcriptionFactorUnbindingRate 0.01 .
 #^ 
 #^ :B0011a a rbmc:Terminator ;
 #^     rdfs:label "Terminator, stop codon" ;
@@ -529,7 +898,7 @@
 #^     rbmc:protein :P0040 .
 #^ 
 #^ :C0051 a rbmc:CodingSequence ;
-#^     rdfs:label "Coding sequence for Cl" ;
+#^     rdfs:label "Coding sequence for λ-Cl" ;
 #^     rbmc:part "C0051" ;
 #^     rbmc:protein :P0051 .
 #^ 
@@ -556,7 +925,7 @@
 #^             rbmc:value 0.0007 ] .
 #^ 
 #^ :R0051p a rbmc:Promoter ;
-#^     rdfs:label "Cl repressible promoter" ;
+#^     rdfs:label "λ-Cl repressible promoter" ;
 #^     rbmc:next "B0034b" ;
 #^     rbmc:part "R0051p" ;
 #^     rbmc:rnapBindingRate [ rbmc:upstream ( [ a rbmo:BoundState ;
@@ -565,6 +934,27 @@
 #^         [ rbmc:upstream ( [ a rbmo:UnboundState ;
 #^                         rbmo:stateOf :R0051o ] ) ;
 #^             rbmc:value 0.0007 ] .
+#^ 
+#^ :R0010o a rbmc:Operator ;
+#^     rdfs:label "LacI activated operator" ;
+#^     rbmc:part "R0010o" ;
+#^     rbmc:transcriptionFactor :P0010 ;
+#^     rbmc:transcriptionFactorBindingRate 0.01 ;
+#^     rbmc:transcriptionFactorUnbindingRate 0.01 .
+#^ 
+#^ :R0040o a rbmc:Operator ;
+#^     rdfs:label "TetR activated operator" ;
+#^     rbmc:part "R0040o" ;
+#^     rbmc:transcriptionFactor :P0040 ;
+#^     rbmc:transcriptionFactorBindingRate 0.01 ;
+#^     rbmc:transcriptionFactorUnbindingRate 0.01 .
+#^ 
+#^ :R0051o a rbmc:Operator ;
+#^     rdfs:label "λ-Cl activated operator" ;
+#^     rbmc:part "R0051o" ;
+#^     rbmc:transcriptionFactor :P0051 ;
+#^     rbmc:transcriptionFactorBindingRate 0.01 ;
+#^     rbmc:transcriptionFactorUnbindingRate 0.01 .
 #^ 
 #^ :m a rbmo:Model ;
 #^     dct:description "Transcription of the treatment of the Elowitz repressilator given in the Kappa BioBricks Framework book chapter" ;
@@ -594,8 +984,9 @@
 ## Auto-generated Agents
 
 %agent: DNA(bs,ds,type~R0040p~R0010o~B0011b~R0010p~B0011a~R0051p~R0051o~B0034c~B0034b~B0034a~C0012~C0051~C0040~R0040o~B0011c,us)
-%agent: P(bs,dna,ds,type~R0040p~P0010~B0011b~R0010p~B0011a~R0051p~B0034c~B0034b~B0034a~C0012~C0051~P0040~C0040~P0051~B0011c,us)
-%agent: RNA(bs,ds,type~R0040p~B0011b~R0010p~B0011a~R0051p~B0034c~B0034b~B0034a~C0012~C0051~C0040~B0011c,us)
+%agent: P(bs,ds,type~P0010~B0011b~B0011c~B0011a~B0034c~B0034b~B0034a~C0012~C0051~P0040~C0040~P0051~R0040p~R0010p~R0051p~R0051o~R0010o~R0040o,us)
+%agent: Protein(bs,type~R0040p~B0034a~B0011b~R0010p~B0011a~R0051p~R0051o~B0034c~B0034b~R0010o~C0012~C0051~C0040~R0040o~B0011c)
+%agent: RNA(bs,ds,type~R0040p~B0034a~B0011b~R0010p~B0011a~R0051p~R0051o~B0034c~B0034b~R0010o~C0012~C0051~C0040~R0040o~B0011c,us)
 %agent: RNAp(dna,rna)
 %agent: Ribosome(protein,rna)
 
@@ -606,21 +997,106 @@
 # R0040o operator activation
 'R0040o-activation' \
     DNA(type~R0040o, bs), \
-    P(type~P0040, dna) \
+    P(type~P0040, bs) \
 -> \
     DNA(type~R0040o, bs!1), \
-    P(type~P0040, dna!1) \
+    P(type~P0040, bs!1) \
     @0.0100000000000000
 
 
 # R0040o operator deactivation
 'R0040o-deactivation' \
     DNA(type~R0040o, bs!1), \
-    P(type~P0040, dna!1) \
+    P(type~P0040, bs!1) \
 -> \
     DNA(type~R0040o, bs), \
-    P(type~P0040, dna) \
+    P(type~P0040, bs) \
     @0.0100000000000000
+
+
+# R0040o transcription of downstream DNA component
+'R0040o-transcription-elongation' \
+    DNA(ds!2, bs!1), \
+    DNA(type~R0040o, us!2, bs), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!3) \
+-> \
+    DNA(ds!2, bs), \
+    DNA(type~R0040o, us!2, bs!1), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!4), \
+    RNA(type~R0040o, us!4, ds!3, bs)@1.0
+
+# R0040o RNAp unbinding from DNA, transcription termination
+'R0040o-transcription-termination' \
+    DNA(type~R0040o, bs!1), \
+    RNAp(dna!1) \
+-> \
+    DNA(type~R0040o, bs), \
+    RNAp(dna) \
+    @1.0
+
+# R0040o formation of translational chains, due to gene fusion or leakiness of stop codons
+'R0040o-translation-chain' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~R0040o, us!2, bs), \
+    P(ds, bs!3) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~R0040o, us!2, bs!1), \
+    P(ds!4, bs), \
+    P(type~R0040o, us!4, bs!3) \
+    @1.0
+
+# R0040o translation of the downstream RNA component
+'R0040o-translation-elongation' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1), \
+    RNA(type~R0040o, us!2, bs) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1), \
+    RNA(type~R0040o, us!2, bs!1) \
+    @1.0
+# R0040o RNAp unbinding from RNA, translation termination
+'R0040o-rnap-rna-unbinding' \
+    RNAp(rna!1), \
+    RNA(type~R0040o, ds!1) \
+-> \
+    RNAp(rna), \
+    RNA(type~R0040o, ds) \
+    @1.0
+# R0040o Ribosome unbinding from RNA, translation termination
+'R0040o-ribosome-rna-unbinding' \
+    Ribosome(rna!1), \
+    RNA(type~R0040o, bs!1) \
+-> \
+    Ribosome(rna), \
+    RNA(type~R0040o, bs) \
+    @1.0
+
+# R0040o Ribosome unbinding from Protein
+'R0040o-ribosome-protein-unbinding' \
+    Ribosome(protein!1), \
+    Protein(type~R0040o, bs!1) \
+-> \
+    Ribosome(protein), \
+    Protein(type~R0040o, bs) \
+    @1.0
+
+# R0040o Protein degradation
+'R0040o-protein-degradation' \
+    P(type~R0040o) \
+-> \
+    @1.0
+
+# R0040o RNA degradation
+'R0040o-rna-degradation' \
+    RNA(type~R0040o) \
+-> \
+    @1.0
 
 
 ################################################################################
@@ -697,14 +1173,42 @@
     P(ds!4, bs), \
     P(type~R0040p, us!4, bs!3) \
     @1.0
-
 # R0040p RNAp unbinding from RNA, translation termination
-'R0040p-translation-termination' \
+'R0040p-rnap-rna-unbinding' \
     RNAp(rna!1), \
     RNA(type~R0040p, ds!1) \
 -> \
     RNAp(rna), \
     RNA(type~R0040p, ds) \
+    @1.0
+# R0040p Ribosome unbinding from RNA, translation termination
+'R0040p-ribosome-rna-unbinding' \
+    Ribosome(rna!1), \
+    RNA(type~R0040p, bs!1) \
+-> \
+    Ribosome(rna), \
+    RNA(type~R0040p, bs) \
+    @1.0
+
+# R0040p Ribosome unbinding from Protein
+'R0040p-ribosome-protein-unbinding' \
+    Ribosome(protein!1), \
+    Protein(type~R0040p, bs!1) \
+-> \
+    Ribosome(protein), \
+    Protein(type~R0040p, bs) \
+    @1.0
+
+# R0040p Protein degradation
+'R0040p-protein-degradation' \
+    P(type~R0040p) \
+-> \
+    @1.0
+
+# R0040p RNA degradation
+'R0040p-rna-degradation' \
+    RNA(type~R0040p) \
+-> \
     @1.0
 
 
@@ -767,14 +1271,42 @@
     Ribosome(rna!1), \
     RNA(type~B0034a, us!2, bs!1) \
     @1.0
-
 # B0034a RNAp unbinding from RNA, translation termination
-'B0034a-translation-termination' \
+'B0034a-rnap-rna-unbinding' \
     RNAp(rna!1), \
     RNA(type~B0034a, ds!1) \
 -> \
     RNAp(rna), \
     RNA(type~B0034a, ds) \
+    @1.0
+# B0034a Ribosome unbinding from RNA, translation termination
+'B0034a-ribosome-rna-unbinding' \
+    Ribosome(rna!1), \
+    RNA(type~B0034a, bs!1) \
+-> \
+    Ribosome(rna), \
+    RNA(type~B0034a, bs) \
+    @1.0
+
+# B0034a Ribosome unbinding from Protein
+'B0034a-ribosome-protein-unbinding' \
+    Ribosome(protein!1), \
+    Protein(type~B0034a, bs!1) \
+-> \
+    Ribosome(protein), \
+    Protein(type~B0034a, bs) \
+    @1.0
+
+# B0034a Protein degradation
+'B0034a-protein-degradation' \
+    P(type~B0034a) \
+-> \
+    @1.0
+
+# B0034a RNA degradation
+'B0034a-rna-degradation' \
+    RNA(type~B0034a) \
+-> \
     @1.0
 
 
@@ -830,14 +1362,42 @@
     P(ds!4, bs), \
     P(type~C0051, us!4, bs!3) \
     @1.0
-
 # C0051 RNAp unbinding from RNA, translation termination
-'C0051-translation-termination' \
+'C0051-rnap-rna-unbinding' \
     RNAp(rna!1), \
     RNA(type~C0051, ds!1) \
 -> \
     RNAp(rna), \
     RNA(type~C0051, ds) \
+    @1.0
+# C0051 Ribosome unbinding from RNA, translation termination
+'C0051-ribosome-rna-unbinding' \
+    Ribosome(rna!1), \
+    RNA(type~C0051, bs!1) \
+-> \
+    Ribosome(rna), \
+    RNA(type~C0051, bs) \
+    @1.0
+
+# C0051 Ribosome unbinding from Protein
+'C0051-ribosome-protein-unbinding' \
+    Ribosome(protein!1), \
+    Protein(type~C0051, bs!1) \
+-> \
+    Ribosome(protein), \
+    Protein(type~C0051, bs) \
+    @1.0
+
+# C0051 Protein degradation
+'C0051-protein-degradation' \
+    P(type~C0051) \
+-> \
+    @1.0
+
+# C0051 RNA degradation
+'C0051-rna-degradation' \
+    RNA(type~C0051) \
+-> \
     @1.0
 
 
@@ -890,14 +1450,42 @@
     Ribosome(rna!1), \
     RNA(type~B0011a, us!2, bs!1) \
     @1.0
-
 # B0011a RNAp unbinding from RNA, translation termination
-'B0011a-translation-termination' \
+'B0011a-rnap-rna-unbinding' \
     RNAp(rna!1), \
     RNA(type~B0011a, ds!1) \
 -> \
     RNAp(rna), \
     RNA(type~B0011a, ds) \
+    @1.0
+# B0011a Ribosome unbinding from RNA, translation termination
+'B0011a-ribosome-rna-unbinding' \
+    Ribosome(rna!1), \
+    RNA(type~B0011a, bs!1) \
+-> \
+    Ribosome(rna), \
+    RNA(type~B0011a, bs) \
+    @1.0
+
+# B0011a Ribosome unbinding from Protein
+'B0011a-ribosome-protein-unbinding' \
+    Ribosome(protein!1), \
+    Protein(type~B0011a, bs!1) \
+-> \
+    Ribosome(protein), \
+    Protein(type~B0011a, bs) \
+    @1.0
+
+# B0011a Protein degradation
+'B0011a-protein-degradation' \
+    P(type~B0011a) \
+-> \
+    @1.0
+
+# B0011a RNA degradation
+'B0011a-rna-degradation' \
+    RNA(type~B0011a) \
+-> \
     @1.0
 
 
@@ -907,21 +1495,106 @@
 # R0051o operator activation
 'R0051o-activation' \
     DNA(type~R0051o, bs), \
-    P(type~P0051, dna) \
+    P(type~P0051, bs) \
 -> \
     DNA(type~R0051o, bs!1), \
-    P(type~P0051, dna!1) \
+    P(type~P0051, bs!1) \
     @0.0100000000000000
 
 
 # R0051o operator deactivation
 'R0051o-deactivation' \
     DNA(type~R0051o, bs!1), \
-    P(type~P0051, dna!1) \
+    P(type~P0051, bs!1) \
 -> \
     DNA(type~R0051o, bs), \
-    P(type~P0051, dna) \
+    P(type~P0051, bs) \
     @0.0100000000000000
+
+
+# R0051o transcription of downstream DNA component
+'R0051o-transcription-elongation' \
+    DNA(ds!2, bs!1), \
+    DNA(type~R0051o, us!2, bs), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!3) \
+-> \
+    DNA(ds!2, bs), \
+    DNA(type~R0051o, us!2, bs!1), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!4), \
+    RNA(type~R0051o, us!4, ds!3, bs)@1.0
+
+# R0051o RNAp unbinding from DNA, transcription termination
+'R0051o-transcription-termination' \
+    DNA(type~R0051o, bs!1), \
+    RNAp(dna!1) \
+-> \
+    DNA(type~R0051o, bs), \
+    RNAp(dna) \
+    @1.0
+
+# R0051o formation of translational chains, due to gene fusion or leakiness of stop codons
+'R0051o-translation-chain' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~R0051o, us!2, bs), \
+    P(ds, bs!3) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~R0051o, us!2, bs!1), \
+    P(ds!4, bs), \
+    P(type~R0051o, us!4, bs!3) \
+    @1.0
+
+# R0051o translation of the downstream RNA component
+'R0051o-translation-elongation' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1), \
+    RNA(type~R0051o, us!2, bs) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1), \
+    RNA(type~R0051o, us!2, bs!1) \
+    @1.0
+# R0051o RNAp unbinding from RNA, translation termination
+'R0051o-rnap-rna-unbinding' \
+    RNAp(rna!1), \
+    RNA(type~R0051o, ds!1) \
+-> \
+    RNAp(rna), \
+    RNA(type~R0051o, ds) \
+    @1.0
+# R0051o Ribosome unbinding from RNA, translation termination
+'R0051o-ribosome-rna-unbinding' \
+    Ribosome(rna!1), \
+    RNA(type~R0051o, bs!1) \
+-> \
+    Ribosome(rna), \
+    RNA(type~R0051o, bs) \
+    @1.0
+
+# R0051o Ribosome unbinding from Protein
+'R0051o-ribosome-protein-unbinding' \
+    Ribosome(protein!1), \
+    Protein(type~R0051o, bs!1) \
+-> \
+    Ribosome(protein), \
+    Protein(type~R0051o, bs) \
+    @1.0
+
+# R0051o Protein degradation
+'R0051o-protein-degradation' \
+    P(type~R0051o) \
+-> \
+    @1.0
+
+# R0051o RNA degradation
+'R0051o-rna-degradation' \
+    RNA(type~R0051o) \
+-> \
+    @1.0
 
 
 ################################################################################
@@ -929,17 +1602,6 @@
 
 # R0051p RNAp binding
 'R0051p-RNAp-binding-0' \
-    DNA(type~R0051o, ds!1, bs!_), \
-    DNA(type~R0051p, us!1, bs), \
-    RNAp(dna) \
--> \
-    DNA(type~R0051o, ds!1, bs!_), \
-    DNA(type~R0051p, us!1, bs!2), \
-    RNAp(dna!2) \
-    @0.0000007000000000
-
-# R0051p RNAp binding
-'R0051p-RNAp-binding-1' \
     DNA(type~R0051o, ds!1, bs), \
     DNA(type~R0051p, us!1, bs), \
     RNAp(dna) \
@@ -948,6 +1610,17 @@
     DNA(type~R0051p, us!1, bs!2), \
     RNAp(dna!2) \
     @0.0007000000000000
+
+# R0051p RNAp binding
+'R0051p-RNAp-binding-1' \
+    DNA(type~R0051o, ds!1, bs!_), \
+    DNA(type~R0051p, us!1, bs), \
+    RNAp(dna) \
+-> \
+    DNA(type~R0051o, ds!1, bs!_), \
+    DNA(type~R0051p, us!1, bs!2), \
+    RNAp(dna!2) \
+    @0.0000007000000000
 
 
 # R0051p transcription initiation
@@ -998,14 +1671,42 @@
     P(ds!4, bs), \
     P(type~R0051p, us!4, bs!3) \
     @1.0
-
 # R0051p RNAp unbinding from RNA, translation termination
-'R0051p-translation-termination' \
+'R0051p-rnap-rna-unbinding' \
     RNAp(rna!1), \
     RNA(type~R0051p, ds!1) \
 -> \
     RNAp(rna), \
     RNA(type~R0051p, ds) \
+    @1.0
+# R0051p Ribosome unbinding from RNA, translation termination
+'R0051p-ribosome-rna-unbinding' \
+    Ribosome(rna!1), \
+    RNA(type~R0051p, bs!1) \
+-> \
+    Ribosome(rna), \
+    RNA(type~R0051p, bs) \
+    @1.0
+
+# R0051p Ribosome unbinding from Protein
+'R0051p-ribosome-protein-unbinding' \
+    Ribosome(protein!1), \
+    Protein(type~R0051p, bs!1) \
+-> \
+    Ribosome(protein), \
+    Protein(type~R0051p, bs) \
+    @1.0
+
+# R0051p Protein degradation
+'R0051p-protein-degradation' \
+    P(type~R0051p) \
+-> \
+    @1.0
+
+# R0051p RNA degradation
+'R0051p-rna-degradation' \
+    RNA(type~R0051p) \
+-> \
     @1.0
 
 
@@ -1068,14 +1769,42 @@
     Ribosome(rna!1), \
     RNA(type~B0034b, us!2, bs!1) \
     @1.0
-
 # B0034b RNAp unbinding from RNA, translation termination
-'B0034b-translation-termination' \
+'B0034b-rnap-rna-unbinding' \
     RNAp(rna!1), \
     RNA(type~B0034b, ds!1) \
 -> \
     RNAp(rna), \
     RNA(type~B0034b, ds) \
+    @1.0
+# B0034b Ribosome unbinding from RNA, translation termination
+'B0034b-ribosome-rna-unbinding' \
+    Ribosome(rna!1), \
+    RNA(type~B0034b, bs!1) \
+-> \
+    Ribosome(rna), \
+    RNA(type~B0034b, bs) \
+    @1.0
+
+# B0034b Ribosome unbinding from Protein
+'B0034b-ribosome-protein-unbinding' \
+    Ribosome(protein!1), \
+    Protein(type~B0034b, bs!1) \
+-> \
+    Ribosome(protein), \
+    Protein(type~B0034b, bs) \
+    @1.0
+
+# B0034b Protein degradation
+'B0034b-protein-degradation' \
+    P(type~B0034b) \
+-> \
+    @1.0
+
+# B0034b RNA degradation
+'B0034b-rna-degradation' \
+    RNA(type~B0034b) \
+-> \
     @1.0
 
 
@@ -1131,14 +1860,42 @@
     P(ds!4, bs), \
     P(type~C0012, us!4, bs!3) \
     @1.0
-
 # C0012 RNAp unbinding from RNA, translation termination
-'C0012-translation-termination' \
+'C0012-rnap-rna-unbinding' \
     RNAp(rna!1), \
     RNA(type~C0012, ds!1) \
 -> \
     RNAp(rna), \
     RNA(type~C0012, ds) \
+    @1.0
+# C0012 Ribosome unbinding from RNA, translation termination
+'C0012-ribosome-rna-unbinding' \
+    Ribosome(rna!1), \
+    RNA(type~C0012, bs!1) \
+-> \
+    Ribosome(rna), \
+    RNA(type~C0012, bs) \
+    @1.0
+
+# C0012 Ribosome unbinding from Protein
+'C0012-ribosome-protein-unbinding' \
+    Ribosome(protein!1), \
+    Protein(type~C0012, bs!1) \
+-> \
+    Ribosome(protein), \
+    Protein(type~C0012, bs) \
+    @1.0
+
+# C0012 Protein degradation
+'C0012-protein-degradation' \
+    P(type~C0012) \
+-> \
+    @1.0
+
+# C0012 RNA degradation
+'C0012-rna-degradation' \
+    RNA(type~C0012) \
+-> \
     @1.0
 
 
@@ -1191,14 +1948,42 @@
     Ribosome(rna!1), \
     RNA(type~B0011b, us!2, bs!1) \
     @1.0
-
 # B0011b RNAp unbinding from RNA, translation termination
-'B0011b-translation-termination' \
+'B0011b-rnap-rna-unbinding' \
     RNAp(rna!1), \
     RNA(type~B0011b, ds!1) \
 -> \
     RNAp(rna), \
     RNA(type~B0011b, ds) \
+    @1.0
+# B0011b Ribosome unbinding from RNA, translation termination
+'B0011b-ribosome-rna-unbinding' \
+    Ribosome(rna!1), \
+    RNA(type~B0011b, bs!1) \
+-> \
+    Ribosome(rna), \
+    RNA(type~B0011b, bs) \
+    @1.0
+
+# B0011b Ribosome unbinding from Protein
+'B0011b-ribosome-protein-unbinding' \
+    Ribosome(protein!1), \
+    Protein(type~B0011b, bs!1) \
+-> \
+    Ribosome(protein), \
+    Protein(type~B0011b, bs) \
+    @1.0
+
+# B0011b Protein degradation
+'B0011b-protein-degradation' \
+    P(type~B0011b) \
+-> \
+    @1.0
+
+# B0011b RNA degradation
+'B0011b-rna-degradation' \
+    RNA(type~B0011b) \
+-> \
     @1.0
 
 
@@ -1208,21 +1993,106 @@
 # R0010o operator activation
 'R0010o-activation' \
     DNA(type~R0010o, bs), \
-    P(type~P0010, dna) \
+    P(type~P0010, bs) \
 -> \
     DNA(type~R0010o, bs!1), \
-    P(type~P0010, dna!1) \
+    P(type~P0010, bs!1) \
     @0.0100000000000000
 
 
 # R0010o operator deactivation
 'R0010o-deactivation' \
     DNA(type~R0010o, bs!1), \
-    P(type~P0010, dna!1) \
+    P(type~P0010, bs!1) \
 -> \
     DNA(type~R0010o, bs), \
-    P(type~P0010, dna) \
+    P(type~P0010, bs) \
     @0.0100000000000000
+
+
+# R0010o transcription of downstream DNA component
+'R0010o-transcription-elongation' \
+    DNA(ds!2, bs!1), \
+    DNA(type~R0010o, us!2, bs), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!3) \
+-> \
+    DNA(ds!2, bs), \
+    DNA(type~R0010o, us!2, bs!1), \
+    RNAp(dna!1, rna!3), \
+    RNA(ds!4), \
+    RNA(type~R0010o, us!4, ds!3, bs)@1.0
+
+# R0010o RNAp unbinding from DNA, transcription termination
+'R0010o-transcription-termination' \
+    DNA(type~R0010o, bs!1), \
+    RNAp(dna!1) \
+-> \
+    DNA(type~R0010o, bs), \
+    RNAp(dna) \
+    @1.0
+
+# R0010o formation of translational chains, due to gene fusion or leakiness of stop codons
+'R0010o-translation-chain' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~R0010o, us!2, bs), \
+    P(ds, bs!3) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1, protein!3), \
+    RNA(type~R0010o, us!2, bs!1), \
+    P(ds!4, bs), \
+    P(type~R0010o, us!4, bs!3) \
+    @1.0
+
+# R0010o translation of the downstream RNA component
+'R0010o-translation-elongation' \
+    RNA(ds!2, bs!1), \
+    Ribosome(rna!1), \
+    RNA(type~R0010o, us!2, bs) \
+-> \
+    RNA(ds!2, bs), \
+    Ribosome(rna!1), \
+    RNA(type~R0010o, us!2, bs!1) \
+    @1.0
+# R0010o RNAp unbinding from RNA, translation termination
+'R0010o-rnap-rna-unbinding' \
+    RNAp(rna!1), \
+    RNA(type~R0010o, ds!1) \
+-> \
+    RNAp(rna), \
+    RNA(type~R0010o, ds) \
+    @1.0
+# R0010o Ribosome unbinding from RNA, translation termination
+'R0010o-ribosome-rna-unbinding' \
+    Ribosome(rna!1), \
+    RNA(type~R0010o, bs!1) \
+-> \
+    Ribosome(rna), \
+    RNA(type~R0010o, bs) \
+    @1.0
+
+# R0010o Ribosome unbinding from Protein
+'R0010o-ribosome-protein-unbinding' \
+    Ribosome(protein!1), \
+    Protein(type~R0010o, bs!1) \
+-> \
+    Ribosome(protein), \
+    Protein(type~R0010o, bs) \
+    @1.0
+
+# R0010o Protein degradation
+'R0010o-protein-degradation' \
+    P(type~R0010o) \
+-> \
+    @1.0
+
+# R0010o RNA degradation
+'R0010o-rna-degradation' \
+    RNA(type~R0010o) \
+-> \
+    @1.0
 
 
 ################################################################################
@@ -1299,14 +2169,42 @@
     P(ds!4, bs), \
     P(type~R0010p, us!4, bs!3) \
     @1.0
-
 # R0010p RNAp unbinding from RNA, translation termination
-'R0010p-translation-termination' \
+'R0010p-rnap-rna-unbinding' \
     RNAp(rna!1), \
     RNA(type~R0010p, ds!1) \
 -> \
     RNAp(rna), \
     RNA(type~R0010p, ds) \
+    @1.0
+# R0010p Ribosome unbinding from RNA, translation termination
+'R0010p-ribosome-rna-unbinding' \
+    Ribosome(rna!1), \
+    RNA(type~R0010p, bs!1) \
+-> \
+    Ribosome(rna), \
+    RNA(type~R0010p, bs) \
+    @1.0
+
+# R0010p Ribosome unbinding from Protein
+'R0010p-ribosome-protein-unbinding' \
+    Ribosome(protein!1), \
+    Protein(type~R0010p, bs!1) \
+-> \
+    Ribosome(protein), \
+    Protein(type~R0010p, bs) \
+    @1.0
+
+# R0010p Protein degradation
+'R0010p-protein-degradation' \
+    P(type~R0010p) \
+-> \
+    @1.0
+
+# R0010p RNA degradation
+'R0010p-rna-degradation' \
+    RNA(type~R0010p) \
+-> \
     @1.0
 
 
@@ -1369,14 +2267,42 @@
     Ribosome(rna!1), \
     RNA(type~B0034c, us!2, bs!1) \
     @1.0
-
 # B0034c RNAp unbinding from RNA, translation termination
-'B0034c-translation-termination' \
+'B0034c-rnap-rna-unbinding' \
     RNAp(rna!1), \
     RNA(type~B0034c, ds!1) \
 -> \
     RNAp(rna), \
     RNA(type~B0034c, ds) \
+    @1.0
+# B0034c Ribosome unbinding from RNA, translation termination
+'B0034c-ribosome-rna-unbinding' \
+    Ribosome(rna!1), \
+    RNA(type~B0034c, bs!1) \
+-> \
+    Ribosome(rna), \
+    RNA(type~B0034c, bs) \
+    @1.0
+
+# B0034c Ribosome unbinding from Protein
+'B0034c-ribosome-protein-unbinding' \
+    Ribosome(protein!1), \
+    Protein(type~B0034c, bs!1) \
+-> \
+    Ribosome(protein), \
+    Protein(type~B0034c, bs) \
+    @1.0
+
+# B0034c Protein degradation
+'B0034c-protein-degradation' \
+    P(type~B0034c) \
+-> \
+    @1.0
+
+# B0034c RNA degradation
+'B0034c-rna-degradation' \
+    RNA(type~B0034c) \
+-> \
     @1.0
 
 
@@ -1432,14 +2358,42 @@
     P(ds!4, bs), \
     P(type~C0040, us!4, bs!3) \
     @1.0
-
 # C0040 RNAp unbinding from RNA, translation termination
-'C0040-translation-termination' \
+'C0040-rnap-rna-unbinding' \
     RNAp(rna!1), \
     RNA(type~C0040, ds!1) \
 -> \
     RNAp(rna), \
     RNA(type~C0040, ds) \
+    @1.0
+# C0040 Ribosome unbinding from RNA, translation termination
+'C0040-ribosome-rna-unbinding' \
+    Ribosome(rna!1), \
+    RNA(type~C0040, bs!1) \
+-> \
+    Ribosome(rna), \
+    RNA(type~C0040, bs) \
+    @1.0
+
+# C0040 Ribosome unbinding from Protein
+'C0040-ribosome-protein-unbinding' \
+    Ribosome(protein!1), \
+    Protein(type~C0040, bs!1) \
+-> \
+    Ribosome(protein), \
+    Protein(type~C0040, bs) \
+    @1.0
+
+# C0040 Protein degradation
+'C0040-protein-degradation' \
+    P(type~C0040) \
+-> \
+    @1.0
+
+# C0040 RNA degradation
+'C0040-rna-degradation' \
+    RNA(type~C0040) \
+-> \
     @1.0
 
 
@@ -1492,12 +2446,40 @@
     Ribosome(rna!1), \
     RNA(type~B0011c, us!2, bs!1) \
     @1.0
-
 # B0011c RNAp unbinding from RNA, translation termination
-'B0011c-translation-termination' \
+'B0011c-rnap-rna-unbinding' \
     RNAp(rna!1), \
     RNA(type~B0011c, ds!1) \
 -> \
     RNAp(rna), \
     RNA(type~B0011c, ds) \
+    @1.0
+# B0011c Ribosome unbinding from RNA, translation termination
+'B0011c-ribosome-rna-unbinding' \
+    Ribosome(rna!1), \
+    RNA(type~B0011c, bs!1) \
+-> \
+    Ribosome(rna), \
+    RNA(type~B0011c, bs) \
+    @1.0
+
+# B0011c Ribosome unbinding from Protein
+'B0011c-ribosome-protein-unbinding' \
+    Ribosome(protein!1), \
+    Protein(type~B0011c, bs!1) \
+-> \
+    Ribosome(protein), \
+    Protein(type~B0011c, bs) \
+    @1.0
+
+# B0011c Protein degradation
+'B0011c-protein-degradation' \
+    P(type~B0011c) \
+-> \
+    @1.0
+
+# B0011c RNA degradation
+'B0011c-rna-degradation' \
+    RNA(type~B0011c) \
+-> \
     @1.0

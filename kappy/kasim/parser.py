@@ -173,10 +173,10 @@ tok_exprs = many_space + Suppress("|") + many_space + delimitedList(tok_expr)
 pure_rule = And([
     qtok("desc"),
     many_space,
-    Group(delimitedList(agent_pat))("lhs_agents"),
+    Group(delimitedList(Optional(agent_pat)))("lhs_agents"),
     Optional(tok_expr)("lhs_tokens"),
     many_space, Suppress("->"), many_space,
-    Group(delimitedList(agent_pat))("rhs_agents"),
+    Group(delimitedList(Optional(agent_pat)))("rhs_agents"),
     Optional(tok_expr)("rhs_tokens"),
     many_space, Suppress("@"), many_space,
     expr("rate")
@@ -187,10 +187,10 @@ pure_rule = And([
 bi_rule = And([
     qtok("desc"),
     many_space,
-    Group(delimitedList(agent_pat))("lhs_agents"),
+    Group(delimitedList(Optional(agent_pat)))("lhs_agents"),
     Optional(tok_expr)("lhs_tokens"),
     many_space, Suppress("<->"), many_space,
-    Group(delimitedList(agent_pat))("rhs_agents"),
+    Group(delimitedList(Optional(agent_pat)))("rhs_agents"),
     Optional(tok_expr)("rhs_tokens"),
     many_space, Suppress("@"), many_space,
     expr("rate_forward"),
@@ -206,10 +206,10 @@ bi_rule = And([
 circ_rule = And([
     qtok("desc"),
     many_space,
-    Group(delimitedList(agent_pat))("lhs_agents"),
+    Group(delimitedList(Optional(agent_pat)))("lhs_agents"),
     Optional(tok_expr)("lhs_tokens"),
     many_space, Suppress("->"), many_space,
-    Group(delimitedList(agent_pat))("rhs_agents"),
+    Group(delimitedList(Optional(agent_pat)))("rhs_agents"),
     Optional(tok_expr)("rhs_tokens"),
     many_space, Suppress("@"), many_space,
     expr("rate"),
