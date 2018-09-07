@@ -1,4 +1,4 @@
-import kappy
+import krdf
 from rdflib import Graph
 
 def test_parse_rdf_in_kappa():

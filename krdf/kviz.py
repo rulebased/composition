@@ -22,12 +22,12 @@ def main():
 
     model = KappaModel(parseString(data))
 
-    print "graph {"
+    print("graph {")
     nodes = {}
     i = 0
     for v in model.init_values:
         sys.stderr.write("\n")
-        print "    subgraph {"
+        print("    subgraph {")
         links = {}
         for pat in v.patterns:
             sys.stderr.write("%s\n" % pat)
@@ -36,16 +36,16 @@ def main():
                 name = "%s(%s)" % (pat.name, kind.state.text)
             else:
                 name = pat.name
-            print '        n%d[label="%s"];' % (i, name)
+            print('        n%d[label="%s"];' % (i, name))
             for site in pat.sites.values():
                 if not isinstance(site.link, Link):
                     continue
                 links.setdefault(site.link.text, []).append(i)
             i += 1
         for (m, n) in links.values():
-            print '        n%d -- n%d;' % (m, n)
-        print "    }" ## ends subgraph
-    print "}" ## ends graph
+            print('        n%d -- n%d;' % (m, n))
+        print("    }") ## ends subgraph
+    print("}") ## ends graph
 
 if __name__ == '__main__':
     main()

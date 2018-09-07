@@ -41,7 +41,7 @@ def Graph(*av, **kw):
     True
     """
     g = rdflib.Graph(*av, **kw)
-    import kappy
+    import krdf
     if krdf.namespace_manager is None:
         krdf.namespace_manager = g.namespace_manager
     else:
