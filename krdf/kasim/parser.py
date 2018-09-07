@@ -239,8 +239,8 @@ kappa_parser = ZeroOrMore(eol) + ZeroOrMore(statement + ZeroOrMore(eol))
 def parseString(s):
     ## kludge -- remove coments and escaped newlines
     ## parser above doesn't deal properly with them
-    if isinstance(s, str):
-        s = unicode(s)
+#    if isinstance(s, str):
+#        s = unicode(s)
     ss = []
     for l in s.split(u"\n"):
         l = l.strip()

@@ -43,9 +43,9 @@ def describe_part(g, parturi):
     """
     def literal(v):
         v = v.toPython()
-        if isinstance(v, str) or isinstance(v, unicode):
+        if isinstance(v, str):
             return v
-        return "%.16f" % v
+        return b"%.16f" % v
 
     part = { "uri": parturi.toPython() }
     try:
@@ -112,11 +112,11 @@ def compile_stage2(ir, debug=False, **kw):
     ir2["prefix"] = prefix.toPython()
 
     for _, _, parts in ir.triples((model, RBMC["linear"], None)):
-        circuit = map(lambda x: describe_part(ir, x), Collection(ir, parts))
+        circuit = list(map(lambda x: describe_part(ir, x), Collection(ir, parts)))
         ir2["circuits"].append({ "topology": "linear", "parts": circuit })
 
     for _, _, parts in ir.triples((model, RBMC["circular"], None)):
-        circuit = map(lambda x: describe_part(ir, x), Collection(ir, parts))
+        circuit = list(map(lambda x: describe_part(ir, x), Collection(ir, parts)))
         ir2["circuits"].append({ "topology": "circular", "parts": circuit })
 
     logging.debug("="*80)

@@ -30,7 +30,7 @@ class KappaModel(object):
         grouped_non_declared = {name: list(pats) for name, pats
                                 in groupby(sorted(non_declared_agent_patterns, key=key), key=key)}
 
-        derived_agents = [self._derive_agent_declaration_from_patterns(ps) for ps in grouped_non_declared.itervalues()]
+        derived_agents = [self._derive_agent_declaration_from_patterns(ps) for ps in grouped_non_declared.values()]
         self.agents.update({a.name: a for a in derived_agents})
 
     def _initial_analysis(self, ast):
@@ -69,6 +69,6 @@ class KappaModel(object):
         :rtype: AgentD
         """
         assert len({p.name for p in patterns}) == 1
-        all_sites = set(chain.from_iterable(p.sites.iterkeys() for p in patterns))
+        all_sites = set(chain.from_iterable(p.sites.keys() for p in patterns))
         site_states = {s: cls._get_possible_states_from_patterns(patterns, s) for s in all_sites}
         return AgentD(patterns[0].name, site_states)

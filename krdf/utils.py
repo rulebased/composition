@@ -74,7 +74,7 @@ def slug(s):
 def get_template(name, local_templates=True, **kw):
     if local_templates:
         env = Environment(
-            loader=PackageLoader("kappy", "templates"),
+            loader=PackageLoader("krdf", "templates"),
             autoescape=False, trim_blocks=True
         )
         _, filename = name.rsplit("/", 1)

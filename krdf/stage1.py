@@ -28,7 +28,7 @@ def compile_stage1(model, facts = [], rules = [], **kw):
     logging.debug("=")
     logging.debug("stage1: output")
     logging.debug("-"*80)
-    for line in data.serialize(format="turtle").split("\n"):
+    for line in data.serialize(format="turtle").split(b"\n"):
         logging.debug(line)
     logging.debug("="*80)
 

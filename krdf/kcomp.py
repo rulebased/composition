@@ -6,11 +6,11 @@ from pkg_resources import resource_filename
 
 from krdf.compiler import compile
 
-FACT_FILES = map(lambda x: resource_filename("kappy", "rdf/%s" % x), [
+FACT_FILES = map(lambda x: resource_filename("krdf", "rdf/%s" % x), [
     "composition.ttl"
 ])
 
-RULE_FILES = map(lambda x: resource_filename("kappy", "rdf/%s" % x), [
+RULE_FILES = map(lambda x: resource_filename("krdf", "rdf/%s" % x), [
     "rdfs-rules.n3",
     "composition.n3"
 ])
@@ -26,7 +26,9 @@ def main():
     logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', level=loglevel)
 
     data = compile(args.filename, facts=FACT_FILES, rules=RULE_FILES)
-    sys.stdout.write(data.encode("utf-8"))
+
+    fp = os.fdopen(sys.stdout.fileno(), 'wb')
+    fp.write(data)
 
 if __name__ == '__main__':
     main()

@@ -11,3 +11,4 @@
     RNAp(rna), \
     RNA(type~{{ name }}, ds) \
     @{{ rnapRNAUnbindingRate }}
+
