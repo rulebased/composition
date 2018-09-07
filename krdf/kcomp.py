@@ -4,7 +4,7 @@ import os
 import sys
 from pkg_resources import resource_filename
 
-from kappy.compiler import compile
+from krdf.compiler import compile
 
 FACT_FILES = map(lambda x: resource_filename("kappy", "rdf/%s" % x), [
     "composition.ttl"

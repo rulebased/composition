@@ -42,10 +42,10 @@ def Graph(*av, **kw):
     """
     g = rdflib.Graph(*av, **kw)
     import kappy
-    if kappy.namespace_manager is None:
-        kappy.namespace_manager = g.namespace_manager
+    if krdf.namespace_manager is None:
+        krdf.namespace_manager = g.namespace_manager
     else:
-        g.namespace_manager = kappy.namespace_manager
+        g.namespace_manager = krdf.namespace_manager
     return g
 
 def get_one(g, t):

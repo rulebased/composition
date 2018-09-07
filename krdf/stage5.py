@@ -1,5 +1,5 @@
-from kappy.namespace import RDF, RBMC, RBMO
-from kappy.utils import get_one
+from krdf.namespace import RDF, RBMC, RBMO
+from krdf.utils import get_one
 from rdflib.parser import create_input_source
 import logging
 

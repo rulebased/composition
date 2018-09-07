@@ -4,8 +4,8 @@ import os
 import sys
 from pkg_resources import resource_filename
 
-from kappy.kasim import parseString, KappaModel
-from kappy.kasim.ast import Link
+from krdf.kasim import parseString, KappaModel
+from krdf.kasim.ast import Link
 
 def main():
     parser = argparse.ArgumentParser(description='Produce a GraphViz dot file from a KaSim state dump')

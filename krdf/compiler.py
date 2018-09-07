@@ -1,11 +1,11 @@
-from stage1 import compile_stage1
-from stage2 import compile_stage2
-from stage3 import compile_stage3
-from stage4 import compile_stage4
-from stage5 import compile_stage5
-from stage6 import compile_stage6
+from krdf.stage1 import compile_stage1
+from krdf.stage2 import compile_stage2
+from krdf.stage3 import compile_stage3
+from krdf.stage4 import compile_stage4
+from krdf.stage5 import compile_stage5
+from krdf.stage6 import compile_stage6
 
-from merge import merge
+from krdf.merge import merge
 
 def compile(model, **kw):
     ## ir1 is materialised rdf graph

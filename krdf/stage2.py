@@ -2,8 +2,8 @@ from rdflib.collection import Collection
 from rdflib.term import Literal, URIRef
 import logging
 
-from kappy.namespace import RBMC, RBMO, RDF, SKOS
-from kappy.utils import get_one, exists
+from krdf.namespace import RBMC, RBMO, RDF, SKOS
+from krdf.utils import get_one, exists
 
 def describe_operators(g, oplist):
     operators = []
@@ -26,7 +26,7 @@ def add_defaults(g, part):
         for _, _, token in g.triples((kind, RBMC["tokens"], None)):
             try:
                 _, _, label = get_one(g, (token, SKOS["prefLabel"], None))
-            except Exception, e:
+            except Exception as e:
                 logging.error("could not find label for %s" % token)
                 raise
             if label.toPython() in part:
@@ -50,7 +50,7 @@ def describe_part(g, parturi):
     part = { "uri": parturi.toPython() }
     try:
         _, _, template = get_one(g, (parturi, RBMC["kappaTemplate"], None))
-    except Exception, e:
+    except Exception as e:
         logging.error("%s could not find template" % (parturi,))
         raise e
     
@@ -58,13 +58,13 @@ def describe_part(g, parturi):
     for _, _, replace in g.triples((parturi, RBMC["replace"], None)):
         try:
             _, _, token = get_one(g, (replace, RBMC["string"], None))
-        except Exception, e:
+        except Exception as e:
             logging.error("%s could not find replacement token" % (parturi,))
             raise e
 
         try:
             _, _, value = get_one(g, (replace, RBMC["value"], None))
-        except Exception, e:
+        except Exception as e:
             logging.error("%s could not find value for %s" % (parturi, token))
             raise
 

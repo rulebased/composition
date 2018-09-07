@@ -1,7 +1,7 @@
 import logging
-from kasim.agent import declare_agents
-from utils import get_template
-from namespace import RBMT
+from krdf.kasim.agent import declare_agents
+from krdf.utils import get_template
+from krdf.namespace import RBMT
 
 def compile_stage4(docs, **kw):
     """

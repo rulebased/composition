@@ -2,7 +2,7 @@ from FuXi.Rete.RuleStore import SetupRuleStore
 from FuXi.Rete.Util import generateTokenSet
 from FuXi.Horn.HornRules import HornFromN3
 import logging
-from kappy.utils import Graph
+from krdf.utils import Graph
 
 def compile_stage1(model, facts = [], rules = [], **kw):
     logging.info("stage1: setting up inference rules")

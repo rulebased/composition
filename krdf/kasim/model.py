@@ -1,7 +1,7 @@
 from operator import attrgetter
 from itertools import chain, groupby
 
-from kappy.kasim.ast import AD, RD, VD, OB, IN, TD, AgentD, State
+from krdf.kasim.ast import AD, RD, VD, OB, IN, TD, AgentD, State
 
 class KappaModel(object):
     def __init__(self, ast):

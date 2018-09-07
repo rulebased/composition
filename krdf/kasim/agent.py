@@ -1,5 +1,5 @@
-from kappy.kasim.model import KappaModel
-from kappy.kasim import parseString
+from krdf.kasim.model import KappaModel
+from krdf.kasim import parseString
 
 def declare_agents(s):
     ast = parseString(s)

@@ -1,5 +1,5 @@
-from kappy.namespace import RBMT
-from kappy.utils import Graph, get_template
+from krdf.namespace import RBMT
+from krdf.utils import Graph, get_template
 import logging
 
 def compile_stage6(model, docs, **kw):

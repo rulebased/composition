@@ -8,7 +8,7 @@ from rdflib.plugins.serializers.turtle import TurtleSerializer
 __all__ = ['KrdfParser', 'KrdfSerializer']
 
 class KrdfParser(Parser):
-    __module__ = 'kappy.krdf.KrdfParser'
+    __module__ = 'krdf.krdf.KrdfParser'
     def parse(self, source, sink, **args):
         data = source.getByteStream().read()
         turtle = []
@@ -19,7 +19,7 @@ class KrdfParser(Parser):
         return TurtleParser().parse(turtle, sink, **args)
 
 class KrdfSerializer(TurtleSerializer):
-    __module__ = 'kappy.krdf.KrdfSerializer'
+    __module__ = 'krdf.krdf.KrdfSerializer'
     def serialize(self, stream, *av, **kw):
         bstream = io.BytesIO()
         super(KrdfSerializer, self).serialize(bstream, *av, **kw)
@@ -28,7 +28,7 @@ class KrdfSerializer(TurtleSerializer):
             stream.write("#^ ")
             stream.write(line)
 
-register('krdf', Parser, 'kappy.krdf', 'KrdfParser')
-register('application/x-kappa', Parser, 'kappy.krdf', 'KrdfParser')
-register('krdf', Serializer, 'kappy.krdf', 'KrdfSerializer')
-register('application/x-kappa', Serializer, 'kappy.krdf', 'KrdfSerializer')
+register('krdf', Parser, 'krdf.krdf', 'KrdfParser')
+register('application/x-kappa', Parser, 'krdf.krdf', 'KrdfParser')
+register('krdf', Serializer, 'krdf.krdf', 'KrdfSerializer')
+register('application/x-kappa', Serializer, 'krdf.krdf', 'KrdfSerializer')

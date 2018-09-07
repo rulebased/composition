@@ -1,14 +1,14 @@
 from setuptools import setup
 
 setup(
-    name="kappy",
+    name="krdf",
     version="0.1",
-    packages=["kappy"],
+    packages=["krdf"],
     setup_requires=['nose'],
     entry_points = {
         "console_scripts": [
-            "kcomp = kappy.kcomp:main",
-            "kdumpviz = kappy.kviz:main"
+            "kcomp = krdf.kcomp:main",
+            "kdumpviz = krdf.kviz:main"
         ]
     },
     data_files = [

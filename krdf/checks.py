@@ -1,5 +1,5 @@
-from kappy.kasim import parseString, KappaModel
-from kappy.utils import Graph
+from krdf.kasim import parseString, KappaModel
+from krdf.utils import Graph
 import logging
 
 def check_rdf_syntax(doc):

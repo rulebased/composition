@@ -1,5 +1,5 @@
 from abc import ABCMeta
-from kappy.utils import isstring
+from krdf.utils import isstring
 
 def _assert_all_is_instance(iterable, klass):
     for o in iterable:

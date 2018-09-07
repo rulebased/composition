@@ -1,6 +1,6 @@
 import logging
-from utils import get_template
-from checks import check_kappa_rules, check_rdf_syntax
+from krdf.utils import get_template
+from krdf.checks import check_kappa_rules, check_rdf_syntax
 
 def compile_stage3(ir, debug=False, **kw):
     """

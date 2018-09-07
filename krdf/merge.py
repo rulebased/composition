@@ -1,4 +1,4 @@
-from kappy.utils import Graph
+from krdf.utils import Graph
 
 def kappa(doc):
     lines = []
