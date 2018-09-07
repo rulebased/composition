@@ -1,5 +1,5 @@
-################################################################################
-## Auto-generated Promoter {{ name }}
+///////////////////////////////////////////////////////////////////
+// Auto-generated Promoter {{ name }}
 {% include "header.ka" %}
 {% import "context.ka" as context with context %}
 {% import "meta.ka" as meta with context %}
@@ -10,11 +10,11 @@
 {% set rate = rnapBindingRate[rateno] %}
 {% set rule = "%s-RNAp-binding-%s" % (name, rateno) %}
 
-#^ :{{ rule }} a rbmo:Rule;
-#^     bqbiol:isVersionOf go:GO:0070063;
+//^ :{{ rule }} a rbmo:Rule;
+//^     bqbiol:isVersionOf go:GO:0070063;
 {{ meta.rule() }}{# #}
-#^     rdfs:label "{{ name }} RNAp binding".
-# {{ name }} RNAp binding
+//^     rdfs:label "{{ name }} RNAp binding".
+// {{ name }} RNAp binding
 '{{rule}}' \
 {{ context.sequence(rate) }}{# #}
     DNA(type~{{ name }}{{ context.link(rate) }}, bs), \
@@ -28,11 +28,11 @@
 {% else %}{# list-valued rate #}
 {% set rule = name + "-activation" %}
 
-#^ :{{ rule }} a rbmo:Rule;
-#^     bqbiol:isVersionOf go:GO:0070063;
+//^ :{{ rule }} a rbmo:Rule;
+//^     bqbiol:isVersionOf go:GO:0070063;
 {{ meta.rule() }}{# #}
-#^     rdfs:label "{{ name }} RNAp binding".
-# {{ name }} RNAp binding
+//^     rdfs:label "{{ name }} RNAp binding".
+// {{ name }} RNAp binding
 '{{rule}}' \
     DNA(type~{{ name }}, bs), \
     RNAp(dna) \
@@ -46,11 +46,11 @@
 {% if transcriptionInitiationRate is defined %}
 {% set rule = name + "-transcription-initiation" %}
 
-#^ :{{ rule }} a rbmo:Rule;
-#^     bqbiol:isVersionOf go:GO:0070063;
+//^ :{{ rule }} a rbmo:Rule;
+//^     bqbiol:isVersionOf go:GO:0070063;
 {{ meta.rule() }}{# #}
-#^     rdfs:label "{{ name }} transcription initiation".
-# {{ name }} transcription initiation
+//^     rdfs:label "{{ name }} transcription initiation".
+// {{ name }} transcription initiation
 '{{rule}}' \
     DNA(type~{{ name }}, ds!1, bs!2), \
     DNA(type~{{ next }}, us!1), \

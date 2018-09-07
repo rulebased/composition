@@ -1,5 +1,5 @@
-################################################################################
-## Auto-genterated initialisation of genetic circuits
+///////////////////////////////////////////////////////////////////
+// Auto-genterated initialisation of genetic circuits
 
 {% for circuit in circuits %}
 %init: 1 ({{ circuit }})

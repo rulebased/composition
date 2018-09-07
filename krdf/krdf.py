@@ -13,8 +13,8 @@ class KrdfParser(Parser):
         data = source.getByteStream().read()
         turtle = []
         for line in data.split(b"\n"):
-            if line.startswith(b"#^"):
-                turtle.append(line[2:].strip())
+            if line.startswith(b"//^"):
+                turtle.append(line[3:].strip())
         turtle = StringInputSource(b"\n".join(turtle))
         return TurtleParser().parse(turtle, sink, **args)
 
@@ -25,7 +25,7 @@ class KrdfSerializer(TurtleSerializer):
         super(KrdfSerializer, self).serialize(bstream, *av, **kw)
         bstream.seek(0)
         for line in bstream.readlines():
-            stream.write(b"#^ ")
+            stream.write(b"//^ ")
             stream.write(line)
 
 register('krdf', Parser, 'krdf.krdf', 'KrdfParser')

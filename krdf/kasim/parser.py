@@ -230,7 +230,7 @@ obs_dec = (Suppress("%obs:") + many_space + qtok + many_space + agent_pat).\
 init_dec = (Suppress("%init:") + many_space + double + many_space + Group(delimitedList(agent_pat))).\
     setParseAction(lambda ts: ast.IN(ast.Init(ts[0], ts[1])))
 
-rdf_line = (Suppress("#^ ") + CharsNotIn("\n") + lineEnd.suppress()).setParseAction(lambda ts: ast.RDF(ts[0]))
+rdf_line = (Suppress("//^ ") + CharsNotIn("\n") + lineEnd.suppress()).setParseAction(lambda ts: ast.RDF(ts[0]))
 
 statement = rdf_line ^ agent_dec ^ var_dec ^ tok_dec ^ rule_dec ^ obs_dec ^ init_dec
 

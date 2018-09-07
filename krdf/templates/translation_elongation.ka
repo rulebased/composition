@@ -1,10 +1,10 @@
 {% set rule = "%s-translation-elongation" % name %}
 
-#^ :{{ rule }} a rbmo:Rule ;
-#^   bqbiol:isVersionOf go:GO:0006414;
+//^ :{{ rule }} a rbmo:Rule ;
+//^   bqbiol:isVersionOf go:GO:0006414;
 {{ meta.rule() }}{# #}
-#^   rdfs:label "{{ name }} translation of the downstream RNA component.".
-# {{ name }} translation of the downstream RNA component
+//^   rdfs:label "{{ name }} translation of the downstream RNA component.".
+// {{ name }} translation of the downstream RNA component
 '{{ rule }}' \
     RNA(ds!2, bs!1), \
     Ribosome(rna!1), \

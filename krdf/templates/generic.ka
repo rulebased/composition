@@ -1,5 +1,5 @@
-################################################################################
-## Auto-generated generic part {{ name }}
+///////////////////////////////////////////////////////////////////
+// Auto-generated generic part {{ name }}
 {% include "header.ka" %}
 {% import "context.ka" as context with context %}
 {% import "meta.ka" as meta with context %}

@@ -1,5 +1,5 @@
-################################################################################
-## Auto-generated Operator {{ name }}
+///////////////////////////////////////////////////////////////////
+// Auto-generated Operator {{ name }}
 {% include "header.ka" %}
 {% import "context.ka" as context with context %}
 {% import "meta.ka" as meta with context %}
@@ -9,10 +9,10 @@
 {% set rate = transcriptionFactorBindingRate[rateno] %}
 {% set rule = "%s-activation-%s" % (name, rateno) %}
 
-#^ :{{ rule }} a rbmo:Rule;
+//^ :{{ rule }} a rbmo:Rule;
 {{ meta.rule() }}{# #}
-#^     rdfs:label "{{ name }} operator activation".
-# {{ name }} operator activation
+//^     rdfs:label "{{ name }} operator activation".
+// {{ name }} operator activation
 '{{rule}}' \
 {{ context.sequence(rate) }}{# #}
     DNA(type~{{ name }}{{ context.link(rate) }}, bs), \
@@ -26,10 +26,10 @@
 {% else %}{# list-valued rate #}
 {% set rule = name + "-activation" %}
 
-#^ :{{ rule }} a rbmo:Rule;
+//^ :{{ rule }} a rbmo:Rule;
 {{ meta.rule() }}{# #}
-#^     rdfs:label "{{ name }} operator activation".
-# {{ name }} operator activation
+//^     rdfs:label "{{ name }} operator activation".
+// {{ name }} operator activation
 '{{rule}}' \
     DNA(type~{{ name }}, bs), \
     P(type~{{ transcriptionFactor }}, bs) \
@@ -45,10 +45,10 @@
 {% set rate = transcriptionFactorUnbindingRate[rateno] %}
 {% set rule = "%s-deactivation-%s" % (name, rateno) %}
 
-#^ :{{ rule }} a rbmo:Rule;
+//^ :{{ rule }} a rbmo:Rule;
 {{ meta.rule() }}{# #}
-#^     rdfs:label "{{ name }} operator deactivation".
-# {{ name }} operator deactivation
+//^     rdfs:label "{{ name }} operator deactivation".
+// {{ name }} operator deactivation
 '{{rule}}' \
 {{ context.sequence(rate) }}{# #}
     DNA(type~{{ name }}{{ context.link(rate) }}, bs!{{ rate.context_size }}), \
@@ -62,10 +62,10 @@
 {% else %}{# list-valued rate #}
 {% set rule = name + "-deactivation" %}
 
-#^ :{{ rule }} a rbmo:Rule;
+//^ :{{ rule }} a rbmo:Rule;
 {{ meta.rule() }}{# #}
-#^     rdfs:label "{{ name }} operator deactivation".
-# {{ name }} operator deactivation
+//^     rdfs:label "{{ name }} operator deactivation".
+// {{ name }} operator deactivation
 '{{rule}}' \
     DNA(type~{{ name }}, bs!1), \
     P(type~{{ transcriptionFactor }}, bs!1) \

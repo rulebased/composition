@@ -5,7 +5,7 @@ def kappa(doc):
         doc = bytes(doc, "utf-8")
     lines = []
     for line in doc.split(b"\n"):
-        if line.startswith(b"#^ "):
+        if line.startswith(b"//^ "):
             continue
         lines.append(line)
     return b"\n".join(lines)
@@ -20,10 +20,10 @@ def merge(model, docs):
     if isinstance(rdf, str):
         rdf = unicode(rdf, "utf-8")
     header = b"""
-###
-### This is an automatically generated simulation program derived from:
-### %s
-###
+/*
+ * This is an automatically generated simulation program derived from:
+ *  %s
+ */
 
 """ % (bytes(model, "utf-8"),)
 

@@ -1,15 +1,15 @@
-################################################################################
-## Auto-generated generic part {{ name }}
+///////////////////////////////////////////////////////////////////
+// Auto-generated generic part {{ name }}
 {% include "header.ka" %}
 {% import "context.ka" as context with context %}
 {% import "meta.ka" as meta with context %}
 
 {% set rule = "%s-translation-initiation" % name %}
 
-#^ :{{ rule }} a rbmo:Rule;
-#^   bqbiol:isVersionOf go:GO:0006413;
-#^   rdfs:label "{{ name }} translational initiation".
-# {{ name }} Ribosome Binding Site translation initiation
+//^ :{{ rule }} a rbmo:Rule;
+//^   bqbiol:isVersionOf go:GO:0006413;
+//^   rdfs:label "{{ name }} translational initiation".
+// {{ name }} Ribosome Binding Site translation initiation
 '{{ rule }}' \
     RNA(type~{{ name }}, bs), \
     Ribosome(rna) \
