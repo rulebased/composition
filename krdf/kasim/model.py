@@ -1,7 +1,7 @@
 from operator import attrgetter
 from itertools import chain, groupby
 
-from krdf.kasim.ast import AD, RD, VD, OB, IN, TD, AgentD, State
+from krdf.kasim.ast import AD, RD, VD, OB, IN, TD, AgentD
 
 class KappaModel(object):
     def __init__(self, ast):
@@ -39,6 +39,7 @@ class KappaModel(object):
         :return: None
         """
         for statement in ast:
+            print(statement)
             if isinstance(statement, AD):
                 self.agents[statement.agent.name] = statement.agent
             elif isinstance(statement, VD):
@@ -51,6 +52,7 @@ class KappaModel(object):
                 self.rules.append(statement.rule)
             elif isinstance(statement, IN):
                 self.init_values.append(statement.init)
+        from sys import exit
 
     @classmethod
     def _get_possible_states_from_patterns(cls, patterns, site):

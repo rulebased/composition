@@ -40,19 +40,16 @@ class LinkP(ASTBase):
 
 
 class BoundLink(LinkP):
-    pass
-BoundLink = BoundLink()  # Fancy way to make it something like singleton. Lets see how will it work.
-
+    def __str__(self):
+        return "[_]"
 
 class UnboundLink(LinkP):
-    pass
-UnboundLink = UnboundLink()
-
+    def __str__(self):
+        return "[.]"
 
 class MaybeBoundLink(LinkP):
-    pass
-MaybeBoundLink = MaybeBoundLink()
-
+    def __str__(self):
+        return "[#]"
 
 class Link(LinkP):
     def __init__(self, text):
@@ -62,67 +59,56 @@ class Link(LinkP):
         """
         assert isstring(text), text
         self.text = text
+    def __str__(self):
+        return "[" + self.text + "]"
 
+class BondStub(LinkP):
+    def __init__(self, stub):
+        self.stub = stub
+    def __str__(self):
+        return "[" + ".".join(self.stub) + "]"
 
-# data StateP  = State Text | Undefined deriving (Eq, Ord)
-
-class StateP(ASTBase):
-    # TODO: implement proper ordering
-    pass
-
-
-class State(StateP):
-    def __init__(self, text):
-        """
-        :param text: annoutation for a state
-        :type text: str
-        """
-        assert isstring(text), text
-        self.text = text
-
-
-class UndefinedState(StateP):
-    pass
-UndefinedState = UndefinedState()
-
-
-# type SiteP   = (LinkP, StateP)
 class SiteP(ASTBase):
-    def __init__(self, link, state):
-        """
-        :param link: link state of a site
-        :type link: LinkP
+    def __init__(self, parsed):
+        self.site = parsed["site"]
+        self.link = parsed["link"]
+        self.state = parsed["state"][0] if "state" in parsed else None
 
-        :param state: internal state of a site
-        :type state: StateP
-        """
-        assert isinstance(link, LinkP), link
-        assert isinstance(state, StateP), state
-        self.link = link
-        self.state = state
+    def __str__(self):
+        s = self.site
+        if self.state is not None:
+            s += "{" + str(self.state) + "}"
+        s += str(self.link)
+        return s
+    def __hash__(self):
+        return hash(self.site)
 
-
-# data AgentP  = AgentP Text (HashMap Text SiteP) deriving(Eq)
 class AgentP(ASTBase):
-    def __init__(self, name, sites):
-        """
-        :param name: agent's human-readable name
-        :type name: str
-
-        :param sites: mapping between site names and sites
-        :type sites: dict[str, SiteP]
-        """
-        assert isstring(name), name
-        assert isinstance(sites, dict)
-        _assert_all_isstring(sites.keys())
-        _assert_all_is_instance(sites.values(), SiteP)
-        self.name = name
-        #: :type: dict[str, SiteP]
-        self.sites = sites
+    def __init__(self, parsed):
+        self.name = parsed["name"]
+        self.sites = parsed["sites"] if "sites" in parsed else ""
 
     def __hash__(self):
-        return hash((self.name, tuple(self.sites.items())))
+        return hash((self.name, tuple(self.sites)))
 
+    def __str__(self):
+        return self.name + "(" + ", ".join(str(s) for s in self.sites) + ")"
+
+class SiteD(ASTBase):
+    """
+    Site definition
+    """
+    def __init__(self, parsed):
+        self.name = parsed["site"]
+        self.bindings = parsed.get("bindings", [])
+        self.states = parsed.get("states", [])
+    def __str__(self):
+        s = self.name
+        if len(self.bindings) > 0:
+            s += "[" + " ".join(".".join(b) for b in self.bindings) + "]"
+        if len(self.states) > 0:
+            s += "{" + " ".join("%s" % s for s in self.states) + "}"
+        return s
 
 class AgentD(ASTBase):
     """
@@ -137,13 +123,11 @@ class AgentD(ASTBase):
         :type sites: dict[str, frozenset[str]]
         """
         assert isstring(name), name
-        _assert_all_isstring(sites.keys())
-        for site in sites.values():
-            assert isinstance(site, frozenset), site
-            _assert_all_isstring(site)
         self.name = name
         self.sites = sites
 
+    def __str__(self):
+        return self.name + "(" + ", ".join(str(s) for s in self.sites) + ")"
     def __hash__(self):
         return hash((self.name, tuple(self.sites.items())))
 
