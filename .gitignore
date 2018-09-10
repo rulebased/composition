@@ -6,3 +6,5 @@ lib
 share
 include
 *.pyc
+*.bak
+*.swp

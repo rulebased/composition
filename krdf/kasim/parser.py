@@ -261,10 +261,13 @@ def parseString(s):
         ss.append(l)
     s = u"".join(ss)
 
-    print(s)
-
     parsed = kappa_parser.parseString(s)
-    print(parsed)
-    from sys import exit
-    exit(255)
+
+    nrules = len(list(r for r in s.split(u"\n") if len(r) > 0))
+    if nrules != len(parsed):
+        print(s)
+        for p in parsed:
+            print(p)
+        raise Exception("Substituted template parse error")
+
     return parsed

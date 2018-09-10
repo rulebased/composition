@@ -1,9 +1,9 @@
 {% macro part(oper, i, first, last) %}
     DNA({# #}
-{% if oper.site is defined %}type~{{ oper.site }}{% endif %}
-{% if not first %}, us!{{i-1}}{% endif %}
-{% if not last %}, ds!{{i+1}}{% endif %}
-{% if oper.bound is defined %}, {% if oper.bound %}bs!_{% else %}bs{% endif %}{% endif %}
+{% if oper.site is defined %}type{{ curly(oper.site) }}{% endif %}
+{% if not first %}, us[{{i-1}}]{% endif %}
+{% if not last %}, ds[{{i+1}}]{% endif %}
+{% if oper.bound is defined %}, {% if oper.bound %}bs[_]{% else %}bs[.]{% endif %}{% endif %}
 ){# #}
 {% endmacro %}
 
@@ -20,6 +20,6 @@
 {% endmacro %}
 
 {% macro link(rate) %}
-{% if rate.upstream_size > 0 %}, us!{{ rate.upstream_size }}{% endif %}
-{% if rate.downstream_size > 0 %}, ds!{{ rate.upstream_size + 1 }}{% endif %}
+{% if rate.upstream_size > 0 %}, us[{{ rate.upstream_size }}]{% endif %}
+{% if rate.downstream_size > 0 %}, ds[{{ rate.upstream_size + 1 }}]{% endif %}
 {% endmacro %}

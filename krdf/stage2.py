@@ -45,7 +45,7 @@ def describe_part(g, parturi):
         v = v.toPython()
         if isinstance(v, str):
             return v
-        return b"%.16f" % v
+        return "%.16f" % v
 
     part = { "uri": parturi.toPython() }
     try:
@@ -53,7 +53,7 @@ def describe_part(g, parturi):
     except Exception as e:
         logging.error("%s could not find template" % (parturi,))
         raise e
-    
+
     part["template"] = template.toPython()
     for _, _, replace in g.triples((parturi, RBMC["replace"], None)):
         try:

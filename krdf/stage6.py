@@ -13,15 +13,15 @@ def compile_stage6(model, docs, **kw):
         parts = circuit["parts"]
         init = []
         for i in range(len(parts)):
-            part = "DNA(type~" + parts[i]["name"]
+            part = "DNA(type{" + parts[i]["name"] + "}"
             if i == 0 and circuit["topology"] == "circular":
-                part += ", us!%d" % (len(parts) - 1)
+                part += ", us[%d]" % (len(parts) - 1)
             else:
-                part += ", us!%d" % (i - 1)
+                part += ", us[%d]" % (i - 1)
             if i == len(parts) - 1 and circuit["topology"] == "circular":
-                part += ", ds!%d" % (len(parts) - 1)
+                part += ", ds[%d]" % (len(parts) - 1)
             else:
-                part += ", ds!%d" % i
+                part += ", ds[%d]" % i
             part += ")"
             init.append(part)
         circuits.append(", ".join(init))

@@ -15,12 +15,12 @@
 // {{ name }} operator activation
 '{{rule}}' \
 {{ context.sequence(rate) }}{# #}
-    DNA(type~{{ name }}{{ context.link(rate) }}, bs), \
-    P(type~{{ transcriptionFactor }}, bs) \
+    DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs), \
+    P(type{{ curly(transcriptionFactor) }}, bs) \
 -> \
 {{ context.sequence(rate) }}{# #}
-    DNA(type~{{ name }}{{ context.link(rate) }}, bs!{{ rate.context_size }}), \
-    P(type~{{ transcriptionFactor }}, bs!{{ rate.context_size }}) \
+    DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs[{{ rate.context_size }}]), \
+    P(type{{ curly(transcriptionFactor) }}, bs[{{ rate.context_size }}]) \
     @{{ rate.value }}
 {% endfor %}
 {% else %}{# list-valued rate #}
@@ -31,11 +31,11 @@
 //^     rdfs:label "{{ name }} operator activation".
 // {{ name }} operator activation
 '{{rule}}' \
-    DNA(type~{{ name }}, bs), \
-    P(type~{{ transcriptionFactor }}, bs) \
+    DNA(type{{ curly(name) }}, bs), \
+    P(type{{ curly(transcriptionFactor) }}, bs) \
 -> \
-    DNA(type~{{ name }}, bs!1), \
-    P(type~{{ transcriptionFactor }}, bs!1) \
+    DNA(type{{ curly(name) }}, bs[1]), \
+    P(type{{ curly(transcriptionFactor) }}, bs[1]) \
     @{{ transcriptionFactorBindingRate }}
 {% endif %}
 
@@ -51,12 +51,12 @@
 // {{ name }} operator deactivation
 '{{rule}}' \
 {{ context.sequence(rate) }}{# #}
-    DNA(type~{{ name }}{{ context.link(rate) }}, bs!{{ rate.context_size }}), \
-    P(type~{{ transcriptionFactor }}, bs!{{ rate.context_size }}) \
+    DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs[{{ rate.context_size }}]), \
+    P(type{{ curly(transcriptionFactor) }}, bs[{{ rate.context_size }}]) \
 -> \
 {{ context.sequence(rate) }}{# #}
-    DNA(type~{{ name }}{{ context.link(rate) }}, bs), \
-    P(type~{{ transcriptionFactor }}, bs) \
+    DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs), \
+    P(type{{ curly(transcriptionFactor) }}, bs) \
     @{{ rate.value }}
 {% endfor %}
 {% else %}{# list-valued rate #}
@@ -67,11 +67,11 @@
 //^     rdfs:label "{{ name }} operator deactivation".
 // {{ name }} operator deactivation
 '{{rule}}' \
-    DNA(type~{{ name }}, bs!1), \
-    P(type~{{ transcriptionFactor }}, bs!1) \
+    DNA(type{{ curly(name) }}, bs[1]), \
+    P(type{{ curly(transcriptionFactor) }}, bs[1]) \
 -> \
-    DNA(type~{{ name }}, bs), \
-    P(type~{{ transcriptionFactor }}, bs) \
+    DNA(type{{ curly(name) }}, bs), \
+    P(type{{ curly(transcriptionFactor) }}, bs) \
     @{{ transcriptionFactorUnbindingRate }}
 {% endif %}
 {% endif %}{# transcriptionFactorUnbindingRate defined #}

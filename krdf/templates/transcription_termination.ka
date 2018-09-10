@@ -11,11 +11,11 @@
 // {{ name }} RNAp unbinding from DNA, transcription termination
 '{{rule}}' \
 {{ context.sequence(rate) }}{# #}
-    DNA(type~{{ name }}{{ context.link(rate) }}, bs!{{ rate.context_size }}), \
-    RNAp(dna!{{ rate.context_size }}) \
+    DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs[{{ rate.context_size }}]), \
+    RNAp(dna[{{ rate.context_size }}]) \
 -> \
 {{ context.sequence(rate) }}{# #}
-    DNA(type~{{ name }}{{ context.link(rate) }}, bs), \
+    DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs), \
     RNAp(dna) \
     @{{ rate.value }}
 {% endfor %}
@@ -28,10 +28,10 @@
 //^     rdfs:label "{{ name }} RNAp unbinding from DNA, transcription termination".
 // {{ name }} RNAp unbinding from DNA, transcription termination
 '{{rule}}' \
-    DNA(type~{{ name }}, bs!1), \
-    RNAp(dna!1) \
+    DNA(type{{ curly(name) }}, bs[1]), \
+    RNAp(dna[1]) \
 -> \
-    DNA(type~{{ name }}, bs), \
+    DNA(type{{ curly(name) }}, bs), \
     RNAp(dna) \
     @{{ rnapDNAUnbindingRate }}
 {% endif %}

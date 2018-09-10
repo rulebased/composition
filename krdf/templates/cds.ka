@@ -11,14 +11,14 @@
 //^   rdfs:label "{{ name }} translation of downstream DNA component -- coding sequence." .
 // {{ name }} translation of downstream DNA component -- coding sequence
 '{{ rule }}' \
-    RNA(ds!2, bs!1), \
-    Ribosome(rna!1, protein), \
-    RNA(type~{{ name }}, us!2, bs) \
+    RNA(ds[2], bs[1]), \
+    Ribosome(rna[1], protein), \
+    RNA(type{{ curly(name) }}, us[2], bs) \
 -> \
-    RNA(ds!2, bs), \
-    Ribosome(rna!1, protein!3), \
-    RNA(type~{{ name }}, us!2, bs!1), \
-    P(type~{{ protein }}, bs!3) \
+    RNA(ds[2], bs), \
+    Ribosome(rna[1], protein[3]), \
+    RNA(type{{ curly(name) }}, us[2], bs[1]), \
+    P(type{{ curly(protein) }}, bs[3]) \
     @{{ translationElongationRate }}
 
 {% include "transcription_elongation.ka" %}

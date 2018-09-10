@@ -6,14 +6,14 @@
 //^   rdfs:label "{{ name }} transcription of downstream DNA component." .
 // {{ name }} transcription of downstream DNA component
 '{{ rule }}' \
-    DNA(ds!2, bs!1), \
-    DNA(type~{{ name }}, us!2, bs), \
-    RNAp(dna!1, rna!3), \
-    RNA(ds!3) \
+    DNA(ds[2], bs[1]), \
+    DNA(type{{ curly(name) }}, us[2], bs), \
+    RNAp(dna[1], rna[3]), \
+    RNA(ds[3]) \
 -> \
-    DNA(ds!2, bs), \
-    DNA(type~{{ name }}, us!2, bs!1), \
-    RNAp(dna!1, rna!3), \
-    RNA(ds!4), \
-    RNA(type~{{ name }}, us!4, ds!3, bs)@{{ transcriptionElongationRate }}
+    DNA(ds[2], bs), \
+    DNA(type{{ curly(name) }}, us[2], bs[1]), \
+    RNAp(dna[1], rna[3]), \
+    RNA(ds[4]), \
+    RNA(type{{ curly(name) }}, us[4], ds[3], bs)@{{ transcriptionElongationRate }}
 

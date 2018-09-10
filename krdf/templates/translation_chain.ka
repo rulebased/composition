@@ -6,15 +6,15 @@
 //^   rdfs:label "{{ name }} formation of translational chains, due to gene fusion or leakiness of stop codons".
 // {{ name }} formation of translational chains, due to gene fusion or leakiness of stop codons
 '{{ rule }}' \
-    RNA(ds!2, bs!1), \
-    Ribosome(rna!1, protein!3), \
-    RNA(type~{{ name }}, us!2, bs), \
-    P(ds, bs!3) \
+    RNA(ds[2], bs[1]), \
+    Ribosome(rna[1], protein[3]), \
+    RNA(type{{ curly(name) }}, us[2], bs), \
+    P(ds, bs[3]) \
 -> \
-    RNA(ds!2, bs), \
-    Ribosome(rna!1, protein!3), \
-    RNA(type~{{ name }}, us!2, bs!1), \
-    P(ds!4, bs), \
-    P(type~{{ name }}, us!4, bs!3) \
+    RNA(ds[2], bs), \
+    Ribosome(rna[1], protein[3]), \
+    RNA(type{{ curly(name) }}, us[2], bs[1]), \
+    P(ds[4], bs), \
+    P(type{{ curly(name) }}, us[4], bs[3]) \
     @{{ translationElongationRate }}
 

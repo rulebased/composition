@@ -5,10 +5,10 @@
 //^     rdfs:label "{{ name }} RNAp unbinding from RNA, translation termination".
 // {{ name }} RNAp unbinding from RNA, translation termination
 '{{ rule }}' \
-    RNAp(rna!1), \
-    RNA(type~{{ name }}, ds!1) \
+    RNAp(rna[1]), \
+    RNA(type{{ curly(name) }}, ds[1]) \
 -> \
     RNAp(rna), \
-    RNA(type~{{ name }}, ds) \
+    RNA(type{{ curly(name) }}, ds) \
     @{{ rnapRNAUnbindingRate }}
 

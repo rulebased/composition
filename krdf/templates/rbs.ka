@@ -11,11 +11,11 @@
 //^   rdfs:label "{{ name }} translational initiation".
 // {{ name }} Ribosome Binding Site translation initiation
 '{{ rule }}' \
-    RNA(type~{{ name }}, bs), \
+    RNA(type{{ curly(name) }}, bs), \
     Ribosome(rna) \
 -> \
-    RNA(type~{{ name }}, bs!1), \
-    Ribosome(rna!1) \
+    RNA(type{{ curly(name) }}, bs[1]), \
+    Ribosome(rna[1]) \
     @{{ ribosomeBindingRate }}
 
 {% include "transcription_elongation.ka" %}

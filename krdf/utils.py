@@ -62,7 +62,7 @@ def exists(g, t):
     return len(list(g.triples(t))) == 1
 
 def isstring(s):
-    return isinstance(s, str) or isinstance(s, unicode)
+    return isinstance(s, str) #or isinstance(s, unicode)
 
 def slug(s):
     sp = s.rsplit("#", 1)
@@ -78,5 +78,6 @@ def get_template(name, local_templates=True, **kw):
             autoescape=False, trim_blocks=True
         )
         _, filename = name.rsplit("/", 1)
+        env.globals["curly"] = lambda sym: "{" + sym + "}"
         return env.get_template(filename)
     raise Exception("don't know how to deal with remote templates yet")
