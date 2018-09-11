@@ -13,15 +13,9 @@
 {{ meta.rule() }}{# #}
 //^     rdfs:label "{{ name }} operator activation".
 // {{ name }} operator activation
-'{{rule}}' \
-{{ context.sequence(rate) }}{# #}
-    DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs), \
-    Protein(type{{ curly(transcriptionFactor) }}, bs) \
--> \
-{{ context.sequence(rate) }}{# #}
-    DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs[{{ rate.context_size }}]), \
-    Protein(type{{ curly(transcriptionFactor) }}, bs[{{ rate.context_size }}]) \
-    @{{ rate.value }}
+'{{rule}}' {{ context.sequence(rate) }}{# #}
+DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs[.]), Protein(type{{ curly(transcriptionFactor) }}, bs[.]) -> {{ context.sequence(rate) }}{# #}
+DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs[{{ rate.context_size }}]), Protein(type{{ curly(transcriptionFactor) }}, bs[{{ rate.context_size }}]) @{{ rate.value }}
 {% endfor %}
 {% else %}{# list-valued rate #}
 {% set rule = name + "-activation" %}
@@ -30,13 +24,7 @@
 {{ meta.rule() }}{# #}
 //^     rdfs:label "{{ name }} operator activation".
 // {{ name }} operator activation
-'{{rule}}' \
-    DNA(type{{ curly(name) }}, bs), \
-    Protein(type{{ curly(transcriptionFactor) }}, bs) \
--> \
-    DNA(type{{ curly(name) }}, bs[1]), \
-    Protein(type{{ curly(transcriptionFactor) }}, bs[1]) \
-    @{{ transcriptionFactorBindingRate }}
+'{{rule}}' DNA(type{{ curly(name) }}, bs[.]), Protein(type{{ curly(transcriptionFactor) }}, bs[.]) -> DNA(type{{ curly(name) }}, bs[1]), Protein(type{{ curly(transcriptionFactor) }}, bs[1]) @{{ transcriptionFactorBindingRate }}
 {% endif %}
 
 {% if transcriptionFactorUnbindingRate is defined %}
@@ -49,15 +37,9 @@
 {{ meta.rule() }}{# #}
 //^     rdfs:label "{{ name }} operator deactivation".
 // {{ name }} operator deactivation
-'{{rule}}' \
-{{ context.sequence(rate) }}{# #}
-    DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs[{{ rate.context_size }}]), \
-    Protein(type{{ curly(transcriptionFactor) }}, bs[{{ rate.context_size }}]) \
--> \
-{{ context.sequence(rate) }}{# #}
-    DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs), \
-    Protein(type{{ curly(transcriptionFactor) }}, bs) \
-    @{{ rate.value }}
+'{{rule}}' {{ context.sequence(rate) }}{# #}
+DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs[{{ rate.context_size }}]), Protein(type{{ curly(transcriptionFactor) }}, bs[{{ rate.context_size }}]) -> {{ context.sequence(rate) }}{# #}
+DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs[.]), Protein(type{{ curly(transcriptionFactor) }}, bs[.]) @{{ rate.value }}
 {% endfor %}
 {% else %}{# list-valued rate #}
 {% set rule = name + "-deactivation" %}
@@ -66,13 +48,7 @@
 {{ meta.rule() }}{# #}
 //^     rdfs:label "{{ name }} operator deactivation".
 // {{ name }} operator deactivation
-'{{rule}}' \
-    DNA(type{{ curly(name) }}, bs[1]), \
-    Protein(type{{ curly(transcriptionFactor) }}, bs[1]) \
--> \
-    DNA(type{{ curly(name) }}, bs), \
-    Protein(type{{ curly(transcriptionFactor) }}, bs) \
-    @{{ transcriptionFactorUnbindingRate }}
+'{{rule}}' DNA(type{{ curly(name) }}, bs[1]), Protein(type{{ curly(transcriptionFactor) }}, bs[1]) -> DNA(type{{ curly(name) }}, bs[.]), Protein(type{{ curly(transcriptionFactor) }}, bs[.]) @{{ transcriptionFactorUnbindingRate }}
 {% endif %}
 {% endif %}{# transcriptionFactorUnbindingRate defined #}
 

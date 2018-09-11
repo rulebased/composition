@@ -167,12 +167,15 @@ site_pat = And([
     link_pat
 ]).setParseAction(ast.SiteP).setName("site pattern")
 
-agent_pat = And([
+agent_pattern = And([
     tok.copy().setResultsName("name"),
     Suppress("("),
     Optional(delimitedList(site_pat, delim=","))("sites"),
     Suppress(")")
 ]).setParseAction(ast.AgentP).setName("agent pattern")
+
+agent_placeholder = Suppress(".").setParseAction(ast.AgentN).setName("agent placeholder")
+agent_pat = agent_pattern ^ agent_placeholder
 
 tok_expr = (expr + many_space + Suppress(":") + many_space + qtok).setParseAction(lambda ts: ast.TokE(ts[1], ts[0]))
 

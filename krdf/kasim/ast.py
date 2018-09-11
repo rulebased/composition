@@ -94,6 +94,12 @@ class AgentP(ASTBase):
     def __str__(self):
         return self.name + "(" + ", ".join(str(s) for s in self.sites) + ")"
 
+class AgentN(ASTBase):
+    def __init__(self, parsed):
+        pass
+    def __str__(self):
+        return "."
+    
 class SiteD(ASTBase):
     """
     Site definition

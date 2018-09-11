@@ -10,13 +10,7 @@
 //^   bqbiol:isVersionOf go:GO:0006413;
 //^   rdfs:label "{{ name }} translational initiation".
 // {{ name }} Ribosome Binding Site translation initiation
-'{{ rule }}' \
-    RNA(type{{ curly(name) }}, bs), \
-    Ribosome(rna) \
--> \
-    RNA(type{{ curly(name) }}, bs[1]), \
-    Ribosome(rna[1]) \
-    @{{ ribosomeBindingRate }}
+'{{ rule }}' RNA(type{{ curly(name) }}, bs[.]), Ribosome(rna[.]) -> RNA(type{{ curly(name) }}, bs[1]), Ribosome(rna[1]) @{{ ribosomeBindingRate }}
 
 {% include "transcription_elongation.ka" %}
 {% include "transcription_termination.ka" %}

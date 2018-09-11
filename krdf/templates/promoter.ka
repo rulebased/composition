@@ -15,15 +15,9 @@
 {{ meta.rule() }}{# #}
 //^     rdfs:label "{{ name }} RNAp binding".
 // {{ name }} RNAp binding
-'{{rule}}' \
-{{ context.sequence(rate) }}{# #}
-    DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs), \
-    RNAp(dna) \
--> \
-{{ context.sequence(rate) }}{# #}
-    DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs[{{ rate.context_size }}]), \
-    RNAp(dna[{{ rate.context_size }}]) \
-    @{{ rate.value }}
+'{{rule}}' {{ context.sequence(rate) }}{# #}
+DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs[.]), RNAp(dna[.]) -> {{ context.sequence(rate) }}{# #}
+DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs[{{ rate.context_size }}]), RNAp(dna[{{ rate.context_size }}]) @{{ rate.value }}
 {% endfor %}
 {% else %}{# list-valued rate #}
 {% set rule = name + "-activation" %}
@@ -33,13 +27,7 @@
 {{ meta.rule() }}{# #}
 //^     rdfs:label "{{ name }} RNAp binding".
 // {{ name }} RNAp binding
-'{{rule}}' \
-    DNA(type{{ curly(name) }}, bs), \
-    RNAp(dna) \
--> \
-    DNA(type{{ curly(name) }}, bs[1]), \
-    RNAp(dna[1]) \
-    @{{ rnapBindingRate }}
+'{{rule}}' DNA(type{{ curly(name) }}, bs[.]), RNAp(dna[.]) -> DNA(type{{ curly(name) }}, bs[1]), RNAp(dna[1]) @{{ rnapBindingRate }}
 {% endif %}
 {% endif %}{# rnapBindingRate defined #}
 
@@ -51,16 +39,7 @@
 {{ meta.rule() }}{# #}
 //^     rdfs:label "{{ name }} transcription initiation".
 // {{ name }} transcription initiation
-'{{rule}}' \
-    DNA(type{{ curly(name) }}, ds[1], bs[2]), \
-    DNA(type{{ curly(next) }}, us[1]), \
-    RNAp(dna[2], rna) \
--> \
-    DNA(type{{ curly(name) }}, ds[1], bs[2]), \
-    DNA(type{{ curly(next) }}, us[1]), \
-    RNAp(dna[2], rna[3]), \
-    RNA(type{{ curly(next) }}, bs, us, ds[3]) \
-    @{{ transcriptionInitiationRate }}
+'{{rule}}' DNA(type{{ curly(name) }}, ds[1], bs[2]), DNA(type{{ curly(next) }}, us[1]), RNAp(dna[2], rna[.]), . -> DNA(type{{ curly(name) }}, ds[1], bs[2]), DNA(type{{ curly(next) }}, us[1]), RNAp(dna[2], rna[3]), RNA(type{{ curly(next) }}, bs[.], us[.], ds[3]) @{{ transcriptionInitiationRate }}
 {% endif %}
 
 {% include "transcription_elongation.ka" %}

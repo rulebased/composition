@@ -1,7 +1,7 @@
 from operator import attrgetter
 from itertools import chain, groupby
 
-from krdf.kasim.ast import AD, RD, VD, OB, IN, TD, AgentD, SiteD
+from krdf.kasim.ast import AD, RD, VD, OB, IN, TD, AgentD, SiteD, AgentP
 
 class KappaModel(object):
     def __init__(self, ast):
@@ -25,7 +25,7 @@ class KappaModel(object):
 
         #: :type: list[kappa_composition.kappa_parser.ast.AgentP]
         all_agent_patterns = set(chain.from_iterable(r.lhs[0] + r.rhs[0] for r in self.rules))
-        non_declared_agent_patterns = {p for p in all_agent_patterns if p.name not in self.agents}
+        non_declared_agent_patterns = {p for p in all_agent_patterns if isinstance(p, AgentP) and p.name not in self.agents}
         key = attrgetter("name")
         grouped_non_declared = {name: list(pats) for name, pats
                                 in groupby(sorted(non_declared_agent_patterns, key=key), key=key)}

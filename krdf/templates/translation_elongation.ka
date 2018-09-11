@@ -5,13 +5,5 @@
 {{ meta.rule() }}{# #}
 //^   rdfs:label "{{ name }} translation of the downstream RNA component.".
 // {{ name }} translation of the downstream RNA component
-'{{ rule }}' \
-    RNA(ds[2], bs[1]), \
-    Ribosome(rna[1]), \
-    RNA(type{{ curly(name) }}, us[2], bs) \
--> \
-    RNA(ds[2], bs), \
-    Ribosome(rna[1]), \
-    RNA(type{{ curly(name) }}, us[2], bs[1]) \
-    @{{ translationElongationRate }}
+'{{ rule }}' RNA(ds[2], bs[1]), Ribosome(rna[1]), RNA(type{{ curly(name) }}, us[2], bs[.]) -> RNA(ds[2], bs[.]), Ribosome(rna[1]), RNA(type{{ curly(name) }}, us[2], bs[1]) @{{ translationElongationRate }}
 
