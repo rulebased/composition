@@ -40,17 +40,20 @@
 :C0051 a rbmc:CodingSequence;
     rdfs:label "Coding sequence for λ-Cl";
     rbmc:part "C0051";
-    rbmc:protein :P0051.
+    rbmc:protein :P0051;
+    rbmc:proteinDegradationRate 0.0001.
 
 :C0012 a rbmc:CodingSequence;
     rbmc:label "Coding sequence for LacI";
     rbmc:part "C0012";
-    rbmc:protein :P0010.
+    rbmc:protein :P0010;
+    rbmc:proteinDegradationRate 0.0001.
 
 :C0040 a rbmc:CodingSequence;
     rbmc:label "Coding sequence for TetR";
     rbmc:part "C0040";
-    rbmc:protein :P0040.
+    rbmc:protein :P0040;
+    rbmc:proteinDegradationRate 0.0001.
 
 :B0034a a rbmc:RibosomeBindingSite;
     rdfs:label "Ribosome binding site";
