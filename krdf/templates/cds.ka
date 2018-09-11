@@ -18,7 +18,7 @@
     RNA(ds[2], bs), \
     Ribosome(rna[1], protein[3]), \
     RNA(type{{ curly(name) }}, us[2], bs[1]), \
-    P(type{{ curly(protein) }}, bs[3]) \
+    Protein(type{{ curly(protein) }}, bs[3]) \
     @{{ translationElongationRate }}
 
 {% include "transcription_elongation.ka" %}

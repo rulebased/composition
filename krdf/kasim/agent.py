@@ -7,16 +7,5 @@ def declare_agents(s):
 
     agents = []
     for a in kasim.agents.values():
-        agent = "%%agent: %s(" % a.name
-        sitenames = a.sites.keys()
-        sitenames.sort()
-        sites = []
-        for name in sitenames:
-            site = name
-            if len(a.sites[name]) > 0:
-                site = site + "~" + "~".join(a.sites[name])
-            sites.append(site)
-        agent = agent + ",".join(sites) + ")"
-        agents.append(agent)
-
+        agents.append("%%agent: %s" % a)
     return agents

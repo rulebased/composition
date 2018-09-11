@@ -16,11 +16,11 @@
 '{{rule}}' \
 {{ context.sequence(rate) }}{# #}
     DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs), \
-    P(type{{ curly(transcriptionFactor) }}, bs) \
+    Protein(type{{ curly(transcriptionFactor) }}, bs) \
 -> \
 {{ context.sequence(rate) }}{# #}
     DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs[{{ rate.context_size }}]), \
-    P(type{{ curly(transcriptionFactor) }}, bs[{{ rate.context_size }}]) \
+    Protein(type{{ curly(transcriptionFactor) }}, bs[{{ rate.context_size }}]) \
     @{{ rate.value }}
 {% endfor %}
 {% else %}{# list-valued rate #}
@@ -32,10 +32,10 @@
 // {{ name }} operator activation
 '{{rule}}' \
     DNA(type{{ curly(name) }}, bs), \
-    P(type{{ curly(transcriptionFactor) }}, bs) \
+    Protein(type{{ curly(transcriptionFactor) }}, bs) \
 -> \
     DNA(type{{ curly(name) }}, bs[1]), \
-    P(type{{ curly(transcriptionFactor) }}, bs[1]) \
+    Protein(type{{ curly(transcriptionFactor) }}, bs[1]) \
     @{{ transcriptionFactorBindingRate }}
 {% endif %}
 
@@ -52,11 +52,11 @@
 '{{rule}}' \
 {{ context.sequence(rate) }}{# #}
     DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs[{{ rate.context_size }}]), \
-    P(type{{ curly(transcriptionFactor) }}, bs[{{ rate.context_size }}]) \
+    Protein(type{{ curly(transcriptionFactor) }}, bs[{{ rate.context_size }}]) \
 -> \
 {{ context.sequence(rate) }}{# #}
     DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs), \
-    P(type{{ curly(transcriptionFactor) }}, bs) \
+    Protein(type{{ curly(transcriptionFactor) }}, bs) \
     @{{ rate.value }}
 {% endfor %}
 {% else %}{# list-valued rate #}
@@ -68,10 +68,10 @@
 // {{ name }} operator deactivation
 '{{rule}}' \
     DNA(type{{ curly(name) }}, bs[1]), \
-    P(type{{ curly(transcriptionFactor) }}, bs[1]) \
+    Protein(type{{ curly(transcriptionFactor) }}, bs[1]) \
 -> \
     DNA(type{{ curly(name) }}, bs), \
-    P(type{{ curly(transcriptionFactor) }}, bs) \
+    Protein(type{{ curly(transcriptionFactor) }}, bs) \
     @{{ transcriptionFactorUnbindingRate }}
 {% endif %}
 {% endif %}{# transcriptionFactorUnbindingRate defined #}

@@ -17,7 +17,7 @@
 //^     rdfs:label "{{ name }} Protein degradation" .
 // {{ name }} Protein degradation
 '{{ rule }}' \
-    P(type{{ curly(name) }}) \
+    Protein(type{{ curly(name) }}) \
 -> \
     @{{ proteinDegradationRate }}
 
