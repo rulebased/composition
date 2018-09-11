@@ -31,6 +31,8 @@ class KappaModel(object):
                                 in groupby(sorted(non_declared_agent_patterns, key=key), key=key)}
 
         derived_agents = [self._derive_agent_declaration_from_patterns(ps) for ps in grouped_non_declared.values()]
+        for k,v in derived_agents.items():
+            print(k, v)
         self.agents.update({a.name: a for a in derived_agents})
 
     def _initial_analysis(self, ast):
@@ -52,7 +54,6 @@ class KappaModel(object):
                 self.rules.append(statement.rule)
             elif isinstance(statement, IN):
                 self.init_values.append(statement.init)
-        from sys import exit
 
     @classmethod
     def _get_possible_states_from_patterns(cls, patterns, site):
