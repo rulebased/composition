@@ -1,7 +1,7 @@
 from operator import attrgetter
 from itertools import chain, groupby
 
-from kappy.kasim.ast import AD, RD, VD, OB, IN, TD, AgentD, State
+from krdf.kasim.ast import AD, RD, VD, OB, IN, TD, AgentD, SiteD, AgentP
 
 class KappaModel(object):
     def __init__(self, ast):
@@ -25,13 +25,13 @@ class KappaModel(object):
 
         #: :type: list[kappa_composition.kappa_parser.ast.AgentP]
         all_agent_patterns = set(chain.from_iterable(r.lhs[0] + r.rhs[0] for r in self.rules))
-        non_declared_agent_patterns = {p for p in all_agent_patterns if p.name not in self.agents}
+        non_declared_agent_patterns = {p for p in all_agent_patterns if isinstance(p, AgentP) and p.name not in self.agents}
         key = attrgetter("name")
         grouped_non_declared = {name: list(pats) for name, pats
                                 in groupby(sorted(non_declared_agent_patterns, key=key), key=key)}
-
-        derived_agents = [self._derive_agent_declaration_from_patterns(ps) for ps in grouped_non_declared.itervalues()]
-        self.agents.update({a.name: a for a in derived_agents})
+        for ps in grouped_non_declared.values():
+            a = self._derive_agent_declaration_from_patterns(ps)
+            self.agents[a.name] = a
 
     def _initial_analysis(self, ast):
         """
@@ -53,22 +53,26 @@ class KappaModel(object):
                 self.init_values.append(statement.init)
 
     @classmethod
-    def _get_possible_states_from_patterns(cls, patterns, site):
-        """
-        :type patterns: list[kappa_composition.kappa_parser.ast.AgentP]
-        :type site: str
-        :rtype: list[str]
-        """
-        return frozenset({p.sites[site].state.text for p in patterns
-                          if site in p.sites and isinstance(p.sites[site].state, State)})
-
-    @classmethod
     def _derive_agent_declaration_from_patterns(cls, patterns):
         """
         :type patterns: list[kappa_composition.kappa_parser.ast.AgentP]
         :rtype: AgentD
         """
         assert len({p.name for p in patterns}) == 1
-        all_sites = set(chain.from_iterable(p.sites.iterkeys() for p in patterns))
-        site_states = {s: cls._get_possible_states_from_patterns(patterns, s) for s in all_sites}
-        return AgentD(patterns[0].name, site_states)
+        all_sites = []
+        all_states = {}
+        for p in patterns:
+            for s in p.sites:
+                all_sites.append(s.site)
+                if s.state is not None:
+                    all_states.setdefault(s.site, []).append(s.state)
+        all_sites = set(all_sites)
+        all_states = dict((k, set(v)) for k, v in all_states.items())
+        sites = []
+        for s in all_sites:
+            site = { "site": s }
+            if s in all_states:
+                site["states"] = all_states[s]
+            sites.append(SiteD(site))
+        agent = AgentD(patterns[0].name, sites)
+        return agent

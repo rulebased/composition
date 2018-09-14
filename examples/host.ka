@@ -1,0 +1,6 @@
+%init: 700 (RNAp(dna,rna))
+%init: 180000 Ribosome(rna)
+
+%obs: 'LacI' |Protein(type{P0010})|
+%obs: 'TetR' |Protein(type{P0040})|
+%obs: 'LcI'  |Protein(type{P0051})|

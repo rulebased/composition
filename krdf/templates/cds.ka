@@ -1,0 +1,26 @@
+///////////////////////////////////////////////////////////////////
+// Auto-generated coding sequence {{ name }}
+{% include "header.ka" %}
+{% import "context.ka" as context with context %}
+{% import "meta.ka" as meta with context %}
+
+{% set rule = "%s-translation-elongation" % name %}
+//^ :{{ rule }} a rbmo:Rule ;
+//^   bqbiol:isVersionOf go:GO:0006414 ;
+{{ meta.rule() }}
+//^   rdfs:label "{{ name }} translation of downstream DNA component -- coding sequence." .
+// {{ name }} translation of downstream DNA component -- coding sequence
+'{{ rule }}' RNA(ds[2], bs[1]), Ribosome(rna[1], protein[.]), RNA(type{{ curly(name) }}, us[2], bs[.]), . -> RNA(ds[2], bs[.]), Ribosome(rna[1], protein[3]), RNA(type{{ curly(name) }}, us[2], bs[1]), Protein(type{{ curly(protein) }}, bs[3]) @{{ translationElongationRate }}
+
+{% set rule = "%s-protein-degradation" % protein %}
+//^ :{{ rule }} a rbmo:Rule ;
+{{ meta.rule() }}{# #}
+//^     rdfs:label "{{ name }} Protein degradation" .
+// {{ name }} Protein degradation
+'{{ rule }}' Protein(type{{ curly(protein) }}) -> . @{{ proteinDegradationRate }}
+
+{% include "transcription_elongation.ka" %}
+{% include "transcription_termination.ka" %}
+{# {% include "translation_chain.ka" %} #}
+{% include "translation_termination.ka" %}
+{% include "host_maintenance.ka" %}

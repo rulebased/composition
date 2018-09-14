@@ -8,6 +8,7 @@ ParserElement.enablePackrat()
 
 # Utility parser -- consume 0 or more whitespaces
 many_space = Optional(White()).suppress()
+#many_space = many_space_ + Optional(Literal("\\") + lineEnd + many_space_).suppress()
 
 # Utility parser -- parse a floating point number
 double = Combine(Optional(Literal("-")) + Word(nums) + Optional(Literal(".") + Word(nums)))\
@@ -26,21 +27,21 @@ stok = Word(alphanums + "_+-")
 qstr = Suppress("'") + CharsNotIn("'") + Suppress("'")
 
 # Utility parser -- eat a comment until end of line
-comment = Suppress("#") + (lineEnd ^ (CharsNotIn("^\r\n", exact=1) + SkipTo(lineEnd))).suppress()
+comment = Suppress("//") + (lineEnd ^ (CharsNotIn("^\r\n", exact=1) + SkipTo(lineEnd))).suppress()
 
 # Utility parser -- eat up until end of line
 eol = (many_space + comment) ^ lineEnd.suppress()
 
-bare_site_sig = tok.copy().setParseAction(lambda toks: (toks[0], frozenset()))
-
-ils_site_sig = And([tok, Suppress("~"), delimitedList(stok, delim="~", combine=True)])\
-    .setParseAction(lambda toks: (toks[0], frozenset(toks[1].split("~"))))
-
-site_sig = bare_site_sig ^ ils_site_sig
+bare_site_sig = tok.setParseAction(lambda toks: toks[0]).setResultsName("site")
+binding_site_sig = And([tok, Suppress("."), tok]).setParseAction(lambda toks: tuple(toks))
+binding_sig = And([Suppress("["), ZeroOrMore(binding_site_sig), Suppress("]")]).setResultsName("bindings")
+internal_state_sig = And([Suppress("{"), ZeroOrMore(tok), Suppress("}")]).setResultsName("states")
+site_sig = And([bare_site_sig, Optional(binding_sig), Optional(internal_state_sig)])\
+           .setParseAction(ast.SiteD)
 
 # AgentD
 agent_sig = And([tok, Suppress("("), Group(delimitedList(site_sig, delim=",")), Suppress(")")])\
-    .setParseAction(lambda toks: ast.AgentD(toks[0], dict(list(toks[1]))))
+    .setParseAction(lambda toks: ast.AgentD(toks[0], list(toks[1])))
 
 # Statement
 agent_dec = (Suppress("%agent:") + many_space + agent_sig).setParseAction(lambda toks: ast.AD(toks[0]))
@@ -144,26 +145,37 @@ expr <<= infixNotation(infix_term, [
 ])
 
 
-link_pat_linked = Suppress("!") + stok.copy().setParseAction(lambda toks: ast.Link(toks[0]))
-link_pat_bound = Suppress("!_").setParseAction(lambda _: ast.BoundLink)
-link_pat_mbound = Suppress("?").setParseAction(lambda _: ast.MaybeBoundLink)
-link_pat_unbound = Empty().setParseAction(lambda _: ast.UnboundLink)
-link_pat = link_pat_bound ^ link_pat_linked ^ link_pat_mbound ^ link_pat_unbound
+link_pat_linked = Suppress("[") + stok.copy().setParseAction(lambda toks: ast.Link(toks[0])) + Suppress("]")
+link_pat_bound = Suppress("[_]").setParseAction(lambda _: ast.BoundLink())
+link_pat_unbound = Suppress("[.]").setParseAction(lambda _: ast.UnboundLink())
+link_pat_stub = Suppress("[") + binding_site_sig.copy().setParseAction(lambda stub: ast.BondStub(stub)) + Suppress("]")
+link_pat_explicit_mbound = Suppress("[#]").setParseAction(lambda _: ast.MaybeBoundLink())
+link_pat_mbound = Empty().setParseAction(lambda _: ast.MaybeBoundLink())
+link_pat = Or([
+    link_pat_bound,
+    link_pat_linked,
+    link_pat_unbound,
+    link_pat_stub,
+    link_pat_mbound,
+    link_pat_explicit_mbound
+]).setResultsName("link").setName("link pattern")
 
+site_state_pat = And([Suppress("{"), tok, Suppress("}")]).setResultsName("state")
+site_pat = And([
+    tok.copy().setResultsName("site"),
+    Optional(site_state_pat),
+    link_pat
+]).setParseAction(ast.SiteP).setName("site pattern")
 
-def site_pat_action(toks):
-    return toks.name, ast.SiteP(toks.link, ast.State(toks.state[0]) if toks.state else ast.UndefinedState)
-site_pat_st = Suppress("~") + stok
-site_pat_link_first = (tok("name") + link_pat("link") + site_pat_st("state")).setParseAction(site_pat_action)
-site_pat_state_first = (tok("name") + site_pat_st("state") + link_pat("link")).setParseAction(site_pat_action)
-site_pat_just_link = (tok("name") + link_pat("link")).setParseAction(site_pat_action)
-site_pat = site_pat_link_first ^ site_pat_state_first ^ site_pat_just_link
+agent_pattern = And([
+    tok.copy().setResultsName("name"),
+    Suppress("("),
+    Optional(delimitedList(site_pat, delim=","))("sites"),
+    Suppress(")")
+]).setParseAction(ast.AgentP).setName("agent pattern")
 
-agent_pat = And([tok,
-                 many_space, Suppress("("),
-                 Group(delimitedList(site_pat)),
-                 many_space, Suppress(")")]
-                ).setParseAction(lambda toks: ast.AgentP(toks[0], dict(list(toks[1]))))
+agent_placeholder = Suppress(".").setParseAction(ast.AgentN).setName("agent placeholder")
+agent_pat = agent_pattern ^ agent_placeholder
 
 tok_expr = (expr + many_space + Suppress(":") + many_space + qtok).setParseAction(lambda ts: ast.TokE(ts[1], ts[0]))
 
@@ -172,10 +184,10 @@ tok_exprs = many_space + Suppress("|") + many_space + delimitedList(tok_expr)
 pure_rule = And([
     qtok("desc"),
     many_space,
-    Group(delimitedList(agent_pat))("lhs_agents"),
+    Group(delimitedList(Optional(agent_pat)))("lhs_agents"),
     Optional(tok_expr)("lhs_tokens"),
     many_space, Suppress("->"), many_space,
-    Group(delimitedList(agent_pat))("rhs_agents"),
+    Group(delimitedList(Optional(agent_pat)))("rhs_agents"),
     Optional(tok_expr)("rhs_tokens"),
     many_space, Suppress("@"), many_space,
     expr("rate")
@@ -186,10 +198,10 @@ pure_rule = And([
 bi_rule = And([
     qtok("desc"),
     many_space,
-    Group(delimitedList(agent_pat))("lhs_agents"),
+    Group(delimitedList(Optional(agent_pat)))("lhs_agents"),
     Optional(tok_expr)("lhs_tokens"),
     many_space, Suppress("<->"), many_space,
-    Group(delimitedList(agent_pat))("rhs_agents"),
+    Group(delimitedList(Optional(agent_pat)))("rhs_agents"),
     Optional(tok_expr)("rhs_tokens"),
     many_space, Suppress("@"), many_space,
     expr("rate_forward"),
@@ -205,10 +217,10 @@ bi_rule = And([
 circ_rule = And([
     qtok("desc"),
     many_space,
-    Group(delimitedList(agent_pat))("lhs_agents"),
+    Group(delimitedList(Optional(agent_pat)))("lhs_agents"),
     Optional(tok_expr)("lhs_tokens"),
     many_space, Suppress("->"), many_space,
-    Group(delimitedList(agent_pat))("rhs_agents"),
+    Group(delimitedList(Optional(agent_pat)))("rhs_agents"),
     Optional(tok_expr)("rhs_tokens"),
     many_space, Suppress("@"), many_space,
     expr("rate"),
@@ -229,8 +241,36 @@ obs_dec = (Suppress("%obs:") + many_space + qtok + many_space + agent_pat).\
 init_dec = (Suppress("%init:") + many_space + double + many_space + Group(delimitedList(agent_pat))).\
     setParseAction(lambda ts: ast.IN(ast.Init(ts[0], ts[1])))
 
-rdf_line = (Suppress("#^ ") + CharsNotIn("\n") + lineEnd.suppress()).setParseAction(lambda ts: ast.RDF(ts[0]))
+rdf_line = (Suppress("//^ ") + CharsNotIn("\n") + lineEnd.suppress()).setParseAction(lambda ts: ast.RDF(ts[0]))
 
 statement = rdf_line ^ agent_dec ^ var_dec ^ tok_dec ^ rule_dec ^ obs_dec ^ init_dec
 
 kappa_parser = ZeroOrMore(eol) + ZeroOrMore(statement + ZeroOrMore(eol))
+
+def parseString(s):
+    ## kludge -- remove coments and escaped newlines
+    ## parser above doesn't deal properly with them
+#    if isinstance(s, str):
+#        s = unicode(s)
+    ss = []
+    for l in s.split(u"\n"):
+        l = l.strip()
+        if l.startswith(u"//") or l == "":
+            continue
+        if l.endswith(u"\\"):
+            l = l[:-1]
+        else:
+            l = l + u"\n"
+        ss.append(l)
+    s = u"".join(ss)
+
+    parsed = kappa_parser.parseString(s)
+
+    nrules = len(list(r for r in s.split(u"\n") if len(r) > 0))
+    if nrules != len(parsed):
+        print(s)
+        for p in parsed:
+            print(p)
+        raise Exception("Substituted template parse error")
+
+    return parsed

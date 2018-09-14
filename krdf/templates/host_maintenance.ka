@@ -1,0 +1,21 @@
+{% set rule = "%s-ribosome-protein-unbinding" % name %}
+//^ :{{ rule }} a rbmo:Rule ;
+{{ meta.rule() }}{# #}
+//^     rdfs:label "{{ name }} Ribosome unbinding from Protein" .
+// {{ name }}  Ribosome unbinding from Protein
+'{{ rule }}' Ribosome(protein[1]), Protein(type{{ curly(name) }}, bs[1]) -> Ribosome(protein[.]), Protein(type{{ curly(name) }}, bs[.]) @{{ ribosomeProteinUnbindingRate }}
+
+{% set rule = "%s-protein-degradation" % name %}
+//^ :{{ rule }} a rbmo:Rule ;
+{{ meta.rule() }}{# #}
+//^     rdfs:label "{{ name }} Protein degradation" .
+// {{ name }} Protein degradation
+'{{ rule }}' Protein(type{{ curly(name) }}) -> . @{{ proteinDegradationRate }}
+
+{% set rule = "%s-rna-degradation" % name %}
+//^ :{{ rule }} a rbmo:Rule ;
+{{ meta.rule() }}{# #}
+//^     rdfs:label "{{ name }} RNA degradation" .
+// {{ name }} RNA degradation
+'{{ rule }}' RNA(type{{ curly(name) }}) -> . @{{ rnaDegradationRate }}
+

@@ -1,4 +1,6 @@
 import rdflib
+import logging
+from jinja2 import Environment, PackageLoader
 
 def memoize(prop):
     """
@@ -39,11 +41,11 @@ def Graph(*av, **kw):
     True
     """
     g = rdflib.Graph(*av, **kw)
-    import kappy
-    if kappy.namespace_manager is None:
-        kappy.namespace_manager = g.namespace_manager
+    import krdf
+    if krdf.namespace_manager is None:
+        krdf.namespace_manager = g.namespace_manager
     else:
-        g.namespace_manager = kappy.namespace_manager
+        g.namespace_manager = krdf.namespace_manager
     return g
 
 def get_one(g, t):
@@ -56,5 +58,26 @@ def get_one(g, t):
         return
     return triples[0]
 
+def exists(g, t):
+    return len(list(g.triples(t))) == 1
+
 def isstring(s):
-    return isinstance(s, str) or isinstance(s, unicode)
+    return isinstance(s, str) #or isinstance(s, unicode)
+
+def slug(s):
+    sp = s.rsplit("#", 1)
+    if len(sp) == 2: return sp[1]
+    sp = s.rsplit("/", 1)
+    if len(sp) == 2: return sp[1]
+    return s
+
+def get_template(name, local_templates=True, **kw):
+    if local_templates:
+        env = Environment(
+            loader=PackageLoader("krdf", "templates"),
+            autoescape=False, trim_blocks=True
+        )
+        _, filename = name.rsplit("/", 1)
+        env.globals["curly"] = lambda sym: "{" + sym + "}"
+        return env.get_template(filename)
+    raise Exception("don't know how to deal with remote templates yet")

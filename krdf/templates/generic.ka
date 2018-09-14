@@ -1,0 +1,12 @@
+///////////////////////////////////////////////////////////////////
+// Auto-generated generic part {{ name }}
+{% include "header.ka" %}
+{% import "context.ka" as context with context %}
+{% import "meta.ka" as meta with context %}
+
+{% include "transcription_elongation.ka" %}
+{% include "transcription_termination.ka" %}
+{% include "translation_chain.ka" %}
+{% include "translation_elongation.ka" %}
+{% include "translation_termination.ka" %}
+{% include "host_maintenance.ka" %}

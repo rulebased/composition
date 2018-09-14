@@ -1,0 +1,4 @@
+{% macro rule() %}
+//^     dct:isPartOf :m;
+//^     prov:wasDerivedFrom <{{ uri }}>;
+{% endmacro %}

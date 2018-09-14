@@ -1,0 +1,27 @@
+{% if rnapDNAUnbindingRate is defined %}
+{% if type(rnapDNAUnbindingRate) == type([]) %}
+{% for rateno in range(len(rnapDNAUnbindingRate)) %}
+{% set rate = rnapDNAUnbindingRate[rateno] %}
+{% set rule = "%s-transcription-termination-%s" % (name, rateno) %}
+
+//^ :{{ rule }} a rbmo:Rule;
+//^     bqbiol:isVersionOf go:GO:0006353;
+{{ meta.rule() }}{# #}
+//^     rdfs:label "{{ name }} RNAp unbinding from DNA, transcription termination".
+// {{ name }} RNAp unbinding from DNA, transcription termination
+'{{rule}}' {{ context.sequence(rate) }}{# #}
+DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs[{{ rate.context_size }}]), RNAp(dna[{{ rate.context_size }}]) -> {{ context.sequence(rate) }}{# #}
+DNA(type{{ curly(name) }}{{ context.link(rate) }}, bs[.]), RNAp(dna[.]) @{{ rate.value }}
+{% endfor %}
+{% else %}{# list-valued rate #}
+{% set rule = name + "-transcription-termination" %}
+
+//^ :{{ rule }} a rbmo:Rule;
+//^     bqbiol:isVersionOf go:GO:0006353;
+{{ meta.rule() }}{# #}
+//^     rdfs:label "{{ name }} RNAp unbinding from DNA, transcription termination".
+// {{ name }} RNAp unbinding from DNA, transcription termination
+'{{rule}}' DNA(type{{ curly(name) }}, bs[1]), RNAp(dna[1]) -> DNA(type{{ curly(name) }}, bs[.]), RNAp(dna[.]) @{{ rnapDNAUnbindingRate }}
+{% endif %}
+{% endif %}{# rnapDNAUnbindingRate defined #}
+
