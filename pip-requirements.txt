@@ -4,3 +4,4 @@ nose
 coverage
 jinja2
 git+git://github.com/gjhiggins/FuXi
+kappy
