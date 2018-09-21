@@ -16,11 +16,11 @@ def compile_stage6(model, docs, **kw):
             part = "DNA(type{" + parts[i]["name"] + "}"
             if i == 0 and circuit["topology"] == "circular":
                 part += ", us[%d]" % (len(parts) - 1)
-            else:
+            elif i > 0:
                 part += ", us[%d]" % (i - 1)
             if i == len(parts) - 1 and circuit["topology"] == "circular":
                 part += ", ds[%d]" % (len(parts) - 1)
-            else:
+            elif i < len(parts) - 1:
                 part += ", ds[%d]" % i
             part += ")"
             init.append(part)

@@ -4,138 +4,147 @@
 @prefix owl:  <http://www.w3.org/2002/07/owl#> .
 @prefix prov: <http://www.w3.org/ns/prov#>.
 @prefix rbmo: <http://purl.org/rbm/rbmo#>.
-@prefix rbmc: <http://purl.org/rbm/comp#>.
+@prefix gcc: <http://purl.org/rbm/comp#>.
 @prefix rbmt: <http://purl.org/rbm/templates/>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix skos: <http://www.w3.org/2004/02/skos/core#>.
 
-rbmc:part a rbmc:Token; skos:prefLabel "name".
-rbmc:Part a owl:Class;
-    rbmc:tokens rbmc:part.
+gcc:part a gcc:Token; skos:prefLabel "name".
+gcc:Part a owl:Class;
+    gcc:tokens gcc:part.
 
-rbmc:next a rbmc:Token; skos:prefLabel "next".
+gcc:molecule a gcc:Token; skos:prefLabel "name".
 
-rbmc:transcriptionFactor a rbmc:Token;
+gcc:next a gcc:Token; skos:prefLabel "next".
+
+gcc:transcriptionFactor a gcc:Token;
     skos:prefLabel "transcriptionFactor";
-    rbmc:default 1.0.
-rbmc:transcriptionFactorBindingRate a rbmc:Token;
+    gcc:default 1.0.
+gcc:transcriptionFactorBindingRate a gcc:Token;
     skos:prefLabel "transcriptionFactorBindingRate";
-    rbmc:default 1.0.
-rbmc:transcriptionFactorUnbindingRate a rbmc:Token;
+    gcc:default 1.0.
+gcc:transcriptionFactorUnbindingRate a gcc:Token;
     skos:prefLabel "transcriptionFactorUnbindingRate";
-    rbmc:default 1.0.
+    gcc:default 1.0.
 
-rbmc:rnapBindingRate a rbmc:Token;
+gcc:rnapBindingRate a gcc:Token;
     skos:prefLabel "rnapBindingRate";
-    rbmc:default 1.0.
-rbmc:rnapDNAUnbindingRate a rbmc:Token;
+    gcc:default 1.0.
+gcc:rnapDNAUnbindingRate a gcc:Token;
     skos:prefLabel "rnapDNAUnbindingRate";
-    rbmc:default 1.0.
-rbmc:rnapRNAUnbindingRate a rbmc:Token;
+    gcc:default 1.0.
+gcc:rnapRNAUnbindingRate a gcc:Token;
     skos:prefLabel "rnapRNAUnbindingRate";
-    rbmc:default 1.0.
+    gcc:default 1.0.
 
-rbmc:ribosomeBindingRate a rbmc:Token;
+gcc:ribosomeBindingRate a gcc:Token;
     skos:prefLabel "ribosomeBindingRate";
-    rbmc:default 1.0.
-rbmc:ribosomeRNAUnbindingRate a rbmc:Token;
+    gcc:default 1.0.
+gcc:ribosomeRNAUnbindingRate a gcc:Token;
     skos:prefLabel "ribosomeRNAUnbindingRate";
-    rbmc:default 1.0.
-rbmc:ribosomeProteinUnbindingRate a rbmc:Token;
+    gcc:default 1.0.
+gcc:ribosomeProteinUnbindingRate a gcc:Token;
     skos:prefLabel "ribosomeProteinUnbindingRate";
-    rbmc:default 1.0.
+    gcc:default 1.0.
 
-rbmc:transcriptionInitiationRate a rbmc:Token;
+gcc:transcriptionInitiationRate a gcc:Token;
     skos:prefLabel "transcriptionInitiationRate";
-    rbmc:default 1.0.
-rbmc:transcriptionElongationRate a rbmc:Token;
+    gcc:default 1.0.
+gcc:transcriptionElongationRate a gcc:Token;
     skos:prefLabel "transcriptionElongationRate";
-    rbmc:default 1.0.
+    gcc:default 1.0.
 
-rbmc:translationElongationRate a rbmc:Token;
+gcc:translationElongationRate a gcc:Token;
     skos:prefLabel "translationElongationRate";
-    rbmc:default 1.0.
+    gcc:default 1.0.
 
-rbmc:rnaDegradationRate a rbmc:Token;
+gcc:rnaDegradationRate a gcc:Token;
     skos:prefLabel "rnaDegradationRate";
-    rbmc:default 1.0.
-rbmc:proteinDegradationRate a rbmc:Token;
+    gcc:default 1.0.
+gcc:proteinDegradationRate a gcc:Token;
     skos:prefLabel "proteinDegradationRate";
-    rbmc:default 1.0.
+    gcc:default 1.0.
 
-rbmc:Operator rdfs:subClassOf rbmc:Part;
-    rbmc:kappaTemplate rbmt:operator.ka;
-    rbmc:bnglTemplate rbmt:operator.bngl;
-    rbmc:tokens
-        rbmc:transcriptionFactor,
-        rbmc:transcriptionFactorBindingRate,
-        rbmc:transcriptionFactorUnbindingRate,
-        rbmc:rnapDNAUnbindingRate,
-        rbmc:rnapRNAUnbindingRate,
-        rbmc:transcriptionInitiationRate,
-        rbmc:transcriptionElongationRate,
-        rbmc:ribosomeRNAUnbindingRate,
-        rbmc:ribosomeProteinUnbindingRate,
-        rbmc:translationElongationRate,
-        rbmc:rnaDegradationRate,
-        rbmc:proteinDegradationRate.
+gcc:Operator rdfs:subClassOf gcc:Part;
+    gcc:kappaTemplate rbmt:operator.ka;
+    gcc:bnglTemplate rbmt:operator.bngl;
+    gcc:tokens
+        gcc:transcriptionFactor,
+        gcc:transcriptionFactorBindingRate,
+        gcc:transcriptionFactorUnbindingRate,
+        gcc:rnapDNAUnbindingRate,
+        gcc:rnapRNAUnbindingRate,
+        gcc:transcriptionInitiationRate,
+        gcc:transcriptionElongationRate,
+        gcc:ribosomeRNAUnbindingRate,
+        gcc:ribosomeProteinUnbindingRate,
+        gcc:translationElongationRate,
+        gcc:rnaDegradationRate,
+        gcc:proteinDegradationRate.
 
-rbmc:Promoter rdfs:subClassOf rbmc:Part;
-    rbmc:kappaTemplate rbmt:promoter.ka;
-    rbmc:bnglTemplate rbmt:promoter.bngl;
-    rbmc:tokens
-        rbmc:next,
-        rbmc:rnapBindingRate,
-        rbmc:rnapDNAUnbindingRate,
-        rbmc:rnapRNAUnbindingRate,
-        rbmc:transcriptionInitiationRate,
-        rbmc:transcriptionElongationRate,
-        rbmc:ribosomeRNAUnbindingRate,
-        rbmc:ribosomeProteinUnbindingRate,
-        rbmc:translationElongationRate,
-        rbmc:rnaDegradationRate,
-        rbmc:proteinDegradationRate.
+gcc:Promoter rdfs:subClassOf gcc:Part;
+    gcc:kappaTemplate rbmt:promoter.ka;
+    gcc:bnglTemplate rbmt:promoter.bngl;
+    gcc:tokens
+        gcc:next,
+        gcc:rnapBindingRate,
+        gcc:rnapDNAUnbindingRate,
+        gcc:rnapRNAUnbindingRate,
+        gcc:transcriptionInitiationRate,
+        gcc:transcriptionElongationRate,
+        gcc:ribosomeRNAUnbindingRate,
+        gcc:ribosomeProteinUnbindingRate,
+        gcc:translationElongationRate,
+        gcc:rnaDegradationRate,
+        gcc:proteinDegradationRate.
 
-rbmc:RibosomeBindingSite rdfs:subClassOf rbmc:Part;
-    rbmc:kappaTemplate rbmt:rbs.ka;
-    rbmc:bnglTemplate rbmt:rbs.bngl;
-    rbmc:tokens
-        rbmc:rnapDNAUnbindingRate,
-        rbmc:rnapRNAUnbindingRate,
-        rbmc:transcriptionElongationRate,
-        rbmc:ribosomeBindingRate,
-        rbmc:ribosomeRNAUnbindingRate,
-        rbmc:ribosomeProteinUnbindingRate,
-        rbmc:translationElongationRate,
-        rbmc:rnaDegradationRate,
-        rbmc:proteinDegradationRate.
+gcc:RibosomeBindingSite rdfs:subClassOf gcc:Part;
+    gcc:kappaTemplate rbmt:rbs.ka;
+    gcc:bnglTemplate rbmt:rbs.bngl;
+    gcc:tokens
+        gcc:rnapDNAUnbindingRate,
+        gcc:rnapRNAUnbindingRate,
+        gcc:transcriptionElongationRate,
+        gcc:ribosomeBindingRate,
+        gcc:ribosomeRNAUnbindingRate,
+        gcc:ribosomeProteinUnbindingRate,
+        gcc:translationElongationRate,
+        gcc:rnaDegradationRate,
+        gcc:proteinDegradationRate.
 
-rbmc:protein a rbmc:Token;
+gcc:protein a gcc:Token;
     skos:prefLabel "protein".
 
-rbmc:CodingSequence rdfs:subClassOf rbmc:Part;
-    rbmc:kappaTemplate rbmt:cds.ka;
-    rbmc:bnglTemplate rbmt:cds.bngl;
-    rbmc:tokens
-        rbmc:protein,
-        rbmc:rnapDNAUnbindingRate,
-        rbmc:rnapRNAUnbindingRate,
-        rbmc:transcriptionElongationRate,
-        rbmc:ribosomeRNAUnbindingRate,
-        rbmc:ribosomeProteinUnbindingRate,
-        rbmc:translationElongationRate,
-        rbmc:rnaDegradationRate,
-        rbmc:proteinDegradationRate.
+gcc:CodingSequence rdfs:subClassOf gcc:Part;
+    gcc:kappaTemplate rbmt:cds.ka;
+    gcc:bnglTemplate rbmt:cds.bngl;
+    gcc:tokens
+        gcc:protein,
+        gcc:rnapDNAUnbindingRate,
+        gcc:rnapRNAUnbindingRate,
+        gcc:transcriptionElongationRate,
+        gcc:ribosomeRNAUnbindingRate,
+        gcc:ribosomeProteinUnbindingRate,
+        gcc:translationElongationRate,
+        gcc:rnaDegradationRate,
+        gcc:proteinDegradationRate.
 
-rbmc:Terminator rdfs:subClassOf rbmc:Part;
-    rbmc:kappaTemplate rbmt:generic.ka;
-    rbmc:bnglTemplate rbmt:generic.bngl;
-    rbmc:tokens
-        rbmc:rnapDNAUnbindingRate,
-        rbmc:rnapRNAUnbindingRate,
-        rbmc:transcriptionElongationRate,
-        rbmc:ribosomeRNAUnbindingRate,
-        rbmc:ribosomeProteinUnbindingRate,
-        rbmc:translationElongationRate,
-        rbmc:rnaDegradationRate,
-        rbmc:proteinDegradationRate.
+gcc:Terminator rdfs:subClassOf gcc:Part;
+    gcc:kappaTemplate rbmt:generic.ka;
+    gcc:bnglTemplate rbmt:generic.bngl;
+    gcc:tokens
+        gcc:rnapDNAUnbindingRate,
+        gcc:rnapRNAUnbindingRate,
+        gcc:transcriptionElongationRate,
+        gcc:ribosomeRNAUnbindingRate,
+        gcc:ribosomeProteinUnbindingRate,
+        gcc:translationElongationRate,
+        gcc:rnaDegradationRate,
+        gcc:proteinDegradationRate.
+
+gcc:Protein
+    gcc:kappaTemplate rbmt:protein.ka;
+    gcc:bnglTemplate rbmt:protein.bngl;
+    gcc:tokens
+        gcc:molecule,
+        gcc:proteinDegradationRate.

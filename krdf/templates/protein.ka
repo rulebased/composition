@@ -1,0 +1,11 @@
+///////////////////////////////////////////////////////////////////
+// Auto-generated protein rules {{ name }}
+{% include "header.ka" %}
+{% import "meta.ka" as meta with context %}
+
+{% set rule = "%s-protein-degradation" % name %}
+//^ :{{ rule }} a rbmo:Rule ;
+{{ meta.rule() }}{# #}
+//^     rdfs:label "{{ name }} Protein degradation" .
+// {{ name }} Protein degradation
+'{{ rule }}' Protein(type{{ curly(name) }}) -> . @{{ proteinDegradationRate }}

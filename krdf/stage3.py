@@ -21,6 +21,12 @@ def compile_stage3(ir, debug=False, **kw):
             doc = template.render(model=ir, circuit=circuit, **part)
             docs.append(doc)
 
+    for protein in ir["proteins"]:
+        print(protein)
+        template = get_template(protein["template"])
+        doc = template.render(model=ir, **protein)
+        docs.append(doc)
+
     logging.debug("="*80)
     logging.debug("stage3: output")
     for doc in docs:
