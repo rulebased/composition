@@ -9,7 +9,7 @@ from scipy.stats.stats import pearsonr
 from krdf.compiler import compile
 from krdf.kcomp import FACT_FILES, RULE_FILES
 from krdf.namespace import RDF, RBMO, GCC
-from krdf.utils import Graph, get_one
+from krdf.utils import Graph, get_one, cbd
 from krdf.gen import gen_model, mutate_model, partname
 from rdflib.collection import Collection
 from concurrent.futures import ThreadPoolExecutor
@@ -124,8 +124,9 @@ def main():
     model, proto = gen_model(model, circuit, facts=facts, rules=RULE_FILES)
     seen[tuple(proto)] = test_model(model, args, facts=facts, rules=RULE_FILES)
 
-    i = 0
-    while i < 100:
+    for _ in range(100):
+        mid, _, _ = get_one(model, (None, RDF["type"], RBMO["Model"]))
+        model = cbd(model, (mid, None, None))
         nmodel, nproto = mutate_model(model, proto, circuit, facts=facts, rules=RULE_FILES)
         if tuple(nproto) in seen:
             continue
@@ -133,8 +134,7 @@ def main():
         if seen[tuple(nproto)] < seen[tuple(proto)]:
             model = nmodel
             proto = nproto
-        i += 1
-        
+
     def prettypart(part):
         _, _, label = get_one(database, (part, GCC["part"], None))
         return label

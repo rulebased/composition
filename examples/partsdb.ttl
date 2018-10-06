@@ -22,7 +22,7 @@
 
 :C0051 a gcc:CodingSequence;
     rdfs:label "Coding sequence for λ-Cl";
-    gcc:part "CLcL";
+    gcc:part "CLcI";
     gcc:protein :P0051.
 
 :C0012 a gcc:CodingSequence;
@@ -52,7 +52,7 @@
 
 :O0051 a gcc:Operator;
     rdfs:label "λ-Cl activated operator";
-    gcc:part "OLcL";
+    gcc:part "OLcI";
     gcc:transcriptionFactor :P0051;
     gcc:transcriptionFactorUnbindingRate 0.01;
     gcc:transcriptionFactorBindingRate 0.01.
