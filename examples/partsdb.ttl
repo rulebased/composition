@@ -1,0 +1,137 @@
+# -*- n3 -*-
+@prefix : <http://id.inf.ed.ac.uk/rbm/examples/partsdb#>.
+@prefix rbmo: <http://purl.org/rbm/rbmo#>.
+@prefix gcc: <http://purl.org/rbm/comp#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#>.
+
+:P0040 a gcc:Protein;
+    gcc:molecule "P0040";
+    rdfs:label "TetR";
+    gcc:proteinDegradationRate 0.0001.
+
+:P0051 a gcc:Protein;
+    gcc:molecule "P0051";
+    rdfs:label "λ-Cl";
+    gcc:proteinDegradationRate 0.0001.
+
+:P0010 a gcc:Protein;
+    gcc:molecule "P0010";
+    rdfs:label "LacI";
+    gcc:proteinDegradationRate 0.0001.
+
+:C0051 a gcc:CodingSequence;
+    rdfs:label "Coding sequence for λ-Cl";
+    gcc:part "CLcI";
+    gcc:protein :P0051.
+
+:C0012 a gcc:CodingSequence;
+    gcc:label "Coding sequence for LacI";
+    gcc:part "CLacI";
+    gcc:protein :P0010.
+
+:C0040 a gcc:CodingSequence;
+    gcc:label "Coding sequence for TetR";
+    gcc:part "CTetR";
+    gcc:protein :P0040.
+
+:B0034 a gcc:RibosomeBindingSite;
+    rdfs:label "Ribosome binding site";
+    gcc:part "B0034".
+
+:B0011 a gcc:Terminator;
+    rdfs:label "Terminator, stop codon";
+    gcc:part "B0011".
+
+:O0040 a gcc:Operator;
+    rdfs:label "TetR activated operator";
+    gcc:part "OTetR";
+    gcc:transcriptionFactor :P0040;
+    gcc:transcriptionFactorBindingRate 0.01;
+    gcc:transcriptionFactorUnbindingRate 0.01.
+
+:O0051 a gcc:Operator;
+    rdfs:label "λ-Cl activated operator";
+    gcc:part "OLcI";
+    gcc:transcriptionFactor :P0051;
+    gcc:transcriptionFactorUnbindingRate 0.01;
+    gcc:transcriptionFactorBindingRate 0.01.
+
+:O0010 a gcc:Operator;
+    rdfs:label "LacI activated operator";
+    gcc:part "OLacI";
+    gcc:transcriptionFactor :P0010;
+    gcc:transcriptionFactorBindingRate 0.01;
+    gcc:transcriptionFactorUnbindingRate 0.01.
+
+:PrRS a gcc:Promoter;
+    rdfs:label "Slow repressible promoter";
+    gcc:part "PrRS";
+    gcc:next "B0034";
+    gcc:rnapBindingRate [
+      gcc:upstream ( [a rbmo:BoundState; rbmo:stateOf [] ] );
+      gcc:value 7e-8
+    ], [
+      gcc:upstream ( [a rbmo:UnboundState; rbmo:stateOf [] ] );
+      gcc:value 0.00007
+    ].
+
+:PrRM a gcc:Promoter;
+    rdfs:label "Medium repressible promoter";
+    gcc:part "PrRM";
+    gcc:next "B0034";
+    gcc:rnapBindingRate [
+      gcc:upstream ( [a rbmo:BoundState; rbmo:stateOf [] ] );
+      gcc:value 7e-7
+    ], [
+      gcc:upstream ( [a rbmo:UnboundState; rbmo:stateOf [] ] );
+      gcc:value 0.0007
+    ].
+
+:PrRF a gcc:Promoter;
+    rdfs:label "Fast repressible promoter";
+    gcc:part "PrRF";
+    gcc:next "B0034";
+    gcc:rnapBindingRate [
+      gcc:upstream ( [a rbmo:BoundState; rbmo:stateOf [] ] );
+      gcc:value 7e-6
+    ], [
+      gcc:upstream ( [a rbmo:UnboundState; rbmo:stateOf [] ] );
+      gcc:value 0.007
+    ].
+
+:PrIS a gcc:Promoter;
+    rdfs:label "Slow inducible promoter";
+    gcc:part "PrIS";
+    gcc:next "B0034";
+    gcc:rnapBindingRate [
+      gcc:upstream ( [a rbmo:BoundState; rbmo:stateOf [] ] );
+      gcc:value 0.00007
+    ], [
+      gcc:upstream ( [a rbmo:UnboundState; rbmo:stateOf [] ] );
+      gcc:value 7e-8
+    ].
+
+:PrIM a gcc:Promoter;
+    rdfs:label "Medium inducible promoter";
+    gcc:part "PrIM";
+    gcc:next "B0034";
+    gcc:rnapBindingRate [
+      gcc:upstream ( [a rbmo:BoundState; rbmo:stateOf [] ] );
+      gcc:value 0.0007
+    ], [
+      gcc:upstream ( [a rbmo:UnboundState; rbmo:stateOf [] ] );
+      gcc:value 7e-7
+    ].
+
+:PrIF a gcc:Promoter;
+    rdfs:label "Fast inducible promoter";
+    gcc:part "PrIF";
+    gcc:next "B0034";
+    gcc:rnapBindingRate [
+      gcc:upstream ( [a rbmo:BoundState; rbmo:stateOf [] ] );
+      gcc:value 0.007
+    ], [
+      gcc:upstream ( [a rbmo:UnboundState; rbmo:stateOf [] ] );
+      gcc:value 7e-6
+    ].

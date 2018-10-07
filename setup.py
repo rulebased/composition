@@ -8,7 +8,8 @@ setup(
     entry_points = {
         "console_scripts": [
             "kcomp = krdf.kcomp:main",
-            "kdumpviz = krdf.kviz:main"
+            "kdumpviz = krdf.kviz:main",
+            "kgen = krdf.kgen:main"
         ]
     },
     data_files = [

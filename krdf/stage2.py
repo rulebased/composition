@@ -103,7 +103,8 @@ def compile_stage2(ir, debug=False, **kw):
     """
     logging.info("stage2: generating python representation")
     ir2 = {
-        "circuits": []
+        "circuits": [],
+        "proteins": []
     }
 
     model, _, _ = get_one(ir, (None, RDF["type"], RBMO["Model"]))
@@ -118,6 +119,10 @@ def compile_stage2(ir, debug=False, **kw):
     for _, _, parts in ir.triples((model, RBMC["circular"], None)):
         circuit = list(map(lambda x: describe_part(ir, x), Collection(ir, parts)))
         ir2["circuits"].append({ "topology": "circular", "parts": circuit })
+
+    for protein, _, _ in ir.triples((None, RDF["type"], RBMC["Protein"])):
+        descr = describe_part(ir, protein)
+        ir2["proteins"].append(descr)
 
     logging.debug("="*80)
     logging.debug("stage2: output")

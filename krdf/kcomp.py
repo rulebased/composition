@@ -6,14 +6,14 @@ from pkg_resources import resource_filename
 
 from krdf.compiler import compile
 
-FACT_FILES = map(lambda x: resource_filename("krdf", "rdf/%s" % x), [
+FACT_FILES = list(map(lambda x: resource_filename("krdf", "rdf/%s" % x), [
     "composition.ttl"
-])
+]))
 
-RULE_FILES = map(lambda x: resource_filename("krdf", "rdf/%s" % x), [
+RULE_FILES = list(map(lambda x: resource_filename("krdf", "rdf/%s" % x), [
     "rdfs-rules.n3",
     "composition.n3"
-])
+]))
 
 def main():
     parser = argparse.ArgumentParser(description='Test extract RDF from a Kappa/RDF file')

@@ -48,6 +48,19 @@ def Graph(*av, **kw):
         g.namespace_manager = krdf.namespace_manager
     return g
 
+def cbd(g, triple, *av, **kw):
+    """
+    Return the BNode closure(s) for triples that are matched
+    by the given "triple". Any additional positional or keyword
+    arguments are passed to the constructor for the new graph.
+    """
+    result = Graph(*av, **kw)
+    for s,p,o in g.triples(triple):
+        result.add((s,p,o))
+        if isinstance(o, rdflib.BNode) and not (o, None, None) in result:
+            result += cbd(g, (o, None, None))
+    return result
+
 def get_one(g, t):
     triples = list(g.triples(t))
     if len(triples) == 0:

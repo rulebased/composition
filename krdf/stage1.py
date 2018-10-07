@@ -25,6 +25,7 @@ def compile_stage1(model, facts = [], rules = [], **kw):
     network.inferredFacts = data
     network.feedFactsToAdd(generateTokenSet(data))
 
+
     logging.debug("=")
     logging.debug("stage1: output")
     logging.debug("-"*80)
