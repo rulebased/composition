@@ -10,7 +10,7 @@ from krdf.compiler import compile
 from krdf.kcomp import FACT_FILES, RULE_FILES
 from krdf.namespace import RDF, RBMO, GCC
 from krdf.utils import Graph, get_one, cbd
-from krdf.gen import gen_model, mutate_model, partname
+from krdf.gen import gen_model, mutate_model
 from rdflib.collection import Collection
 from concurrent.futures import ThreadPoolExecutor
 import kappy
@@ -88,18 +88,6 @@ def test_model(model, args, facts=[], rules=[]):
     logging.info("average score %s %s" % (sc, modelname))
     return sc
 
-def extract_circuit(model):
-    mid, _, _ = get_one(model, (None, RDF["type"], RBMO["Model"]))
-    if (mid, GCC["linear"], None) in model:
-        _, _, cid = get_one(model, (mid, GCC["linear"], None))
-    elif (mid, GCC["circular"], None) in model:
-        _, _, cid = get_one(model, (mid, GCC["circular"], None))
-    circuit = []
-    for part in Collection(model, cid):
-        _, _, kind = get_one(model, (part, RDF["type"], None))
-        circuit.append(kind)
-    return circuit
-
 def main():
     parser = argparse.ArgumentParser(description='Find an optimal genetic circuit')
     parser.add_argument('filename', type=str, help='Starting Circuit')
@@ -115,25 +103,24 @@ def main():
     model = Graph().parse(args.filename, format="turtle")
     database = Graph().parse(args.database, format="turtle")
     model += database
-    circuit = extract_circuit(model)
 
     facts = FACT_FILES.copy()
     facts.append(args.database)
 
     seen = {}
-    model, proto = gen_model(model, circuit, facts=facts, rules=RULE_FILES)
-    seen[tuple(proto)] = test_model(model, args, facts=facts, rules=RULE_FILES)
+    model, circuit = gen_model(model, facts=facts, rules=RULE_FILES)
+    seen[tuple(circuit)] = test_model(model, args, facts=facts, rules=RULE_FILES)
 
     for _ in range(100):
         mid, _, _ = get_one(model, (None, RDF["type"], RBMO["Model"]))
-        model = cbd(model, (mid, None, None))
-        nmodel, nproto = mutate_model(model, proto, circuit, facts=facts, rules=RULE_FILES)
-        if tuple(nproto) in seen:
+#        model = cbd(model, (mid, None, None))
+        nmodel, ncircuit = mutate_model(model, circuit, facts=facts, rules=RULE_FILES)
+        if tuple(ncircuit) in seen:
             continue
-        seen[tuple(nproto)] = test_model(nmodel, args, facts=facts, rules=RULE_FILES)
-        if seen[tuple(nproto)] < seen[tuple(proto)]:
+        seen[tuple(ncircuit)] = test_model(nmodel, args, facts=facts, rules=RULE_FILES)
+        if seen[tuple(ncircuit)] < seen[tuple(circuit)]:
             model = nmodel
-            proto = nproto
+            circuit = ncircuit
 
     def prettypart(part):
         _, _, label = get_one(database, (part, GCC["part"], None))
