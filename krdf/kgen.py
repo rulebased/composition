@@ -34,12 +34,12 @@ def name_model(g):
 
 def simulate(filename, args):
     client = kappy.KappaStd()
-    client.set_default_sim_param(100, "[T] > 250000")
+    client.set_default_sim_param(args.plot, "[T] > %d" % args.limit)
     client.add_model_file(filename)
     client.project_parse()
     client.simulation_start()
     client.wait_for_simulation_stop()
-    data = client.simulation_plot(kappy.PlotLimit(points=10000))
+    data = client.simulation_plot(kappy.PlotLimit(points=int(args.limit/args.plot)))
     client.simulation_delete()
     return data
 
@@ -64,23 +64,31 @@ def test_model(model, args, facts=[], rules=[]):
     program = compile(mfilename, facts=facts, rules=rules)
 
     kafilename = os.path.join(args.output, modelname + ".ka")
-    fp = open(kafilename, "wb")
-    fp.write(program)
-    fp.close()
+    with open(kafilename, "wb") as fp:
+        fp.write(program)
 
     logging.info("simulating %s" % modelname)
     def run(n):
         logging.info("starting [%d] %s" % (n, modelname))
         data = simulate(kafilename, args)
         logging.info("done [%d] %s" % (n, modelname))
+
+        dfilename = os.path.join(args.output, modelname + "-%d.csv" % n)
+        a = np.array(data["series"])
+        np.savetxt(dfilename, a, delimiter=',')
+
         sc = score(data)
         logging.info("score %s %s" % (sc, modelname))
         return sc
 
     results = []
     with ThreadPoolExecutor() as executor:
-        for result in executor.map(run, range(1)):
+        for result in executor.map(run, range(args.threads)):
             results.append(result)
+
+    sfilename = os.path.join(args.output, modelname + "-scores.csv")
+    a = np.array(results)
+    np.savetxt(sfilename, a, delimiter=',')
 
     sc = np.average(results)
     logging.info("average score %s %s" % (sc, modelname))
@@ -88,6 +96,9 @@ def test_model(model, args, facts=[], rules=[]):
 
 def main():
     parser = argparse.ArgumentParser(description='Find an optimal genetic circuit')
+    parser.add_argument('-l', '--limit', dest='limit', type=int, default=100000, help='Simulation step limit')
+    parser.add_argument('-p', '--plot', dest='plot', type=int, default=100, help='Plot every N points')
+    parser.add_argument('-t', '--threads', dest='threads', type=int, default=4, help='Number of simulation threads per circuit')
     parser.add_argument('filename', type=str, help='Starting Circuit')
     parser.add_argument('database', type=str, help='Parts Database')
     parser.add_argument('output', type=str, help='Data Directory')
