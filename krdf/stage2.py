@@ -3,7 +3,7 @@ from rdflib.term import Literal, URIRef
 import logging
 
 from krdf.namespace import RBMC, RBMO, RDF, SKOS
-from krdf.utils import get_one, exists
+from krdf.utils import get_one, exists, cbd, dump_graph
 
 def describe_operators(g, oplist):
     operators = []
@@ -41,6 +41,8 @@ def describe_part(g, parturi):
     Emit a Python dictionary with a description of a single part,
     used by the second-stage compiler.
     """
+    logging.info("describing part: %s", parturi)
+    #dump_graph(cbd(g, (parturi, None, None)))
     def literal(v):
         v = v.toPython()
         if isinstance(v, str):

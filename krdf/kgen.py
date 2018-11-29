@@ -48,15 +48,13 @@ def score(results):
     TetR = np.array(list(x[2] for x in results["series"]))
     LcI  = np.array(list(x[3] for x in results["series"]))
 
-    r1, p1 = pearsonr(LacI, TetR)
-    r2, p2 = pearsonr(TetR, LcI)
-    r3, p3 = pearsonr(LcI, LacI)
+    r1, _ = pearsonr(LacI, TetR)
+    r2, _ = pearsonr(TetR, LcI)
+    r3, _ = pearsonr(LcI, LacI)
 
-    r = sum(0 if np.isnan(r) else r for r in (r1, r2, r3))
-    p = max(-1 if np.isnan(p) else p for p in (p1, p2, p3))
-    if p == -1: p = 1.0
+    r = min(0 if np.isnan(r) else r for r in (r1, r2, r3))
 
-    return (r, p)
+    return -1 * r
 
 def test_model(model, args, facts=[], rules=[]):
     modelname = name_model(model)
@@ -81,10 +79,10 @@ def test_model(model, args, facts=[], rules=[]):
 
     results = []
     with ThreadPoolExecutor() as executor:
-        for result in executor.map(run, range(8)):
+        for result in executor.map(run, range(1)):
             results.append(result)
 
-    sc = np.average(np.array(list(r[0] for r in results)))
+    sc = np.average(results)
     logging.info("average score %s %s" % (sc, modelname))
     return sc
 
@@ -102,33 +100,34 @@ def main():
 
     model = Graph().parse(args.filename, format="turtle")
     database = Graph().parse(args.database, format="turtle")
-    model += database
 
     facts = FACT_FILES.copy()
     facts.append(args.database)
 
-    seen = {}
-    model, circuit = gen_model(model, facts=facts, rules=RULE_FILES)
+    seen, models = {}, {}
+    model, circuit = gen_model(model, database)
     seen[tuple(circuit)] = test_model(model, args, facts=facts, rules=RULE_FILES)
+    models[tuple(circuit)] = model
 
     for _ in range(100):
         mid, _, _ = get_one(model, (None, RDF["type"], RBMO["Model"]))
-#        model = cbd(model, (mid, None, None))
-        nmodel, ncircuit = mutate_model(model, circuit, facts=facts, rules=RULE_FILES)
+        nmodel, ncircuit = mutate_model(model, circuit, database)
         if tuple(ncircuit) in seen:
+            logging.info("circuit already seen... continuing")
             continue
         seen[tuple(ncircuit)] = test_model(nmodel, args, facts=facts, rules=RULE_FILES)
-        if seen[tuple(ncircuit)] < seen[tuple(circuit)]:
+        models[tuple(ncircuit)] = nmodel
+        if seen[tuple(ncircuit)] >= seen[tuple(circuit)]:
             model = nmodel
             circuit = ncircuit
 
-    def prettypart(part):
-        _, _, label = get_one(database, (part, GCC["part"], None))
+    def prettypart(g, part):
+        _, _, label = get_one(g, (part, GCC["part"], None))
         return label
 
     results = sorted(seen.items(), key=lambda x: x[1])
     for proto, score in results:
-        print("%.06f\t%s" % (score, " ".join(prettypart(p) for p in proto)))
+        print("%.06f\t%s" % (score, " ".join(prettypart(models[proto], p) for p in proto)))
 
 if __name__ == '__main__':
     main()

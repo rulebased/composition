@@ -64,10 +64,10 @@ def cbd(g, triple, *av, **kw):
 def get_one(g, t):
     triples = list(g.triples(t))
     if len(triples) == 0:
-        logging.error("get_one returned no triples")
+        logging.error("get_one(%s) returned no triples", t)
         return
     if len(triples) > 1:
-        logging.error("get_one returned more than one triple")
+        logging.error("get_one(%s) returned more than one triple", t)
         return
     return triples[0]
 
@@ -94,3 +94,7 @@ def get_template(name, local_templates=True, **kw):
         env.globals["curly"] = lambda sym: "{" + sym + "}"
         return env.get_template(filename)
     raise Exception("don't know how to deal with remote templates yet")
+
+def dump_graph(g, format="turtle"):
+    for line in g.serialize(format=format).split(b"\n"):
+        logging.debug(line)

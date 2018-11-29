@@ -2,7 +2,7 @@ from FuXi.Rete.RuleStore import SetupRuleStore
 from FuXi.Rete.Util import generateTokenSet
 from FuXi.Horn.HornRules import HornFromN3
 import logging
-from krdf.utils import Graph
+from krdf.utils import Graph, dump_graph
 
 def compile_stage1(model, facts = [], rules = [], **kw):
     logging.info("stage1: setting up inference rules")
@@ -29,8 +29,7 @@ def compile_stage1(model, facts = [], rules = [], **kw):
     logging.debug("=")
     logging.debug("stage1: output")
     logging.debug("-"*80)
-    for line in data.serialize(format="turtle").split(b"\n"):
-        logging.debug(line)
+    dump_graph(data)
     logging.debug("="*80)
 
     return data
