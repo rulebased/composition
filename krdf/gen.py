@@ -105,11 +105,20 @@ def mutate_model(model, circuit, database):
     i = choice(range(len(circuit)))
     logging.info("mutate: replacing part %d: %s", i, circuit[i])
 
-    ncircuit = circuit.copy()
     try:
-        ncircuit[i] = replace_part(nmodel, circuit, i, database)
+        part = replace_part(nmodel, circuit, i, database)
     except Exception as e:
         dump_graph(model)
         raise e
+    ncircuit = circuit.copy()
+    ncircuit[i] = part
+
+    ## fixup the "next" linkage for RBS
+    if exists(model, (part, GCC["next"], None)):
+        _, _, next = get_one(model, (part, GCC["next"], None))
+        _, _, label = get_one(model, (circuit[i+1], GCC["part"], None))
+        model.remove((part, GCC["next"], next))
+        model.add((part, GCC["next"], label))
+
     logging.info("mutate: repacement part is %s", circuit[i])
     return (nmodel, ncircuit)
