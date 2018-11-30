@@ -114,11 +114,11 @@ def mutate_model(model, circuit, database):
     ncircuit[i] = part
 
     ## fixup the "next" linkage for RBS
-    if exists(model, (part, GCC["next"], None)):
-        _, _, next = get_one(model, (part, GCC["next"], None))
-        _, _, label = get_one(model, (circuit[i+1], GCC["part"], None))
-        model.remove((part, GCC["next"], next))
-        model.add((part, GCC["next"], label))
+    if exists(nmodel, (part, GCC["next"], None)):
+        _, _, next = get_one(nmodel, (part, GCC["next"], None))
+        _, _, label = get_one(nmodel, (circuit[i+1], GCC["part"], None))
+        nmodel.remove((part, GCC["next"], next))
+        nmodel.add((part, GCC["next"], label))
 
     logging.info("mutate: repacement part is %s", circuit[i])
     return (nmodel, ncircuit)
