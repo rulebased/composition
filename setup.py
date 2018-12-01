@@ -9,7 +9,10 @@ setup(
         "console_scripts": [
             "kcomp = krdf.kcomp:main",
             "kdumpviz = krdf.kviz:main",
-            "kgen = krdf.kgen:main"
+            "kgen = krdf.kgen:main",
+            "ksim = krdf.ksim:main",
+            "kq = krdf.kq:main",
+            "krun = krdf.krun:main"
         ]
     },
     data_files = [

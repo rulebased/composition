@@ -13,8 +13,7 @@
 :m a rbmo:Model;
     ## bibliographic metadata
     dct:title "Two-operon system";
-    rdfs:seeAlso <http://link.springer.com/protocol/10.1007/978-1-4939-1878-2_6>;
-    gcc:prefix <http://id.inf.ed.ac.uk/rbm/examples/repressilator#>;
+    gcc:prefix <http://id.inf.ed.ac.uk/rbm/examples/twoop#>;
     ## include the host environment
     gcc:include <host.ka>;
     ## The expression of the model as a genetic circuit

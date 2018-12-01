@@ -2,18 +2,19 @@ import argparse
 import logging
 import os
 import sys
-from pkg_resources import resource_filename
+import zmq
+import json
+from queue import Queue
 
 import numpy as np
 from scipy.stats.stats import pearsonr
-from krdf.compiler import compile
 from krdf.kcomp import FACT_FILES, RULE_FILES
 from krdf.namespace import RDF, RBMO, GCC
 from krdf.utils import Graph, get_one, cbd
 from krdf.gen import gen_model, mutate_model
+from krdf.remote import run_model, collect_model
+from krdf import KrdfError
 from rdflib.collection import Collection
-from concurrent.futures import ThreadPoolExecutor
-import kappy
 
 def name_model(g):
     m, _, _ = get_one(g, (None, RDF["type"], RBMO["Model"]))
@@ -32,16 +33,6 @@ def name_model(g):
     name = "_".join(parts())
     return name
 
-def simulate(filename, args):
-    client = kappy.KappaStd()
-    client.set_default_sim_param(args.plot, "[T] > %d" % args.limit)
-    client.add_model_file(filename)
-    client.project_parse()
-    client.simulation_start()
-    client.wait_for_simulation_stop()
-    data = client.simulation_plot(kappy.PlotLimit(points=int(args.limit/args.plot)))
-    client.simulation_delete()
-    return data
 
 def score(results):
     LacI = np.array(list(x[1] for x in results["series"]))
@@ -56,49 +47,59 @@ def score(results):
 
     return -1 * r
 
-def test_model(model, args, facts=[], rules=[]):
-    modelname = name_model(model)
-    mfilename = os.path.join(args.output, modelname + ".ttl")
-    model.serialize(mfilename, format="ttl")
+def test_models(context, models, args, facts=[], rules=[]):
+    "start simulations of a list of models, and coalesce the results"
+    q = Queue()
+    for name in models:
+        socket = context.socket(zmq.REQ)
+        socket.connect(args.server)
+        q.put((name, socket))
+        run_model(socket, models[name], args, facts, rules)
 
-    program = compile(mfilename, facts=facts, rules=rules)
+    scores = {}
+    while not q.empty():
+        name, socket = q.get()
+        try:
+            data = collect_model(socket)
+        except KrdfError as e:
+            ## try again, mysterious unreproducable parse error
+            q.put((name, socket))
+            run_model(socket, models[name], args, facts, rules)
+            continue
+        socket.close()
 
-    kafilename = os.path.join(args.output, modelname + ".ka")
-    with open(kafilename, "wb") as fp:
-        fp.write(program)
+        kappa = os.path.join(args.output, name + ".ka")
+        with open(kappa, "w") as fp:
+            fp.write(data["kappa"])
 
-    logging.info("simulating %s" % modelname)
-    def run(n):
-        logging.info("starting [%d] %s" % (n, modelname))
-        data = simulate(kafilename, args)
-        logging.info("done [%d] %s" % (n, modelname))
-
-        dfilename = os.path.join(args.output, modelname + "-%d.csv" % n)
         a = np.array(data["series"])
-        np.savetxt(dfilename, a, delimiter=',')
+        csv = os.path.join(args.output, name + ".csv")
+        np.savetxt(csv, a, delimiter=',')
 
-        sc = score(data)
-        logging.info("score %s %s" % (sc, modelname))
-        return sc
+        scores[name] = score(data)
+        logging.info("%f %s", scores[name], name)
 
-    results = []
-    with ThreadPoolExecutor() as executor:
-        for result in executor.map(run, range(args.threads)):
-            results.append(result)
+        sc = os.path.join(args.output, name + ".score")
+        with open(sc, "w") as fp:
+            fp.write("%s\n" % scores[name])
 
-    sfilename = os.path.join(args.output, modelname + "-scores.csv")
-    a = np.array(results)
-    np.savetxt(sfilename, a, delimiter=',')
+    return scores
 
-    sc = np.average(results)
-    logging.info("average score %s %s" % (sc, modelname))
-    return sc
+def topn(scores, n):
+    "return the items with the top n scores"
+    top = list(i[0] for i in sorted(scores.items(), key=lambda a: a[1]) if not np.isnan(i[1]))
+    top.reverse()
+    return top[:n]
 
 def main():
     parser = argparse.ArgumentParser(description='Find an optimal genetic circuit')
     parser.add_argument('-l', '--limit', dest='limit', type=int, default=100000, help='Simulation step limit')
     parser.add_argument('-p', '--plot', dest='plot', type=int, default=100, help='Plot every N points')
-    parser.add_argument('-t', '--threads', dest='threads', type=int, default=4, help='Number of simulation threads per circuit')
+    parser.add_argument('-o', '--population', dest='population', type=int, default=20, help='Population size to simulate')
+    parser.add_argument('-e', '--selection', dest='selection', type=int, default=4, help='Selection from the population')
+    parser.add_argument('-g', '--generations', dest='generations', type=int, default=10, help='Number of generations')
+    parser.add_argument('-s', '--server', dest="server", default="tcp://localhost:9898", help="Server side of queue")    
+
     parser.add_argument('filename', type=str, help='Starting Circuit')
     parser.add_argument('database', type=str, help='Parts Database')
     parser.add_argument('output', type=str, help='Data Directory')
@@ -109,36 +110,56 @@ def main():
     else: loglevel=logging.INFO
     logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', level=loglevel)
 
+    context = zmq.Context()
+
     model = Graph().parse(args.filename, format="turtle")
     database = Graph().parse(args.database, format="turtle")
 
     facts = FACT_FILES.copy()
     facts.append(args.database)
 
-    seen, models = {}, {}
     model, circuit = gen_model(model, database)
-    seen[tuple(circuit)] = test_model(model, args, facts=facts, rules=RULE_FILES)
-    models[tuple(circuit)] = model
 
-    for _ in range(100):
-        mid, _, _ = get_one(model, (None, RDF["type"], RBMO["Model"]))
-        nmodel, ncircuit = mutate_model(model, circuit, database)
-        if tuple(ncircuit) in seen:
-            logging.info("circuit already seen... continuing")
-            continue
-        seen[tuple(ncircuit)] = test_model(nmodel, args, facts=facts, rules=RULE_FILES)
-        models[tuple(ncircuit)] = nmodel
-        if seen[tuple(ncircuit)] >= seen[tuple(circuit)]:
-            model = nmodel
-            circuit = ncircuit
+    name = name_model(model)
+    models = { name: model }
+    circuits = { name: circuit }
+    scores = test_models(context, {name: model}, args, facts=facts, rules=RULE_FILES)
 
-    def prettypart(g, part):
-        _, _, label = get_one(g, (part, GCC["part"], None))
-        return label
+    for _ in range(args.generations):
+        top = topn(scores, args.selection)
+        population = {}
+        for parent in top:
+            logging.info("mutating %s", parent.replace("_", " "))
 
-    results = sorted(seen.items(), key=lambda x: x[1])
-    for proto, score in results:
-        print("%.06f\t%s" % (score, " ".join(prettypart(models[proto], p) for p in proto)))
+            model = models[parent]
+            circuit = circuits[parent]
+
+            children = int(args.population / len(top))
+            for _ in range(children):
+                nmodel, ncircuit = mutate_model(model, circuit, database)
+                child = name_model(nmodel)
+                if child in models:
+                    continue
+                logging.info("  --> %s", child.replace("_", " "))
+                models[child] = nmodel
+                circuits[child] = ncircuit
+                population[child] = nmodel
+
+                turtle = os.path.join(args.output, child + ".ttl")
+                models[child].serialize(turtle, format="turtle")
+
+        results = test_models(context, population, args, facts=facts, rules=RULE_FILES)
+        scores.update(results)
+
+        for circuit in population:
+            turtle = os.path.join(args.output, circuit + ".ttl")
+            models[circuit].serialize(turtle, format="turtle")
+
+
+
+    top = topn(scores, args.selection)
+    for circuit in top:
+        print("%.06f\t%s" % (scores[circuit], circuit))
 
 if __name__ == '__main__':
     main()

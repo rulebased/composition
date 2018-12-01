@@ -98,12 +98,12 @@ def gen_model(model, database):
     return (model, circuit)
 
 def mutate_model(model, circuit, database):
-    logging.info("mutate: circuit is %s", circuit)
+#    logging.info("mutate: circuit is %s", circuit)
     nmodel = Graph()
     nmodel += model
 
     i = choice(range(len(circuit)))
-    logging.info("mutate: replacing part %d: %s", i, circuit[i])
+#    logging.info("mutate: replacing part %d: %s", i, circuit[i])
 
     try:
         part = replace_part(nmodel, circuit, i, database)
@@ -120,5 +120,5 @@ def mutate_model(model, circuit, database):
         nmodel.remove((part, GCC["next"], next))
         nmodel.add((part, GCC["next"], label))
 
-    logging.info("mutate: repacement part is %s", circuit[i])
+#    logging.info("mutate: repacement part is %s", circuit[i])
     return (nmodel, ncircuit)
