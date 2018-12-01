@@ -34,7 +34,7 @@ def name_model(g):
     return name
 
 
-def score(results):
+def score_min(results):
     LacI = np.array(list(x[1] for x in results["series"]))
     TetR = np.array(list(x[2] for x in results["series"]))
     LcI  = np.array(list(x[3] for x in results["series"]))
@@ -47,7 +47,20 @@ def score(results):
 
     return -1 * r
 
-def test_models(context, models, args, facts=[], rules=[]):
+def score_sum(results):
+    LacI = np.array(list(x[1] for x in results["series"]))
+    TetR = np.array(list(x[2] for x in results["series"]))
+    LcI  = np.array(list(x[3] for x in results["series"]))
+
+    r1, _ = pearsonr(LacI, TetR)
+    r2, _ = pearsonr(TetR, LcI)
+    r3, _ = pearsonr(LcI, LacI)
+
+    r = sum(0 if np.isnan(r) else r for r in (r1, r2, r3))
+
+    return -1 * r
+
+def test_models(context, score, models, args, facts=[], rules=[]):
     "start simulations of a list of models, and coalesce the results"
     q = Queue()
     for name in models:
@@ -99,12 +112,19 @@ def main():
     parser.add_argument('-e', '--selection', dest='selection', type=int, default=4, help='Selection from the population')
     parser.add_argument('-g', '--generations', dest='generations', type=int, default=10, help='Number of generations')
     parser.add_argument('-s', '--server', dest="server", default="tcp://localhost:9898", help="Server side of queue")    
-
+    parser.add_argument('-f', '--fitness', dest="fitness", default="min", help="Fitness function: min for best pair-wise anti-correlation, sum for best global anti-correlation")
     parser.add_argument('filename', type=str, help='Starting Circuit')
     parser.add_argument('database', type=str, help='Parts Database')
     parser.add_argument('output', type=str, help='Data Directory')
     parser.add_argument('debug', action="store_true", default=False, help='Turn on debugging')
     args = parser.parse_args()
+
+    if args.fitness == "min":
+        score = score_min
+    elif args.fitness == "sum":
+        score = score_sum
+    else:
+        raise KrdfError("unknown fitness function: %s" % args.score)
 
     if args.debug: loglevel=logging.DEBUG
     else: loglevel=logging.INFO
@@ -123,7 +143,7 @@ def main():
     name = name_model(model)
     models = { name: model }
     circuits = { name: circuit }
-    scores = test_models(context, {name: model}, args, facts=facts, rules=RULE_FILES)
+    scores = test_models(context, score, {name: model}, args, facts=facts, rules=RULE_FILES)
 
     for _ in range(args.generations):
         top = topn(scores, args.selection)
@@ -148,7 +168,7 @@ def main():
                 turtle = os.path.join(args.output, child + ".ttl")
                 models[child].serialize(turtle, format="turtle")
 
-        results = test_models(context, population, args, facts=facts, rules=RULE_FILES)
+        results = test_models(context, score, population, args, facts=facts, rules=RULE_FILES)
         scores.update(results)
 
         for circuit in population:
@@ -159,7 +179,7 @@ def main():
 
     top = topn(scores, args.selection)
     for circuit in top:
-        print("%.06f\t%s" % (scores[circuit], circuit))
+        print("%.06f\t%s" % (scores[circuit], circuit.replace("_", " ")))
 
 if __name__ == '__main__':
     main()
