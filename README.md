@@ -36,9 +36,10 @@ host with 12 CPU cores means running,
 It is possible to run `ksim` instances on many hosts and request using the
 `-s` option that they all connect to the same `kq` instance.
 
-Then a circuit may be requested to run on the back-end:
+Then a circuit may be requested to run on the back-end storing data in a
+file called `results.csv`:
 
-    % krun -l 1000000 examples/repressilator.ttl
+    % krun -l 1000000 examples/repressilator.ttl results.csv
 
 where the `-l` argument indicates the number of time-steps to run for.
 

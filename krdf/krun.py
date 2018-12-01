@@ -20,6 +20,7 @@ def main():
     parser.add_argument('debug', action="store_true", default=False, help='Turn on debugging')
 
     parser.add_argument('filename', type=str, help='Starting Circuit')
+    parser.add_argument('output', type=str, help='Output data file')
     parser.add_argument('auxfiles', nargs="*", default=[], help='Parts Database')
     args = parser.parse_args()
 
@@ -44,6 +45,9 @@ def main():
     logging.info("done.")
     socket.close()
     context.destroy()
+
+    results = sorted(data["series"], key=lambda r: r[0])
+    np.savetxt(args.output, np.array(results), delimiter=",")
 
 if __name__ == '__main__':
     main()

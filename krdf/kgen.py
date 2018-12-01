@@ -7,6 +7,8 @@ import json
 from queue import Queue
 
 import numpy as np
+from numpy.random import exponential
+from math import ceil
 from scipy.stats.stats import pearsonr
 from krdf.kcomp import FACT_FILES, RULE_FILES
 from krdf.namespace import RDF, RBMO, GCC
@@ -110,6 +112,7 @@ def main():
     parser.add_argument('-p', '--plot', dest='plot', type=int, default=100, help='Plot every N points')
     parser.add_argument('-o', '--population', dest='population', type=int, default=20, help='Population size to simulate')
     parser.add_argument('-e', '--selection', dest='selection', type=int, default=4, help='Selection from the population')
+    parser.add_argument('-m', '--mutation', dest='mutation', type=float, default=0.5, help='Mutation rate per offspring')
     parser.add_argument('-g', '--generations', dest='generations', type=int, default=10, help='Number of generations')
     parser.add_argument('-s', '--server', dest="server", default="tcp://localhost:9898", help="Server side of queue")    
     parser.add_argument('-f', '--fitness', dest="fitness", default="min", help="Fitness function: min for best pair-wise anti-correlation, sum for best global anti-correlation")
@@ -156,11 +159,14 @@ def main():
 
             children = int(args.population / len(top))
             for _ in range(children):
-                nmodel, ncircuit = mutate_model(model, circuit, database)
+                rnd = exponential(args.mutation)
+                nmodel, ncircuit = model, circuit
+                for _ in range(int(ceil(rnd))):
+                    nmodel, ncircuit = mutate_model(nmodel, ncircuit, database)
                 child = name_model(nmodel)
                 if child in models:
                     continue
-                logging.info("  --> %s", child.replace("_", " "))
+                logging.info("  --> (%d) %s", ceil(rnd), child.replace("_", " "))
                 models[child] = nmodel
                 circuits[child] = ncircuit
                 population[child] = nmodel

@@ -27,33 +27,33 @@
 
 :P0040 a gcc:Protein;
     gcc:molecule "P0040";
-    rdfs:label "TetR".
+    rdfs:label "TetR";
+    gcc:proteinDegradationRate 0.0001.
 
 :P0051 a gcc:Protein;
     gcc:molecule "P0051";
-    rdfs:label "λ-Cl".
+    rdfs:label "λ-Cl";
+    gcc:proteinDegradationRate 0.0001.
 
 :P0010 a gcc:Protein;
     gcc:molecule "P0010";
-    rdfs:label "LacI".
+    rdfs:label "LacI";
+    gcc:proteinDegradationRate 0.0001.
 
 :C0051 a gcc:CodingSequence;
     rdfs:label "Coding sequence for λ-Cl";
     gcc:part "C0051";
-    gcc:protein :P0051;
-    gcc:proteinDegradationRate 0.0001.
+    gcc:protein :P0051.
 
 :C0012 a gcc:CodingSequence;
     gcc:label "Coding sequence for LacI";
     gcc:part "C0012";
-    gcc:protein :P0010;
-    gcc:proteinDegradationRate 0.0001.
+    gcc:protein :P0010.
 
 :C0040 a gcc:CodingSequence;
     gcc:label "Coding sequence for TetR";
     gcc:part "C0040";
-    gcc:protein :P0040;
-    gcc:proteinDegradationRate 0.0001.
+    gcc:protein :P0040.
 
 :B0034a a gcc:RibosomeBindingSite;
     rdfs:label "Ribosome binding site";
