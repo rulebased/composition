@@ -146,9 +146,12 @@ def main():
     name = name_model(model)
     models = { name: model }
     circuits = { name: circuit }
+    generations = { name: 0 }
     scores = test_models(context, score, {name: model}, args, facts=facts, rules=RULE_FILES)
+    simulations = { name: 1 }
+    nsim = 1
 
-    for _ in range(args.generations):
+    for g in range(1, args.generations+1):
         top = topn(scores, args.selection)
         population = {}
         for parent in top:
@@ -158,7 +161,7 @@ def main():
             circuit = circuits[parent]
 
             children = int(args.population / len(top))
-            for _ in range(children):
+            for c in range(children):
                 rnd = exponential(args.mutation)
                 nmodel, ncircuit = model, circuit
                 for _ in range(int(ceil(rnd))):
@@ -166,9 +169,11 @@ def main():
                 child = name_model(nmodel)
                 if child in models:
                     continue
-                logging.info("  --> (%d) %s", ceil(rnd), child.replace("_", " "))
+                logging.info("  --> [%d/%d] (%d) %s", c, g, ceil(rnd), child.replace("_", " "))
                 models[child] = nmodel
                 circuits[child] = ncircuit
+                generations[child] = g
+                simulations[child] = nsim + 1
                 population[child] = nmodel
 
                 turtle = os.path.join(args.output, child + ".ttl")
@@ -176,6 +181,7 @@ def main():
 
         results = test_models(context, score, population, args, facts=facts, rules=RULE_FILES)
         scores.update(results)
+        nsim += len(population)
 
         for circuit in population:
             turtle = os.path.join(args.output, circuit + ".ttl")
@@ -185,7 +191,7 @@ def main():
 
     top = topn(scores, args.selection)
     for circuit in top:
-        print("%.06f\t%s" % (scores[circuit], circuit.replace("_", " ")))
+        print("%.06f\t%d\t%d\t%s" % (scores[circuit], generations[circuit], simulations[circuit], circuit.replace("_", " ")))
 
 if __name__ == '__main__':
     main()
